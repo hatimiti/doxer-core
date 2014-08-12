@@ -1,17 +1,11 @@
 package org.doxer.app.type;
 
+import lombok.Value;
 
+@Value
 public class Val {
 
 	private String val;
-
-	public Val(String val) {
-		this.val = val;
-	}
-
-	public String getVal() {
-		return this.val;
-	}
 
 	@Override
 	public String toString() {
