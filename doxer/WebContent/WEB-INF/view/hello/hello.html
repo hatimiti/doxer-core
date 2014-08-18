@@ -1,10 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Hello, ' + ${form.val} + '!'" /> :)
+	<p th:text="'Hello, ' + ${form.val} + '!'" />
+	<form action="/doxer/input">
+		<input type="text" name="val" th:value="${form.val}" /> <input
+			type="submit" name="send" />
+	</form>
 </body>
 </html>
