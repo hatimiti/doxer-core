@@ -3,6 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'war'
 apply plugin: 'eclipse'
 apply plugin: 'pmd'
+apply plugin: 'jacoco'
 
 def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
@@ -66,6 +67,12 @@ pmd {
         'java-strings',
         'java-braces'
     ]
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
 }
 
 check << {
