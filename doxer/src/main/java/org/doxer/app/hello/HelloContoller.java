@@ -2,30 +2,29 @@ package org.doxer.app.hello;
 
 import javax.annotation.Resource;
 
+import org.doxer.xbase.controller.DoxController;
+import org.doxer.xbase.util._Obj;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HelloContoller {
+public class HelloContoller extends DoxController {
 
-	protected static Logger log = LoggerFactory.getLogger(HelloContoller.class);
+	private static Logger log = _Obj.getLogger();
 
 	@Resource
 	public HelloService helloService;
 
 	@RequestMapping("/hello")
-	public String hello (@ModelAttribute("form") HelloModel model) {
-		System.out.println("HelloY");
+	public MV hello (HelloModel model) {
 		log.info("ログ出力テスト");
-		return "/hello/hello.html";
+		return view("/hello/hello.html", model);
 	}
 
-	@RequestMapping("input")
-	public String input(@ModelAttribute("form") HelloModel model) {
-		System.out.println(model.getVal());
-		return "/hello/hello.html";
+	@RequestMapping("/input")
+	public MV input(HelloModel model) {
+		log.info("ログ出力テスト2");
+		return view("/hello/hello.html", model);
 	}
 }
