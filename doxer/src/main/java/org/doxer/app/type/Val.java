@@ -9,6 +9,6 @@ public class Val {
 
 	@Override
 	public String toString() {
-		return this.val.toString();
+		return this.val;
 	}
 }
