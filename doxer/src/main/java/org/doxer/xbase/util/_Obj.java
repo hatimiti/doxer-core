@@ -42,6 +42,7 @@ public final class _Obj {
 	 * @param values
 	 * @return
 	 */
+	@SafeVarargs
 	public static <O> boolean isEmptyAnyIn(O... values) {
 		if (isEmpty(values)) {
 			return true;
@@ -56,6 +57,7 @@ public final class _Obj {
 	 * @param 判定文字列配列
 	 * @return null または空配列の場合は true を返す．<br>
 	 */
+	@SafeVarargs
 	public static <O> boolean isEmptyAllIn(O... values) {
 		if (isEmpty(values)) {
 			return true;
