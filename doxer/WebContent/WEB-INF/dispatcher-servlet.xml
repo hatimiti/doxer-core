@@ -12,8 +12,8 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="org.doxer.app" />
-
+	<import resource="config/*.xml" />
+	
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
@@ -31,6 +31,4 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="templateResolver" ref="templateResolver" />
 	</bean>
 	
-	<import resource="applicationContext.xml" />
-
 </beans>

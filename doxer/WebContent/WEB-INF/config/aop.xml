@@ -7,6 +7,20 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-	<!-- dispatcher-servelt.xml が起点となるためここには設定不要 -->
+	<aop:aspectj-autoproxy />
+	
+	<bean id="controllerInterceptors" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>*Controller</value>
+			</list>	
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>stopWatchInterceptor</value>
+				<value>validationInterceptor</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

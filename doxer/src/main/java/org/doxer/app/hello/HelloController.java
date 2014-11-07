@@ -1,15 +1,19 @@
 package org.doxer.app.hello;
 
+import static org.springframework.context.annotation.ScopedProxyMode.*;
+
 import javax.annotation.Resource;
 
 import org.doxer.xbase.controller.DoxController;
 import org.doxer.xbase.util._Obj;
 import org.slf4j.Logger;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HelloContoller extends DoxController {
+@Scope(proxyMode = TARGET_CLASS)
+public class HelloController extends DoxController {
 
 	private static Logger log = _Obj.getLogger();
 
