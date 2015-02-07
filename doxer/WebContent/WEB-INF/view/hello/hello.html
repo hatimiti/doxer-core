@@ -10,6 +10,9 @@
 		<input type="text" name="val" th:value="${form.val}" /> <input
 			type="submit" name="send" />
 	</form>
-
+	<table>
+		<tr><th>ID</th><th>名前</th></tr>
+		<tr th:each="ret : ${form.results}"><td th:text="${ret.tcmSampleId}">1</td><td th:text="${ret.sampleName}">テストA</td></tr>
+	</table>
 </body>
 </html>

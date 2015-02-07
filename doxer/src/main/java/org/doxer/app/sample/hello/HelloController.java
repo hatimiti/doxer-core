@@ -28,7 +28,8 @@ public class HelloController extends DoxController {
 
 	@RequestMapping("/input")
 	public MV input(HelloModel model) {
-		log.info("ログ出力テスト2, {}", this.helloService.hello());
+		this.helloService.search(model);
+		log.info("ログ出力テスト2, {}", model.getResults());
 		return view("/hello/hello.html", model);
 	}
 }
