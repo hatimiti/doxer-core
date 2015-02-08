@@ -1,19 +1,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<aop:aspectj-autoproxy />
-	
+
 	<bean id="controllerInterceptors" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">
 			<list>
 				<value>*Controller</value>
-			</list>	
+			</list>
 		</property>
 		<property name="interceptorNames">
 			<list>
@@ -22,5 +23,51 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 			</list>
 		</property>
 	</bean>
+	<bean id="serviceInterceptors" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>stopWatchInterceptor</value>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Settings for Transaction -->
+	<!--
+		トランザクション設定についてはメソッドから同クラス内のメソッドを呼び出した際は
+		初回のエントリポイントであるメソッドの設定が引き継がれるので注意。
+		別コンポーネントのメソッドを呼び出した際はそちらの設定が使用される。
+	-->
+
+	<!--
+		TransactionInterceptor によるトランザクション制御を行う設定。
+	-->
+	<bean id="transactionManager"
+			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="txAttribute"
+			class="org.springframework.transaction.interceptor.MatchAlwaysTransactionAttributeSource">
+		<property name="transactionAttribute">
+			<value>PROPAGATION_REQUIRED</value>
+		</property>
+	</bean>
+	<bean id="transactionInterceptor"
+			class="org.doxer.xbase.aop.interceptor.DoxTransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributeSource" ref="txAttribute" />
+	</bean>
+	
+	<!--
+		org.springframework.transaction.annotation.@Transactional アノテーションによる
+		トランザクション制御を行う設定。
+		TransactionInterceptorの設定を上書きしたい場合にクラス／メソッドに指定すること。
+	-->
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
 
 </beans>

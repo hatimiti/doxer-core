@@ -39,6 +39,7 @@ dependencies {
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.14.8'
 
 	compile group: SPRING_GROUPID, name: 'spring-jdbc', version: SPRING_VERSION
+	compile group: SPRING_GROUPID, name: 'spring-tx', version: SPRING_VERSION
 	compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '8.0.18'
 	compile group: 'org.dbflute', name: 'dbflute-runtime', version: '1.1.0-sp1'
 	compile group: 'com.h2database', name: 'h2', version: '1.4.185'
