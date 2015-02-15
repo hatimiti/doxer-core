@@ -4,10 +4,11 @@ import java.lang.reflect.Method;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.doxer.xbase.util._Obj;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+
+import com.github.hatimiti.flutist.common.util._Obj;
 
 @Component
 public class StopWatchInterceptor implements MethodInterceptor {

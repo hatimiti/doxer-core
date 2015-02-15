@@ -3,6 +3,7 @@
 	<name>doxer</name>
 	<comment></comment>
 	<projects>
+		<project>flutist-common</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

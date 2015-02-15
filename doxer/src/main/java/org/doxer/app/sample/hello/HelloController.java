@@ -5,11 +5,12 @@ import static org.springframework.context.annotation.ScopedProxyMode.*;
 import javax.annotation.Resource;
 
 import org.doxer.xbase.controller.DoxController;
-import org.doxer.xbase.util._Obj;
 import org.slf4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.github.hatimiti.flutist.common.util._Obj;
 
 @Controller
 @Scope(proxyMode = TARGET_CLASS)

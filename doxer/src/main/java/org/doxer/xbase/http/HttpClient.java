@@ -15,8 +15,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.StringEntity;
-import org.doxer.xbase.util._Obj;
 import org.slf4j.Logger;
+
+import com.github.hatimiti.flutist.common.util._Obj;
 
 public abstract class HttpClient {
 
