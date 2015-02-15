@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Scope(proxyMode = TARGET_CLASS)
+@RequestMapping(value = "/sample/rest")
 public class HelloRestController  {
 
 	@Resource
 	private BeanProperties applicationProperties;
 	
-	@RequestMapping(value = "/helloRest")
+	@RequestMapping(value = "/hello")
 	public Person hello (HelloModel model) {
 		Person person = new Person();
 		person.name = "hatimiti";

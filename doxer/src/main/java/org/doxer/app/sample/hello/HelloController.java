@@ -14,6 +14,7 @@ import com.github.hatimiti.flutist.common.util._Obj;
 
 @Controller
 @Scope(proxyMode = TARGET_CLASS)
+@RequestMapping("/sample/hello")
 public class HelloController extends DoxController {
 
 	private static Logger log = _Obj.getLogger();
@@ -21,8 +22,8 @@ public class HelloController extends DoxController {
 	@Resource
 	public HelloService helloService;
 
-	@RequestMapping("/hello")
-	public MV hello (HelloModel model) {
+	@RequestMapping("/index")
+	public MV index(HelloModel model) {
 		log.info("ログ出力テスト");
 		return view("/hello/hello.html", model);
 	}
