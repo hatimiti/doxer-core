@@ -35,4 +35,11 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/resources/templates</name>
+			<type>2</type>
+			<locationURI>PROJECT_LOC/WebContent/WEB-INF/view</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

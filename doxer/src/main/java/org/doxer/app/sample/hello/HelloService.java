@@ -1,16 +1,12 @@
 package org.doxer.app.sample.hello;
 
-import static org.springframework.context.annotation.ScopedProxyMode.*;
-
 import javax.annotation.Resource;
 
 import org.doxer.app.db.dbflute.exbhv.TcmSampleBhv;
 import org.doxer.app.db.dbflute.exentity.TcmSample;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 @Service
-@Scope(proxyMode = TARGET_CLASS)
 public class HelloService {
 
 	@Resource

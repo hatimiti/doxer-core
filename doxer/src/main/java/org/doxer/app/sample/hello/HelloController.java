@@ -21,13 +21,13 @@ public class HelloController extends DoxController {
 	@RequestMapping("/index")
 	public MV index(HelloModel model) {
 		log.info("ログ出力テスト");
-		return view("/hello/hello.html", model);
+		return view("/hello/hello", model);
 	}
 
 	@RequestMapping("/input")
 	public MV input(HelloModel model) {
 		this.helloService.search(model);
 		log.info("ログ出力テスト2, {}", model.getResults());
-		return view("/hello/hello.html", model);
+		return view("/hello/hello", model);
 	}
 }
