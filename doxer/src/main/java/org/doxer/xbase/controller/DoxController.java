@@ -6,9 +6,11 @@ import static org.doxer.xbase.util._Container.*;
 import javax.servlet.http.HttpServletRequest;
 
 import org.doxer.xbase.form.Form;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+@Scope("request")
 public abstract class DoxController {
 
 	protected String view(String path, Form form) {
