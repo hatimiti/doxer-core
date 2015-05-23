@@ -18,8 +18,9 @@ public abstract class DoxController {
 	protected static Logger LOG = _Obj.getLogger();
 	
 	protected String view(String path, Form form) {
+		// TODO ValidationInterceptorと共通化
 		HttpServletRequest req = getHttpServletRequest();
-		req.setAttribute(MODEL_AND_VIEW_ATTRIBUTE_FORM_KEY, form);
+		req.setAttribute(MODEL_AND_VIEW_FORM_KEY, form);
 		return path;
 	}
 	

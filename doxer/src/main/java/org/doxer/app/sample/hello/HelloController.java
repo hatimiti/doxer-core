@@ -2,6 +2,7 @@ package org.doxer.app.sample.hello;
 
 import javax.annotation.Resource;
 
+import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.controller.DoxController;
 import org.doxer.xbase.form.AccessUser;
 import org.doxer.xbase.util._Container;
@@ -27,6 +28,7 @@ public class HelloController extends DoxController {
 		return view("/hello/hello", form);
 	}
 
+	@DoValidation("/hello/hello")
 	@RequestMapping("/input")
 	public String input(HelloForm form) {
 		this.helloService.search(form);

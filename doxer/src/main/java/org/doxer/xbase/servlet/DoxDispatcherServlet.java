@@ -8,7 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class DoxDispatcherServlet extends DispatcherServlet {
 
-	public static final String MODEL_AND_VIEW_ATTRIBUTE_FORM_KEY = "__DOX_MODEL_AND_VIEW_ATTRIBUTE_FORM_KEY__";
+	public static final String MODEL_AND_VIEW_FORM_KEY = "__DOX_MODEL_AND_VIEW_FORM_KEY__";
+	public static final String MODEL_AND_VIEW_VALIDATION_KEY = "__DOX_MODEL_AND_VIEW_VALIDATION_KEY__";
 	
 	@Override
 	protected void render(
@@ -16,7 +17,8 @@ public class DoxDispatcherServlet extends DispatcherServlet {
 			HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		mv.addObject("form", request.getAttribute(MODEL_AND_VIEW_ATTRIBUTE_FORM_KEY));
+		mv.addObject("form", request.getAttribute(MODEL_AND_VIEW_FORM_KEY));
+		mv.addObject("valid", request.getAttribute(MODEL_AND_VIEW_VALIDATION_KEY));
 		super.render(mv, request, response);
 	}
 	
