@@ -1,4 +1,4 @@
-package org.doxer.xbase.model;
+package org.doxer.xbase.form;
 
 import static org.springframework.context.annotation.ScopedProxyMode.*;
 import static org.springframework.web.context.WebApplicationContext.*;

@@ -12,7 +12,7 @@ public class HelloService {
 	@Resource
 	public TcmSampleBhv tcmSampleBhv;
 	
-	public void search(HelloModel model) {
+	public void search(HelloForm model) {
 		model.setResults(tcmSampleBhv.findBySampleName(model.getVal()));
 
 		if ("register".equals(model.getVal().getVal())) {
@@ -20,7 +20,7 @@ public class HelloService {
 		}
 	}
 
-	public void register(HelloModel model) {
+	public void register(HelloForm model) {
 		TcmSample entity = new TcmSample();
 		entity.setSampleName("hatimiti");
 		tcmSampleBhv.insert(entity);
