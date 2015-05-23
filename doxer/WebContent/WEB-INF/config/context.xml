@@ -25,4 +25,32 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 		<property name="minIdle" value="2" />
 	</bean>
 
+	<bean name="handlerAdapter"
+			class="org.doxer.xbase.servlet.mvc.method.annotation.DoxRequestMappingHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+<!-- 				<property name="conversionService" ref="conversionService" /> -->
+				<property name="validator">
+					<bean class="org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean" />
+				</property>
+			</bean>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean name="handlerMapping"
+			class="org.doxer.xbase.servlet.mvc.method.annotation.DoxRequestMappingHandlerMapping">
+		<property name="useTrailingSlashMatch" value="false"></property>
+	</bean>
+
 </beans>
