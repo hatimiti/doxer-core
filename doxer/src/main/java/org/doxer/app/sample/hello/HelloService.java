@@ -4,10 +4,11 @@ import javax.annotation.Resource;
 
 import org.doxer.app.db.dbflute.exbhv.TcmSampleBhv;
 import org.doxer.app.db.dbflute.exentity.TcmSample;
+import org.doxer.xbase.service.DoxService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HelloService {
+public class HelloService extends DoxService {
 
 	@Resource
 	public TcmSampleBhv tcmSampleBhv;
