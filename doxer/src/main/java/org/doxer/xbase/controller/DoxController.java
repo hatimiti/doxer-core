@@ -1,5 +1,7 @@
 package org.doxer.xbase.controller;
 
+import static org.doxer.xbase.util._Container.*;
+
 import org.doxer.xbase.form.Form;
 import org.slf4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -17,11 +19,11 @@ public abstract class DoxController {
 	}
 	
 	protected String redirect(String to, RedirectAttributes ra) {
-		return "redirect:" + to;
+		return getRedirectPath(to);
 	}
 	
 	protected String forward(String to) {
-		return "forward:" + to;
+		return getForwardPath(to);
 	}
 	
 }

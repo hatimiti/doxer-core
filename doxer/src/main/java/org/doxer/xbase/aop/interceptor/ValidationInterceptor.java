@@ -1,6 +1,7 @@
 package org.doxer.xbase.aop.interceptor;
 
 import static org.doxer.xbase.servlet.DoxDispatcherServlet.*;
+import static org.doxer.xbase.util._Container.*;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -9,6 +10,7 @@ import java.util.Optional;
 import org.aopalliance.intercept.MethodInvocation;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.form.Form;
+import org.doxer.xbase.util._Container;
 import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.validation.ValidationMessages;
@@ -28,7 +30,7 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 		ValidationMessages errors = validate(v, opForm.get());
 		if (errors != null && errors.hasMessages()) {
 			setObjectToRequestAttribute(MODEL_AND_VIEW_VALIDATION_KEY, errors);
-			return v.value();
+			return buildReturnValue(v);
 		}
 		
 		return invocation.proceed();
@@ -59,6 +61,18 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 			return (ValidationMessages) validationMethod.get().invoke(form);
 		}
 		return null;
+	}
+	
+	protected String buildReturnValue(DoValidation v) {
+		switch (v.transition()) {
+		case REDIRECT:
+			return getRedirectPath(v.value());
+		case FORWORD:
+			return _Container.getForwardPath(v.value());
+		case VIEW:
+		default:
+			return v.value();
+		}
 	}
 }
 

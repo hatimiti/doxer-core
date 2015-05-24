@@ -25,10 +25,21 @@ import com.github.hatimiti.flutist.common.util._Str;
  */
 public final class _Container {
 
+	public static final String TRANSITION_REDIRECT_PREFIX = "redirect:";
+	public static final String TRANSITION_FORWARD_PREFIX = "forward:";
+	
 	/*
 	 * private コンストラクタ
 	 */
 	private _Container() { }
+	
+	public static String getRedirectPath(String path) {
+		return TRANSITION_REDIRECT_PREFIX + path;
+	}
+	
+	public static String getForwardPath(String path) {
+		return TRANSITION_FORWARD_PREFIX + path;
+	}
 
 	/** アクセス時間保持(Web側で使用される日時) */
 	private static final ThreadLocal<Date> ACCESS_DATE = new ThreadLocal<Date>() {
