@@ -5,9 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<table>
-		<tr th:each="v : ${valid}"><td th:text="${v}">1</td></tr>
-	</table>
+	<div class="ErrorsProperty" th:each="e : ${#sa.errors('val')}" th:text="${e}">xxx</div>
 	<p th:text="'Hello, ' + ${form.val} + '!'" />
 	<form action="/doxer/sample/hello/input">
 		<input type="text" name="val" th:value="${form.val}" /> <input

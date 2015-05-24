@@ -2,6 +2,7 @@ package org.doxer.xbase.util;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.github.hatimiti.flutist.common.message.AppMessages;
 import com.github.hatimiti.flutist.common.util._Date;
 import com.github.hatimiti.flutist.common.util._Str;
 
@@ -27,6 +29,8 @@ public final class _Container {
 
 	public static final String TRANSITION_REDIRECT_PREFIX = "redirect:";
 	public static final String TRANSITION_FORWARD_PREFIX = "forward:";
+	
+	public static final String MODEL_AND_VIEW_VALIDATION_KEY = "__DOX_MODEL_AND_VIEW_VALIDATION_KEY__";
 	
 	/*
 	 * private コンストラクタ
@@ -164,22 +168,35 @@ public final class _Container {
 //		return af != null;
 //		return af != null || vf != null;
 //	}
+	
+	public static Optional<AppMessages> getAppMessages() {
+		return Optional.ofNullable((AppMessages) getHttpServletRequest()
+				.getAttribute(MODEL_AND_VIEW_VALIDATION_KEY));
+	}
 
 	public static AccessUser getAccessUser() {
-		return getComponent(AccessUser.class);
+		return getComponent(AccessUser.class).get();
 	}
 
 	/**
 	 * seasar 管理下のオブジェクトを取得する．
 	 * @return 指定したオブジェクト
 	 */
-	public static <D> D getComponent(Class<D> clazz) {
-		return (D) getWebApplicationContext().getBean(clazz);
+	public static <D> Optional<D> getComponent(Class<D> clazz) {
+		try {
+			return Optional.of((D) getWebApplicationContext().getBean(clazz));
+		} catch (Exception e) {
+			return Optional.empty();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <D> D getComponent(String className) {
-		return (D) getWebApplicationContext().getBean(className);
+	public static <D> Optional<D> getComponent(String className) {
+		try {
+			return Optional.of((D) getWebApplicationContext().getBean(className));
+		} catch (Exception e) {
+			return Optional.empty();
+		}
 	}
 
 }

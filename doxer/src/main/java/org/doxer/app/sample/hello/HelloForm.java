@@ -10,8 +10,9 @@ import org.doxer.app.sample.type.Val;
 import org.doxer.xbase.form.DoxForm;
 import org.springframework.stereotype.Component;
 
-import com.github.hatimiti.flutist.common.validation.ValidationMessage;
-import com.github.hatimiti.flutist.common.validation.ValidationMessages;
+import com.github.hatimiti.flutist.common.message.AppMessages;
+import com.github.hatimiti.flutist.common.validation.Vval;
+import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -22,11 +23,14 @@ public class HelloForm extends DoxForm {
 
 	private ListResultBean<TcmSample> results;
 	
-	public ValidationMessages validate() {
-		val errors = new ValidationMessages();
-		System.out.println("Validate HOGEHOGE");
-		errors.add("val", new ValidationMessage("mes.req"));
-		return errors;
+	public AppMessages validate() {
+		val messages = new AppMessages();
+		val required = new RequiredFieldValidator(messages);
+		
+		required.check(Vval.of(val.getVal()), "val");
+		required.check(Vval.of(val.getVal()), "val");
+		
+		return messages;
 	}
 	
 }
