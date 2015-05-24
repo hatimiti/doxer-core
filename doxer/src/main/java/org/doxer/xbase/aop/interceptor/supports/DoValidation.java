@@ -14,9 +14,9 @@ public @interface DoValidation {
 	//TODO カンマ区切り可能にする？
 	String method() default "validate";
 	
-	SCOPE scope() default SCOPE.VIEW;
+	TransitionMethod transition() default TransitionMethod.VIEW;
 	
-	public static enum SCOPE {
+	public static enum TransitionMethod {
 		VIEW,
 		REDIRECT,
 		FORWORD

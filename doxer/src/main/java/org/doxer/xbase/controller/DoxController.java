@@ -1,10 +1,5 @@
 package org.doxer.xbase.controller;
 
-import static org.doxer.xbase.servlet.DoxDispatcherServlet.*;
-import static org.doxer.xbase.util._Container.*;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.doxer.xbase.form.Form;
 import org.slf4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -18,9 +13,6 @@ public abstract class DoxController {
 	protected static Logger LOG = _Obj.getLogger();
 	
 	protected String view(String path, Form form) {
-		// TODO ValidationInterceptorと共通化
-		HttpServletRequest req = getHttpServletRequest();
-		req.setAttribute(MODEL_AND_VIEW_FORM_KEY, form);
 		return path;
 	}
 	
