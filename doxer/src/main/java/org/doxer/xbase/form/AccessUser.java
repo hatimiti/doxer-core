@@ -43,7 +43,7 @@ public class AccessUser implements Serializable {
 	protected Integer authroleId;
 
 	/** 言語コード */
-	protected String langCd;
+	protected String langCd = "ja";
 
 	public void invalidate() {
 		_Obj.copy(new AccessUser(), this);

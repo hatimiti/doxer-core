@@ -169,7 +169,7 @@ public final class _Container {
 //		return af != null || vf != null;
 //	}
 	
-	public static Optional<AppMessages> getAppMessages() {
+	public static Optional<AppMessages> getAppMessagesInRequest() {
 		return Optional.ofNullable((AppMessages) getHttpServletRequest()
 				.getAttribute(MODEL_AND_VIEW_VALIDATION_KEY));
 	}
