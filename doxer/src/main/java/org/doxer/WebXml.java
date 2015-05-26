@@ -8,6 +8,7 @@ import javax.servlet.Filter;
 
 import org.doxer.xbase.filter.AccessDateFilter;
 import org.doxer.xbase.servlet.DoxDispatcherServlet;
+import org.seasar.extension.filter.RequestDumpFilter;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
@@ -38,6 +39,20 @@ public class WebXml extends SpringBootServletInitializer {
 		registrationBean.setInitParameters(new HashMap<String, String>() {{
 			put("encoding", "UTF-8");
 			put("forceEncoding", "true");
+		}});
+		registrationBean.setUrlPatterns(asList(new String[] { "/*" }));
+		return registrationBean;
+	}
+	
+	@Bean
+	public FilterRegistrationBean registRequestDumpFilter() {
+		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		Filter filter = new RequestDumpFilter();
+		registrationBean.setFilter(filter);
+		registrationBean.setOrder(1);
+		registrationBean.setInitParameters(new HashMap<String, String>() {{
+			put("beforeContextAttribute", "false");
+			put("afterContextAttribute", "false");
 		}});
 		registrationBean.setUrlPatterns(asList(new String[] { "/*" }));
 		return registrationBean;

@@ -20,8 +20,34 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	<filter>
+		<filter-name>requestDumpFilter</filter-name>
+		<filter-class>org.seasar.extension.filter.RequestDumpFilter</filter-class>
+		<init-param>
+			<param-name>beforeContextAttribute</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>afterContextAttribute</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>accessDateFilter</filter-name>
+		<filter-class>
+			org.doxer.xbase.filter.AccessDateFilter
+		</filter-class>
+	</filter>
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>accessDateFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>requestDumpFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
