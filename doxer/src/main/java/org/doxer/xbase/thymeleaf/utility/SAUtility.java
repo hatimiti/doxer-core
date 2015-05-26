@@ -16,11 +16,11 @@ public class SAUtility {
 	}
 	
 	public List<AppMessage> errors(String property) {
-		Optional<AppMessages> messages = _Container.getAppMessages();
+		Optional<AppMessages> messages = _Container.getAppMessagesInRequest();
 		if (!messages.isPresent()) {
 			return null;
 		}
-		return messages.get().getCopyBy(property);
+		return messages.get().copyMessageListOf(property);
 	}
 	
 }
