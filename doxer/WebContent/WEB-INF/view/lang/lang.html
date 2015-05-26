@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<span th:text="${form.message}">言語設定</span><br />
+	<span th:text="#{hello}">サンプルメッセージ</span><br />
+	<span th:text="#{hello2(test, OK)}"></span><br />
+	<span th:text="#{hello2(${form.lang}, #{hello(Kakimi)})}"></span><br />
+	<span th:text="#{valid.required('サンプル')}"></span>
+	<form action="/doxer/sample/lang/lang">
+		<select name="lang" th:field="${form.lang}">
+			<option value="ja">日本語</option>
+			<option value="en">English</option>
+		</select>
+		<input type="submit" value="送信" />
+	</form>
+</body>
+</html>

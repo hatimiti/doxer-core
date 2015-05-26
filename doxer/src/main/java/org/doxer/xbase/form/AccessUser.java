@@ -4,6 +4,7 @@ import static org.springframework.context.annotation.ScopedProxyMode.*;
 import static org.springframework.web.context.WebApplicationContext.*;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 import lombok.Data;
 
@@ -58,6 +59,10 @@ public class AccessUser implements Serializable {
 
 	public String getName() {
 		return getNameSei() + "　" + getNameMei();
+	}
+	
+	public Locale getLocale() {
+		return new Locale(this.langCd);
 	}
 
 }
