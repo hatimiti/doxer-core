@@ -33,5 +33,9 @@ public abstract class BaseMethodInterceptor implements MethodInterceptor {
 		}
 		return Optional.empty();
 	}
+	
+	protected Class<? extends Object> getTargetClass(MethodInvocation invocation) {
+		return invocation.getThis().getClass();
+	}
 }
 

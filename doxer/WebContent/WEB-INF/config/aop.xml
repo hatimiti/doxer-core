@@ -20,6 +20,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="interceptorNames">
 			<list>
 				<value>stopWatchInterceptor</value>
+				<value>setCommonColumnInterceptor</value>
 				<value>registForm4ModelAndViewInterceptor</value>
 				<value>validationInterceptor</value>
 			</list>

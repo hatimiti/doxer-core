@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.hatimiti.flutist.common.annotation.Function;
+
 @Controller
+@Function("S0001")
 @RequestMapping("/sample/hello")
 public class HelloController extends DoxController {
 
