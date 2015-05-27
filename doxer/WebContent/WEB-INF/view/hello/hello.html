@@ -8,9 +8,12 @@
 <body>
 	<div class="ErrorsProperty" th:each="e : ${#sa.errors('val')}" th:text="${e}">xxx</div>
 	<p th:text="'Hello, ' + ${form.val} + '!'" />
-	<form action="/doxer/sample/hello/input">
+	<form action="/doxer/sample/hello/input" method="POST">
 		<input type="text" name="val" th:value="${form.val}" /> <input
 			type="submit" name="send" />
+		<input type="hidden"
+				th:name="${T(org.doxer.xbase.util.TokenProcessor).TOKEN_KEY}"
+				th:value="${#httpSession.getAttribute(T(org.doxer.xbase.util.TokenProcessor).TRANSACTION_TOKEN_KEY)}" />
 	</form>
 	<table>
 		<tr><th>ID</th><th>名前</th></tr>

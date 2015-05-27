@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
@@ -22,6 +23,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<value>stopWatchInterceptor</value>
 				<value>setCommonColumnInterceptor</value>
 				<value>registForm4ModelAndViewInterceptor</value>
+				<value>tokenInterceptor</value>
 				<value>validationInterceptor</value>
 			</list>
 		</property>

@@ -1,8 +1,11 @@
 package org.doxer.app.sample.hello;
 
+import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
+
 import javax.annotation.Resource;
 
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
+import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.doxer.xbase.controller.DoxController;
 import org.doxer.xbase.form.AccessUser;
 import org.doxer.xbase.util._Container;
@@ -23,6 +26,7 @@ public class HelloController extends DoxController {
 	@Resource
 	public AccessUser accessUser;
 
+	@Token(SET)
 	@RequestMapping("/index")
 	public String index(HelloForm form) {
 		LOG.info("ログ出力テスト 時間={}", _Container.getAccessDate());
@@ -31,6 +35,7 @@ public class HelloController extends DoxController {
 		return view("/hello/hello", form);
 	}
 
+	@Token(CHECK_AND_SET)
 	@DoValidation("/hello/hello")
 	@RequestMapping("/input")
 	public String input(HelloForm form) {
