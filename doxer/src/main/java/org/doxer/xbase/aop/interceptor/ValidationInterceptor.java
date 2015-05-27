@@ -1,6 +1,5 @@
 package org.doxer.xbase.aop.interceptor;
 
-import static org.doxer.xbase.servlet.DoxDispatcherServlet.*;
 import static org.doxer.xbase.util._Container.*;
 
 import java.lang.reflect.Method;
