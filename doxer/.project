@@ -41,5 +41,10 @@
 			<type>2</type>
 			<locationURI>PROJECT_LOC/WebContent/WEB-INF/view</locationURI>
 		</link>
+		<link>
+			<name>src/main/resources/static/static</name>
+			<type>2</type>
+			<locationURI>PROJECT_LOC/WebContent/static</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>
