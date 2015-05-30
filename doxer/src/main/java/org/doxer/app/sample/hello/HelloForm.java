@@ -1,5 +1,6 @@
 package org.doxer.app.sample.hello;
 
+import static org.doxer.xbase.util._Container.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.val;
@@ -10,7 +11,7 @@ import org.doxer.app.sample.type.Val;
 import org.doxer.xbase.form.DoxForm;
 import org.springframework.stereotype.Component;
 
-import com.github.hatimiti.flutist.common.message.AppMessages;
+import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
 
@@ -23,14 +24,11 @@ public class HelloForm extends DoxForm {
 
 	private ListResultBean<TcmSample> results;
 	
-	public AppMessages validate() {
-		val messages = new AppMessages();
-		val required = new RequiredFieldValidator(messages);
-		
-		required.check(Vval.of(val.getVal()), "val");
-		required.check(Vval.of(val.getVal()), "val");
-		
-		return messages;
+	@Override
+	public void validate(AppMessagesContainer container) {
+		val required = new RequiredFieldValidator(container);
+		required.check(Vval.of(val.getVal()), "val", buildMessage("dictionary.val"));
+		required.check(Vval.of(val.getVal()), "val", buildMessage("dictionary.val"));
 	}
-	
+
 }

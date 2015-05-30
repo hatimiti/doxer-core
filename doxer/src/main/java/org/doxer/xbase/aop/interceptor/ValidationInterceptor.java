@@ -12,7 +12,7 @@ import org.doxer.xbase.form.Form;
 import org.doxer.xbase.util._Container;
 import org.springframework.stereotype.Component;
 
-import com.github.hatimiti.flutist.common.message.AppMessages;
+import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
 @Component
 public class ValidationInterceptor extends BaseMethodInterceptor {
@@ -26,9 +26,9 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 			return invocation.proceed();
 		}
 		
-		AppMessages errors = validate(v, opForm.get());
-		if (errors != null && errors.hasMessages()) {
-			setObjectToRequestAttribute(MODEL_AND_VIEW_VALIDATION_KEY, errors);
+		AppMessagesContainer container = validate(v, opForm.get());
+		if (!container.isEmpty()) {
+			_Container.getAppMessagesContainer().addAll(container);
 			return buildReturnValue(v);
 		}
 		
@@ -42,24 +42,24 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 	protected Optional<Method> getAppMethod(Form form, DoValidation v) {
 		try {
 			Optional<Method> method
-				= Optional.of(form.getClass().getMethod(v.method()));
+				= Optional.of(form.getClass().getMethod(v.method(), AppMessagesContainer.class));
 			method.get().setAccessible(true);
 			return method
 					.filter(m -> Modifier.isPublic(m.getModifiers()))
-					.filter(m -> m.getReturnType() == AppMessages.class)
-					.filter(m -> m.getParameterCount() == 0);
+					.filter(m -> m.getReturnType() == void.class);
 		} catch (NoSuchMethodException e) {
 			return Optional.empty();
 		}
 	}
 	
-	protected AppMessages validate(
+	protected AppMessagesContainer validate(
 			DoValidation v, Form form) throws Throwable {
+		AppMessagesContainer container = new AppMessagesContainer();
 		Optional<Method> validationMethod = getAppMethod(form, v);
 		if (validationMethod.isPresent()) {
-			return (AppMessages) validationMethod.get().invoke(form);
+			validationMethod.get().invoke(form, container);
 		}
-		return null;
+		return container;
 	}
 	
 	protected String buildReturnValue(DoValidation v) {

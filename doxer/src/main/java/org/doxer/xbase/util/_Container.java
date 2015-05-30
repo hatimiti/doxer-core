@@ -1,7 +1,10 @@
 package org.doxer.xbase.util;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
@@ -11,12 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.doxer.xbase.form.AccessUser;
+import org.springframework.context.MessageSource;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.github.hatimiti.flutist.common.message.AppMessages;
+import com.github.hatimiti.flutist.common.message.AppMessage;
+import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.GlobalMessages;
+import com.github.hatimiti.flutist.common.message.OwnedMessages;
 import com.github.hatimiti.flutist.common.util._Date;
 import com.github.hatimiti.flutist.common.util._Str;
 
@@ -27,24 +34,13 @@ import com.github.hatimiti.flutist.common.util._Str;
  */
 public final class _Container {
 
+	/* ****************************************
+	 * フィールド定義
+	 * ****************************************/
+	
 	public static final String TRANSITION_REDIRECT_PREFIX = "redirect:";
 	public static final String TRANSITION_FORWARD_PREFIX = "forward:";
 	
-	public static final String MODEL_AND_VIEW_VALIDATION_KEY = "__DOX_MODEL_AND_VIEW_VALIDATION_KEY__";
-	
-	/*
-	 * private コンストラクタ
-	 */
-	private _Container() { }
-	
-	public static String getRedirectPath(String path) {
-		return TRANSITION_REDIRECT_PREFIX + path;
-	}
-	
-	public static String getForwardPath(String path) {
-		return TRANSITION_FORWARD_PREFIX + path;
-	}
-
 	/** アクセス時間保持(Web側で使用される日時) */
 	private static final ThreadLocal<Date> ACCESS_DATE = new ThreadLocal<Date>() {
 		@Override
@@ -52,7 +48,25 @@ public final class _Container {
 			return new Date();
 		};
 	};
-
+	
+	/** アプリケーションメッセージ保持 */
+	private static final ThreadLocal<AppMessagesContainer> APPMESSAGES
+			= new ThreadLocal<AppMessagesContainer>() {
+		@Override
+		protected AppMessagesContainer initialValue() {
+			return new AppMessagesContainer();
+		};
+	};
+	
+	/*
+	 * private コンストラクタ
+	 */
+	private _Container() { }
+	
+	/* ****************************************
+	 * アクセス日付
+	 * ****************************************/
+	
 	/**
 	 * アクセス時間を取得
 	 */
@@ -119,7 +133,63 @@ public final class _Container {
 	public static void resetAccessDate() {
 		ACCESS_DATE.remove();
 	}
+	
+	/* ****************************************
+	 * アプリケーションメッセージ
+	 * ****************************************/
+	
+	/**
+	 * アプリケーションメッセージコンテナを取得<br>
+	 */
+	public static AppMessagesContainer getAppMessagesContainer() {
+		return APPMESSAGES.get();
+	}
+	
+	/**
+	 * アプリケーションメッセージコンテナをクリア<br>
+	 * filter が呼び出すため、実装者が呼び出す必要はない．
+	 */
+	public static void resetAppMessagesContainer() {
+		APPMESSAGES.remove();
+	}
+	
+	public static List<String> getGlobalMessages() {
+		return buildMessages(getAppMessagesContainer().getGlobalMessages());
+	}
+	
+	public static List<String> getParsedOwnedMessages(String owner) {
+		return buildMessages(getAppMessagesContainer().getOwnedMessages(owner));
+	}
+	
+	public static String buildMessage(String key, Object... params) {
+		Objects.requireNonNull(key);
+		MessageSource source = getComponent(MessageSource.class).get();
+		return source.getMessage(key, params, getAccessUser().getLocale());
+	}
+	
+	public static void addMessage(AppMessage message) {
+		APPMESSAGES.get().add(new GlobalMessages(message));
+	}
+	
+	public static void addMessage(String owner, AppMessage message) {
+		APPMESSAGES.get().add(new OwnedMessages(owner, message));
+	}
 
+	private static List<String> buildMessages(List<AppMessage> messages) {
+		List<String> r = new ArrayList<>();
+		MessageSource source = getComponent(MessageSource.class).get();
+		for (AppMessage m : messages) {
+			r.add(m.isResource()
+					? source.getMessage(m.getKeyOrMessage(), m.getParams(), getAccessUser().getLocale())
+					: m.getKeyOrMessage());
+		}
+		return r;
+	}
+
+	/* ****************************************
+	 * アプリケーションWeb設定
+	 * ****************************************/
+	
 	/**
 	 * アプリケーションルートパスを取得する．
 	 * @return アプリケーションルートフォルダパス
@@ -169,15 +239,26 @@ public final class _Container {
 //		return af != null || vf != null;
 //	}
 	
-	public static Optional<AppMessages> getAppMessagesInRequest() {
-		return Optional.ofNullable((AppMessages) getHttpServletRequest()
-				.getAttribute(MODEL_AND_VIEW_VALIDATION_KEY));
-	}
-
+	/* ****************************************
+	 * アクセスユーザー
+	 * ****************************************/
+	
 	public static AccessUser getAccessUser() {
 		return getComponent(AccessUser.class).get();
 	}
 
+	/* ****************************************
+	 * DIコンテナ設定
+	 * ****************************************/
+	
+	public static String getRedirectPath(String path) {
+		return TRANSITION_REDIRECT_PREFIX + path;
+	}
+	
+	public static String getForwardPath(String path) {
+		return TRANSITION_FORWARD_PREFIX + path;
+	}
+	
 	/**
 	 * seasar 管理下のオブジェクトを取得する．
 	 * @return 指定したオブジェクト

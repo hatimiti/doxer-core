@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.Filter;
 
-import org.doxer.xbase.filter.AccessDateFilter;
+import org.doxer.xbase.filter.ThreadLocalInitFilter;
 import org.doxer.xbase.servlet.DoxDispatcherServlet;
 import org.seasar.extension.filter.RequestDumpFilter;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
@@ -45,25 +45,25 @@ public class WebXml extends SpringBootServletInitializer {
 	}
 	
 	@Bean
-	public FilterRegistrationBean registRequestDumpFilter() {
+	public FilterRegistrationBean registThreadLocalInitFilter() {
 		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		Filter filter = new RequestDumpFilter();
+		Filter filter = new ThreadLocalInitFilter();
 		registrationBean.setFilter(filter);
-		registrationBean.setOrder(1);
-		registrationBean.setInitParameters(new HashMap<String, String>() {{
-			put("beforeContextAttribute", "false");
-			put("afterContextAttribute", "false");
-		}});
+		registrationBean.setOrder(2);
 		registrationBean.setUrlPatterns(asList(new String[] { "/*" }));
 		return registrationBean;
 	}
 	
 	@Bean
-	public FilterRegistrationBean registAccessDateFilter() {
+	public FilterRegistrationBean registRequestDumpFilter() {
 		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		Filter filter = new AccessDateFilter();
+		Filter filter = new RequestDumpFilter();
 		registrationBean.setFilter(filter);
-		registrationBean.setOrder(2);
+		registrationBean.setOrder(3);
+		registrationBean.setInitParameters(new HashMap<String, String>() {{
+			put("beforeContextAttribute", "false");
+			put("afterContextAttribute", "false");
+		}});
 		registrationBean.setUrlPatterns(asList(new String[] { "/*" }));
 		return registrationBean;
 	}

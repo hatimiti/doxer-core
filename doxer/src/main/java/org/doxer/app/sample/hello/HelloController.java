@@ -1,6 +1,8 @@
 package org.doxer.app.sample.hello;
 
+import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
+import static org.doxer.xbase.util._Container.*;
 
 import javax.annotation.Resource;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.hatimiti.flutist.common.annotation.Function;
+import com.github.hatimiti.flutist.common.message.AppMessage;
 
 @Controller
 @Function("S0001")
@@ -41,6 +44,7 @@ public class HelloController extends DoxController {
 	public String input(HelloForm form) {
 		this.helloService.search(form);
 		LOG.info("ログ出力テスト2, {}", form.getResults());
+		addMessage(new AppMessage(INFO, "hello2", buildMessage("dictionary.val"), buildMessage("samplemes")));
 		return view("/hello/hello", form);
 	}
 	

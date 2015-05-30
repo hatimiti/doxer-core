@@ -12,11 +12,13 @@ import javax.servlet.ServletResponse;
 import org.doxer.xbase.util._Container;
 
 /**
- * アクセス時間を設定＋リセットするFilter
+ * スレッドローカル情報の初期化処理フィルタ
+ * ・アクセス時間を設定＋リセットする
+ * ・メッセージコンテナをリセットする
  *
  * @author hatimiti
  */
-public class AccessDateFilter implements Filter {
+public class ThreadLocalInitFilter implements Filter {
 
 	/**
 	 * フィルタ初期化処理
@@ -37,6 +39,7 @@ public class AccessDateFilter implements Filter {
 			chain.doFilter(request, response);
 		} finally {
 			_Container.resetAccessDate();
+			_Container.resetAppMessagesContainer();
 		}
 	}
 
