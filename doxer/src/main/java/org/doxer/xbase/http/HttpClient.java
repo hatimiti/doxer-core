@@ -21,6 +21,8 @@ import com.github.hatimiti.flutist.common.util._Obj;
 
 public abstract class HttpClient {
 
+	private static final String EQ = "=";
+	
 	private static Logger log = _Obj.getLogger();
 
 	private String url;
@@ -69,7 +71,7 @@ public abstract class HttpClient {
 			try {
 				query
 					.append(encode(p.getKey(), requestCharset.name()))
-					.append("=")
+					.append(EQ)
 					.append(encode(p.getValue(), requestCharset.name()))
 				;
 			} catch (Exception e) {

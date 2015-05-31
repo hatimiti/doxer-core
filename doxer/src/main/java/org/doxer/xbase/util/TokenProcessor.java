@@ -157,7 +157,7 @@ public class TokenProcessor {
 				current++;
 			}
 			previous = current;
-			byte now[] = new Long(current).toString().getBytes();
+			byte now[] = Long.toString(current).getBytes();
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(id);
 			md.update(now);
