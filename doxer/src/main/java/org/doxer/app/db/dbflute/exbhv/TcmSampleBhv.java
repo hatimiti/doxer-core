@@ -13,6 +13,7 @@ import org.doxer.app.sample.type.Val;
  * </p>
  * @author DBFlute(AutoGenerator)
  */
+@org.springframework.stereotype.Component("tcmSampleBhv")
 public class TcmSampleBhv extends BsTcmSampleBhv {
 
 	public ListResultBean<TcmSample> findBySampleName(Val name) {

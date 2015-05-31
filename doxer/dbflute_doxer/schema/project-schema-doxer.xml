@@ -4,7 +4,7 @@
 <database name="PUBLIC">
     <table name="TCM_SAMPLE" schema="DOXER.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_640CF3E9_25A7_4476_8904_B607E48C1CD5"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_32B861CF_BC60_4D22_A303_91346DD0775E"
             javaType="Long" name="TCM_SAMPLE_ID" pkName="CONSTRAINT_6"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -12,6 +12,6 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_640CF3E9_25A7_4476_8904_B607E48C1CD5" schema="DOXER.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_32B861CF_BC60_4D22_A303_91346DD0775E" schema="DOXER.PUBLIC"/>
     </sequenceGroup>
 </database>

@@ -64,7 +64,7 @@ public class TcmSampleDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTcmSampleId = cci("TCM_SAMPLE_ID", "TCM_SAMPLE_ID", null, null, Long.class, "tcmSampleId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_640CF3E9_25A7_4476_8904_B607E48C1CD5", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnTcmSampleId = cci("TCM_SAMPLE_ID", "TCM_SAMPLE_ID", null, null, Long.class, "tcmSampleId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_32B861CF_BC60_4D22_A303_91346DD0775E", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnSampleName = cci("SAMPLE_NAME", "SAMPLE_NAME", null, null, String.class, "sampleName", null, false, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
 
     /**
