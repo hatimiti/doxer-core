@@ -40,7 +40,7 @@ def SPRING_GROUPID = 'org.springframework'
 def SPRING_BOOT_GROUP_ID = 'org.springframework.boot'
 def SPRING_VERSION = '4.1.6.RELEASE'
 def SPRING_SECURITY_VERSION = '4.0.1.RELEASE'
-def ASPECTJ_VERSION = '1.8.2'
+def ASPECTJ_VERSION = '1.8.5'
 def LOGBACK_VERSION = '1.1.3'
 dependencies {
 
@@ -65,7 +65,7 @@ dependencies {
 	compile group: SPRING_GROUPID, name: 'spring-tx', version: SPRING_VERSION
 	compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '8.0.18'
 	compile group: 'org.dbflute', name: 'dbflute-runtime', version: '1.1.0-sp1'
-	compile group: 'com.h2database', name: 'h2', version: '1.4.185'
+	compile group: 'com.h2database', name: 'h2', version: '1.4.187'
 	// Settings Logging
 //	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.11'
 	compile group: 'ch.qos.logback', name: 'logback-classic', version: LOGBACK_VERSION
@@ -74,8 +74,8 @@ dependencies {
 	compile group: 'org.aspectj', name: 'aspectjrt', version: ASPECTJ_VERSION
 	compile group: 'org.aspectj', name: 'aspectjweaver', version: ASPECTJ_VERSION
 	// Settings Other
-	compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.4'
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.1'
+	compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.4.1'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.6.0-rc1'
 	
 	// Settings Test
 	testCompile group: 'junit', name: 'junit', version: '4.+'
