@@ -1,13 +1,5 @@
 package org.doxer.app.event.http.connpass;
 
-import static java.util.Arrays.*;
-
-import java.io.IOException;
-
-import net.arnx.jsonic.JSON;
-
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.fluent.Response;
 import org.doxer.xbase.http.HttpClient;
 
 public class ConnpassAPIClient extends HttpClient {
@@ -43,15 +35,15 @@ public class ConnpassAPIClient extends HttpClient {
 		addQuery("format", query.getFormat());
 	}
 
-	public static void main(String[] args) throws ClientProtocolException, IOException {
-		ConnpassRequestQuery q = new ConnpassRequestQuery();
-		q.setKeywordANDs(asList(new String[]{"java", "scala", "関西"}));
-		q.setYmds(asList(new Integer[]{20141122, 20140920}));
-		Response res = request(q).get();
-
-		ConnpassResponse cres = JSON.decode(res.returnContent().asString(), ConnpassResponse.class);
-
-		System.out.println(cres.toString());
-	}
+//	public static void main(String[] args) throws ClientProtocolException, IOException {
+//		ConnpassRequestQuery q = new ConnpassRequestQuery();
+//		q.setKeywordANDs(asList(new String[]{"java", "scala", "関西"}));
+//		q.setYmds(asList(new Integer[]{20141122, 20140920}));
+//		Response res = request(q).get();
+//
+//		ConnpassResponse cres = JSON.decode(res.returnContent().asString(), ConnpassResponse.class);
+//
+//		System.out.println(cres.toString());
+//	}
 
 }

@@ -10,7 +10,8 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 	<context:annotation-config />
 	<context:component-scan base-package="org.doxer" />
 
-	<context:property-placeholder location="classpath:**/*.properties" />
+<!-- gradleでのtestタスクが失敗するためコメント化 	<context:property-placeholder location="classpath:**/*.properties" /> -->
+	<context:property-placeholder location="classpath:/application.properties" />
 
 	<bean id="dataSource"
 			destroy-method="close"

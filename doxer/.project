@@ -37,9 +37,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/main/resources/templates</name>
+			<name>WebContent/WEB-INF/view</name>
 			<type>2</type>
-			<locationURI>PROJECT_LOC/WebContent/WEB-INF/view</locationURI>
+			<locationURI>PROJECT_LOC/src/main/resources/templates</locationURI>
 		</link>
 		<link>
 			<name>src/main/resources/static/static</name>

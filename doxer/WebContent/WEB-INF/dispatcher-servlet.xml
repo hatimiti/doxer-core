@@ -17,7 +17,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="templateResolver"
 			class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
-		<property name="suffix" value="" />
+		<property name="suffix" value=".html" />
 		<property name="templateMode" value="HTML5" />
 		<property name="cacheable" value="false" />
 	</bean>
