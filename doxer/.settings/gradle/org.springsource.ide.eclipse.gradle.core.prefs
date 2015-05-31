@@ -1,5 +1,5 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Sat Apr 25 11:50:42 JST 2015
-build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;
+#Sun May 31 13:27:56 JST 2015
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../flutist-common;
 org.springsource.ide.eclipse.gradle.linkedresources=
 org.springsource.ide.eclipse.gradle.rootprojectloc=
