@@ -1,5 +1,7 @@
 package org.doxer;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+
 import org.doxer.xbase.thymeleaf.dialect.sa.JUtilityDialect;
 import org.doxer.xbase.thymeleaf.dialect.sa.SADialect;
 import org.springframework.context.annotation.Bean;
@@ -28,18 +30,18 @@ public class SysConfig {
 		resolver.setCharacterEncoding("UTF-8");
 		return resolver;
 	}
-	
+
 	@Bean
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine engine = new SpringTemplateEngine();
-		
+
 		engine.setTemplateResolver(templateResolver());
-//		engine.addDialect(new LayoutDialect());
+		engine.addDialect(new LayoutDialect());
 		engine.addDialect(new SADialect());
 		engine.addDialect(new JUtilityDialect());
 		return engine;
 	}
-	
+
 	/**
 	 * Thymeleaf ビューリゾルバー設定
 	 * @return	ビューリゾルバー

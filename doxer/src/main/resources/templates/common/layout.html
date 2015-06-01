@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+	<link rel="stylesheet" href="/webcontents/share/css/init.css" th:href="@{/webcontents/share/css/init.css}" />
+	<link rel="stylesheet" href="/webcontents/intra/css/init.css" th:href="@{/webcontents/intra/css/init.css}" />
+	<link rel="stylesheet" href="/webcontents/intra/css/common.css" th:href="@{/webcontents/intra/css/common.css}" />
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> -->
+	<link rel="stylesheet" href="/webcontents/share/plugins/jquery-ui/css/smoothness/jquery-ui-1.10.1.custom.css" th:href="@{/webcontents/share/plugins/jquery-ui/css/smoothness/jquery-ui-1.10.1.custom.css}" />
+	<link rel="stylesheet" href="/webcontents/intra/plugins/dhtmlxScheduler/dhtmlxscheduler.css" th:href="@{/webcontents/intra/plugins/dhtmlxScheduler/dhtmlxscheduler.css}" />
+	<script src="/webcontents/share/js/jquery.js" th:src="@{/webcontents/share/js/jquery.js}"></script>
+	<script src="/webcontents/share/js/dateformat.js" th:src="@{/webcontents/share/js/dateformat.js}"></script>
+	<script src="/webcontents/share/plugins/jquery-ui/js/jquery-ui-1.10.1.custom.js" th:src="@{/webcontents/share/plugins/jquery-ui/js/jquery-ui-1.10.1.custom.js}"></script>
+	<script src="/webcontents/share/js/doxer-init.js" th:src="@{/webcontents/share/js/doxer-init.js}"></script>
+	<script src="/webcontents/share/js/doxer-schedule.js" th:src="@{/webcontents/share/js/doxer-schedule.js}"></script>
+</head>
+<body>
+	<header id="SAMPLE-HEADER">ここはヘッダー</header>
+	<nav id="SAMPLE-MENU">メニュー</nav>
+	<main id="SAMPLE-MAIN">
+		<div id="SAMPLE-ERRORS">
+<!-- 				<ul><html:messages id="adminErrors" message="false" property="${SystemConstants.GLOBAL_MESSAGE}"> -->
+<!-- 					<li>${f:h(adminErrors)}</li> -->
+<!-- 				</html:messages></ul> -->
+		</div>
+		<div id="SAMPLE-MESSAGES">
+<!-- 				<ul><html:messages id="adminMessages" message="true"> -->
+<!-- 					<li>${f:h(adminMessages)}</li> -->
+<!-- 				</html:messages></ul> -->
+		</div>
+		<div id="SAMPLE-CONTENTS" layout:fragment="contents">
+<!-- 				<tiles:getAsString name="content" /> -->
+		</div>
+	</main>
+	<footer id="SAMPLE-FOOTER">layout footer</footer>
+</body>
+</html>
