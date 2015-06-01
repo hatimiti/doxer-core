@@ -18,7 +18,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.github.hatimiti.flutist.common.message.AppMessage;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
@@ -203,7 +203,7 @@ public final class _Container {
 	}
 	
 	public static WebApplicationContext getWebApplicationContext() {
-		return WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		return RequestContextUtils.getWebApplicationContext(getHttpServletRequest());
 	}
 	
 	public static String getContextPath() {

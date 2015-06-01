@@ -82,6 +82,8 @@ dependencies {
 	testCompile group: 'junit', name: 'junit', version: '4.+'
 	testCompile group: SPRING_GROUPID, name: 'spring-test', version: SPRING_VERSION
 	testCompile group: SPRING_BOOT_GROUP_ID, name: 'spring-boot-starter-test', version: '1.2.3.RELEASE'
+
+    providedRuntime group: SPRING_BOOT_GROUP_ID, name: 'spring-boot-starter-tomcat', version: '1.2.3.RELEASE'
 }
 
 jar {
