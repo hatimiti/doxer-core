@@ -1,5 +1,6 @@
 package org.doxer.app.hello;
 
+import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
 import static org.junit.Assert.*;
 
 import javax.annotation.Resource;
@@ -44,7 +45,7 @@ public class HelloServiceTest {
 		
 		int pre = countTcmSampleOf("hatimiti");
 		
-		form.setVal(new Val("register"));
+		form.setFval(new Val(REQUIRED, "fval", "値"));
 		service.search(form);
 		
 		int after = countTcmSampleOf("hatimiti");
@@ -52,7 +53,7 @@ public class HelloServiceTest {
 	}
 
 	private int countTcmSampleOf(String name) {
-		return tcmSampleBhv.findBySampleName(new Val(name)).size();
+		return tcmSampleBhv.findBySampleName(new Val(REQUIRED, "fval", "値")).size();
 	}
 
 }

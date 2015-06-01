@@ -14,9 +14,9 @@ public class HelloService extends DoxService {
 	public TcmSampleBhv tcmSampleBhv;
 	
 	public void search(HelloForm model) {
-		model.setResults(tcmSampleBhv.findBySampleName(model.getVal()));
+		model.setResults(tcmSampleBhv.findBySampleName(model.getFval()));
 
-		if ("register".equals(model.getVal().getVal())) {
+		if ("register".equals(model.getFval().getVal())) {
 			register(model);
 		}
 	}
