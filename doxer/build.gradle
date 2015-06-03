@@ -98,6 +98,10 @@ war {
 	webAppDirName = 'WebContent'
 }
 
+bootRepackage {
+	mainClass = 'org.doxer.Application'
+}
+
 uploadArchives {
 	repositories {
 		flatDir {
