@@ -10,15 +10,10 @@ import org.doxer.app.sample.hello.HelloService;
 import org.doxer.app.sample.type.Val;
 import org.doxer.xbase.test.DoxDataSourceTestCase;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:*/WEB-INF/config/*.xml"})
 public class HelloServiceTest extends DoxDataSourceTestCase {
 
 	@Resource
