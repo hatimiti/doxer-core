@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sa=""
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="/common/layout">
 <head>
@@ -24,7 +26,7 @@
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo.val')}" th:text="${e}">xxx</div>
 		<br />
 		<input type="submit" name="send" />
-		
+
 		<input type="hidden"
 				th:name="${T(org.doxer.xbase.util.TokenProcessor).TOKEN_KEY}"
 				th:value="${#httpSession.getAttribute(T(org.doxer.xbase.util.TokenProcessor).TRANSACTION_TOKEN_KEY)}" /><br />
@@ -33,7 +35,7 @@
 	<a href="/doxer/sample/lang/lang?lang=en">English</a><br />
 	<table>
 		<tr><th>ID</th><th>名前</th></tr>
-		<tr th:each="ret : ${form.results}"><td th:text="${ret.tcmSampleId}">1</td><td th:text="${ret.sampleName}">テストA</td></tr>
+		<tr th:each="ret : ${form.results}"><td th:text="${ret.tcmSampleId}">1</td><td sa:i18n="${ret.sampleName}">テストA</td></tr>
 	</table><br />
 <!-- 	<div th:include="/common/fragment/fragments :: pageLink(${page},'search',${false})">ページング</div> -->
 </div>

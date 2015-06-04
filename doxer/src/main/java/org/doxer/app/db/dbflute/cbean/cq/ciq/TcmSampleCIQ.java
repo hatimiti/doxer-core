@@ -63,6 +63,7 @@ public class TcmSampleCIQ extends AbstractBsTcmSampleCQ {
     //                                                                ====================
     protected ConditionValue xgetCValueTcmSampleId() { return _myCQ.xdfgetTcmSampleId(); }
     protected ConditionValue xgetCValueSampleName() { return _myCQ.xdfgetSampleName(); }
+    protected ConditionValue xgetCValueSampleNameEn() { return _myCQ.xdfgetSampleNameEn(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(TcmSampleCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }

@@ -13,7 +13,7 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     TCM_SAMPLE_ID
  *
  * [column]
- *     TCM_SAMPLE_ID, SAMPLE_NAME
+ *     TCM_SAMPLE_ID, SAMPLE_NAME, SAMPLE_NAME_EN
  *
  * [sequence]
  *     

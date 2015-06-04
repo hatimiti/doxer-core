@@ -289,6 +289,11 @@ public class BsTcmSampleCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnSampleName() { return doColumn("SAMPLE_NAME"); }
+        /**
+         * SAMPLE_NAME_EN: {VARCHAR(50)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnSampleNameEn() { return doColumn("SAMPLE_NAME_EN"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override

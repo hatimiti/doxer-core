@@ -113,6 +113,26 @@ public class BsTcmSampleCQ extends AbstractBsTcmSampleCQ {
      */
     public BsTcmSampleCQ addOrderBy_SampleName_Desc() { regOBD("SAMPLE_NAME"); return this; }
 
+    protected ConditionValue _sampleNameEn;
+    public ConditionValue xdfgetSampleNameEn()
+    { if (_sampleNameEn == null) { _sampleNameEn = nCV(); }
+      return _sampleNameEn; }
+    protected ConditionValue xgetCValueSampleNameEn() { return xdfgetSampleNameEn(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsTcmSampleCQ addOrderBy_SampleNameEn_Asc() { regOBA("SAMPLE_NAME_EN"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsTcmSampleCQ addOrderBy_SampleNameEn_Desc() { regOBD("SAMPLE_NAME_EN"); return this; }
+
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
     //                                                             =======================

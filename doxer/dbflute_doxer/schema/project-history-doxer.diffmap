@@ -1,0 +1,17 @@
+map:{
+    ; 2015/06/04 20:11:33 = map:{
+        ; diffDate = 2015/06/04 20:11:33
+        ; tableDiff = map:{
+            ; TCM_SAMPLE = map:{
+                ; tableName = TCM_SAMPLE
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; SAMPLE_NAME_EN = map:{
+                        ; columnName = SAMPLE_NAME_EN
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+}

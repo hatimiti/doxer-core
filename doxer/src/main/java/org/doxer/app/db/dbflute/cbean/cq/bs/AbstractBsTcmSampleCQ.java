@@ -325,6 +325,159 @@ public abstract class AbstractBsTcmSampleCQ extends AbstractConditionQuery {
     protected void regSampleName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueSampleName(), "SAMPLE_NAME"); }
     protected abstract ConditionValue xgetCValueSampleName();
 
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_Equal(String sampleNameEn) {
+        doSetSampleNameEn_Equal(fRES(sampleNameEn));
+    }
+
+    protected void doSetSampleNameEn_Equal(String sampleNameEn) {
+        regSampleNameEn(CK_EQ, sampleNameEn);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_NotEqual(String sampleNameEn) {
+        doSetSampleNameEn_NotEqual(fRES(sampleNameEn));
+    }
+
+    protected void doSetSampleNameEn_NotEqual(String sampleNameEn) {
+        regSampleNameEn(CK_NES, sampleNameEn);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as greaterThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_GreaterThan(String sampleNameEn) {
+        regSampleNameEn(CK_GT, fRES(sampleNameEn));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as lessThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_LessThan(String sampleNameEn) {
+        regSampleNameEn(CK_LT, fRES(sampleNameEn));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_GreaterEqual(String sampleNameEn) {
+        regSampleNameEn(CK_GE, fRES(sampleNameEn));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as lessEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_LessEqual(String sampleNameEn) {
+        regSampleNameEn(CK_LE, fRES(sampleNameEn));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEnList The collection of sampleNameEn as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_InScope(Collection<String> sampleNameEnList) {
+        doSetSampleNameEn_InScope(sampleNameEnList);
+    }
+
+    protected void doSetSampleNameEn_InScope(Collection<String> sampleNameEnList) {
+        regINS(CK_INS, cTL(sampleNameEnList), xgetCValueSampleNameEn(), "SAMPLE_NAME_EN");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEnList The collection of sampleNameEn as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSampleNameEn_NotInScope(Collection<String> sampleNameEnList) {
+        doSetSampleNameEn_NotInScope(sampleNameEnList);
+    }
+
+    protected void doSetSampleNameEn_NotInScope(Collection<String> sampleNameEnList) {
+        regINS(CK_NINS, cTL(sampleNameEnList), xgetCValueSampleNameEn(), "SAMPLE_NAME_EN");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)} <br>
+     * <pre>e.g. setSampleNameEn_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param sampleNameEn The value of sampleNameEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setSampleNameEn_LikeSearch(String sampleNameEn, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setSampleNameEn_LikeSearch(sampleNameEn, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)} <br>
+     * <pre>e.g. setSampleNameEn_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param sampleNameEn The value of sampleNameEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setSampleNameEn_LikeSearch(String sampleNameEn, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(sampleNameEn), xgetCValueSampleNameEn(), "SAMPLE_NAME_EN", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setSampleNameEn_NotLikeSearch(String sampleNameEn, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setSampleNameEn_NotLikeSearch(sampleNameEn, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @param sampleNameEn The value of sampleNameEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setSampleNameEn_NotLikeSearch(String sampleNameEn, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(sampleNameEn), xgetCValueSampleNameEn(), "SAMPLE_NAME_EN", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     */
+    public void setSampleNameEn_IsNull() { regSampleNameEn(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     */
+    public void setSampleNameEn_IsNullOrEmpty() { regSampleNameEn(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     */
+    public void setSampleNameEn_IsNotNull() { regSampleNameEn(CK_ISNN, DOBJ); }
+
+    protected void regSampleNameEn(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueSampleNameEn(), "SAMPLE_NAME_EN"); }
+    protected abstract ConditionValue xgetCValueSampleNameEn();
+
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============

@@ -44,6 +44,7 @@ public class TcmSampleDbm extends AbstractDBMeta {
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((TcmSample)et).getTcmSampleId(), (et, vl) -> ((TcmSample)et).setTcmSampleId(ctl(vl)), "tcmSampleId");
         setupEpg(_epgMap, et -> ((TcmSample)et).getSampleName(), (et, vl) -> ((TcmSample)et).setSampleName((String)vl), "sampleName");
+        setupEpg(_epgMap, et -> ((TcmSample)et).getSampleNameEn(), (et, vl) -> ((TcmSample)et).setSampleNameEn((String)vl), "sampleNameEn");
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
@@ -64,8 +65,9 @@ public class TcmSampleDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTcmSampleId = cci("TCM_SAMPLE_ID", "TCM_SAMPLE_ID", null, null, Long.class, "tcmSampleId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_32B861CF_BC60_4D22_A303_91346DD0775E", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnTcmSampleId = cci("TCM_SAMPLE_ID", "TCM_SAMPLE_ID", null, null, Long.class, "tcmSampleId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_542538FB_64F6_4D95_BF64_91AA43FCE8A1", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnSampleName = cci("SAMPLE_NAME", "SAMPLE_NAME", null, null, String.class, "sampleName", null, false, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnSampleNameEn = cci("SAMPLE_NAME_EN", "SAMPLE_NAME_EN", null, null, String.class, "sampleNameEn", null, false, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
 
     /**
      * TCM_SAMPLE_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -77,11 +79,17 @@ public class TcmSampleDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnSampleName() { return _columnSampleName; }
+    /**
+     * SAMPLE_NAME_EN: {VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnSampleNameEn() { return _columnSampleNameEn; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnTcmSampleId());
         ls.add(columnSampleName());
+        ls.add(columnSampleNameEn());
         return ls;
     }
 

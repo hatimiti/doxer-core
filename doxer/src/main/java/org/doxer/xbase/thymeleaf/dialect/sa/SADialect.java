@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.doxer.xbase.thymeleaf.processor.sa.ErrorsMessageProcessor;
 import org.doxer.xbase.thymeleaf.processor.sa.ErrorsStyleClassProcessor;
+import org.doxer.xbase.thymeleaf.processor.sa.I18nTextAttrProcessor;
 import org.doxer.xbase.thymeleaf.processor.sa.RadioAttrProcessor;
 import org.doxer.xbase.thymeleaf.processor.sa.TextAttrProcessor;
 import org.thymeleaf.dialect.AbstractDialect;
@@ -16,7 +17,7 @@ public class SADialect extends AbstractDialect {
 	public String getPrefix() {
 		return "sa";
 	}
-	
+
 	@Override
 	public Set<IProcessor> getProcessors() {
 
@@ -25,7 +26,8 @@ public class SADialect extends AbstractDialect {
 		processors.add(new ErrorsStyleClassProcessor());
 		processors.add(new TextAttrProcessor());
 		processors.add(new RadioAttrProcessor());
+		processors.add(new I18nTextAttrProcessor());
 		return processors;
 	}
-	
+
 }

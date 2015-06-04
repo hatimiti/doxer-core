@@ -16,7 +16,7 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     TCM_SAMPLE_ID
  * 
  * [column]
- *     TCM_SAMPLE_ID, SAMPLE_NAME
+ *     TCM_SAMPLE_ID, SAMPLE_NAME, SAMPLE_NAME_EN
  * 
  * [sequence]
  *     
@@ -43,8 +43,10 @@ import org.doxer.app.db.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long tcmSampleId = entity.getTcmSampleId();
  * String sampleName = entity.getSampleName();
+ * String sampleNameEn = entity.getSampleNameEn();
  * entity.setTcmSampleId(tcmSampleId);
  * entity.setSampleName(sampleName);
+ * entity.setSampleNameEn(sampleNameEn);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -65,6 +67,9 @@ public abstract class BsTcmSample extends AbstractEntity implements DomainEntity
 
     /** SAMPLE_NAME: {VARCHAR(50)} */
     protected String _sampleName;
+
+    /** SAMPLE_NAME_EN: {VARCHAR(50)} */
+    protected String _sampleNameEn;
 
     // ===================================================================================
     //                                                                             DB Meta
@@ -130,6 +135,7 @@ public abstract class BsTcmSample extends AbstractEntity implements DomainEntity
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_tcmSampleId));
         sb.append(dm).append(xfND(_sampleName));
+        sb.append(dm).append(xfND(_sampleNameEn));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -184,5 +190,23 @@ public abstract class BsTcmSample extends AbstractEntity implements DomainEntity
     public void setSampleName(String sampleName) {
         registerModifiedProperty("sampleName");
         _sampleName = sampleName;
+    }
+
+    /**
+     * [get] SAMPLE_NAME_EN: {VARCHAR(50)} <br>
+     * @return The value of the column 'SAMPLE_NAME_EN'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getSampleNameEn() {
+        checkSpecifiedProperty("sampleNameEn");
+        return _sampleNameEn;
+    }
+
+    /**
+     * [set] SAMPLE_NAME_EN: {VARCHAR(50)} <br>
+     * @param sampleNameEn The value of the column 'SAMPLE_NAME_EN'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setSampleNameEn(String sampleNameEn) {
+        registerModifiedProperty("sampleNameEn");
+        _sampleNameEn = sampleNameEn;
     }
 }
