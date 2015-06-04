@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.github.hatimiti.flutist.common.util._Obj;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:*/WEB-INF/config/*.xml"})
+@ContextConfiguration(locations = {"classpath:/spring/*.xml"})
 public abstract class DoxDataSourceTestCase extends DataSourceBasedDBTestCase {
 
 	protected static final Logger logger = _Obj.getLogger();

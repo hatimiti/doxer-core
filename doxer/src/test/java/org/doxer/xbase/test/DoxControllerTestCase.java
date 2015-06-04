@@ -27,8 +27,7 @@ import com.github.hatimiti.flutist.common.util._Obj;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("WebContent")
 @SpringApplicationConfiguration(classes = Application.class)
-//@ContextConfiguration(locations = {"file:*/WEB-INF/dispatcher-servlet.xml"})
-@ContextConfiguration(locations = {"file:*/WEB-INF/config/*.xml"})
+@ContextConfiguration(locations = {"classpath:/spring/*.xml"})
 public abstract class DoxControllerTestCase {
 
 	protected static final Logger logger = _Obj.getLogger();
