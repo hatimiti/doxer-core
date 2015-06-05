@@ -1,5 +1,7 @@
 package org.doxer.xbase.test;
 
+import static org.dbunit.operation.DatabaseOperation.*;
+
 import java.io.FileNotFoundException;
 
 import javax.annotation.Resource;
@@ -7,8 +9,12 @@ import javax.sql.DataSource;
 
 import org.dbunit.DataSourceBasedDBTestCase;
 import org.dbunit.IDatabaseTester;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
+import org.dbunit.ext.mssql.InsertIdentityOperation;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -36,17 +42,26 @@ public abstract class DoxDataSourceTestCase extends DataSourceBasedDBTestCase {
 	@Before
 	public void setup() throws Exception {
 		try {
-			super.setUp();
-			setUp4TestMethod();
+			IDatabaseConnection conn = new DatabaseConnection(dataSource.getConnection());
+//			super.setUp();
+//			setUp4TestMethod();
+			new InsertIdentityOperation(CLEAN_INSERT).execute(conn, getDataSet());
+			new InsertIdentityOperation(INSERT).execute(conn, getDataSet4TestMethod());
+
 		} catch (FileNotFoundException e) {
+			logger.info("XlsDataSet is not found.");
 		}
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		try {
-			tearDown4TestMethod();
-			super.tearDown();
+			IDatabaseConnection conn = new DatabaseConnection(dataSource.getConnection());
+//			tearDown4TestMethod();
+//			super.tearDown();
+			new InsertIdentityOperation(DatabaseOperation.DELETE).execute(conn, getDataSet());
+			new InsertIdentityOperation(DatabaseOperation.DELETE).execute(conn, getDataSet4TestMethod());
+
 		} catch (FileNotFoundException e) {
 		}
 	}
@@ -58,14 +73,10 @@ public abstract class DoxDataSourceTestCase extends DataSourceBasedDBTestCase {
 
 	protected void setUp4TestMethod() throws Exception {
 		logger.debug("setUp4TestMethod() - start");
-		final IDataSet dataSet = getDataSet4TestMethod();
-		if (dataSet == null) {
-			return;
-		}
 		final IDatabaseTester databaseTester = getDatabaseTester();
 		assertNotNull("DatabaseTester is not set", databaseTester);
 		databaseTester.setSetUpOperation(getSetUpOperation());
-		databaseTester.setDataSet(dataSet);
+		databaseTester.setDataSet(getDataSet4TestMethod());
 		databaseTester.setOperationListener(getOperationListener());
 		databaseTester.onSetup();
 	}
@@ -82,14 +93,14 @@ public abstract class DoxDataSourceTestCase extends DataSourceBasedDBTestCase {
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		return getDataSet("init.xlsx");
+		return getXlsDataSet("init.xlsx");
 	}
 
-	protected IDataSet getDataSet4TestMethod() throws Exception {
-		return getDataSet(testName.getMethodName() + ".xlsx");
+	protected XlsDataSet getDataSet4TestMethod() throws Exception {
+		return getXlsDataSet(testName.getMethodName() + ".xlsx");
 	}
 
-	protected IDataSet getDataSet(String xlsName) throws Exception {
+	protected XlsDataSet getXlsDataSet(String xlsName) throws Exception {
 		return new XlsDataSet(new ClassPathResource(getDataSetDirName() + "/" + xlsName).getFile());
 	}
 

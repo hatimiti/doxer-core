@@ -42,6 +42,7 @@ public class HelloServiceTest extends DoxDataSourceTestCase {
 
 		int after = countTcmSampleOf("hatimiti");
 		assertTrue(pre + 1 == after);
+		assertTrue(countTcmSampleOf("あいうえお") == 1);
 	}
 
 	@Test
@@ -49,6 +50,7 @@ public class HelloServiceTest extends DoxDataSourceTestCase {
 	public void testSearch2() throws Exception {
 		assertTrue(countTcmSampleOf("はひふへほ") == 0);
 		assertTrue(countTcmSampleOf("テスト2用") == 1);
+		assertTrue(countTcmSampleOf("あいうえお") == 1);
 	}
 
 	private Val getValOf(String name) {
