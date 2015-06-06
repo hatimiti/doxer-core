@@ -11,7 +11,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 	<context:component-scan base-package="org.doxer" />
 
 <!-- gradleでのtestタスクが失敗するためコメント化 	<context:property-placeholder location="classpath:**/*.properties" /> -->
-	<context:property-placeholder location="classpath:/application.properties" />
+	<context:property-placeholder location="classpath:/appenv.properties" />
 
 	<bean id="dataSource"
 			destroy-method="close"
@@ -46,7 +46,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 		<property name="defaultLocale" value="ja" />
 		<property name="cookieName" value="locale" />
 	</bean>
-	
+
 	<!-- Base Setting -->
 
 	<bean name="handlerAdapter"
