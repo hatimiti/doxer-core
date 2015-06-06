@@ -30,14 +30,14 @@ import javax.servlet.http.HttpSession;
 
 /**
  * {@link HttpServletRequest}の内容を編集するユーティリティです。
- * 
+ *
  * @author manhole
  */
 public class RequestDumpUtil {
 
     /**
      * リクエストヘッダの内容を文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -50,7 +50,7 @@ public class RequestDumpUtil {
     public static void dumpRequestHeaders(final StringBuffer sb,
             final HttpServletRequest request, final String lf,
             final String indent) {
-        for (final Iterator it = toSortedSet(request.getHeaderNames())
+        for (final Iterator<?> it = toSortedSet(request.getHeaderNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             final String value = request.getHeader(name);
@@ -63,7 +63,7 @@ public class RequestDumpUtil {
 
     /**
      * コンテキスト属性の内容を文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param context
@@ -78,7 +78,7 @@ public class RequestDumpUtil {
         if (context == null) {
             return;
         }
-        for (final Iterator it = toSortedSet(context.getAttributeNames())
+        for (final Iterator<?> it = toSortedSet(context.getAttributeNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             final Object attr = context.getAttribute(name);
@@ -90,7 +90,7 @@ public class RequestDumpUtil {
 
     /**
      * クッキーの内容を文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -117,7 +117,7 @@ public class RequestDumpUtil {
 
     /**
      * リクエスト属性の内容を文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -130,7 +130,7 @@ public class RequestDumpUtil {
     public static void dumpRequestAttributes(final StringBuffer sb,
             final HttpServletRequest request, final String lf,
             final String indent) {
-        for (final Iterator it = toSortedSet(request.getAttributeNames())
+        for (final Iterator<String> it = toSortedSet(request.getAttributeNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             final Object attr = request.getAttribute(name);
@@ -142,7 +142,7 @@ public class RequestDumpUtil {
 
     /**
      * セッション属性の内容を文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -159,7 +159,7 @@ public class RequestDumpUtil {
         if (session == null) {
             return;
         }
-        for (final Iterator it = toSortedSet(session.getAttributeNames())
+        for (final Iterator<String> it = toSortedSet(session.getAttributeNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             final Object attr = session.getAttribute(name);
@@ -169,15 +169,15 @@ public class RequestDumpUtil {
         }
     }
 
-    private static SortedSet toSortedSet(final Enumeration enu) {
-        final SortedSet set = new TreeSet();
+    private static SortedSet<String> toSortedSet(final Enumeration<String> enu) {
+        final SortedSet<String> set = new TreeSet<String>();
         set.addAll(Collections.list(enu));
         return set;
     }
 
     /**
      * リクエストパラメータの内容を文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -190,7 +190,7 @@ public class RequestDumpUtil {
     public static void dumpRequestParameters(final StringBuffer sb,
             final HttpServletRequest request, final String lf,
             final String indent) {
-        for (final Iterator it = toSortedSet(request.getParameterNames())
+        for (final Iterator<String> it = toSortedSet(request.getParameterNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             sb.append(indent);
@@ -208,7 +208,7 @@ public class RequestDumpUtil {
 
     /**
      * リクエストのプロパティを文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -245,7 +245,7 @@ public class RequestDumpUtil {
         sb.append(", ContentType=").append(request.getContentType());
         sb.append(", Locale=").append(request.getLocale());
         sb.append(", Locales=");
-        final Enumeration locales = request.getLocales();
+        final Enumeration<Locale> locales = request.getLocales();
         boolean first = true;
         while (locales.hasMoreElements()) {
             final Locale locale = (Locale) locales.nextElement();
@@ -281,7 +281,7 @@ public class RequestDumpUtil {
 
     /**
      * コンテキストのプロパティを文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param context
@@ -307,7 +307,7 @@ public class RequestDumpUtil {
 
     /**
      * セッションのプロパティを文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param request
@@ -336,7 +336,7 @@ public class RequestDumpUtil {
 
     /**
      * レスポンスのプロパティを文字列バッファに編集します。
-     * 
+     *
      * @param sb
      *            文字列バッファ
      * @param response
