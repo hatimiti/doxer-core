@@ -16,6 +16,7 @@
 <div layout:fragment="contents">
 	<div class="ErrorsProperty" th:each="e : ${#sa.globalMessages()}" th:text="${e}">xxx</div>
 	<p th:text="'Hello, ' + ${form.fval.val} + '!'" />
+
 	<form action="/doxer/sample/hello/input" method="POST">
 		<input type="text" th:field="${form.fval.val}" />
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('fval.val')}" th:text="${e}">xxx</div>
@@ -31,12 +32,22 @@
 				th:name="${T(org.doxer.xbase.util.TokenProcessor).TOKEN_KEY}"
 				th:value="${#httpSession.getAttribute(T(org.doxer.xbase.util.TokenProcessor).TRANSACTION_TOKEN_KEY)}" /><br />
 	</form>
-	<a href="/doxer/sample/lang/lang?lang=ja">日本語</a><br />
-	<a href="/doxer/sample/lang/lang?lang=en">English</a><br />
 	<table>
 		<tr><th>ID</th><th>名前</th></tr>
 		<tr th:each="ret : ${form.results}"><td th:text="${ret.tcmSampleId}">1</td><td sa:i18n="${ret.sampleName}">テストA</td></tr>
 	</table><br />
+	<hr />
+
+	<form method="POST" enctype="multipart/form-data" action="/doxer/sample/hello/upload">
+		File to upload: <input type="file" th:field="${form.file}" /><br />
+		Name: <input type="text" th:field="${form.fileName}" /><br />
+		<input type="submit" value="Upload" /> Press here to upload the file!
+	</form>
+	<hr />
+
+	<a href="/doxer/sample/lang/lang?lang=ja">日本語</a><br />
+	<a href="/doxer/sample/lang/lang?lang=en">English</a><br />
+
 <!-- 	<div th:include="/common/fragment/fragments :: pageLink(${page},'search',${false})">ページング</div> -->
 </div>
 </body>

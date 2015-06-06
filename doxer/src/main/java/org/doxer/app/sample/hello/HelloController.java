@@ -4,6 +4,11 @@ import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
 import static org.doxer.xbase.util._Container.*;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Paths;
+
 import javax.annotation.Resource;
 
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
@@ -13,6 +18,7 @@ import org.doxer.xbase.form.AccessUser;
 import org.doxer.xbase.util._Container;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.hatimiti.flutist.common.annotation.Function;
@@ -59,4 +65,20 @@ public class HelloController extends DoxController {
 		return forward("input");
 	}
 	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String upload(HelloForm form) {
+
+		try (OutputStream stream = new BufferedOutputStream(
+				new FileOutputStream(Paths.get("//LS-XHLE38/share/var/", form.getFileName()).toFile()))) {
+
+			stream.write(form.getFile().getBytes());
+			addMessage(new AppMessage(INFO, "completes.upload"));
+
+		} catch (Exception e) {
+			LOG.info("message = {}, stacktrace = {}", e.getMessage(), e.getStackTrace());
+		}
+
+		return view("/hello/hello", form);
+	}
+
 }

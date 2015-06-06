@@ -10,6 +10,7 @@ import org.doxer.app.sample.type.TelNo;
 import org.doxer.app.sample.type.Val;
 import org.doxer.xbase.form.DoxForm;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
@@ -21,8 +22,11 @@ public class HelloForm extends DoxForm {
 	private Val fval = new Val(REQUIRED, "fval", "dictionary.val");
 	private TelNo telNo = new TelNo(REQUIRED, "telNo", "dictionary.telNo");
 
+	private String fileName;
+	private MultipartFile file;
+
 	private ListResultBean<TcmSample> results;
-	
+
 	@Override
 	public void validate(AppMessagesContainer container) {
 		fval.valid(container);
