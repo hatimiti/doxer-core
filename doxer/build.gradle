@@ -110,7 +110,7 @@ uploadArchives {
 	}
 }
 
-pmd {
+pmd { // コーディングチェック
 	toolVersion = '5.1.2'
 	ignoreFailures = true
 	sourceSets = [sourceSets.main]
@@ -125,14 +125,28 @@ pmdMain {
 	excludes = ["**/org/seasar/**/*.java", "**/org/doxer/app/db/dbflute/**/*.java"]
 }
 
+jacoco { // コードカバレッジ測定
+	toolVersion = "0.7.5.201505241946"
+	reportsDir = file("$project.buildDir/reports/jacoco/")
+}
+
 jacocoTestReport {
 	reports {
-		xml.enabled true
+		csv.enabled true
+		html.destination "$project.buildDir/reports/jacoco/html/"
 	}
 }
 
-check << {
-	File outDir = new File('build/reports/pmd/')
+test {
+	jacoco {
+		append = false
+		destinationFile = file("$buildDir/reports/jacoco/test.exec")
+		classDumpFile = file("$buildDir/reports/jacoco/classpathdumps")
+	}
+}
+
+check << { // CPD: 重複コードチェック
+	File outDir = file("$project.buildDir/reports/pmd/")
 	outDir.mkdirs()
 	ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
 		classpath: configurations.pmd.asPath)
