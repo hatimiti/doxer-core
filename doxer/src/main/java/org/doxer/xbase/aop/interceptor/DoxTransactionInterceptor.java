@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 /**
- * @Transactional アノテーションが付加されたメソッドの場合はそちらの設定を優先する。
+ * {@code @Transactional} アノテーションが付加されたメソッドの場合はそちらの設定を優先する。
  * それ以外の動作についてはデフォルトのTransactionInterceptorの動作に従う。
  * @author hatimiti
  */

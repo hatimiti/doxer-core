@@ -4,7 +4,7 @@ allprojects {
 	apply plugin: 'eclipse'
 
 	def defaultEncoding = 'UTF-8'
-	[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+	[compileJava, compileTestJava, javadoc]*.options*.encoding = defaultEncoding
 
 	version = '1.0'
 	sourceCompatibility = 1.8
@@ -157,4 +157,14 @@ check << { // CPD: 重複コードチェック
 			include(name: '**/*.java')
 		}
 	}
+}
+
+/**
+ * テストクラスのJavaDocを生成します．
+ * (試験仕様書として利用)
+ */
+task javadoctest(type: Javadoc) {
+	[javadoctest]*.options*.encoding = 'UTF-8'
+	docsDirName = "docs/test/";
+	source 'src/test/java'
 }
