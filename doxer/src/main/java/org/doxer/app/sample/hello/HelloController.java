@@ -81,4 +81,9 @@ public class HelloController extends DoxController {
 		return view("/hello/hello", form);
 	}
 
+	@RequestMapping(value = "/download")
+	public void download(HelloForm form) {
+		_Container.downloadFile(Paths.get("//LS-XHLE38/share/var/", form.getFileName()));
+	}
+
 }
