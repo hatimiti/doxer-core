@@ -1,0 +1,9 @@
+map:{
+; reg_user_id    = -99
+; reg_tm         = SYSDATE
+; reg_func_cd    = REPSCHEMA
+; upd_user_id    = -99
+; upd_tm         = SYSDATE
+; upd_func_cd    = REPSCHEMA
+; version_no     = 1
+}

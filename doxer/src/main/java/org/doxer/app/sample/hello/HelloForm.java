@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import org.dbflute.cbean.result.ListResultBean;
+import org.doxer.app.base.type.form.common.TelNo;
+import org.doxer.app.base.type.form.hello.Val;
 import org.doxer.app.db.dbflute.exentity.TcmSample;
-import org.doxer.app.sample.type.TelNo;
-import org.doxer.app.sample.type.Val;
 import org.doxer.xbase.form.DoxForm;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,8 +29,8 @@ public class HelloForm extends DoxForm {
 
 	@Override
 	public void validate(AppMessagesContainer container) {
-		fval.valid(container);
-		telNo.valid(container);
+		fval.validate(container);
+		telNo.validate(container);
 	}
 
 }

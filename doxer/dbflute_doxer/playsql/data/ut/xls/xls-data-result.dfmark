@@ -1,0 +1,11 @@
+
+* * * * * * * * * *
+*                 *
+* Xls Data Result *
+*                 *
+* * * * * * * * * *
+data-directory: playsql/data/ut/xls
+
+[data-xls-template.xls]
+  cm_tesuryo_kb (2)
+  cm_renrakusaki_yoto_kb (2)

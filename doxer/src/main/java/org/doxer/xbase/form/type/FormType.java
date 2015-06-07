@@ -56,7 +56,7 @@ abstract class FormType<T> extends Type<T> {
 		}
 	}
 
-	public void valid(final AppMessagesContainer container) {
+	public void validate(final AppMessagesContainer container) {
 		validate(container, (String) null, (Integer) null);
 	}
 

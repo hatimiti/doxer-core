@@ -1,4 +1,4 @@
-package org.doxer.app.sample.type;
+package org.doxer.app.base.type.form.hello;
 
 import org.doxer.xbase.form.type.MultiFormType;
 
@@ -26,5 +26,5 @@ public class TelNo extends MultiFormType {
 	protected void validateCustom(
 			AppMessagesContainer container, String propertyName) {
 	}
-	
+
 }

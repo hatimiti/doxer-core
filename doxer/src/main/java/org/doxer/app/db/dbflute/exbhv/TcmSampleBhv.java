@@ -1,9 +1,9 @@
 package org.doxer.app.db.dbflute.exbhv;
 
 import org.dbflute.cbean.result.ListResultBean;
+import org.doxer.app.base.type.form.hello.Val;
 import org.doxer.app.db.dbflute.bsbhv.BsTcmSampleBhv;
 import org.doxer.app.db.dbflute.exentity.TcmSample;
-import org.doxer.app.sample.type.Val;
 
 /**
  * The behavior of TCM_SAMPLE.

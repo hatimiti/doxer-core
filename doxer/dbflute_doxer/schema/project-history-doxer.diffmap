@@ -1,4 +1,33 @@
 map:{
+    ; 2015/06/07 13:40:24 = map:{
+        ; diffDate = 2015/06/07 13:40:24
+        ; tableCount = map:{
+            ; next = 6
+            ; previous = 1
+        }
+        ; tableDiff = map:{
+            ; CM_KAISHA = map:{
+                ; tableName = CM_KAISHA
+                ; diffType = ADD
+            }
+            ; CM_KISH_RENRAKUSAKI = map:{
+                ; tableName = CM_KISH_RENRAKUSAKI
+                ; diffType = ADD
+            }
+            ; CM_KISH_TESURYO = map:{
+                ; tableName = CM_KISH_TESURYO
+                ; diffType = ADD
+            }
+            ; CM_RENRAKUSAKI_YOTO_KB = map:{
+                ; tableName = CM_RENRAKUSAKI_YOTO_KB
+                ; diffType = ADD
+            }
+            ; CM_TESURYO_KB = map:{
+                ; tableName = CM_TESURYO_KB
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2015/06/04 20:11:33 = map:{
         ; diffDate = 2015/06/04 20:11:33
         ; tableDiff = map:{
