@@ -1,12 +1,10 @@
-package org.doxer.app.hello;
+package org.doxer.app.sample.hello;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
 
 import javax.annotation.Resource;
 
 import org.doxer.app.db.dbflute.exbhv.TcmSampleBhv;
-import org.doxer.app.sample.hello.HelloForm;
-import org.doxer.app.sample.hello.HelloService;
 import org.doxer.app.sample.type.Val;
 import org.doxer.xbase.test.DoxDataSourceTestCase;
 import org.junit.Test;

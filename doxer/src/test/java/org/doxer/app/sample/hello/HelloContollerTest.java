@@ -1,8 +1,7 @@
-package org.doxer.app.hello;
+package org.doxer.app.sample.hello;
 
 import javax.annotation.Resource;
 
-import org.doxer.app.sample.hello.HelloController;
 import org.doxer.xbase.controller.DoxController;
 import org.doxer.xbase.test.DoxControllerTestCase;
 import org.junit.Test;

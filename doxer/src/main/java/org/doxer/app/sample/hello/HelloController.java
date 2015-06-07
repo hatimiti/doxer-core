@@ -29,11 +29,8 @@ import com.github.hatimiti.flutist.common.message.AppMessage;
 @RequestMapping("/sample/hello")
 public class HelloController extends DoxController {
 
-	@Resource
-	public HelloService helloService;
-	
-	@Resource
-	public AccessUser accessUser;
+	@Resource HelloService helloService;
+	@Resource AccessUser accessUser;
 
 	@Token(SET)
 	@RequestMapping("/index")
@@ -44,7 +41,7 @@ public class HelloController extends DoxController {
 		return view("/hello/hello", form);
 	}
 
-	@Token(CHECK_AND_SET)
+//	@Token(CHECK_AND_SET)
 	@DoValidation("/hello/hello")
 	@RequestMapping("/input")
 	public String input(HelloForm form) {
@@ -53,18 +50,18 @@ public class HelloController extends DoxController {
 		addMessage(new AppMessage(INFO, "hello2", buildMessage("dictionary.val"), buildMessage("samplemes")));
 		return view("/hello/hello", form);
 	}
-	
+
 	@RequestMapping("/redirect")
 	public String redirect(HelloForm form, RedirectAttributes ra) {
 		ra.addAttribute("val", "リダイレクトで遷移しました");
 		return redirect("input", ra);
 	}
-	
+
 	@RequestMapping("/forward")
 	public String forward(HelloForm form) {
 		return forward("input");
 	}
-	
+
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String upload(HelloForm form) {
 

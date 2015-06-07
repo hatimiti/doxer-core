@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloService extends DoxService {
 
-	@Resource
-	public TcmSampleBhv tcmSampleBhv;
-	
+	@Resource TcmSampleBhv tcmSampleBhv;
+
 	public void search(HelloForm model) {
 		model.setResults(tcmSampleBhv.findBySampleName(model.getFval()));
 
