@@ -17,6 +17,7 @@
 	<div class="ErrorsProperty" th:each="e : ${#sa.globalMessages()}" th:text="${e}">xxx</div>
 	<p th:text="'Hello, ' + ${form.fval.val} + '!'" />
 
+	<h3>Basic Input</h3>
 	<form action="/doxer/sample/hello/input" method="POST">
 		<input type="text" th:field="${form.fval.val}" />
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('fval.val')}" th:text="${e}">xxx</div>
@@ -38,12 +39,19 @@
 	</table><br />
 	<hr />
 
+	<h3>File Upload</h3>
 	<form method="POST" enctype="multipart/form-data" action="/doxer/sample/hello/upload">
 		File to upload: <input type="file" th:field="${form.file}" /><br />
 		Name: <input type="text" th:field="${form.fileName}" /><br />
 		<input type="submit" value="Upload" /> Press here to upload the file!
 	</form>
 	<hr />
+
+	<h3>File Download</h3>
+	<form method="POST" action="/doxer/sample/hello/download">
+		Name: <input type="text" th:field="${form.fileName}" /><br />
+		<input type="submit" value="Download" /> Press here to download the file!
+	</form>
 
 	<a href="/doxer/sample/lang/lang?lang=ja">日本語</a><br />
 	<a href="/doxer/sample/lang/lang?lang=en">English</a><br />
