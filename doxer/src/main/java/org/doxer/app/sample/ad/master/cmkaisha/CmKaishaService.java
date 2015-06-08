@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
 import org.doxer.app.base.type.sample.ad.master.CmKaishaList;
 import org.doxer.app.base.type.sample.ad.master.CmKishTesuryoFormList;
+import org.doxer.app.db.dbflute.allcommon.CDef.RenrakusakiYotoKb;
 import org.doxer.app.db.dbflute.exbhv.CmKaishaBhv;
 import org.doxer.app.db.dbflute.exbhv.CmKishRenrakusakiBhv;
 import org.doxer.app.db.dbflute.exbhv.CmKishTesuryoBhv;
@@ -182,9 +183,9 @@ public class CmKaishaService extends DoxService {
 	}
 
 	public void addRenrakusaki(final CmKaishaForm form) {
-//		CmKishRenrakusakiForm renrakusakiForm = new CmKishRenrakusakiForm();
-//		renrakusakiForm.renrakusakiYotoKb.setStrictVal(RenrakusakiYotoKb.Normal.toString());
-//		form.cmKishRenrakusakiForms.add(renrakusakiForm);
+		CmKishRenrakusakiForm renrakusakiForm = new CmKishRenrakusakiForm();
+		renrakusakiForm.renrakusakiYotoKb.setStrictVal(RenrakusakiYotoKb.Normal.toString());
+		form.cmKishRenrakusakiForms.add(renrakusakiForm);
 	}
 
 	protected void registerCmKishTesuryo(

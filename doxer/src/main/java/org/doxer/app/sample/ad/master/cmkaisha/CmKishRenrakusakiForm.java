@@ -16,11 +16,11 @@ import com.github.hatimiti.flutist.common.util._Num;
 
 public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 
-	@Condition CmKishRenrakusakiId cmKishRenrakusakiId = new CmKishRenrakusakiId(ARBITRARY, "cmKishRenrakusakiId", "CM会社連絡先ID");
-	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "CM会社ID");
-	@Condition TelNo telNo = new TelNo(ARBITRARY, "telNo", "電話番号");
-	@Condition MailAddress mailAddress = new MailAddress(ARBITRARY, "mailAddress", "メールアドレス");
-	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED, "renrakusakiYotoKb", "連絡先用途");
+	@Condition CmKishRenrakusakiId cmKishRenrakusakiId = new CmKishRenrakusakiId(ARBITRARY, "cmKishRenrakusakiId", "cmKishRenrakusakiId");
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "cmKaishaId");
+	@Condition TelNo telNo = new TelNo(ARBITRARY, "telNo", "telNo");
+	@Condition MailAddress mailAddress = new MailAddress(ARBITRARY, "mailAddress", "mailAddress");
+	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED, "renrakusakiYotoKb", "renrakusakiYotoKb");
 
 	@Override
 	public void validate(AppMessagesContainer container) {

@@ -69,28 +69,28 @@
 
 <h3>連絡先</h3>
 <table>
-	<tbody th:each="cmKishRenrakusakiForm, s : ${cmKishRenrakusakiForms}" style="border: 3px #999 solid;">
+	<tbody th:each="cmKishRenrakusakiForm, s : ${form.cmKishRenrakusakiForms}" style="border: 3px #999 solid;">
 	<tr>
 		<td>電話番号<span th:text="${s.count}">1</span>
-			  <input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].telNo"      sa:errclass="ErrorsProperty" />
-			- <input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].telNo,val2" sa:errclass="ErrorsProperty" />
-			- <input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].telNo,val3" sa:errclass="ErrorsProperty" />
+			  <input type="text" th:field="*{cmKishRenrakusakiForm.telNo.val[0]}" sa:errclass="ErrorsProperty" />
+			- <input type="text" th:field="*{cmKishRenrakusakiForm.telNo,val[1]}" sa:errclass="ErrorsProperty" />
+			- <input type="text" th:field="*{cmKishRenrakusakiForm.telNo,val[2]}" sa:errclass="ErrorsProperty" />
 			<br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo' + s.index)}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val')}"  th:text="${e}">xxx</div>
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val2')}" th:text="${e}">xxx</div>
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val3')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	<tr><td>メールアドレス<span th:text="${s.count}">1</span>
-			<input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].mailAddress" th:size="50" /><br />
+			<input type="text" th:field="*{cmKishRenrakusakiForm.mailAddress}" th:size="50" /><br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].mailAddress.val')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	<tr th:remove="all-but-first">
 		<td>連絡先用途<span th:text="${s.count}">1</span>
 			<label th:each="kb : ${#j.renrakusakiYotoKb()}">
-				<input type="radio" value="01" sa:radio="cmKishRenrakusakiForms[${s.index}].renrakusakiYotoKb"
+				<input type="radio" value="01" th:field="*{cmKishRenrakusakiForm.renrakusakiYotoKb}"
 					th:value="${kb.key}" /><span th:text="${kb.value}">緊急</span>
 			</label>
 			<label th:remove="all">
@@ -133,20 +133,7 @@
 	</tr>
 </table>
 
-<script th:inline="javascript">
-$(function() {
-	var $tesuryoKbRadio = $(':radio[name="cmKishTesuryoForm.tesuryoKb.val"]');
-	$tesuryoKbRadio.ready(changeTesuryoKb).change(changeTesuryoKb);
-	function changeTesuryoKb() {
-		var __TesuryoKb_Percent = /*[[${application.TesuryoKb.Percent}]]*/'PCT';
-		if ($tesuryoKbRadio.filter(':checked').val() === __TesuryoKb_Percent) {
-			$('#spanTesuryoKbPercent').show();
-		} else {
-			$('#spanTesuryoKbPercent').hide();
-		}
-	}
-});
-</script>
+
 
 <input type="submit" name="backToList" value="戻る" />
 <input type="submit" name="confirmRegister" value="次へ" />
