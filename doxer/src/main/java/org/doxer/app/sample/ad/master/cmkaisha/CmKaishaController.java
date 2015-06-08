@@ -12,18 +12,26 @@ import org.doxer.app.db.dbflute.allcommon.CDef.Mode;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.github.hatimiti.flutist.common.annotation.Function;
 
 /**
  * sample
  * @author hatimiti
  */
+@Controller
+@Function("S0101")
+@RequestMapping(CmKaishaController.BASE_URI)
 public class CmKaishaController extends BaseMasterController {
+
+	public static final String BASE_URI = "/sample/ad/master/cmKaisha";
 
 	@Resource CmKaishaService cmKaishaService;
 
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String index(CmKaishaForm cmKaishaForm) {
 		return prepareRegister(cmKaishaForm);
 	}
@@ -32,11 +40,11 @@ public class CmKaishaController extends BaseMasterController {
 
 	@Token(SET)
 	@RequestMapping("/prepareRegister")
-	public String prepareRegister(CmKaishaForm cmKaishaForm) {
-		copy(new CmKaishaForm(), cmKaishaForm);
-		cmKaishaForm.mode = Mode.Register;
-		this.cmKaishaService.prepareRegister(cmKaishaForm);
-		return "prepareRegister.html";
+	public String prepareRegister(CmKaishaForm form) {
+		copy(new CmKaishaForm(), form);
+		form.mode = Mode.Register;
+		this.cmKaishaService.prepareRegister(form);
+		return view(BASE_URI + "/prepareRegister", form);
 	}
 
 	@DoValidation(value = "prepareRegister.html")

@@ -27,13 +27,13 @@ import com.github.hatimiti.flutist.common.util._Str;
 @Component
 public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 
-	@Condition CmKishTesuryoId cmKishTesuryoId = new CmKishTesuryoId(ARBITRARY, "cmKishTesuryoId", "CM会社手数料ID");
-	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "CM会社ID");
-	@Condition Dt tekiyoKikanFromDt = new Dt(REQUIRED, "tekiyoKikanFromDt", "適用期間(From)");
-	@Condition Dt tekiyoKikanToDt = new Dt(ARBITRARY, "tekiyoKikanToDt", "適用期間(To)");
-	@Condition TesuryoIntSu tesuryoIntSu = new TesuryoIntSu(REQUIRED, "tesuryoIntSu", "手数料(整数)");
-	@Condition TesuryoDmSu tesuryoDmSu = new TesuryoDmSu(ARBITRARY, "tesuryoDmSu", "手数料(小数)");
-	@Condition TesuryoKb tesuryoKb = new TesuryoKb(REQUIRED, "tesuryoKb", "手数料区分");
+	@Condition CmKishTesuryoId cmKishTesuryoId = new CmKishTesuryoId(ARBITRARY, "cmKishTesuryoId", "cmKishTesuryoId");
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "cmKaishaId");
+	@Condition Dt tekiyoKikanFromDt = new Dt(REQUIRED, "tekiyoKikanFromDt", "tekiyoKikanFromDt");
+	@Condition Dt tekiyoKikanToDt = new Dt(ARBITRARY, "tekiyoKikanToDt", "tekiyoKikanToDt");
+	@Condition TesuryoIntSu tesuryoIntSu = new TesuryoIntSu(REQUIRED, "tesuryoIntSu", "tesuryoIntSu");
+	@Condition TesuryoDmSu tesuryoDmSu = new TesuryoDmSu(ARBITRARY, "tesuryoDmSu", "tesuryoDmSu");
+	@Condition TesuryoKb tesuryoKb = new TesuryoKb(REQUIRED, "tesuryoKb", "tesuryoKb");
 
 	public String getTesuryoSu() {
 		String tesuryoSu = this.tesuryoIntSu.getVal();

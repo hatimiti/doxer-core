@@ -44,10 +44,10 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 //				this.cmKishTesuryoForms, "cmKishTesuryoForm", "vers.kaishaTesuryo");
 
 		// 連絡先
-		for (int i = 0; i < this.cmKishRenrakusakiForms.size(); i++) {
-			errors.add(get(this.cmKishRenrakusakiForms, i)
-					.valid("cmKishRenrakusakiForms", i));
-		}
+//		for (int i = 0; i < this.cmKishRenrakusakiForms.size(); i++) {
+//			errors.add(get(this.cmKishRenrakusakiForms, i)
+//					.valid("cmKishRenrakusakiForms", i));
+//		}
 
 	}
 
@@ -59,7 +59,7 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 	}
 
 	public void validId(AppMessagesContainer container) {
-		this.cmKaishaId.inCompleteRequiredCondition().validate(container);
+//		this.cmKaishaId.inCompleteRequiredCondition().validate(container);
 	}
 
 	@Override
