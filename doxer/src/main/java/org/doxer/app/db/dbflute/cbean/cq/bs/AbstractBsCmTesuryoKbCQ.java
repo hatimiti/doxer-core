@@ -168,6 +168,79 @@ public abstract class AbstractBsCmTesuryoKbCQ extends AbstractConditionQuery {
     }
 
     /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select tesuryo_kb from CM_KISH_TESURYO where ...)} <br>
+     * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsCmKishTesuryo</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     tesuryoCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of CmKishTesuryoList for 'exists'. (NotNull)
+     */
+    public void existsCmKishTesuryo(SubQuery<CmKishTesuryoCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepKbVal_ExistsReferrer_CmKishTesuryoList(cb.query());
+        registerExistsReferrer(cb.query(), "KB_VAL", "tesuryo_kb", pp, "cmKishTesuryoList");
+    }
+    public abstract String keepKbVal_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select tesuryo_kb from CM_KISH_TESURYO where ...)} <br>
+     * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsCmKishTesuryo</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     tesuryoCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of KbVal_NotExistsReferrer_CmKishTesuryoList for 'not exists'. (NotNull)
+     */
+    public void notExistsCmKishTesuryo(SubQuery<CmKishTesuryoCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepKbVal_NotExistsReferrer_CmKishTesuryoList(cb.query());
+        registerNotExistsReferrer(cb.query(), "KB_VAL", "tesuryo_kb", pp, "cmKishTesuryoList");
+    }
+    public abstract String keepKbVal_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+
+    public void xsderiveCmKishTesuryoList(String fn, SubQuery<CmKishTesuryoCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepKbVal_SpecifyDerivedReferrer_CmKishTesuryoList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "KB_VAL", "tesuryo_kb", pp, "cmKishTesuryoList", al, op);
+    }
+    public abstract String keepKbVal_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from CM_KISH_TESURYO where ...)} <br>
+     * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedCmKishTesuryo()</span>.<span style="color: #CC4747">max</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     tesuryoCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     tesuryoCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<CmKishTesuryoCB> derivedCmKishTesuryo() {
+        return xcreateQDRFunctionCmKishTesuryoList();
+    }
+    protected HpQDRFunction<CmKishTesuryoCB> xcreateQDRFunctionCmKishTesuryoList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCmKishTesuryoList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveCmKishTesuryoList(String fn, SubQuery<CmKishTesuryoCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepKbVal_QueryDerivedReferrer_CmKishTesuryoList(cb.query()); String prpp = keepKbVal_QueryDerivedReferrer_CmKishTesuryoListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "KB_VAL", "tesuryo_kb", sqpp, "cmKishTesuryoList", rd, vl, prpp, op);
+    }
+    public abstract String keepKbVal_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+    public abstract String keepKbVal_QueryDerivedReferrer_CmKishTesuryoListParameter(Object vl);
+
+    /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
      * KB_VAL: {PK, NotNull, CHAR(3), classification=TesuryoKb}
      */

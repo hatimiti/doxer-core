@@ -43,13 +43,13 @@ import org.doxer.app.db.dbflute.cbean.*;
  *     
  *
  * [referrer table]
- *     
+ *     CM_KISH_TESURYO, CM_KISH_RENRAKUSAKI
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     
+ *     cmKishTesuryoList, cmKishRenrakusakiList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -384,6 +384,134 @@ public abstract class BsCmKaishaBhv extends AbstractBehaviorWritable<CmKaisha, C
     public void load(CmKaisha cmKaisha, ReferrerLoaderHandler<LoaderOfCmKaisha> loaderLambda) {
         xassLRArg(cmKaisha, loaderLambda);
         loaderLambda.handle(new LoaderOfCmKaisha().ready(xnewLRAryLs(cmKaisha), _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of cmKishTesuryoList by the set-upper of referrer. <br>
+     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
+     * <pre>
+     * <span style="color: #0000C0">cmKaishaBhv</span>.<span style="color: #CC4747">loadCmKishTesuryo</span>(<span style="color: #553000">cmKaishaList</span>, <span style="color: #553000">tesuryoCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">tesuryoCB</span>.setupSelect...
+     *     <span style="color: #553000">tesuryoCB</span>.query().set...
+     *     <span style="color: #553000">tesuryoCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (CmKaisha cmKaisha : <span style="color: #553000">cmKaishaList</span>) {
+     *     ... = cmKaisha.<span style="color: #CC4747">getCmKishTesuryoList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCmKaishaId_InScope(pkList);
+     * cb.query().addOrderBy_CmKaishaId_Asc();
+     * </pre>
+     * @param cmKaishaList The entity list of cmKaisha. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<CmKishTesuryo> loadCmKishTesuryo(List<CmKaisha> cmKaishaList, ReferrerConditionSetupper<CmKishTesuryoCB> refCBLambda) {
+        xassLRArg(cmKaishaList, refCBLambda);
+        return doLoadCmKishTesuryo(cmKaishaList, new LoadReferrerOption<CmKishTesuryoCB, CmKishTesuryo>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of cmKishTesuryoList by the set-upper of referrer. <br>
+     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
+     * <pre>
+     * <span style="color: #0000C0">cmKaishaBhv</span>.<span style="color: #CC4747">loadCmKishTesuryo</span>(<span style="color: #553000">cmKaisha</span>, <span style="color: #553000">tesuryoCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">tesuryoCB</span>.setupSelect...
+     *     <span style="color: #553000">tesuryoCB</span>.query().set...
+     *     <span style="color: #553000">tesuryoCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">cmKaisha</span>.<span style="color: #CC4747">getCmKishTesuryoList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCmKaishaId_InScope(pkList);
+     * cb.query().addOrderBy_CmKaishaId_Asc();
+     * </pre>
+     * @param cmKaisha The entity of cmKaisha. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<CmKishTesuryo> loadCmKishTesuryo(CmKaisha cmKaisha, ReferrerConditionSetupper<CmKishTesuryoCB> refCBLambda) {
+        xassLRArg(cmKaisha, refCBLambda);
+        return doLoadCmKishTesuryo(xnewLRLs(cmKaisha), new LoadReferrerOption<CmKishTesuryoCB, CmKishTesuryo>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<CmKishTesuryo> doLoadCmKishTesuryo(List<CmKaisha> cmKaishaList, LoadReferrerOption<CmKishTesuryoCB, CmKishTesuryo> option) {
+        return helpLoadReferrerInternally(cmKaishaList, option, "cmKishTesuryoList");
+    }
+
+    /**
+     * Load referrer of cmKishRenrakusakiList by the set-upper of referrer. <br>
+     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
+     * <pre>
+     * <span style="color: #0000C0">cmKaishaBhv</span>.<span style="color: #CC4747">loadCmKishRenrakusaki</span>(<span style="color: #553000">cmKaishaList</span>, <span style="color: #553000">renrakusakiCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">renrakusakiCB</span>.setupSelect...
+     *     <span style="color: #553000">renrakusakiCB</span>.query().set...
+     *     <span style="color: #553000">renrakusakiCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (CmKaisha cmKaisha : <span style="color: #553000">cmKaishaList</span>) {
+     *     ... = cmKaisha.<span style="color: #CC4747">getCmKishRenrakusakiList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCmKaishaId_InScope(pkList);
+     * cb.query().addOrderBy_CmKaishaId_Asc();
+     * </pre>
+     * @param cmKaishaList The entity list of cmKaisha. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<CmKishRenrakusaki> loadCmKishRenrakusaki(List<CmKaisha> cmKaishaList, ReferrerConditionSetupper<CmKishRenrakusakiCB> refCBLambda) {
+        xassLRArg(cmKaishaList, refCBLambda);
+        return doLoadCmKishRenrakusaki(cmKaishaList, new LoadReferrerOption<CmKishRenrakusakiCB, CmKishRenrakusaki>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of cmKishRenrakusakiList by the set-upper of referrer. <br>
+     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
+     * <pre>
+     * <span style="color: #0000C0">cmKaishaBhv</span>.<span style="color: #CC4747">loadCmKishRenrakusaki</span>(<span style="color: #553000">cmKaisha</span>, <span style="color: #553000">renrakusakiCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">renrakusakiCB</span>.setupSelect...
+     *     <span style="color: #553000">renrakusakiCB</span>.query().set...
+     *     <span style="color: #553000">renrakusakiCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">cmKaisha</span>.<span style="color: #CC4747">getCmKishRenrakusakiList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCmKaishaId_InScope(pkList);
+     * cb.query().addOrderBy_CmKaishaId_Asc();
+     * </pre>
+     * @param cmKaisha The entity of cmKaisha. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<CmKishRenrakusaki> loadCmKishRenrakusaki(CmKaisha cmKaisha, ReferrerConditionSetupper<CmKishRenrakusakiCB> refCBLambda) {
+        xassLRArg(cmKaisha, refCBLambda);
+        return doLoadCmKishRenrakusaki(xnewLRLs(cmKaisha), new LoadReferrerOption<CmKishRenrakusakiCB, CmKishRenrakusaki>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<CmKishRenrakusaki> doLoadCmKishRenrakusaki(List<CmKaisha> cmKaishaList, LoadReferrerOption<CmKishRenrakusakiCB, CmKishRenrakusaki> option) {
+        return helpLoadReferrerInternally(cmKaishaList, option, "cmKishRenrakusakiList");
     }
 
     // ===================================================================================

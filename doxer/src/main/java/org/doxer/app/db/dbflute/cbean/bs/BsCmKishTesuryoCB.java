@@ -89,7 +89,7 @@ public class BsCmKishTesuryoCB extends AbstractConditionBean {
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param cmKaishaId : UQ+, NotNull, BIGINT(19). (NotNull)
+     * @param cmKaishaId : UQ+, NotNull, BIGINT(19), FK to cm_kaisha. (NotNull)
      * @param tekiyoKikanFromDt : +UQ, NotNull, CHAR(8). (NotNull)
      * @return this. (NotNull)
      */
@@ -247,6 +247,46 @@ public class BsCmKishTesuryoCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    /**
+     * Set up relation columns to select clause. <br>
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * <pre>
+     * <span style="color: #0000C0">cmKishTesuryoBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_CmKaisha()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">cmKishTesuryo</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">cmKishTesuryo</span>.<span style="color: #CC4747">getCmKaisha()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     */
+    public void setupSelect_CmKaisha() {
+        assertSetupSelectPurpose("cmKaisha");
+        if (hasSpecifiedLocalColumn()) {
+            specify().columnCmKaishaId();
+        }
+        doSetupSelect(() -> query().queryCmKaisha());
+    }
+
+    /**
+     * Set up relation columns to select clause. <br>
+     * CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'.
+     * <pre>
+     * <span style="color: #0000C0">cmKishTesuryoBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_CmTesuryoKb()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">cmKishTesuryo</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">cmKishTesuryo</span>.<span style="color: #CC4747">getCmTesuryoKb()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     */
+    public void setupSelect_CmTesuryoKb() {
+        assertSetupSelectPurpose("cmTesuryoKb");
+        if (hasSpecifiedLocalColumn()) {
+            specify().columnTesuryoKb();
+        }
+        doSetupSelect(() -> query().queryCmTesuryoKb());
+    }
+
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -288,6 +328,8 @@ public class BsCmKishTesuryoCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<CmKishTesuryoCQ> {
+        protected CmKaishaCB.HpSpecification _cmKaisha;
+        protected CmTesuryoKbCB.HpSpecification _cmTesuryoKb;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<CmKishTesuryoCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -298,7 +340,7 @@ public class BsCmKishTesuryoCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnCmKishTesuryoId() { return doColumn("CM_KISH_TESURYO_ID"); }
         /**
-         * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+         * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnCmKaishaId() { return doColumn("CM_KAISHA_ID"); }
@@ -318,7 +360,7 @@ public class BsCmKishTesuryoCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnTesuryoSu() { return doColumn("TESURYO_SU"); }
         /**
-         * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+         * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTesuryoKb() { return doColumn("TESURYO_KB"); }
@@ -362,9 +404,57 @@ public class BsCmKishTesuryoCB extends AbstractConditionBean {
         @Override
         protected void doSpecifyRequiredColumn() {
             columnCmKishTesuryoId(); // PK
+            if (qyCall().qy().hasConditionQueryCmKaisha()
+                    || qyCall().qy().xgetReferrerQuery() instanceof CmKaishaCQ) {
+                columnCmKaishaId(); // FK or one-to-one referrer
+            }
+            if (qyCall().qy().hasConditionQueryCmTesuryoKb()
+                    || qyCall().qy().xgetReferrerQuery() instanceof CmTesuryoKbCQ) {
+                columnTesuryoKb(); // FK or one-to-one referrer
+            }
         }
         @Override
         protected String getTableDbName() { return "CM_KISH_TESURYO"; }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public CmKaishaCB.HpSpecification specifyCmKaisha() {
+            assertRelation("cmKaisha");
+            if (_cmKaisha == null) {
+                _cmKaisha = new CmKaishaCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryCmKaisha()
+                                    , () -> _qyCall.qy().queryCmKaisha())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _cmKaisha.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryCmKaisha()
+                      , () -> xsyncQyCall().qy().queryCmKaisha()));
+                }
+            }
+            return _cmKaisha;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public CmTesuryoKbCB.HpSpecification specifyCmTesuryoKb() {
+            assertRelation("cmTesuryoKb");
+            if (_cmTesuryoKb == null) {
+                _cmTesuryoKb = new CmTesuryoKbCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryCmTesuryoKb()
+                                    , () -> _qyCall.qy().queryCmTesuryoKb())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _cmTesuryoKb.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryCmTesuryoKb()
+                      , () -> xsyncQyCall().qy().queryCmTesuryoKb()));
+                }
+            }
+            return _cmTesuryoKb;
+        }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)

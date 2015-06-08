@@ -79,6 +79,34 @@ public class BsCmKaishaCQ extends AbstractBsCmKaishaCQ {
       return _cmKaishaId; }
     protected ConditionValue xgetCValueCmKaishaId() { return xdfgetCmKaishaId(); }
 
+    public Map<String, CmKishTesuryoCQ> xdfgetCmKaishaId_ExistsReferrer_CmKishTesuryoList() { return xgetSQueMap("cmKaishaId_ExistsReferrer_CmKishTesuryoList"); }
+    public String keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("cmKaishaId_ExistsReferrer_CmKishTesuryoList", sq); }
+
+    public Map<String, CmKishRenrakusakiCQ> xdfgetCmKaishaId_ExistsReferrer_CmKishRenrakusakiList() { return xgetSQueMap("cmKaishaId_ExistsReferrer_CmKishRenrakusakiList"); }
+    public String keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq) { return xkeepSQue("cmKaishaId_ExistsReferrer_CmKishRenrakusakiList", sq); }
+
+    public Map<String, CmKishTesuryoCQ> xdfgetCmKaishaId_NotExistsReferrer_CmKishTesuryoList() { return xgetSQueMap("cmKaishaId_NotExistsReferrer_CmKishTesuryoList"); }
+    public String keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("cmKaishaId_NotExistsReferrer_CmKishTesuryoList", sq); }
+
+    public Map<String, CmKishRenrakusakiCQ> xdfgetCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList() { return xgetSQueMap("cmKaishaId_NotExistsReferrer_CmKishRenrakusakiList"); }
+    public String keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq) { return xkeepSQue("cmKaishaId_NotExistsReferrer_CmKishRenrakusakiList", sq); }
+
+    public Map<String, CmKishTesuryoCQ> xdfgetCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList() { return xgetSQueMap("cmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList"); }
+    public String keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("cmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList", sq); }
+
+    public Map<String, CmKishRenrakusakiCQ> xdfgetCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList() { return xgetSQueMap("cmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList"); }
+    public String keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq) { return xkeepSQue("cmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList", sq); }
+
+    public Map<String, CmKishTesuryoCQ> xdfgetCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList() { return xgetSQueMap("cmKaishaId_QueryDerivedReferrer_CmKishTesuryoList"); }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("cmKaishaId_QueryDerivedReferrer_CmKishTesuryoList", sq); }
+    public Map<String, Object> xdfgetCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter() { return xgetSQuePmMap("cmKaishaId_QueryDerivedReferrer_CmKishTesuryoList"); }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(Object pm) { return xkeepSQuePm("cmKaishaId_QueryDerivedReferrer_CmKishTesuryoList", pm); }
+
+    public Map<String, CmKishRenrakusakiCQ> xdfgetCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList() { return xgetSQueMap("cmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList"); }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq) { return xkeepSQue("cmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList", sq); }
+    public Map<String, Object> xdfgetCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter() { return xgetSQuePmMap("cmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList"); }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(Object pm) { return xkeepSQuePm("cmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList", pm); }
+
     /** 
      * Add order-by as ascend. <br>
      * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}

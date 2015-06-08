@@ -3,9 +3,11 @@ package org.doxer.app.db.dbflute.bsentity;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.dbflute.Entity;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
+import org.dbflute.optional.OptionalEntity;
 import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
 import org.doxer.app.db.dbflute.allcommon.CDef;
 import org.doxer.app.db.dbflute.exentity.*;
@@ -29,13 +31,13 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     VERSION_NO
  * 
  * [foreign table]
- *     
+ *     CM_KAISHA, CM_TESURYO_KB
  * 
  * [referrer table]
  *     
  * 
  * [foreign property]
- *     
+ *     cmKaisha, cmTesuryoKb
  * 
  * [referrer property]
  *     
@@ -86,7 +88,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     /** CM_KISH_TESURYO_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _cmKishTesuryoId;
 
-    /** CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)} */
+    /** CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha} */
     protected Long _cmKaishaId;
 
     /** TEKIYO_KIKAN_FROM_DT: {+UQ, NotNull, CHAR(8)} */
@@ -98,7 +100,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     /** TESURYO_SU: {NotNull, DECIMAL(7, 1)} */
     protected java.math.BigDecimal _tesuryoSu;
 
-    /** TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} */
+    /** TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} */
     protected String _tesuryoKb;
 
     /** REG_USER_ID: {NotNull, VARCHAR(10)} */
@@ -147,7 +149,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     /**
      * To be unique by the unique column. <br>
      * You can update the entity by the key when entity update (NOT batch update).
-     * @param cmKaishaId : UQ+, NotNull, BIGINT(19). (NotNull)
+     * @param cmKaishaId : UQ+, NotNull, BIGINT(19), FK to cm_kaisha. (NotNull)
      * @param tekiyoKikanFromDt : +UQ, NotNull, CHAR(8). (NotNull)
      */
     public void uniqueBy(Long cmKaishaId, String tekiyoKikanFromDt) {
@@ -162,7 +164,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     //                                                             =======================
     /**
      * Get the value of tesuryoKb as the classification of TesuryoKb. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * 手数料区分(率、円)
      * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
      * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
@@ -173,7 +175,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
 
     /**
      * Set the value of tesuryoKb as the classification of TesuryoKb. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * 手数料区分(率、円)
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
@@ -228,6 +230,48 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'. */
+    protected OptionalEntity<CmKaisha> _cmKaisha;
+
+    /**
+     * [get] CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'cmKaisha'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<CmKaisha> getCmKaisha() {
+        if (_cmKaisha == null) { _cmKaisha = OptionalEntity.relationEmpty(this, "cmKaisha"); }
+        return _cmKaisha;
+    }
+
+    /**
+     * [set] CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @param cmKaisha The entity of foreign property 'cmKaisha'. (NullAllowed)
+     */
+    public void setCmKaisha(OptionalEntity<CmKaisha> cmKaisha) {
+        _cmKaisha = cmKaisha;
+    }
+
+    /** CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'. */
+    protected OptionalEntity<CmTesuryoKb> _cmTesuryoKb;
+
+    /**
+     * [get] CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'cmTesuryoKb'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<CmTesuryoKb> getCmTesuryoKb() {
+        if (_cmTesuryoKb == null) { _cmTesuryoKb = OptionalEntity.relationEmpty(this, "cmTesuryoKb"); }
+        return _cmTesuryoKb;
+    }
+
+    /**
+     * [set] CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'.
+     * @param cmTesuryoKb The entity of foreign property 'cmTesuryoKb'. (NullAllowed)
+     */
+    public void setCmTesuryoKb(OptionalEntity<CmTesuryoKb> cmTesuryoKb) {
+        _cmTesuryoKb = cmTesuryoKb;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -259,7 +303,15 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
 
     @Override
     protected String doBuildStringWithRelation(String li) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKaisha != null && _cmKaisha.isPresent())
+        { sb.append(li).append(xbRDS(_cmKaisha, "cmKaisha")); }
+        if (_cmTesuryoKb != null && _cmTesuryoKb.isPresent())
+        { sb.append(li).append(xbRDS(_cmTesuryoKb, "cmTesuryoKb")); }
+        return sb.toString();
+    }
+    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
+        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
@@ -287,7 +339,15 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
 
     @Override
     protected String doBuildRelationString(String dm) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKaisha != null && _cmKaisha.isPresent())
+        { sb.append(dm).append("cmKaisha"); }
+        if (_cmTesuryoKb != null && _cmTesuryoKb.isPresent())
+        { sb.append(dm).append("cmTesuryoKb"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -317,7 +377,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     }
 
     /**
-     * [get] CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)} <br>
+     * [get] CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @return The value of the column 'CM_KAISHA_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getCmKaishaId() {
@@ -326,7 +386,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     }
 
     /**
-     * [set] CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)} <br>
+     * [set] CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @param cmKaishaId The value of the column 'CM_KAISHA_ID'. (basically NotNull if update: for the constraint)
      */
     public void setCmKaishaId(Long cmKaishaId) {
@@ -389,7 +449,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     }
 
     /**
-     * [get] TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * [get] TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * @return The value of the column 'TESURYO_KB'. (basically NotNull if selected: for the constraint)
      */
     public String getTesuryoKb() {
@@ -398,7 +458,7 @@ public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEn
     }
 
     /**
-     * [set] TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * [set] TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * @param tesuryoKb The value of the column 'TESURYO_KB'. (basically NotNull if update: for the constraint)
      */
     protected void setTesuryoKb(String tesuryoKb) {

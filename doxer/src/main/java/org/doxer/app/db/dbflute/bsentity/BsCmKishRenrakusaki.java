@@ -3,9 +3,11 @@ package org.doxer.app.db.dbflute.bsentity;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.dbflute.Entity;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
+import org.dbflute.optional.OptionalEntity;
 import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
 import org.doxer.app.db.dbflute.allcommon.CDef;
 import org.doxer.app.db.dbflute.exentity.*;
@@ -29,13 +31,13 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     VERSION_NO
  * 
  * [foreign table]
- *     
+ *     CM_KAISHA
  * 
  * [referrer table]
  *     
  * 
  * [foreign property]
- *     
+ *     cmKaisha
  * 
  * [referrer property]
  *     
@@ -88,7 +90,7 @@ public abstract class BsCmKishRenrakusaki extends AbstractEntity implements Doma
     /** CM_KISH_RENRAKUSAKI_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _cmKishRenrakusakiId;
 
-    /** CM_KAISHA_ID: {NotNull, BIGINT(19)} */
+    /** CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} */
     protected Long _cmKaishaId;
 
     /** TEL_NO1: {DECIMAL(5)} */
@@ -220,6 +222,27 @@ public abstract class BsCmKishRenrakusaki extends AbstractEntity implements Doma
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'. */
+    protected OptionalEntity<CmKaisha> _cmKaisha;
+
+    /**
+     * [get] CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'cmKaisha'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<CmKaisha> getCmKaisha() {
+        if (_cmKaisha == null) { _cmKaisha = OptionalEntity.relationEmpty(this, "cmKaisha"); }
+        return _cmKaisha;
+    }
+
+    /**
+     * [set] CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @param cmKaisha The entity of foreign property 'cmKaisha'. (NullAllowed)
+     */
+    public void setCmKaisha(OptionalEntity<CmKaisha> cmKaisha) {
+        _cmKaisha = cmKaisha;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -251,7 +274,13 @@ public abstract class BsCmKishRenrakusaki extends AbstractEntity implements Doma
 
     @Override
     protected String doBuildStringWithRelation(String li) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKaisha != null && _cmKaisha.isPresent())
+        { sb.append(li).append(xbRDS(_cmKaisha, "cmKaisha")); }
+        return sb.toString();
+    }
+    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
+        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
@@ -280,7 +309,13 @@ public abstract class BsCmKishRenrakusaki extends AbstractEntity implements Doma
 
     @Override
     protected String doBuildRelationString(String dm) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKaisha != null && _cmKaisha.isPresent())
+        { sb.append(dm).append("cmKaisha"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -310,7 +345,7 @@ public abstract class BsCmKishRenrakusaki extends AbstractEntity implements Doma
     }
 
     /**
-     * [get] CM_KAISHA_ID: {NotNull, BIGINT(19)} <br>
+     * [get] CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @return The value of the column 'CM_KAISHA_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getCmKaishaId() {
@@ -319,7 +354,7 @@ public abstract class BsCmKishRenrakusaki extends AbstractEntity implements Doma
     }
 
     /**
-     * [set] CM_KAISHA_ID: {NotNull, BIGINT(19)} <br>
+     * [set] CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @param cmKaishaId The value of the column 'CM_KAISHA_ID'. (basically NotNull if update: for the constraint)
      */
     public void setCmKaishaId(Long cmKaishaId) {

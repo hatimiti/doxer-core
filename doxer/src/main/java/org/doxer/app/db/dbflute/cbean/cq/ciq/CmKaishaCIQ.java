@@ -62,6 +62,26 @@ public class CmKaishaCIQ extends AbstractBsCmKaishaCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueCmKaishaId() { return _myCQ.xdfgetCmKaishaId(); }
+    public String keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueKaishaMei() { return _myCQ.xdfgetKaishaMei(); }
     protected ConditionValue xgetCValueKaishaMeiEn() { return _myCQ.xdfgetKaishaMeiEn(); }
     protected ConditionValue xgetCValueRegUserId() { return _myCQ.xdfgetRegUserId(); }

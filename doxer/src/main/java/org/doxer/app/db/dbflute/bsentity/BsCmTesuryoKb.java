@@ -32,13 +32,13 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     
  * 
  * [referrer table]
- *     
+ *     CM_KISH_TESURYO
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     
+ *     cmKishTesuryoList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -208,6 +208,26 @@ public abstract class BsCmTesuryoKb extends AbstractEntity implements DomainEnti
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'. */
+    protected List<CmKishTesuryo> _cmKishTesuryoList;
+
+    /**
+     * [get] CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'.
+     * @return The entity list of referrer property 'cmKishTesuryoList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<CmKishTesuryo> getCmKishTesuryoList() {
+        if (_cmKishTesuryoList == null) { _cmKishTesuryoList = newReferrerList(); }
+        return _cmKishTesuryoList;
+    }
+
+    /**
+     * [set] CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'.
+     * @param cmKishTesuryoList The entity list of referrer property 'cmKishTesuryoList'. (NullAllowed)
+     */
+    public void setCmKishTesuryoList(List<CmKishTesuryo> cmKishTesuryoList) {
+        _cmKishTesuryoList = cmKishTesuryoList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -236,7 +256,10 @@ public abstract class BsCmTesuryoKb extends AbstractEntity implements DomainEnti
 
     @Override
     protected String doBuildStringWithRelation(String li) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKishTesuryoList != null) { for (CmKishTesuryo et : _cmKishTesuryoList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "cmKishTesuryoList")); } } }
+        return sb.toString();
     }
 
     @Override
@@ -262,7 +285,13 @@ public abstract class BsCmTesuryoKb extends AbstractEntity implements DomainEnti
 
     @Override
     protected String doBuildRelationString(String dm) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKishTesuryoList != null && !_cmKishTesuryoList.isEmpty())
+        { sb.append(dm).append("cmKishTesuryoList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
+        }
+        return sb.toString();
     }
 
     @Override

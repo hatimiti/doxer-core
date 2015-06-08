@@ -101,14 +101,14 @@ public class BsCmKishRenrakusakiCQ extends AbstractBsCmKishRenrakusakiCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @return this. (NotNull)
      */
     public BsCmKishRenrakusakiCQ addOrderBy_CmKaishaId_Asc() { regOBA("CM_KAISHA_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @return this. (NotNull)
      */
     public BsCmKishRenrakusakiCQ addOrderBy_CmKaishaId_Desc() { regOBD("CM_KAISHA_ID"); return this; }
@@ -392,11 +392,36 @@ public class BsCmKishRenrakusakiCQ extends AbstractBsCmKishRenrakusakiCQ {
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        CmKishRenrakusakiCQ bq = (CmKishRenrakusakiCQ)bqs;
+        CmKishRenrakusakiCQ uq = (CmKishRenrakusakiCQ)uqs;
+        if (bq.hasConditionQueryCmKaisha()) {
+            uq.queryCmKaisha().reflectRelationOnUnionQuery(bq.queryCmKaisha(), uq.queryCmKaisha());
+        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
+    /**
+     * Get the condition-query for relation table. <br>
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public CmKaishaCQ queryCmKaisha() {
+        return xdfgetConditionQueryCmKaisha();
+    }
+    public CmKaishaCQ xdfgetConditionQueryCmKaisha() {
+        String prop = "cmKaisha";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryCmKaisha()); xsetupOuterJoinCmKaisha(); }
+        return xgetQueRlMap(prop);
+    }
+    protected CmKaishaCQ xcreateQueryCmKaisha() {
+        String nrp = xresolveNRP("CM_KISH_RENRAKUSAKI", "cmKaisha"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new CmKaishaCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "cmKaisha", nrp);
+    }
+    protected void xsetupOuterJoinCmKaisha() { xregOutJo("cmKaisha"); }
+    public boolean hasConditionQueryCmKaisha() { return xhasQueRlMap("cmKaisha"); }
+
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }

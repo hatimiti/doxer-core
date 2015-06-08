@@ -101,14 +101,14 @@ public class BsCmKishTesuryoCQ extends AbstractBsCmKishTesuryoCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @return this. (NotNull)
      */
     public BsCmKishTesuryoCQ addOrderBy_CmKaishaId_Asc() { regOBA("CM_KAISHA_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @return this. (NotNull)
      */
     public BsCmKishTesuryoCQ addOrderBy_CmKaishaId_Desc() { regOBD("CM_KAISHA_ID"); return this; }
@@ -181,14 +181,14 @@ public class BsCmKishTesuryoCQ extends AbstractBsCmKishTesuryoCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @return this. (NotNull)
      */
     public BsCmKishTesuryoCQ addOrderBy_TesuryoKb_Asc() { regOBA("TESURYO_KB"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @return this. (NotNull)
      */
     public BsCmKishTesuryoCQ addOrderBy_TesuryoKb_Desc() { regOBD("TESURYO_KB"); return this; }
@@ -372,11 +372,59 @@ public class BsCmKishTesuryoCQ extends AbstractBsCmKishTesuryoCQ {
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        CmKishTesuryoCQ bq = (CmKishTesuryoCQ)bqs;
+        CmKishTesuryoCQ uq = (CmKishTesuryoCQ)uqs;
+        if (bq.hasConditionQueryCmKaisha()) {
+            uq.queryCmKaisha().reflectRelationOnUnionQuery(bq.queryCmKaisha(), uq.queryCmKaisha());
+        }
+        if (bq.hasConditionQueryCmTesuryoKb()) {
+            uq.queryCmTesuryoKb().reflectRelationOnUnionQuery(bq.queryCmTesuryoKb(), uq.queryCmTesuryoKb());
+        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
+    /**
+     * Get the condition-query for relation table. <br>
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public CmKaishaCQ queryCmKaisha() {
+        return xdfgetConditionQueryCmKaisha();
+    }
+    public CmKaishaCQ xdfgetConditionQueryCmKaisha() {
+        String prop = "cmKaisha";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryCmKaisha()); xsetupOuterJoinCmKaisha(); }
+        return xgetQueRlMap(prop);
+    }
+    protected CmKaishaCQ xcreateQueryCmKaisha() {
+        String nrp = xresolveNRP("CM_KISH_TESURYO", "cmKaisha"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new CmKaishaCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "cmKaisha", nrp);
+    }
+    protected void xsetupOuterJoinCmKaisha() { xregOutJo("cmKaisha"); }
+    public boolean hasConditionQueryCmKaisha() { return xhasQueRlMap("cmKaisha"); }
+
+    /**
+     * Get the condition-query for relation table. <br>
+     * CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public CmTesuryoKbCQ queryCmTesuryoKb() {
+        return xdfgetConditionQueryCmTesuryoKb();
+    }
+    public CmTesuryoKbCQ xdfgetConditionQueryCmTesuryoKb() {
+        String prop = "cmTesuryoKb";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryCmTesuryoKb()); xsetupOuterJoinCmTesuryoKb(); }
+        return xgetQueRlMap(prop);
+    }
+    protected CmTesuryoKbCQ xcreateQueryCmTesuryoKb() {
+        String nrp = xresolveNRP("CM_KISH_TESURYO", "cmTesuryoKb"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new CmTesuryoKbCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "cmTesuryoKb", nrp);
+    }
+    protected void xsetupOuterJoinCmTesuryoKb() { xregOutJo("cmTesuryoKb"); }
+    public boolean hasConditionQueryCmTesuryoKb() { return xhasQueRlMap("cmTesuryoKb"); }
+
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }

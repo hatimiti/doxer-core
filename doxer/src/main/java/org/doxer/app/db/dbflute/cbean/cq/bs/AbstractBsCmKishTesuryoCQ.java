@@ -174,7 +174,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as equal. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_Equal(Long cmKaishaId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as notEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_NotEqual(Long cmKaishaId) {
@@ -200,7 +200,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterThan(Long cmKaishaId) {
@@ -209,7 +209,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessThan(Long cmKaishaId) {
@@ -218,7 +218,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterEqual(Long cmKaishaId) {
@@ -227,7 +227,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessEqual(Long cmKaishaId) {
@@ -238,7 +238,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -251,7 +251,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -262,7 +262,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_InScope(Collection<Long> cmKaishaIdList) {
@@ -275,7 +275,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_NotInScope(Collection<Long> cmKaishaIdList) {
@@ -678,7 +678,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @param tesuryoKb The value of tesuryoKb as equal. (NullAllowed: if null (or empty), no condition)
      */
     protected void setTesuryoKb_Equal(String tesuryoKb) {
@@ -687,7 +687,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). As TesuryoKb. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * 手数料区分(率、円)
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, no condition)
      */
@@ -717,7 +717,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @param tesuryoKb The value of tesuryoKb as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     protected void setTesuryoKb_NotEqual(String tesuryoKb) {
@@ -726,7 +726,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). As TesuryoKb. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * 手数料区分(率、円)
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, no condition)
      */
@@ -756,7 +756,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @param tesuryoKbList The collection of tesuryoKb as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTesuryoKb_InScope(Collection<String> tesuryoKbList) {
@@ -765,7 +765,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. As TesuryoKb. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * 手数料区分(率、円)
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
@@ -779,7 +779,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @param tesuryoKbList The collection of tesuryoKb as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTesuryoKb_NotInScope(Collection<String> tesuryoKbList) {
@@ -788,7 +788,7 @@ public abstract class AbstractBsCmKishTesuryoCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. As TesuryoKb. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb} <br>
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb} <br>
      * 手数料区分(率、円)
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */

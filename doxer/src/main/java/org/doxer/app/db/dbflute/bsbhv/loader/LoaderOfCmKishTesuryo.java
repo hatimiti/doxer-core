@@ -25,13 +25,13 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     
+ *     CM_KAISHA, CM_TESURYO_KB
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     
+ *     cmKaisha, cmTesuryoKb
  *
  * [referrer property]
  *     
@@ -59,6 +59,20 @@ public class LoaderOfCmKishTesuryo {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfCmKaisha _foreignCmKaishaLoader;
+    public LoaderOfCmKaisha pulloutCmKaisha() {
+        if (_foreignCmKaishaLoader == null)
+        { _foreignCmKaishaLoader = new LoaderOfCmKaisha().ready(myBhv().pulloutCmKaisha(_selectedList), _selector); }
+        return _foreignCmKaishaLoader;
+    }
+
+    protected LoaderOfCmTesuryoKb _foreignCmTesuryoKbLoader;
+    public LoaderOfCmTesuryoKb pulloutCmTesuryoKb() {
+        if (_foreignCmTesuryoKbLoader == null)
+        { _foreignCmTesuryoKbLoader = new LoaderOfCmTesuryoKb().ready(myBhv().pulloutCmTesuryoKb(_selectedList), _selector); }
+        return _foreignCmTesuryoKbLoader;
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

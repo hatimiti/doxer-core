@@ -158,6 +158,152 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
     }
 
     /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select cm_kaisha_id from CM_KISH_TESURYO where ...)} <br>
+     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsCmKishTesuryo</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     tesuryoCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of CmKishTesuryoList for 'exists'. (NotNull)
+     */
+    public void existsCmKishTesuryo(SubQuery<CmKishTesuryoCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(cb.query());
+        registerExistsReferrer(cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmKishTesuryoList");
+    }
+    public abstract String keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select CM_KAISHA_ID from CM_KISH_RENRAKUSAKI where ...)} <br>
+     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsCmKishRenrakusaki</span>(renrakusakiCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     renrakusakiCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of CmKishRenrakusakiList for 'exists'. (NotNull)
+     */
+    public void existsCmKishRenrakusaki(SubQuery<CmKishRenrakusakiCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(cb.query());
+        registerExistsReferrer(cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", pp, "cmKishRenrakusakiList");
+    }
+    public abstract String keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select cm_kaisha_id from CM_KISH_TESURYO where ...)} <br>
+     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsCmKishTesuryo</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     tesuryoCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of CmKaishaId_NotExistsReferrer_CmKishTesuryoList for 'not exists'. (NotNull)
+     */
+    public void notExistsCmKishTesuryo(SubQuery<CmKishTesuryoCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(cb.query());
+        registerNotExistsReferrer(cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmKishTesuryoList");
+    }
+    public abstract String keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select CM_KAISHA_ID from CM_KISH_RENRAKUSAKI where ...)} <br>
+     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsCmKishRenrakusaki</span>(renrakusakiCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     renrakusakiCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of CmKaishaId_NotExistsReferrer_CmKishRenrakusakiList for 'not exists'. (NotNull)
+     */
+    public void notExistsCmKishRenrakusaki(SubQuery<CmKishRenrakusakiCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(cb.query());
+        registerNotExistsReferrer(cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", pp, "cmKishRenrakusakiList");
+    }
+    public abstract String keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
+
+    public void xsderiveCmKishTesuryoList(String fn, SubQuery<CmKishTesuryoCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmKishTesuryoList", al, op);
+    }
+    public abstract String keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+
+    public void xsderiveCmKishRenrakusakiList(String fn, SubQuery<CmKishRenrakusakiCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", pp, "cmKishRenrakusakiList", al, op);
+    }
+    public abstract String keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from CM_KISH_TESURYO where ...)} <br>
+     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedCmKishTesuryo()</span>.<span style="color: #CC4747">max</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     tesuryoCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     tesuryoCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<CmKishTesuryoCB> derivedCmKishTesuryo() {
+        return xcreateQDRFunctionCmKishTesuryoList();
+    }
+    protected HpQDRFunction<CmKishTesuryoCB> xcreateQDRFunctionCmKishTesuryoList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCmKishTesuryoList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveCmKishTesuryoList(String fn, SubQuery<CmKishTesuryoCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(cb.query()); String prpp = keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", sqpp, "cmKishTesuryoList", rd, vl, prpp, op);
+    }
+    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
+    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(Object vl);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from CM_KISH_RENRAKUSAKI where ...)} <br>
+     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedCmKishRenrakusaki()</span>.<span style="color: #CC4747">max</span>(renrakusakiCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     renrakusakiCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     renrakusakiCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<CmKishRenrakusakiCB> derivedCmKishRenrakusaki() {
+        return xcreateQDRFunctionCmKishRenrakusakiList();
+    }
+    protected HpQDRFunction<CmKishRenrakusakiCB> xcreateQDRFunctionCmKishRenrakusakiList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCmKishRenrakusakiList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveCmKishRenrakusakiList(String fn, SubQuery<CmKishRenrakusakiCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(cb.query()); String prpp = keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", sqpp, "cmKishRenrakusakiList", rd, vl, prpp, op);
+    }
+    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
+    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(Object vl);
+
+    /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
      * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
      */

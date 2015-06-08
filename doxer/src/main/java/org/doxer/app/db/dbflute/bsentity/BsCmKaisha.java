@@ -31,13 +31,13 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     
  * 
  * [referrer table]
- *     
+ *     CM_KISH_TESURYO, CM_KISH_RENRAKUSAKI
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     
+ *     cmKishTesuryoList, cmKishRenrakusakiList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -145,6 +145,46 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity 
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'. */
+    protected List<CmKishTesuryo> _cmKishTesuryoList;
+
+    /**
+     * [get] CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
+     * @return The entity list of referrer property 'cmKishTesuryoList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<CmKishTesuryo> getCmKishTesuryoList() {
+        if (_cmKishTesuryoList == null) { _cmKishTesuryoList = newReferrerList(); }
+        return _cmKishTesuryoList;
+    }
+
+    /**
+     * [set] CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
+     * @param cmKishTesuryoList The entity list of referrer property 'cmKishTesuryoList'. (NullAllowed)
+     */
+    public void setCmKishTesuryoList(List<CmKishTesuryo> cmKishTesuryoList) {
+        _cmKishTesuryoList = cmKishTesuryoList;
+    }
+
+    /** CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'. */
+    protected List<CmKishRenrakusaki> _cmKishRenrakusakiList;
+
+    /**
+     * [get] CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
+     * @return The entity list of referrer property 'cmKishRenrakusakiList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<CmKishRenrakusaki> getCmKishRenrakusakiList() {
+        if (_cmKishRenrakusakiList == null) { _cmKishRenrakusakiList = newReferrerList(); }
+        return _cmKishRenrakusakiList;
+    }
+
+    /**
+     * [set] CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
+     * @param cmKishRenrakusakiList The entity list of referrer property 'cmKishRenrakusakiList'. (NullAllowed)
+     */
+    public void setCmKishRenrakusakiList(List<CmKishRenrakusaki> cmKishRenrakusakiList) {
+        _cmKishRenrakusakiList = cmKishRenrakusakiList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -173,7 +213,12 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity 
 
     @Override
     protected String doBuildStringWithRelation(String li) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKishTesuryoList != null) { for (CmKishTesuryo et : _cmKishTesuryoList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "cmKishTesuryoList")); } } }
+        if (_cmKishRenrakusakiList != null) { for (CmKishRenrakusaki et : _cmKishRenrakusakiList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "cmKishRenrakusakiList")); } } }
+        return sb.toString();
     }
 
     @Override
@@ -198,7 +243,15 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity 
 
     @Override
     protected String doBuildRelationString(String dm) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (_cmKishTesuryoList != null && !_cmKishTesuryoList.isEmpty())
+        { sb.append(dm).append("cmKishTesuryoList"); }
+        if (_cmKishRenrakusakiList != null && !_cmKishRenrakusakiList.isEmpty())
+        { sb.append(dm).append("cmKishRenrakusakiList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
+        }
+        return sb.toString();
     }
 
     @Override

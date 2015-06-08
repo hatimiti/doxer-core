@@ -1,13 +1,15 @@
 package org.doxer.app.db.dbflute.exbhv;
 
-import org.dbflute.bhv.referrer.ConditionBeanSetupper;
+import static com.github.hatimiti.flutist.common.util._Obj.*;
+
 import org.dbflute.cbean.result.PagingResultBean;
 import org.doxer.app.db.dbflute.bsbhv.BsCmKaishaBhv;
+import org.doxer.app.db.dbflute.bsentity.dbmeta.CmKaishaDbm;
 import org.doxer.app.db.dbflute.cbean.CmKaishaCB;
-import org.doxer.app.db.dbflute.cbean.CmKishRenrakusakiCB;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaListForm;
 import org.doxer.xbase.support.SortOrder;
+import org.doxer.xbase.support.TableHeaderSortable;
 
 /**
  * The behavior of CM_KAISHA.
@@ -18,7 +20,8 @@ import org.doxer.xbase.support.SortOrder;
  * @author DBFlute(AutoGenerator)
  */
 @org.springframework.stereotype.Component("cmKaishaBhv")
-public class CmKaishaBhv extends BsCmKaishaBhv {
+public class CmKaishaBhv extends BsCmKaishaBhv
+		implements TableHeaderSortable<CmKaishaCB> {
 
 	public CmKaisha selectByPk4Update(Long cmKaishaId) {
 //		cb.lockForUpdateWait(LOCK_WAIT_TIME);
@@ -32,8 +35,8 @@ public class CmKaishaBhv extends BsCmKaishaBhv {
 
 		PagingResultBean<CmKaisha> userPage = selectPage(cb -> {
 			cb.query().setCmKaishaId_Equal(form.cmKaishaId.getValL());
-//			cb.query().setKaishaMei_LikeSearch(
-//					form.kaishaMei.getVal(), new LikeSearchOption().likePrefix());
+			cb.query().setKaishaMei_LikeSearch(
+					form.kaishaMei.getVal(), op -> op.likePrefix());
 			cb.paging(form.getPageSize(), form.getPageNumber());
 			setOrder(cb, form.sortColName, form.sortOrder);
 		});
@@ -41,18 +44,16 @@ public class CmKaishaBhv extends BsCmKaishaBhv {
 	}
 
 	public CmKaisha selectByPkWithRel(Long cmKaishaId) {
+
 		CmKaisha cmKaisha = selectEntity(cb -> {
 			cb.query().setCmKaishaId_Equal(cmKaishaId);
 		}).get();
 
-		loadCmKishTesuryoList(cmKaisha, scb -> {
-				scb.query().addOrderBy_TekiyoKikanFromDt_Asc();
+		loadCmKishTesuryo(cmKaisha, cb -> {
+			cb.query().addOrderBy_TekiyoKikanFromDt_Asc();
 		});
-		loadCmKishRenrakusakiList(cmKaisha, new ConditionBeanSetupper<CmKishRenrakusakiCB>() {
-			@Override
-			public void setup(CmKishRenrakusakiCB scb) {
-				scb.query().addOrderBy_CmKishRenrakusakiId_Asc();
-			}
+		loadCmKishRenrakusaki(cmKaisha, cb -> {
+			cb.query().addOrderBy_CmKishRenrakusakiId_Asc();
 		});
 
 		return cmKaisha;
@@ -64,18 +65,18 @@ public class CmKaishaBhv extends BsCmKaishaBhv {
 		switch (SortOrder.valueOf(sort)) {
 		case ASC:
 
-			if (eq(N_CM_KAISHA_ID, sortColName)) {
+			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId(), sortColName)) {
 				cb.query().addOrderBy_CmKaishaId_Asc();
-			} else if (eq(N_KAISHA_MEI, sortColName)) {
+			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei(), sortColName)) {
 				cb.query().addOrderBy_KaishaMei_Asc();
 			}
 			break;
 
 		case DESC:
 
-			if (eq(N_CM_KAISHA_ID, sortColName)) {
+			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId(), sortColName)) {
 				cb.query().addOrderBy_CmKaishaId_Desc();
-			} else if (eq(N_KAISHA_MEI, sortColName)) {
+			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei(), sortColName)) {
 				cb.query().addOrderBy_KaishaMei_Desc();
 			}
 			break;

@@ -234,6 +234,26 @@ public class BsCmKishRenrakusakiCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    /**
+     * Set up relation columns to select clause. <br>
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * <pre>
+     * <span style="color: #0000C0">cmKishRenrakusakiBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_CmKaisha()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">cmKishRenrakusaki</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">cmKishRenrakusaki</span>.<span style="color: #CC4747">getCmKaisha()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     */
+    public void setupSelect_CmKaisha() {
+        assertSetupSelectPurpose("cmKaisha");
+        if (hasSpecifiedLocalColumn()) {
+            specify().columnCmKaishaId();
+        }
+        doSetupSelect(() -> query().queryCmKaisha());
+    }
+
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -275,6 +295,7 @@ public class BsCmKishRenrakusakiCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<CmKishRenrakusakiCQ> {
+        protected CmKaishaCB.HpSpecification _cmKaisha;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<CmKishRenrakusakiCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -285,7 +306,7 @@ public class BsCmKishRenrakusakiCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnCmKishRenrakusakiId() { return doColumn("CM_KISH_RENRAKUSAKI_ID"); }
         /**
-         * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+         * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnCmKaishaId() { return doColumn("CM_KAISHA_ID"); }
@@ -354,9 +375,33 @@ public class BsCmKishRenrakusakiCB extends AbstractConditionBean {
         @Override
         protected void doSpecifyRequiredColumn() {
             columnCmKishRenrakusakiId(); // PK
+            if (qyCall().qy().hasConditionQueryCmKaisha()
+                    || qyCall().qy().xgetReferrerQuery() instanceof CmKaishaCQ) {
+                columnCmKaishaId(); // FK or one-to-one referrer
+            }
         }
         @Override
         protected String getTableDbName() { return "CM_KISH_RENRAKUSAKI"; }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public CmKaishaCB.HpSpecification specifyCmKaisha() {
+            assertRelation("cmKaisha");
+            if (_cmKaisha == null) {
+                _cmKaisha = new CmKaishaCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryCmKaisha()
+                                    , () -> _qyCall.qy().queryCmKaisha())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _cmKaisha.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryCmKaisha()
+                      , () -> xsyncQyCall().qy().queryCmKaisha()));
+                }
+            }
+            return _cmKaisha;
+        }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)

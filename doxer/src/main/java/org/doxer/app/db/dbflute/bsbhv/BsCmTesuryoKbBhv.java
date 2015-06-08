@@ -44,13 +44,13 @@ import org.doxer.app.db.dbflute.cbean.*;
  *     
  *
  * [referrer table]
- *     
+ *     CM_KISH_TESURYO
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     
+ *     cmKishTesuryoList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -360,6 +360,70 @@ public abstract class BsCmTesuryoKbBhv extends AbstractBehaviorWritable<CmTesury
     public void load(CmTesuryoKb cmTesuryoKb, ReferrerLoaderHandler<LoaderOfCmTesuryoKb> loaderLambda) {
         xassLRArg(cmTesuryoKb, loaderLambda);
         loaderLambda.handle(new LoaderOfCmTesuryoKb().ready(xnewLRAryLs(cmTesuryoKb), _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of cmKishTesuryoList by the set-upper of referrer. <br>
+     * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'.
+     * <pre>
+     * <span style="color: #0000C0">cmTesuryoKbBhv</span>.<span style="color: #CC4747">loadCmKishTesuryo</span>(<span style="color: #553000">cmTesuryoKbList</span>, <span style="color: #553000">tesuryoCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">tesuryoCB</span>.setupSelect...
+     *     <span style="color: #553000">tesuryoCB</span>.query().set...
+     *     <span style="color: #553000">tesuryoCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (CmTesuryoKb cmTesuryoKb : <span style="color: #553000">cmTesuryoKbList</span>) {
+     *     ... = cmTesuryoKb.<span style="color: #CC4747">getCmKishTesuryoList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setTesuryoKb_InScope(pkList);
+     * cb.query().addOrderBy_TesuryoKb_Asc();
+     * </pre>
+     * @param cmTesuryoKbList The entity list of cmTesuryoKb. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<CmKishTesuryo> loadCmKishTesuryo(List<CmTesuryoKb> cmTesuryoKbList, ReferrerConditionSetupper<CmKishTesuryoCB> refCBLambda) {
+        xassLRArg(cmTesuryoKbList, refCBLambda);
+        return doLoadCmKishTesuryo(cmTesuryoKbList, new LoadReferrerOption<CmKishTesuryoCB, CmKishTesuryo>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of cmKishTesuryoList by the set-upper of referrer. <br>
+     * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'.
+     * <pre>
+     * <span style="color: #0000C0">cmTesuryoKbBhv</span>.<span style="color: #CC4747">loadCmKishTesuryo</span>(<span style="color: #553000">cmTesuryoKb</span>, <span style="color: #553000">tesuryoCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">tesuryoCB</span>.setupSelect...
+     *     <span style="color: #553000">tesuryoCB</span>.query().set...
+     *     <span style="color: #553000">tesuryoCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">cmTesuryoKb</span>.<span style="color: #CC4747">getCmKishTesuryoList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setTesuryoKb_InScope(pkList);
+     * cb.query().addOrderBy_TesuryoKb_Asc();
+     * </pre>
+     * @param cmTesuryoKb The entity of cmTesuryoKb. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<CmKishTesuryo> loadCmKishTesuryo(CmTesuryoKb cmTesuryoKb, ReferrerConditionSetupper<CmKishTesuryoCB> refCBLambda) {
+        xassLRArg(cmTesuryoKb, refCBLambda);
+        return doLoadCmKishTesuryo(xnewLRLs(cmTesuryoKb), new LoadReferrerOption<CmKishTesuryoCB, CmKishTesuryo>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<CmKishTesuryo> doLoadCmKishTesuryo(List<CmTesuryoKb> cmTesuryoKbList, LoadReferrerOption<CmKishTesuryoCB, CmKishTesuryo> option) {
+        return helpLoadReferrerInternally(cmTesuryoKbList, option, "cmKishTesuryoList");
     }
 
     // ===================================================================================

@@ -40,13 +40,13 @@ import org.doxer.app.db.dbflute.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     
+ *     CM_KAISHA, CM_TESURYO_KB
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     
+ *     cmKaisha, cmTesuryoKb
  *
  * [referrer property]
  *     
@@ -188,7 +188,7 @@ public abstract class BsCmKishTesuryoBhv extends AbstractBehaviorWritable<CmKish
 
     /**
      * Select the entity by the unique-key value.
-     * @param cmKaishaId : UQ+, NotNull, BIGINT(19). (NotNull)
+     * @param cmKaishaId : UQ+, NotNull, BIGINT(19), FK to cm_kaisha. (NotNull)
      * @param tekiyoKikanFromDt : +UQ, NotNull, CHAR(8). (NotNull)
      * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
@@ -390,6 +390,22 @@ public abstract class BsCmKishTesuryoBhv extends AbstractBehaviorWritable<CmKish
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
+    /**
+     * Pull out the list of foreign table 'CmKaisha'.
+     * @param cmKishTesuryoList The list of cmKishTesuryo. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<CmKaisha> pulloutCmKaisha(List<CmKishTesuryo> cmKishTesuryoList)
+    { return helpPulloutInternally(cmKishTesuryoList, "cmKaisha"); }
+
+    /**
+     * Pull out the list of foreign table 'CmTesuryoKb'.
+     * @param cmKishTesuryoList The list of cmKishTesuryo. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<CmTesuryoKb> pulloutCmTesuryoKb(List<CmKishTesuryo> cmKishTesuryoList)
+    { return helpPulloutInternally(cmKishTesuryoList, "cmTesuryoKb"); }
+
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============

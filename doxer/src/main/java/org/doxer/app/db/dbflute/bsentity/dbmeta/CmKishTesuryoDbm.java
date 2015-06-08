@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
+import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -67,6 +68,19 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
 
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    { xsetupEfpg(); }
+    @SuppressWarnings("unchecked")
+    protected void xsetupEfpg() {
+        setupEfpg(_efpgMap, et -> ((CmKishTesuryo)et).getCmKaisha(), (et, vl) -> ((CmKishTesuryo)et).setCmKaisha((OptionalEntity<CmKaisha>)vl), "cmKaisha");
+        setupEfpg(_efpgMap, et -> ((CmKishTesuryo)et).getCmTesuryoKb(), (et, vl) -> ((CmKishTesuryo)et).setCmTesuryoKb((OptionalEntity<CmTesuryoKb>)vl), "cmTesuryoKb");
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
+
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
@@ -83,12 +97,12 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKishTesuryoId = cci("CM_KISH_TESURYO_ID", "CM_KISH_TESURYO_ID", null, null, Long.class, "cmKishTesuryoId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_F1751B59_8442_4DF0_A94A_DD522210B9EF", false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKishTesuryoId = cci("CM_KISH_TESURYO_ID", "CM_KISH_TESURYO_ID", null, null, Long.class, "cmKishTesuryoId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_5C092455_6819_41E9_B585_88F80AC4E589", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnTekiyoKikanFromDt = cci("TEKIYO_KIKAN_FROM_DT", "TEKIYO_KIKAN_FROM_DT", null, null, String.class, "tekiyoKikanFromDt", null, false, false, true, "CHAR", 8, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTekiyoKikanToDt = cci("TEKIYO_KIKAN_TO_DT", "TEKIYO_KIKAN_TO_DT", null, null, String.class, "tekiyoKikanToDt", null, false, false, true, "CHAR", 8, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTesuryoSu = cci("TESURYO_SU", "TESURYO_SU", null, null, java.math.BigDecimal.class, "tesuryoSu", null, false, false, true, "DECIMAL", 7, 1, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnTesuryoKb = cci("TESURYO_KB", "TESURYO_KB", null, null, String.class, "tesuryoKb", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.TesuryoKb, false);
+    protected final ColumnInfo _columnTesuryoKb = cci("TESURYO_KB", "TESURYO_KB", null, null, String.class, "tesuryoKb", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "cmTesuryoKb", null, CDef.DefMeta.TesuryoKb, false);
     protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
@@ -103,7 +117,7 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnCmKishTesuryoId() { return _columnCmKishTesuryoId; }
     /**
-     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCmKaishaId() { return _columnCmKaishaId; }
@@ -123,7 +137,7 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTesuryoSu() { return _columnTesuryoSu; }
     /**
-     * TESURYO_KB: {NotNull, CHAR(3), classification=TesuryoKb}
+     * TESURYO_KB: {NotNull, CHAR(3), FK to cm_tesuryo_kb, classification=TesuryoKb}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTesuryoKb() { return _columnTesuryoKb; }
@@ -211,6 +225,22 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignCmKaisha() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKaishaDbm.getInstance().columnCmKaishaId());
+        return cfi("FK_CM_KISH_TESURYO_CM_KAISHA", "cmKaisha", this, CmKaishaDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, true, null, null, false, "cmKishTesuryoList", false);
+    }
+    /**
+     * CM_TESURYO_KB by my TESURYO_KB, named 'cmTesuryoKb'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignCmTesuryoKb() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTesuryoKb(), CmTesuryoKbDbm.getInstance().columnKbVal());
+        return cfi("FK_CM_KISH_TESURYO_CM_TESURYO_KB", "cmTesuryoKb", this, CmTesuryoKbDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, false, false, false, true, null, null, false, "cmKishTesuryoList", false);
+    }
 
     // -----------------------------------------------------
     //                                     Referrer Property

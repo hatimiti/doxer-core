@@ -25,13 +25,13 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     
+ *     CM_KAISHA
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     
+ *     cmKaisha
  *
  * [referrer property]
  *     
@@ -59,6 +59,13 @@ public class LoaderOfCmKishRenrakusaki {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfCmKaisha _foreignCmKaishaLoader;
+    public LoaderOfCmKaisha pulloutCmKaisha() {
+        if (_foreignCmKaishaLoader == null)
+        { _foreignCmKaishaLoader = new LoaderOfCmKaisha().ready(myBhv().pulloutCmKaisha(_selectedList), _selector); }
+        return _foreignCmKaishaLoader;
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

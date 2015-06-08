@@ -81,7 +81,7 @@ public class CmTesuryoKbDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnKbVal = cci("KB_VAL", "KB_VAL", null, null, String.class, "kbVal", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.TesuryoKb, false);
+    protected final ColumnInfo _columnKbVal = cci("KB_VAL", "KB_VAL", null, null, String.class, "kbVal", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, "cmKishTesuryoList", CDef.DefMeta.TesuryoKb, false);
     protected final ColumnInfo _columnKbMei = cci("KB_MEI", "KB_MEI", null, null, String.class, "kbMei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnKbMeiEn = cci("KB_MEI_EN", "KB_MEI_EN", null, null, String.class, "kbMeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnKbRem = cci("KB_REM", "KB_REM", null, null, String.class, "kbRem", null, false, false, true, "VARCHAR", 15, 0, null, false, null, null, null, null, null, false);
@@ -189,6 +189,14 @@ public class CmTesuryoKbDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerCmKishTesuryoList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnKbVal(), CmKishTesuryoDbm.getInstance().columnTesuryoKb());
+        return cri("FK_CM_KISH_TESURYO_CM_TESURYO_KB", "cmKishTesuryoList", this, CmKishTesuryoDbm.getInstance(), mp, false, "cmTesuryoKb");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

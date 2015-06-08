@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
+import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -68,6 +69,18 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
 
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    { xsetupEfpg(); }
+    @SuppressWarnings("unchecked")
+    protected void xsetupEfpg() {
+        setupEfpg(_efpgMap, et -> ((CmKishRenrakusaki)et).getCmKaisha(), (et, vl) -> ((CmKishRenrakusaki)et).setCmKaisha((OptionalEntity<CmKaisha>)vl), "cmKaisha");
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
+
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
@@ -84,8 +97,8 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKishRenrakusakiId = cci("CM_KISH_RENRAKUSAKI_ID", "CM_KISH_RENRAKUSAKI_ID", null, null, Long.class, "cmKishRenrakusakiId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_077B93EE_F9F5_4AA7_AFFC_889FC2A72243", false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKishRenrakusakiId = cci("CM_KISH_RENRAKUSAKI_ID", "CM_KISH_RENRAKUSAKI_ID", null, null, Long.class, "cmKishRenrakusakiId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_18A375D0_4D86_4C12_84EC_1362CD6503F5", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnTelNo1 = cci("TEL_NO1", "TEL_NO1", null, null, Integer.class, "telNo1", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTelNo2 = cci("TEL_NO2", "TEL_NO2", null, null, Integer.class, "telNo2", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTelNo3 = cci("TEL_NO3", "TEL_NO3", null, null, Integer.class, "telNo3", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
@@ -105,7 +118,7 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnCmKishRenrakusakiId() { return _columnCmKishRenrakusakiId; }
     /**
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCmKaishaId() { return _columnCmKaishaId; }
@@ -209,6 +222,14 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignCmKaisha() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKaishaDbm.getInstance().columnCmKaishaId());
+        return cfi("FK_CM_KISH_RENRAKUSAKI_CM_KAISHA", "cmKaisha", this, CmKaishaDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, true, null, null, false, "cmKishRenrakusakiList", false);
+    }
 
     // -----------------------------------------------------
     //                                     Referrer Property

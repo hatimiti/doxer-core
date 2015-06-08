@@ -72,7 +72,7 @@ public class CmKaishaDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_75AA023E_3BA8_4C50_AE0D_E647073003DE", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_44009FE0_255D_42CC_B656_F668157C2BA0", false, null, null, null, "cmKishTesuryoList,cmKishRenrakusakiList", null, false);
     protected final ColumnInfo _columnKaishaMei = cci("KAISHA_MEI", "KAISHA_MEI", null, null, String.class, "kaishaMei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnKaishaMeiEn = cci("KAISHA_MEI_EN", "KAISHA_MEI_EN", null, null, String.class, "kaishaMeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
@@ -178,6 +178,22 @@ public class CmKaishaDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerCmKishTesuryoList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKishTesuryoDbm.getInstance().columnCmKaishaId());
+        return cri("FK_CM_KISH_TESURYO_CM_KAISHA", "cmKishTesuryoList", this, CmKishTesuryoDbm.getInstance(), mp, false, "cmKaisha");
+    }
+    /**
+     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerCmKishRenrakusakiList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKishRenrakusakiDbm.getInstance().columnCmKaishaId());
+        return cri("FK_CM_KISH_RENRAKUSAKI_CM_KAISHA", "cmKishRenrakusakiList", this, CmKishRenrakusakiDbm.getInstance(), mp, false, "cmKaisha");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

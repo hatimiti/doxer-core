@@ -174,7 +174,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as equal. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_Equal(Long cmKaishaId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as notEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_NotEqual(Long cmKaishaId) {
@@ -200,7 +200,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterThan(Long cmKaishaId) {
@@ -209,7 +209,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessThan(Long cmKaishaId) {
@@ -218,7 +218,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterEqual(Long cmKaishaId) {
@@ -227,7 +227,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessEqual(Long cmKaishaId) {
@@ -238,7 +238,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -251,7 +251,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -262,7 +262,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_InScope(Collection<Long> cmKaishaIdList) {
@@ -275,7 +275,7 @@ public abstract class AbstractBsCmKishRenrakusakiCQ extends AbstractConditionQue
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_NotInScope(Collection<Long> cmKaishaIdList) {

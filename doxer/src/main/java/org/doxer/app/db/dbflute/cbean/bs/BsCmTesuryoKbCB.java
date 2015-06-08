@@ -344,6 +344,23 @@ public class BsCmTesuryoKbCB extends AbstractConditionBean {
         @Override
         protected String getTableDbName() { return "CM_TESURYO_KB"; }
         /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
+         * {select max(FOO) from CM_KISH_TESURYO where ...) as FOO_MAX} <br>
+         * CM_KISH_TESURYO by TESURYO_KB, named 'cmKishTesuryoList'.
+         * <pre>
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     tesuryoCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     tesuryoCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, CmKishTesuryo.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<CmKishTesuryoCB, CmTesuryoKbCQ> derivedCmKishTesuryo() {
+            assertDerived("cmKishTesuryoList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<CmKishTesuryoCB> sq, CmTesuryoKbCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveCmKishTesuryoList(fn, sq, al, op), _dbmetaProvider);
+        }
+        /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */

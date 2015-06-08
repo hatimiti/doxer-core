@@ -62,6 +62,16 @@ public class CmTesuryoKbCIQ extends AbstractBsCmTesuryoKbCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueKbVal() { return _myCQ.xdfgetKbVal(); }
+    public String keepKbVal_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepKbVal_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepKbVal_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepKbVal_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepKbVal_QueryDerivedReferrer_CmKishTesuryoListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueKbMei() { return _myCQ.xdfgetKbMei(); }
     protected ConditionValue xgetCValueKbMeiEn() { return _myCQ.xdfgetKbMeiEn(); }
     protected ConditionValue xgetCValueKbRem() { return _myCQ.xdfgetKbRem(); }

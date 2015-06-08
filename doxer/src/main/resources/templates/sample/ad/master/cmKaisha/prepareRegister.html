@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sa=""
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="/intra/common/layout">
+	layout:decorator="/common/layout">
 <head>
 	<!--/*/ <th:block th:remove="all"> /*/-->
 	<meta charset="UTF-8" />
@@ -17,8 +18,8 @@
 <h3>基本情報</h3>
 
 会社名:<input type="text" value="sample会社名"
-	sa:text="kaishaMei" sa:errclass="ErrorsProperty" /><br />
-<div class="ErrorsProperty" th:each="e : ${#sa.errors('kaishaMei.val')}" th:text="${e}">xxx</div>
+	th:value="${form.kaishaMei.val}" sa:errclass="ErrorsProperty" /><br />
+<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.kaishaMei.val')}" th:text="${e}">xxx</div>
 
 <h3>手数料</h3>
 <table>
@@ -29,8 +30,8 @@
 		<th></th>
 	</tr>
 	<tr>
-		<td><input type="text" sa:text="cmKishTesuryoForm.tekiyoKikanFromDt" /><br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishTesuryoForm.tekiyoKikanFromDt.val')}" th:text="${e}">手数料期間は必須です</div>
+		<td><input type="text" th:value="${form.cmKishTesuryoForm.tekiyoKikanFromDt.val}" /><br />
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tekiyoKikanFromDt.val')}" th:text="${e}">手数料期間は必須です</div>
 		</td>
 		<td th:remove="all-but-first">
 			<label th:each="kb : ${#j.tesuryoKb()}">
@@ -40,20 +41,20 @@
 			<label><input type="radio" value="PCT" />
 				<span>率</span>
 			</label>
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishTesuryoForm.tesuryoKb.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tesuryoKb.val')}" th:text="${e}">xxx</div>
 		</td>
 		<td><input type="text" value="10" sa:text="cmKishTesuryoForm.tesuryoIntSu" />
 			<span id="spanTesuryoKbPercent">．
 			<input type="text" value="1" sa:text="cmKishTesuryoForm.tesuryoDmSu" />
 			</span><br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishTesuryoForm.tesuryoIntSu.val')}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishTesuryoForm.tesuryoDmSu.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tesuryoIntSu.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tesuryoDmSu.val')}" th:text="${e}">xxx</div>
 		</td>
 		<td><input type="submit" name="addTesuryo" value="追加" /></td>
 	</tr>
 </table>
 <table th:remove="all-but-first">
-	<tr th:each="tesuryo : ${cmKishTesuryoForms}">
+	<tr th:each="tesuryo : ${form.cmKishTesuryoForms}">
 		<td style="padding-right: 5px;"
 			th:text="${tesuryo.tekiyoKikanFromDt.val}">2013/10/20</td>
 		<td th:text="${tesuryo.tesuryoSu}">10.5</td>
@@ -63,7 +64,7 @@
 		<td>12.5</td>
 	</tr>
 </table>
-<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishTesuryoForm')}" th:text="${e}">xxx</div>
+<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishTesuryoForm')}" th:text="${e}">xxx</div>
 <br />
 
 <h3>連絡先</h3>
@@ -75,15 +76,15 @@
 			- <input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].telNo,val2" sa:errclass="ErrorsProperty" />
 			- <input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].telNo,val3" sa:errclass="ErrorsProperty" />
 			<br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('telNo' + s.index)}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishRenrakusakiForms[' + s.index + '].telNo.val')}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishRenrakusakiForms[' + s.index + '].telNo.val2')}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishRenrakusakiForms[' + s.index + '].telNo.val3')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo' + s.index)}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val2')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].telNo.val3')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	<tr><td>メールアドレス<span th:text="${s.count}">1</span>
 			<input type="text" sa:text="cmKishRenrakusakiForms[${s.index}].mailAddress" th:size="50" /><br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishRenrakusakiForms[' + s.index + '].mailAddress.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].mailAddress.val')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	<tr th:remove="all-but-first">
@@ -95,7 +96,7 @@
 			<label th:remove="all">
 				<input type="radio" value="02" /><span>通常</span>
 			</label>
-			<div class="ErrorsProperty" th:each="e : ${#sa.errors('cmKishRenrakusakiForms[' + s.index + '].renrakusakiYotoKb.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].renrakusakiYotoKb.val')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	</tbody>

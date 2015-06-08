@@ -303,14 +303,14 @@ dl.procedurelist dd.column pre {
 		<td><a href="#cm_kaisha" title="type=TABLE, primaryKey={CM_KAISHA_ID}, nameLength=9, columnCount=10">CM_KAISHA</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KISH_TESURYO</a>, <a href="#cm_kish_renrakusaki" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KISH_RENRAKUSAKI</a></td>
 		<td class="subcell">CmKaisha</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">2</td>
 		<td><a href="#cm_kish_renrakusaki" title="type=TABLE, primaryKey={CM_KISH_RENRAKUSAKI_ID}, nameLength=19, columnCount=14">CM_KISH_RENRAKUSAKI</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#cm_kaisha" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KAISHA</a></td>
 		<td class="relcell">&nbsp;</td>
 		<td class="subcell">CmKishRenrakusaki</td>
 	</tr>
@@ -318,7 +318,7 @@ dl.procedurelist dd.column pre {
 		<td class="rownumcell">3</td>
 		<td><a href="#cm_kish_tesuryo" title="type=TABLE, primaryKey={CM_KISH_TESURYO_ID}, nameLength=15, columnCount=13">CM_KISH_TESURYO</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#cm_kaisha" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KAISHA</a>, <a href="#cm_tesuryo_kb" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_TESURYO_KB">CM_TESURYO_KB</a></td>
 		<td class="relcell">&nbsp;</td>
 		<td class="subcell">CmKishTesuryo</td>
 	</tr>
@@ -335,7 +335,7 @@ dl.procedurelist dd.column pre {
 		<td><a href="#cm_tesuryo_kb" title="type=TABLE, primaryKey={KB_VAL}, nameLength=13, columnCount=11">CM_TESURYO_KB</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_TESURYO_KB">CM_KISH_TESURYO</a></td>
 		<td class="subcell">CmTesuryoKb</td>
 	</tr>
 	<tr>
@@ -382,7 +382,7 @@ CM_KAISHA
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KISH_TESURYO</a>,<br><a href="#cm_kish_renrakusaki" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KISH_RENRAKUSAKI</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">cmKaishaId</td>
 		<td class="subcell">Long</td>
@@ -580,7 +580,7 @@ CM_KISH_RENRAKUSAKI
 		<td id="cm_kish_renrakusaki_cm_kaisha_id">CM_KAISHA_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#cm_kaisha" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KAISHA</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">cmKaishaId</td>
@@ -827,7 +827,7 @@ CM_KISH_TESURYO
 		<td id="cm_kish_tesuryo_cm_kaisha_id">CM_KAISHA_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#cm_kaisha" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KAISHA</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">cmKaishaId</td>
@@ -891,7 +891,7 @@ CM_KISH_TESURYO
 		<td id="cm_kish_tesuryo_tesuryo_kb">TESURYO_KB</td>
 		<td class="typecell">CHAR</td>
 		<td class="sizecell"> 3 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#cm_tesuryo_kb" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_TESURYO_KB">CM_TESURYO_KB</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"><a href="#TesuryoKbCls">TesuryoKb</a></td>
 		<td class="subcell">tesuryoKb</td>
@@ -1242,7 +1242,7 @@ CM_TESURYO_KB
 		<td class="typecell">CHAR</td>
 		<td class="sizecell"> 3 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_TESURYO_KB">CM_KISH_TESURYO</a>&nbsp;</td>
 		<td class="relcell"><a href="#TesuryoKbCls">TesuryoKb</a></td>
 		<td class="subcell">kbVal</td>
 		<td class="subcell">String</td>

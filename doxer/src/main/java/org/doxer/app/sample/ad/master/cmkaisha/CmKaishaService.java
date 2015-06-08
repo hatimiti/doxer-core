@@ -3,6 +3,7 @@ package org.doxer.app.sample.ad.master.cmkaisha;
 import javax.annotation.Resource;
 
 import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
+import org.doxer.app.base.type.sample.ad.master.CmKaishaList;
 import org.doxer.app.base.type.sample.ad.master.CmKishTesuryoFormList;
 import org.doxer.app.db.dbflute.exbhv.CmKaishaBhv;
 import org.doxer.app.db.dbflute.exbhv.CmKishRenrakusakiBhv;
@@ -28,7 +29,7 @@ public class CmKaishaService extends DoxService {
 	public void search(
 			final CmKaishaListForm form) {
 
-//		form.kaishaList = new CmKaishaList(this.cmKaishaBhv.selectPageForMaster(form));
+		form.kaishaList = new CmKaishaList(this.cmKaishaBhv.selectPageForMaster(form));
 		form.setupPage(form.kaishaList);
 	}
 
@@ -59,10 +60,10 @@ public class CmKaishaService extends DoxService {
 
 //		cmKishaTesuryoED.registerTo(kaisha);
 
-//		// 手数料登録
-//		for (CmKishTesuryoForm tesuryoForm : form.cmKishTesuryoForms) {
-//			registerCmKishTesuryo(tesuryoForm, kaisha);
-//		}
+		// 手数料登録
+		for (CmKishTesuryoForm tesuryoForm : form.cmKishTesuryoForms) {
+			registerCmKishTesuryo(tesuryoForm, kaisha);
+		}
 
 		// 連絡先登録
 		for (CmKishRenrakusakiForm renrakusakiForm : form.cmKishRenrakusakiForms) {

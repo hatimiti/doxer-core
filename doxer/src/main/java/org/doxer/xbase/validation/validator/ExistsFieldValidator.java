@@ -1,12 +1,14 @@
 package org.doxer.xbase.validation.validator;
 
+import static com.github.hatimiti.flutist.common.util._Ref.*;
+
 import org.dbflute.bhv.AbstractBehaviorWritable;
+import org.dbflute.bhv.readable.CBCall;
 import org.dbflute.cbean.AbstractConditionBean;
 import org.doxer.xbase.util._Container;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Obj;
-import com.github.hatimiti.flutist.common.util._Ref;
 import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.BaseFieldValidator;
 
@@ -46,7 +48,8 @@ public class ExistsFieldValidator extends BaseFieldValidator {
 		}
 
 		AbstractBehaviorWritable<?, ?> bhv = _Container.getComponent(bhvClass).get();
-		Integer count = (Integer) _Ref.invoke(_Ref.getMethod(bhvClass, "selectCount", cb.getClass()).get(), bhv, cb);
+		Integer count = (Integer) invoke(getMethod(bhvClass, "selectCount", CBCall.class).get(),
+				bhv, (CBCall<?>) scb -> scb = cb);
 		return _Obj.isNotEmpty(count) && 0 < count;
 	}
 

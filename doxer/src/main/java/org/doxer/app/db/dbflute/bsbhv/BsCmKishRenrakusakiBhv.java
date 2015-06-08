@@ -40,13 +40,13 @@ import org.doxer.app.db.dbflute.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     
+ *     CM_KAISHA
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     
+ *     cmKaisha
  *
  * [referrer property]
  *     
@@ -364,6 +364,14 @@ public abstract class BsCmKishRenrakusakiBhv extends AbstractBehaviorWritable<Cm
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
+    /**
+     * Pull out the list of foreign table 'CmKaisha'.
+     * @param cmKishRenrakusakiList The list of cmKishRenrakusaki. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<CmKaisha> pulloutCmKaisha(List<CmKishRenrakusaki> cmKishRenrakusakiList)
+    { return helpPulloutInternally(cmKishRenrakusakiList, "cmKaisha"); }
+
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============

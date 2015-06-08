@@ -79,6 +79,20 @@ public class BsCmTesuryoKbCQ extends AbstractBsCmTesuryoKbCQ {
       return _kbVal; }
     protected ConditionValue xgetCValueKbVal() { return xdfgetKbVal(); }
 
+    public Map<String, CmKishTesuryoCQ> xdfgetKbVal_ExistsReferrer_CmKishTesuryoList() { return xgetSQueMap("kbVal_ExistsReferrer_CmKishTesuryoList"); }
+    public String keepKbVal_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("kbVal_ExistsReferrer_CmKishTesuryoList", sq); }
+
+    public Map<String, CmKishTesuryoCQ> xdfgetKbVal_NotExistsReferrer_CmKishTesuryoList() { return xgetSQueMap("kbVal_NotExistsReferrer_CmKishTesuryoList"); }
+    public String keepKbVal_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("kbVal_NotExistsReferrer_CmKishTesuryoList", sq); }
+
+    public Map<String, CmKishTesuryoCQ> xdfgetKbVal_SpecifyDerivedReferrer_CmKishTesuryoList() { return xgetSQueMap("kbVal_SpecifyDerivedReferrer_CmKishTesuryoList"); }
+    public String keepKbVal_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("kbVal_SpecifyDerivedReferrer_CmKishTesuryoList", sq); }
+
+    public Map<String, CmKishTesuryoCQ> xdfgetKbVal_QueryDerivedReferrer_CmKishTesuryoList() { return xgetSQueMap("kbVal_QueryDerivedReferrer_CmKishTesuryoList"); }
+    public String keepKbVal_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq) { return xkeepSQue("kbVal_QueryDerivedReferrer_CmKishTesuryoList", sq); }
+    public Map<String, Object> xdfgetKbVal_QueryDerivedReferrer_CmKishTesuryoListParameter() { return xgetSQuePmMap("kbVal_QueryDerivedReferrer_CmKishTesuryoList"); }
+    public String keepKbVal_QueryDerivedReferrer_CmKishTesuryoListParameter(Object pm) { return xkeepSQuePm("kbVal_QueryDerivedReferrer_CmKishTesuryoList", pm); }
+
     /** 
      * Add order-by as ascend. <br>
      * KB_VAL: {PK, NotNull, CHAR(3), classification=TesuryoKb}
