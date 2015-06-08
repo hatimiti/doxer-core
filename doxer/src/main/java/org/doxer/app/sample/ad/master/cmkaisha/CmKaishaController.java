@@ -14,6 +14,7 @@ import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.hatimiti.flutist.common.annotation.Function;
@@ -24,6 +25,7 @@ import com.github.hatimiti.flutist.common.annotation.Function;
  */
 @Controller
 @Function("S0101")
+@SessionAttributes("cmKaishaForm")
 @RequestMapping(CmKaishaController.BASE_URI)
 public class CmKaishaController extends BaseMasterController {
 
@@ -32,8 +34,8 @@ public class CmKaishaController extends BaseMasterController {
 	@Resource CmKaishaService cmKaishaService;
 
 	@RequestMapping("/")
-	public String index(CmKaishaForm cmKaishaForm) {
-		return prepareRegister(cmKaishaForm);
+	public String index(CmKaishaForm form) {
+		return prepareRegister(form);
 	}
 
 	// 登録
@@ -49,15 +51,15 @@ public class CmKaishaController extends BaseMasterController {
 
 	@DoValidation(value = "prepareRegister.html")
 	@RequestMapping("/confirmRegister")
-	public String confirmRegister(CmKaishaForm cmKaishaForm) {
+	public String confirmRegister(CmKaishaForm form) {
 		return "confirmRegister.jsp";
 	}
 
 	@Token(CHECK)
 	@DoValidation(value = "prepareRegister.html", transition = REDIRECT)
 	@RequestMapping("/register")
-	public String register(CmKaishaForm cmKaishaForm) {
-		CmKaisha kaisha = this.cmKaishaService.register(cmKaishaForm);
+	public String register(CmKaishaForm form) {
+		CmKaisha kaisha = this.cmKaishaService.register(form);
 		saveRegisterMessage(kaisha.getCmKaishaId());
 		return "complete";
 	}
@@ -67,29 +69,29 @@ public class CmKaishaController extends BaseMasterController {
 	@Token(SET)
 	@DoValidation(value = "backToList", method = "validId")
 	@RequestMapping("/prepareUpdate")
-	public String prepareUpdate(CmKaishaForm cmKaishaForm) {
+	public String prepareUpdate(CmKaishaForm form) {
 
-		final CmKaishaId tmpId = cmKaishaForm.cmKaishaId;
-		copy(new CmKaishaForm(), cmKaishaForm);
-		cmKaishaForm.cmKaishaId = tmpId;
+		final CmKaishaId tmpId = form.cmKaishaId;
+		copy(new CmKaishaForm(), form);
+		form.cmKaishaId = tmpId;
 
-		cmKaishaForm.mode = Mode.Update;
-		this.cmKaishaService.prepareUpdate(cmKaishaForm);
+		form.mode = Mode.Update;
+		this.cmKaishaService.prepareUpdate(form);
 
 		return "prepareUpdate.jsp";
 	}
 
 	@DoValidation(value = "prepareUpdate.jsp", method = "validate, validId")
 	@RequestMapping("/confirmUpdate")
-	public String confirmUpdate(CmKaishaForm cmKaishaForm) {
+	public String confirmUpdate(CmKaishaForm form) {
 		return "confirmUpadte.jsp";
 	}
 
 	@Token(CHECK)
 	@DoValidation(value = "prepareUpdate.jsp", method = "validate, validId", transition = REDIRECT)
 	@RequestMapping("/update")
-	public String update(CmKaishaForm cmKaishaForm) {
-		CmKaisha kaisha = this.cmKaishaService.update(cmKaishaForm);
+	public String update(CmKaishaForm form) {
+		CmKaisha kaisha = this.cmKaishaService.update(form);
 		saveUpdateMessage(kaisha.getCmKaishaId());
 		return "complete";
 	}
@@ -99,14 +101,14 @@ public class CmKaishaController extends BaseMasterController {
 	@Token(SET)
 	@DoValidation(value = "backToList", method = "validId")
 	@RequestMapping("/confirmDelete")
-	public String confirmDelete(CmKaishaForm cmKaishaForm) {
+	public String confirmDelete(CmKaishaForm form) {
 
-		final CmKaishaId tmpId = cmKaishaForm.cmKaishaId;
-		copy(new CmKaishaForm(), cmKaishaForm);
-		cmKaishaForm.cmKaishaId = tmpId;
+		final CmKaishaId tmpId = form.cmKaishaId;
+		copy(new CmKaishaForm(), form);
+		form.cmKaishaId = tmpId;
 
-		cmKaishaForm.mode = Mode.Delete;
-		this.cmKaishaService.confirmDelete(cmKaishaForm);
+		form.mode = Mode.Delete;
+		this.cmKaishaService.confirmDelete(form);
 		return "confirmDelete.jsp";
 	}
 
@@ -114,49 +116,49 @@ public class CmKaishaController extends BaseMasterController {
 	@Token(CHECK)
 	@DoValidation(value = "backToList", method = "validId", transition = REDIRECT)
 	@RequestMapping("/delete")
-	public String delete(CmKaishaForm cmKaishaForm) {
-		CmKaisha kaisha = this.cmKaishaService.delete(cmKaishaForm);
+	public String delete(CmKaishaForm form) {
+		CmKaisha kaisha = this.cmKaishaService.delete(form);
 		saveDeleteMessage(kaisha.getCmKaishaId());
 		return "complete";
 	}
 
 	// 共通
 
-	@DoValidation(value = "backToPrepare", method = "validAddTesuryo")
-	@RequestMapping("/addTesuryo")
-	public String addTesuryo(CmKaishaForm cmKaishaForm) {
-		this.cmKaishaService.addTesuryo(cmKaishaForm);
-		return backToPrepare(cmKaishaForm);
+	@DoValidation(value = "backToPrepare", method = "validAddTesuryo", transition = FORWORD)
+	@RequestMapping(value = "/", params = "addTesuryo")
+	public String addTesuryo(CmKaishaForm form) {
+		this.cmKaishaService.addTesuryo(form);
+		return backToPrepare(form);
 	}
 
-	@RequestMapping("/addRenrakusaki")
-	public String addRenrakusaki(CmKaishaForm cmKaishaForm) {
-		this.cmKaishaService.addRenrakusaki(cmKaishaForm);
-		return backToPrepare(cmKaishaForm);
+	@RequestMapping(params = "addRenrakusaki")
+	public String addRenrakusaki(CmKaishaForm form) {
+		this.cmKaishaService.addRenrakusaki(form);
+		return backToPrepare(form);
 	}
 
 	@RequestMapping("/complete")
-	public String complete(CmKaishaForm cmKaishaForm) {
+	public String complete(CmKaishaForm form) {
 		return "complete.jsp";
 	}
 
 	@RequestMapping("/backToList")
-	public String backToList(CmKaishaForm cmKaishaForm, RedirectAttributes ra) {
+	public String backToList(CmKaishaForm form, RedirectAttributes ra) {
 		return redirect("/sample/ad/master/cmKaishaList/search", ra);
 	}
 
-	@RequestMapping
-	public String backToPrepare(CmKaishaForm cmKaishaForm) {
-		switch (cmKaishaForm.mode) {
+	@RequestMapping("/backToPrepare")
+	public String backToPrepare(CmKaishaForm form) {
+		switch (form.mode) {
 		case Register:
-			return "prepareRegister.html";
+			return view(BASE_URI + "/prepareRegister", form);
 		case Update:
-			return "prepareUpdate.jsp";
+			return view(BASE_URI + "/prepareUpdate", form);
 		case Delete:
-			return "prepareDelete.jsp";
+			return view(BASE_URI + "/prepareDelete", form);
 		case Replicate:
 		default:
-			return "prepareRegister.html";
+			return view(BASE_URI + "/prepareRegister", form);
 		}
 	}
 

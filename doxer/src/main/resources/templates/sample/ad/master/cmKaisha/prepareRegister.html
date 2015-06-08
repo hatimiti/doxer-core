@@ -14,11 +14,11 @@
 </head>
 <body>
 <div layout:fragment="contents">
-<form action=".">
+<form action="." method="post">
 <h3>基本情報</h3>
 
 会社名:<input type="text" value="sample会社名"
-	th:value="${form.kaishaMei.val}" sa:errclass="ErrorsProperty" /><br />
+	th:field="${form.kaishaMei.val}" sa:errclass="ErrorsProperty" /><br />
 <div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.kaishaMei.val')}" th:text="${e}">xxx</div>
 
 <h3>手数料</h3>
@@ -30,22 +30,22 @@
 		<th></th>
 	</tr>
 	<tr>
-		<td><input type="text" th:value="${form.cmKishTesuryoForm.tekiyoKikanFromDt.val}" /><br />
+		<td><input type="text" th:field="${form.cmKishTesuryoForm.tekiyoKikanFromDt.val}" /><br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tekiyoKikanFromDt.val')}" th:text="${e}">手数料期間は必須です</div>
 		</td>
 		<td th:remove="all-but-first">
 			<label th:each="kb : ${#j.tesuryoKb()}">
 				<input type="radio" value="FIX"
-					sa:radio="cmKishTesuryoForm.tesuryoKb" th:value="${kb.key}" /><span th:text="${kb.value}">固定</span>
+					th:field="${form.cmKishTesuryoForm.tesuryoKb.val}" th:value="${kb.key}" /><span th:text="${kb.value}">固定</span>
 			</label>
 			<label><input type="radio" value="PCT" />
 				<span>率</span>
 			</label>
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tesuryoKb.val')}" th:text="${e}">xxx</div>
 		</td>
-		<td><input type="text" value="10" sa:text="cmKishTesuryoForm.tesuryoIntSu" />
+		<td><input type="text" value="10" th:field="${form.cmKishTesuryoForm.tesuryoIntSu.val}" />
 			<span id="spanTesuryoKbPercent">．
-			<input type="text" value="1" sa:text="cmKishTesuryoForm.tesuryoDmSu" />
+			<input type="text" value="1" th:field="${form.cmKishTesuryoForm.tesuryoDmSu.val}" />
 			</span><br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tesuryoIntSu.val')}" th:text="${e}">xxx</div>
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('form.cmKishTesuryoForm.tesuryoDmSu.val')}" th:text="${e}">xxx</div>

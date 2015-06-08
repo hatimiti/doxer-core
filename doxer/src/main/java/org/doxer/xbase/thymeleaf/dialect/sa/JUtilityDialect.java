@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.doxer.xbase.thymeleaf.utility.JUtility;
+import org.doxer.app.base.thymeleaf.util.JUtility;
 import org.doxer.xbase.thymeleaf.utility.SAUtility;
 import org.thymeleaf.context.IProcessingContext;
 import org.thymeleaf.dialect.AbstractDialect;

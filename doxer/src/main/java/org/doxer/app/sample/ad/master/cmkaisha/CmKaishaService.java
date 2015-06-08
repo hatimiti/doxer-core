@@ -1,5 +1,7 @@
 package org.doxer.app.sample.ad.master.cmkaisha;
 
+import static com.github.hatimiti.flutist.common.util._Obj.*;
+
 import javax.annotation.Resource;
 
 import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
@@ -169,14 +171,14 @@ public class CmKaishaService extends DoxService {
 
 	public void addTesuryo(final CmKaishaForm form) {
 
-//		// 追加
-//
-//		CmKishTesuryoForm addedTesuryo
-//			= createAndCopy(form.cmKishTesuryoForm, CmKishTesuryoForm.class);
-//
-//		form.cmKishTesuryoForms.putTesuryo(addedTesuryo);
-//		form.cmKishTesuryoForms.launder();
-//		form.clearCmKishTesuryoFormByDefault();
+		// 追加
+
+		CmKishTesuryoForm addedTesuryo
+			= createAndCopy(form.cmKishTesuryoForm, CmKishTesuryoForm.class);
+
+		form.cmKishTesuryoForms.putTesuryo(addedTesuryo);
+		form.cmKishTesuryoForms.launder();
+		form.clearCmKishTesuryoFormByDefault();
 	}
 
 	public void addRenrakusaki(final CmKaishaForm form) {

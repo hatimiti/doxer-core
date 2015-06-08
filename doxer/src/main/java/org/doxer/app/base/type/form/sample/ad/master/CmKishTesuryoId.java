@@ -22,7 +22,9 @@ public class CmKishTesuryoId extends Id {
 	@Override
 	protected void validateCustom(AppMessagesContainer container, String property) {
 		super.validateCustom(container, property);
-
+		if (getValL() == null) {
+			return;
+		}
 		CmKishTesuryoCB cb = new CmKishTesuryoCB();
 		cb.query().setCmKishTesuryoId_Equal(getValL());
 		new ExistsFieldValidator(container, CmKishTesuryoBhv.class, cb).check(Vval.of(getVal()), property, getLabel());

@@ -2,19 +2,13 @@ package org.doxer.app.sample.ad.master.cmkaisha;
 
 import javax.annotation.Resource;
 
-import kite.common.action.BaseAction;
-import kite.form.sample.ad.master.CmKaishaListForm;
-import kite.service.sample.ad.master.CmKaishaService;
-
-import org.seasar.struts.annotation.ActionForm;
-
-import fw.support.annotation.JExecute;
+import org.doxer.xbase.controller.DoxController;
 
 /**
  * sample
  * @author m-kakimi
  */
-public class CmKaishaListController extends BaseAction {
+public class CmKaishaListController extends DoxController {
 
 	@Resource
 	@ActionForm
