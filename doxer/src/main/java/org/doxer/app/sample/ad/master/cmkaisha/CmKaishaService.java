@@ -171,12 +171,8 @@ public class CmKaishaService extends DoxService {
 	 */
 
 	public void addTesuryo(final CmKaishaForm form) {
-
-		// 追加
-
 		CmKishTesuryoForm addedTesuryo
 			= createAndCopy(form.cmKishTesuryoForm, CmKishTesuryoForm.class);
-
 		form.cmKishTesuryoForms.putTesuryo(addedTesuryo);
 		form.cmKishTesuryoForms.launder();
 		form.clearCmKishTesuryoFormByDefault();

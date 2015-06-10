@@ -1,6 +1,7 @@
 package org.doxer.app.base.type.form.sample.ad.master;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
+import static com.github.hatimiti.flutist.common.util._Obj.*;
 
 import org.doxer.app.base.type.form.base.Id;
 import org.doxer.app.db.dbflute.bsentity.dbmeta.CmKishRenrakusakiDbm;
@@ -23,9 +24,11 @@ public class CmKishRenrakusakiId extends Id {
 	protected void validateCustom(AppMessagesContainer container, String property) {
 		super.validateCustom(container, property);
 
-		CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB();
-		cb.query().setCmKishRenrakusakiId_Equal(getValL());
-		new ExistsFieldValidator(container, CmKishRenrakusakiBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
+		if (isNotEmpty(getValL())) {
+			CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB();
+			cb.query().setCmKishRenrakusakiId_Equal(getValL());
+			new ExistsFieldValidator(container, CmKishRenrakusakiBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
+		}
 	}
 
 	@Override

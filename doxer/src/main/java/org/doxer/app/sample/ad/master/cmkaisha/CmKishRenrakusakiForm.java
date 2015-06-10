@@ -1,6 +1,8 @@
 package org.doxer.app.sample.ad.master.cmkaisha;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import org.doxer.app.base.type.form.common.MailAddress;
 import org.doxer.app.base.type.form.common.TelNo;
@@ -9,11 +11,15 @@ import org.doxer.app.base.type.form.sample.ad.master.CmKishRenrakusakiId;
 import org.doxer.app.base.type.form.sample.ad.master.RenrakusakiYotoKb;
 import org.doxer.app.db.dbflute.exentity.CmKishRenrakusaki;
 import org.doxer.xbase.form.BaseEntityForm;
+import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Num;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Component
 public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 
 	@Condition CmKishRenrakusakiId cmKishRenrakusakiId = new CmKishRenrakusakiId(ARBITRARY, "cmKishRenrakusakiId", "cmKishRenrakusakiId");

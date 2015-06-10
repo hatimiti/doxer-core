@@ -49,8 +49,8 @@ public class CmKaishaController extends BaseMasterController {
 		return view(BASE_URI + "/prepareRegister", form);
 	}
 
-	@DoValidation(value = "prepareRegister.html")
-	@RequestMapping("/confirmRegister")
+	@DoValidation(value = "backToPrepare", transition = FORWORD)
+	@RequestMapping(value = "/", params = "confirmRegister")
 	public String confirmRegister(CmKaishaForm form) {
 		return "confirmRegister.jsp";
 	}
@@ -131,7 +131,7 @@ public class CmKaishaController extends BaseMasterController {
 		return backToPrepare(form);
 	}
 
-	@RequestMapping(params = "addRenrakusaki")
+	@RequestMapping(value = "/", params = "addRenrakusaki")
 	public String addRenrakusaki(CmKaishaForm form) {
 		this.cmKaishaService.addRenrakusaki(form);
 		return backToPrepare(form);

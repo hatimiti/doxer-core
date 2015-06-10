@@ -1,6 +1,8 @@
 package org.doxer.app.sample.ad.master.cmkaisha;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
+import static com.github.hatimiti.flutist.common.util._Obj.*;
+import static java.util.stream.IntStream.*;
 
 import java.util.List;
 
@@ -24,8 +26,8 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 
-	@Condition CmKaishaId cmKaishaId = new CmKaishaId(CONDITION, "cmKaishaId", "会社ID");
-	@Condition KaishaMei kaishaMei = new KaishaMei(REQUIRED, "kaishaMei", "会社名");
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(CONDITION, "cmKaishaId", "cmKaishaId");
+	@Condition KaishaMei kaishaMei = new KaishaMei(REQUIRED, "kaishaMei", "kaishaMei");
 	@Condition CmKishTesuryoForm cmKishTesuryoForm;
 	@Condition(session = true) List<CmKishRenrakusakiForm> cmKishRenrakusakiForms;
 
@@ -44,10 +46,10 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 //				this.cmKishTesuryoForms, "cmKishTesuryoForm", "vers.kaishaTesuryo");
 
 		// 連絡先
-//		for (int i = 0; i < this.cmKishRenrakusakiForms.size(); i++) {
-//			errors.add(get(this.cmKishRenrakusakiForms, i)
-//					.valid("cmKishRenrakusakiForms", i));
-//		}
+
+		range(0, this.cmKishRenrakusakiForms.size())
+			.forEach(i -> get(this.cmKishRenrakusakiForms, i)
+					.validate(container, "cmKishRenrakusakiForms", i));
 
 	}
 
