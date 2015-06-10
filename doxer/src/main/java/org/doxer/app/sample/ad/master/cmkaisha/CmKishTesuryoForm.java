@@ -64,7 +64,7 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 		entity.setTekiyoKikanFromDt(this.tekiyoKikanFromDt.getVal());
 		entity.setTekiyoKikanToDt(this.tekiyoKikanToDt.getVal());
 		entity.setTesuryoSu(new BigDecimal(this.getTesuryoSu()));
-		entity.setTesuryoKbAsTesuryoKb(this.tesuryoKb.getKb());
+		entity.setTesuryoKbAsTesuryoKb(this.tesuryoKb.toKb());
 	}
 
 }

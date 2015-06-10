@@ -77,14 +77,11 @@
 			- <input type="text" th:field="${form.cmKishRenrakusakiForms[__${s.index}__].telNo.val[2]}" sa:errclass="ErrorsProperty" />
 			<br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[__${s.index}__].telNo.val')}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[__${s.index}__].telNo.val[0]')}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[__${s.index}__].telNo.val[1]')}" th:text="${e}">xxx</div>
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[__${s.index}__].telNo.val[2]')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	<tr><td>メールアドレス<span th:text="${s.count}">1</span>
 			<input type="text" th:field="${form.cmKishRenrakusakiForms[__${s.index}__].mailAddress.val}" th:size="50" /><br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].mailAddress.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[__${s.index}__].mailAddress.val')}" th:text="${e}">xxx</div>
 		</td>
 	</tr>
 	<tr th:remove="all-but-first">
@@ -138,5 +135,19 @@
 
 </form>
 </div>
+<script th:inline="javascript">
+$(function() {
+	var $tesuryoKbRadio = $(':radio[name="cmKishTesuryoForm.tesuryoKb.val"]');
+	$tesuryoKbRadio.ready(changeTesuryoKb).change(changeTesuryoKb);
+	function changeTesuryoKb() {
+		var __TesuryoKb_Percent = /*[[${application.TesuryoKb.Percent}]]*/'PCT';
+		if ($tesuryoKbRadio.filter(':checked').val() === __TesuryoKb_Percent) {
+			$('#spanTesuryoKbPercent').show();
+		} else {
+			$('#spanTesuryoKbPercent').hide();
+		}
+	}
+});
+</script>
 </body>
 </html>

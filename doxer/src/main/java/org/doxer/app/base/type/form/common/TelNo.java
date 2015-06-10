@@ -18,7 +18,7 @@ public class TelNo extends MultiFormType {
 
 	@Override
 	protected void validateCustom(AppMessagesContainer container, String property) {
-		new TelFieldValidator(container).check(Vval.of(getVal()), propertyName, getLabel());
+		new TelFieldValidator(container).check(Vval.of(getVal()), property, getLabel());
 	}
 
 	public void setStrictVal(String val, String val2, String val3) {

@@ -48,7 +48,7 @@ public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 		entity.setTelNo2(_Num.toI_Null(this.telNo.getVal()[1]));
 		entity.setTelNo3(_Num.toI_Null(this.telNo.getVal()[2]));
 		entity.setMailAddress(this.mailAddress.getVal());
-		entity.setRenrakusakiYotoKbAsRenrakusakiYotoKb(this.renrakusakiYotoKb.getKb());
+		entity.setRenrakusakiYotoKbAsRenrakusakiYotoKb(this.renrakusakiYotoKb.toKb());
 	}
 
 }

@@ -4,30 +4,16 @@ import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.
 
 import org.doxer.app.base.type.form.base.Kb;
 import org.doxer.app.db.dbflute.bsentity.dbmeta.CmTesuryoKbDbm;
-import org.doxer.app.db.dbflute.cbean.CmTesuryoKbCB;
-import org.doxer.app.db.dbflute.exbhv.CmTesuryoKbBhv;
-import org.doxer.xbase.validation.validator.ExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 
-public class TesuryoKb extends Kb {
+public class TesuryoKb extends Kb<org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb> {
 
 	public TesuryoKb(InputAttribute inputAttribute, String propertyName, String label) {
 		super(inputAttribute, propertyName, label);
 	}
 
-	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		super.validateCustom(container, property);
-
-		CmTesuryoKbCB cb = new CmTesuryoKbCB();
-		cb.query().setKbVal_Equal_AsTesuryoKb(getKb());
-		new ExistsFieldValidator(container, CmTesuryoKbBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
-	}
-
-	public org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb getKb() {
+	public org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb toKb() {
 		return org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb.codeOf(getVal());
 	}
 
