@@ -1,6 +1,7 @@
 package org.doxer.app.sample.ad.master.cmkaisha;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
+import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static java.util.stream.IntStream.*;
 
@@ -20,6 +21,7 @@ import org.doxer.xbase.support.Condition;
 import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.OwnedMessages;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -42,11 +44,11 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 		this.kaishaMei.validWithUniqueCheck(container, this.cmKaishaId);
 
 		// 手数料必須チェック
-//		new RequiredFieldValidator(container).check(
-//				this.cmKishTesuryoForms, "cmKishTesuryoForm", "vers.kaishaTesuryo");
+		if (isEmpty(this.cmKishTesuryoForms)) {
+			container.add(new OwnedMessages("cmKishTesuryoForm", ERROR, "valid.required", "vers.kaishaTesuryo"));
+		}
 
 		// 連絡先
-
 		range(0, this.cmKishRenrakusakiForms.size())
 			.forEach(i -> get(this.cmKishRenrakusakiForms, i)
 					.validate(container, "cmKishRenrakusakiForms", i));
