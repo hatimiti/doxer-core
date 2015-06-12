@@ -18,6 +18,7 @@ import org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.xbase.form.BaseEntityForm;
 import org.doxer.xbase.support.Condition;
+import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
@@ -38,32 +39,37 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 //	@Session
 	CmKishTesuryoFormList cmKishTesuryoForms;
 
-	@Override
-	public void validate(AppMessagesContainer container) {
-		this.cmKaishaId.validate(container);
-		this.kaishaMei.validWithUniqueCheck(container, this.cmKaishaId);
+	class Validate implements FormValidator {
+		@Override
+		public void validate(AppMessagesContainer c) {
+			cmKaishaId.validate(c);
+			kaishaMei.validWithUniqueCheck(c, cmKaishaId);
 
-		// 手数料必須チェック
-		if (isEmpty(this.cmKishTesuryoForms)) {
-			container.add(new OwnedMessages("cmKishTesuryoForm", ERROR, "valid.required", "vers.kaishaTesuryo"));
+			// 手数料必須チェック
+			if (isEmpty(cmKishTesuryoForms)) {
+				c.add(new OwnedMessages("cmKishTesuryoForm", ERROR,
+						"valid.required", "vers.kaishaTesuryo"));
+			}
+
+			// 連絡先
+			range(0, cmKishRenrakusakiForms.size()).forEach(
+					i -> get(cmKishRenrakusakiForms, i)
+						.validate(c, "cmKishRenrakusakiForms", i));
 		}
-
-		// 連絡先
-		range(0, this.cmKishRenrakusakiForms.size())
-			.forEach(i -> get(this.cmKishRenrakusakiForms, i)
-					.validate(container, "cmKishRenrakusakiForms", i));
-
 	}
 
-	/**
-	 * 手数料追加時の入力チェック
-	 */
-	public void validAddTesuryo(AppMessagesContainer container) {
-		this.cmKishTesuryoForm.validate(container, "cmKishTesuryoForm");
+	class ValidAddTesuryo implements FormValidator {
+		@Override
+		public void validate(AppMessagesContainer container) {
+			cmKishTesuryoForm.validate(container, "cmKishTesuryoForm");
+		}
 	}
 
-	public void validId(AppMessagesContainer container) {
-//		this.cmKaishaId.inCompleteRequiredCondition().validate(container);
+	class ValidId implements FormValidator {
+		@Override
+		public void validate(AppMessagesContainer container) {
+			cmKaishaId.inCompleteRequiredCondition().validate(container);
+		}
 	}
 
 	@Override

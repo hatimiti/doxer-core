@@ -28,11 +28,6 @@ public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 	@Condition MailAddress mailAddress = new MailAddress(ARBITRARY, "mailAddress", "mailAddress");
 	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED, "renrakusakiYotoKb", "renrakusakiYotoKb");
 
-	@Override
-	public void validate(AppMessagesContainer container) {
-		throw new UnsupportedOperationException();
-	}
-
 	public void validate(AppMessagesContainer container, String name, int index) {
 		this.cmKishRenrakusakiId.validate(container, name, index);
 		this.cmKaishaId.validate(container, name, index);

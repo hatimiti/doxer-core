@@ -5,17 +5,18 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.doxer.xbase.validation.validator.FormValidator;
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface DoValidation {
-	
-	String value();
-	
-	//TODO カンマ区切り可能にする？
-	String method() default "validate";
-	
+
+	Class<? extends FormValidator>[] v();
+
+	String to();
+
 	TransitionMethod transition() default TransitionMethod.VIEW;
-	
+
 	public static enum TransitionMethod {
 		VIEW,
 		REDIRECT,

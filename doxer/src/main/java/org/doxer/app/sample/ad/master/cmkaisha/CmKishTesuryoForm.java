@@ -44,10 +44,6 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 		return tesuryoSu;
 	}
 
-	@Override
-	public void validate(AppMessagesContainer container) {
-	}
-
 	public void validate(AppMessagesContainer container, String name) {
 		this.cmKishTesuryoId.validate(container, name);
 		this.cmKaishaId.validate(container, name);

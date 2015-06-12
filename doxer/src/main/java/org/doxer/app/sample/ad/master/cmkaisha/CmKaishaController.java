@@ -10,6 +10,9 @@ import org.doxer.app.base.controller.BaseMasterController;
 import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
 import org.doxer.app.db.dbflute.allcommon.CDef.Mode;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
+import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaForm.ValidAddTesuryo;
+import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaForm.ValidId;
+import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaForm.Validate;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.springframework.stereotype.Controller;
@@ -49,25 +52,25 @@ public class CmKaishaController extends BaseMasterController {
 		return view(BASE_URI + "/prepareRegister", form);
 	}
 
-	@DoValidation(value = "backToPrepare", transition = FORWORD)
+	@DoValidation(v = { Validate.class }, to = "backToPrepare", transition = FORWORD)
 	@RequestMapping(value = "/", params = "confirmRegister")
 	public String confirmRegister(CmKaishaForm form) {
 		return "confirmRegister.jsp";
 	}
 
 	@Token(CHECK)
-	@DoValidation(value = "prepareRegister.html", transition = REDIRECT)
+	@DoValidation(v = { Validate.class }, to = "/prepareRegister")
 	@RequestMapping("/register")
-	public String register(CmKaishaForm form) {
+	public String register(CmKaishaForm form, RedirectAttributes ra) {
 		CmKaisha kaisha = this.cmKaishaService.register(form);
 		saveRegisterMessage(kaisha.getCmKaishaId());
-		return "complete";
+		return redirect("complete", ra);
 	}
 
 	// 更新
 
 	@Token(SET)
-	@DoValidation(value = "backToList", method = "validId")
+	@DoValidation(v = { ValidId.class }, to = "backToList")
 	@RequestMapping("/prepareUpdate")
 	public String prepareUpdate(CmKaishaForm form) {
 
@@ -81,25 +84,25 @@ public class CmKaishaController extends BaseMasterController {
 		return "prepareUpdate.jsp";
 	}
 
-	@DoValidation(value = "prepareUpdate.jsp", method = "validate, validId")
+	@DoValidation(v = { Validate.class, ValidId.class }, to = "prepareUpdate.jsp")
 	@RequestMapping("/confirmUpdate")
 	public String confirmUpdate(CmKaishaForm form) {
 		return "confirmUpadte.jsp";
 	}
 
 	@Token(CHECK)
-	@DoValidation(value = "prepareUpdate.jsp", method = "validate, validId", transition = REDIRECT)
+	@DoValidation(v = { Validate.class, ValidId.class }, to = "prepareUpdate.jsp")
 	@RequestMapping("/update")
-	public String update(CmKaishaForm form) {
+	public String update(CmKaishaForm form, RedirectAttributes ra) {
 		CmKaisha kaisha = this.cmKaishaService.update(form);
 		saveUpdateMessage(kaisha.getCmKaishaId());
-		return "complete";
+		return redirect("complete", ra);
 	}
 
 	// 削除
 
 	@Token(SET)
-	@DoValidation(value = "backToList", method = "validId")
+	@DoValidation(v = { ValidId.class }, to = "backToList")
 	@RequestMapping("/confirmDelete")
 	public String confirmDelete(CmKaishaForm form) {
 
@@ -114,17 +117,17 @@ public class CmKaishaController extends BaseMasterController {
 
 
 	@Token(CHECK)
-	@DoValidation(value = "backToList", method = "validId", transition = REDIRECT)
+	@DoValidation(v = { ValidId.class }, to = "backToList")
 	@RequestMapping("/delete")
-	public String delete(CmKaishaForm form) {
+	public String delete(CmKaishaForm form, RedirectAttributes ra) {
 		CmKaisha kaisha = this.cmKaishaService.delete(form);
 		saveDeleteMessage(kaisha.getCmKaishaId());
-		return "complete";
+		return redirect("complete", ra);
 	}
 
 	// 共通
 
-	@DoValidation(value = "backToPrepare", method = "validAddTesuryo", transition = FORWORD)
+	@DoValidation(v = { ValidAddTesuryo.class }, to = "backToPrepare", transition = FORWORD)
 	@RequestMapping(value = "/", params = "addTesuryo")
 	public String addTesuryo(CmKaishaForm form) {
 		this.cmKaishaService.addTesuryo(form);
