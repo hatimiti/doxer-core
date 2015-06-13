@@ -6,6 +6,7 @@
 
 	<logger name="org.thymeleaf" level="ERROR" />
 	<logger name="org.seasar" level="DEBUG" />
+	<logger name="org.dbflute" level="DEBUG" />
 
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<prudent>true</prudent>
