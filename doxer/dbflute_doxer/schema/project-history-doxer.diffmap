@@ -1,4 +1,314 @@
 map:{
+    ; 2015/06/13 21:12:47 = map:{
+        ; diffDate = 2015/06/13 21:12:47
+        ; tableDiff = map:{
+            ; CM_KAISHA = map:{
+                ; tableName = CM_KAISHA
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                }
+            }
+            ; CM_KISH_RENRAKUSAKI = map:{
+                ; tableName = CM_KISH_RENRAKUSAKI
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                }
+            }
+            ; CM_KISH_TESURYO = map:{
+                ; tableName = CM_KISH_TESURYO
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                }
+            }
+            ; CM_RENRAKUSAKI_YOTO_KB = map:{
+                ; tableName = CM_RENRAKUSAKI_YOTO_KB
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                }
+            }
+            ; CM_TESURYO_KB = map:{
+                ; tableName = CM_TESURYO_KB
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TIMESTAMP
+                            ; previous = DATE
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 23, 10
+                            ; previous = 8
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2015/06/13 21:09:41 = map:{
+        ; diffDate = 2015/06/13 21:09:41
+        ; tableDiff = map:{
+            ; CM_KAISHA = map:{
+                ; tableName = CM_KAISHA
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; CM_KISH_RENRAKUSAKI = map:{
+                ; tableName = CM_KISH_RENRAKUSAKI
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; CM_KISH_TESURYO = map:{
+                ; tableName = CM_KISH_TESURYO
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; CM_RENRAKUSAKI_YOTO_KB = map:{
+                ; tableName = CM_RENRAKUSAKI_YOTO_KB
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; CM_TESURYO_KB = map:{
+                ; tableName = CM_TESURYO_KB
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REG_TM = map:{
+                        ; columnName = REG_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPD_TM = map:{
+                        ; columnName = UPD_TM
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATE
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 8
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2015/06/08 18:39:11 = map:{
         ; diffDate = 2015/06/08 18:39:11
         ; tableCount = map:{

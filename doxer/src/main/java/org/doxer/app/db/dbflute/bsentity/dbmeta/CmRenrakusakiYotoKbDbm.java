@@ -85,13 +85,13 @@ public class CmRenrakusakiYotoKbDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnKbMei = cci("KB_MEI", "KB_MEI", null, null, String.class, "kbMei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnKbMeiEn = cci("KB_MEI_EN", "KB_MEI_EN", null, null, String.class, "kbMeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnKbRem = cci("KB_REM", "KB_REM", null, null, String.class, "kbRem", null, false, false, true, "VARCHAR", 15, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdUserId = cci("UPD_USER_ID", "UPD_USER_ID", null, null, String.class, "updUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdTm = cci("UPD_TM", "UPD_TM", null, null, java.time.LocalDateTime.class, "updTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdFuncCd = cci("UPD_FUNC_CD", "UPD_FUNC_CD", null, null, String.class, "updFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
+    protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdUserId = cci("UPD_USER_ID", "UPD_USER_ID", null, null, String.class, "updUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdTm = cci("UPD_TM", "UPD_TM", null, null, java.time.LocalDateTime.class, "updTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdFuncCd = cci("UPD_FUNC_CD", "UPD_FUNC_CD", null, null, String.class, "updFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, true, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
      * KB_VAL: {PK, NotNull, CHAR(3), classification=RenrakusakiYotoKb}
@@ -195,6 +195,13 @@ public class CmRenrakusakiYotoKbDbm extends AbstractDBMeta {
     //                                                                        ============
     public boolean hasVersionNo() { return true; }
     public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
+    public boolean hasCommonColumn() { return true; }
+    public List<ColumnInfo> getCommonColumnInfoList()
+    { return newArrayList(columnRegUserId(), columnRegTm(), columnRegFuncCd(), columnUpdUserId(), columnUpdTm(), columnUpdFuncCd(), columnVersionNo()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeInsertList()
+    { return newArrayList(columnRegUserId(), columnRegTm(), columnRegFuncCd(), columnUpdUserId(), columnUpdTm(), columnUpdFuncCd(), columnVersionNo()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeUpdateList()
+    { return newArrayList(columnUpdUserId(), columnUpdTm(), columnUpdFuncCd()); }
 
     // ===================================================================================
     //                                                                           Type Name

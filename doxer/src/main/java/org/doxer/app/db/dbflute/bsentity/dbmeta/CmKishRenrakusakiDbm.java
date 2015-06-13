@@ -97,20 +97,20 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKishRenrakusakiId = cci("CM_KISH_RENRAKUSAKI_ID", "CM_KISH_RENRAKUSAKI_ID", null, null, Long.class, "cmKishRenrakusakiId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_18A375D0_4D86_4C12_84EC_1362CD6503F5", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKishRenrakusakiId = cci("CM_KISH_RENRAKUSAKI_ID", "CM_KISH_RENRAKUSAKI_ID", null, null, Long.class, "cmKishRenrakusakiId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_2A21FF1A_D315_49CE_9C9F_185822436A03", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnTelNo1 = cci("TEL_NO1", "TEL_NO1", null, null, Integer.class, "telNo1", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTelNo2 = cci("TEL_NO2", "TEL_NO2", null, null, Integer.class, "telNo2", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTelNo3 = cci("TEL_NO3", "TEL_NO3", null, null, Integer.class, "telNo3", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMailAddress = cci("MAIL_ADDRESS", "MAIL_ADDRESS", null, null, String.class, "mailAddress", null, false, false, false, "VARCHAR", 253, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRenrakusakiYotoKb = cci("RENRAKUSAKI_YOTO_KB", "RENRAKUSAKI_YOTO_KB", null, null, String.class, "renrakusakiYotoKb", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.RenrakusakiYotoKb, false);
-    protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdUserId = cci("UPD_USER_ID", "UPD_USER_ID", null, null, String.class, "updUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdTm = cci("UPD_TM", "UPD_TM", null, null, java.time.LocalDateTime.class, "updTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdFuncCd = cci("UPD_FUNC_CD", "UPD_FUNC_CD", null, null, String.class, "updFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
+    protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdUserId = cci("UPD_USER_ID", "UPD_USER_ID", null, null, String.class, "updUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdTm = cci("UPD_TM", "UPD_TM", null, null, java.time.LocalDateTime.class, "updTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdFuncCd = cci("UPD_FUNC_CD", "UPD_FUNC_CD", null, null, String.class, "updFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, true, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
      * CM_KISH_RENRAKUSAKI_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -241,6 +241,13 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
     public boolean hasIdentity() { return true; }
     public boolean hasVersionNo() { return true; }
     public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
+    public boolean hasCommonColumn() { return true; }
+    public List<ColumnInfo> getCommonColumnInfoList()
+    { return newArrayList(columnRegUserId(), columnRegTm(), columnRegFuncCd(), columnUpdUserId(), columnUpdTm(), columnUpdFuncCd(), columnVersionNo()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeInsertList()
+    { return newArrayList(columnRegUserId(), columnRegTm(), columnRegFuncCd(), columnUpdUserId(), columnUpdTm(), columnUpdFuncCd(), columnVersionNo()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeUpdateList()
+    { return newArrayList(columnUpdUserId(), columnUpdTm(), columnUpdFuncCd()); }
 
     // ===================================================================================
     //                                                                           Type Name

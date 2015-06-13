@@ -97,19 +97,19 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKishTesuryoId = cci("CM_KISH_TESURYO_ID", "CM_KISH_TESURYO_ID", null, null, Long.class, "cmKishTesuryoId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_5C092455_6819_41E9_B585_88F80AC4E589", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKishTesuryoId = cci("CM_KISH_TESURYO_ID", "CM_KISH_TESURYO_ID", null, null, Long.class, "cmKishTesuryoId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_8809B907_C59F_4276_9C40_1D05B6CBF126", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnTekiyoKikanFromDt = cci("TEKIYO_KIKAN_FROM_DT", "TEKIYO_KIKAN_FROM_DT", null, null, String.class, "tekiyoKikanFromDt", null, false, false, true, "CHAR", 8, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTekiyoKikanToDt = cci("TEKIYO_KIKAN_TO_DT", "TEKIYO_KIKAN_TO_DT", null, null, String.class, "tekiyoKikanToDt", null, false, false, true, "CHAR", 8, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTesuryoSu = cci("TESURYO_SU", "TESURYO_SU", null, null, java.math.BigDecimal.class, "tesuryoSu", null, false, false, true, "DECIMAL", 7, 1, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTesuryoKb = cci("TESURYO_KB", "TESURYO_KB", null, null, String.class, "tesuryoKb", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "cmTesuryoKb", null, CDef.DefMeta.TesuryoKb, false);
-    protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdUserId = cci("UPD_USER_ID", "UPD_USER_ID", null, null, String.class, "updUserId", null, false, false, true, "VARCHAR", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdTm = cci("UPD_TM", "UPD_TM", null, null, java.time.LocalDateTime.class, "updTm", null, false, false, true, "TIMESTAMP", 23, 10, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdFuncCd = cci("UPD_FUNC_CD", "UPD_FUNC_CD", null, null, String.class, "updFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
+    protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdUserId = cci("UPD_USER_ID", "UPD_USER_ID", null, null, String.class, "updUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdTm = cci("UPD_TM", "UPD_TM", null, null, java.time.LocalDateTime.class, "updTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdFuncCd = cci("UPD_FUNC_CD", "UPD_FUNC_CD", null, null, String.class, "updFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, true, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
      * CM_KISH_TESURYO_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -252,6 +252,13 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
     public boolean hasIdentity() { return true; }
     public boolean hasVersionNo() { return true; }
     public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
+    public boolean hasCommonColumn() { return true; }
+    public List<ColumnInfo> getCommonColumnInfoList()
+    { return newArrayList(columnRegUserId(), columnRegTm(), columnRegFuncCd(), columnUpdUserId(), columnUpdTm(), columnUpdFuncCd(), columnVersionNo()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeInsertList()
+    { return newArrayList(columnRegUserId(), columnRegTm(), columnRegFuncCd(), columnUpdUserId(), columnUpdTm(), columnUpdFuncCd(), columnVersionNo()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeUpdateList()
+    { return newArrayList(columnUpdUserId(), columnUpdTm(), columnUpdFuncCd()); }
 
     // ===================================================================================
     //                                                                           Type Name

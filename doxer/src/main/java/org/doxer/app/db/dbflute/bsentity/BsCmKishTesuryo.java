@@ -8,6 +8,7 @@ import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
 import org.dbflute.optional.OptionalEntity;
+import org.doxer.app.db.dbflute.allcommon.EntityDefinedCommonColumn;
 import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
 import org.doxer.app.db.dbflute.allcommon.CDef;
 import org.doxer.app.db.dbflute.exentity.*;
@@ -74,7 +75,7 @@ import org.doxer.app.db.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEntity {
+public abstract class BsCmKishTesuryo extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition

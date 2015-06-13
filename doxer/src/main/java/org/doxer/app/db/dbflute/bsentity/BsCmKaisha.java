@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
+import org.doxer.app.db.dbflute.allcommon.EntityDefinedCommonColumn;
 import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
 import org.doxer.app.db.dbflute.exentity.*;
 
@@ -65,7 +66,7 @@ import org.doxer.app.db.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity {
+public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
