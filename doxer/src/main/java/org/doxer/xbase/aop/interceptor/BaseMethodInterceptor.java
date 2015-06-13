@@ -22,7 +22,7 @@ public abstract class BaseMethodInterceptor implements MethodInterceptor {
 		HttpServletRequest req = getHttpServletRequest();
 		req.setAttribute(key, target);
 	}
-	
+
 	protected Optional<Form> getForm(MethodInvocation invocation) {
 		if (invocation.getArguments().length <= 0) {
 			return Optional.empty();
@@ -33,9 +33,13 @@ public abstract class BaseMethodInterceptor implements MethodInterceptor {
 		}
 		return Optional.empty();
 	}
-	
+
+	protected Object getTarget(MethodInvocation invocation) {
+		return invocation.getThis();
+	}
+
 	protected Class<? extends Object> getTargetClass(MethodInvocation invocation) {
-		return invocation.getThis().getClass();
+		return getTarget(invocation).getClass();
 	}
 }
 

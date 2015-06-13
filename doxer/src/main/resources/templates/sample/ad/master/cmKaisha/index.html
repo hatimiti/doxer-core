@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="/common/layout">
+	layout:decorator="/common/layout.html">
 <head>
 	<!--/*/ <th:block th:remove="all"> /*/-->
 	<meta charset="UTF-8" />
@@ -21,7 +21,7 @@
 <div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('kaishaMei.val')}" th:text="${e}">xxx</div>
 	<input type="submit" name="search" value="検索" /><br />
 </form>
-<form action="./prepareRegister">
+<form action=".">
 	<input type="submit" name="prepareRegister" value="登録" />
 </form>
 

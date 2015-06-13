@@ -15,6 +15,7 @@ import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.util._Ref;
 
 @Component
 public class ValidationInterceptor extends BaseMethodInterceptor {
@@ -31,7 +32,7 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 		AppMessagesContainer container = validate(v, opForm.get());
 		if (!container.isEmpty()) {
 			_Container.getAppMessagesContainer().addAll(container);
-			return buildReturnValue(v);
+			return buildReturnValue(v, opForm.get(), getTarget(invocation));
 		}
 
 		return invocation.proceed();
@@ -64,15 +65,28 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 		return container;
 	}
 
-	protected String buildReturnValue(DoValidation v) {
-		switch (v.transition()) {
+	protected String buildReturnValue(DoValidation dv, Form form, Object controller) {
+		switch (dv.transition()) {
 		case REDIRECT:
-			return getRedirectPath(v.to());
+			return getRedirectPath(dv.to());
 		case FORWORD:
-			return _Container.getForwardPath(v.to());
+			Method m = _Ref.getMethod(controller.getClass(), dv.to(), form.getClass()).get();
+			try {
+				return (String) m.invoke(controller, form);
+			} catch (Exception e) {
+				LOG.error("No found method for forward. message = {}, stackTrace = {}",
+						e.getMessage(), e.getStackTrace());
+			}
+			/* TODO
+			 * 複数submitボタンが存在する場合、@RequestMapping に params 属性を指定するが
+			 * 既にリクエスト中に遷移先のボタン名(params)が存在する場合、バリデーション先のボタン名(params)
+			 * が混在し、フォワードが無限ループに陥るため、現在は上記のようにフォワードではなく
+			 * 直接メソッドを呼び出すことで対応している。
+			 */
+//			return getForwardPath(v.to());
 		case VIEW:
 		default:
-			return v.to();
+			return dv.to();
 		}
 	}
 }
