@@ -34,9 +34,10 @@ public class CmKaishaBhv extends BsCmKaishaBhv
 			final CmKaishaListForm form) {
 
 		PagingResultBean<CmKaisha> userPage = selectPage(cb -> {
-			cb.query().setCmKaishaId_Equal(form.cmKaishaId.getValL());
+			cb.ignoreNullOrEmptyQuery();
+			cb.query().setCmKaishaId_Equal(form.getCmKaishaId().getValL());
 			cb.query().setKaishaMei_LikeSearch(
-					form.kaishaMei.getVal(), op -> op.likePrefix());
+					form.getKaishaMei().getVal(), op -> op.likePrefix());
 			cb.paging(form.getPageSize(), form.getPageNumber());
 			setOrder(cb, form.sortColName, form.sortOrder);
 		});
