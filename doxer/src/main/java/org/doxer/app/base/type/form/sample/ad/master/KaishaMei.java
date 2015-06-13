@@ -33,12 +33,11 @@ public class KaishaMei extends Mei {
 	protected void validateCustom(AppMessagesContainer container, String property) {
 		super.validateCustom(container, property);
 
-		if (isNotEmpty(getVal())) {
+		if (isNotEmpty(this.myPk)) {
 			CmKaishaCB cb = new CmKaishaCB();
+			cb.ignoreNullOrEmptyQuery();
 			cb.query().setKaishaMei_Equal(getVal());
-			if (isNotEmpty(this.myPk.getValL())) {
-				cb.query().setCmKaishaId_NotEqual(this.myPk.getValL());
-			}
+			cb.query().setCmKaishaId_NotEqual(this.myPk.getValL());
 			new NotExistsFieldValidator(container, CmKaishaBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
 		}
 	}

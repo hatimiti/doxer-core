@@ -14,7 +14,7 @@
 <body>
 <div layout:fragment="contents">
 
-<form action=".">
+<form action="./search">
 	会社ID：<input type="text" th:field="${form.cmKaishaId.val}" />(完全一致)<br />
 <div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
 	会社名：<input type="text" th:field="${form.kaishaMei.val}" />(前方一致)<br />
@@ -26,7 +26,7 @@
 </form>
 
 <div th:if="${not #lists.isEmpty(form.kaishaList)}">
-<div th:include="/common/fragment/fragments :: pageLink(${page},'search',${false})">ページング</div>
+<div th:include="/common/fragment/fragments.html :: pageLink(${form.page}, 'search', ${false})">ページング</div>
 <table summary="会社名一覧" class="Result">
 	<thead>
 		<tr>
@@ -40,7 +40,7 @@
 			<th abbr="delete" class="ResultItem_Button">削除</th>
 		</tr>
 	</thead>
-	<tbody th:each="cmKaisha : ${kaishaList}">
+	<tbody th:each="cmKaisha : ${form.kaishaList}">
 		<tr>
 			<td class="ResultItem_Company" th:text="${cmKaisha.cmKaishaId}">12</td>
 			<td class="ResultItem_Company" th:text="${cmKaisha.kaishaMei}">株式会社イーエックス</td>
@@ -59,7 +59,7 @@
 		</tr>
 	</tbody>
 </table>
-<div th:include="/common/fragment/fragments :: pageLink(${page},'search',${false})">ページング</div>
+<div th:include="/common/fragment/fragments.html :: pageLink(${form.page}, 'search', ${false})">ページング</div>
 </div>
 </div>
 </body>

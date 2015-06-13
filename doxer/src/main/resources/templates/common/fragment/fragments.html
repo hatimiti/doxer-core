@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="/intra/common/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head></head>
 <body>
-<div th:fragment="pageLink (page,action,dispIfEmpty)">
+<div th:fragment="pageLink(page, action, dispIfEmpty)">
 <!--/*/ <th:block th:if="${page.allRecordCount != 0 or dispIfEmpty}"> /*/-->
 <!--/* 最初へ */-->
 <a th:if="${page.isExistPrePage}" th:href="|@{${action}}?${application.Constants.PAGE_NUMBER_NAME}=1|">&lt;&lt;</a>
