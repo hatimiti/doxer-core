@@ -45,13 +45,13 @@
 			<td class="ResultItem_Company" th:text="${cmKaisha.cmKaishaId}">12</td>
 			<td class="ResultItem_Company" th:text="${cmKaisha.kaishaMei}">株式会社イーエックス</td>
 			<td class="ResultItem_Button">
-				<form action="../cmKaisha/prepareUpdate">
+				<form action="." method="post">
 					<input type="hidden" name="cmKaishaId.val" th:value="${cmKaisha.cmKaishaId}" />
 					<input type="submit" name="prepareUpdate" value="変更" class="ResultButton" />
 				</form>
 			</td>
 			<td class="ResultItem_Button">
-				<form action="../cmKaisha/confirmDelete">
+				<form action="." method="post">
 					<input type="hidden" name="cmKaishaId.val" th:value="${cmKaisha.cmKaishaId}" />
 					<input type="submit" name="confirmDelete" value="削除" class="ResultButton" />
 				</form>
