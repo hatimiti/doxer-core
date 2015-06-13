@@ -87,7 +87,7 @@ map:{
         #  tableTargetList, and columnExceptMap.
         #  They have the same specification as ones of the main schema.
         #  Elements of this map are as below:
-        #    o objectTypeTargetList: (NotRequired - Default map:{TABLE;VIEW})
+        #    o objectTypeTargetList: (NotRequired - Default 'map:{TABLE;VIEW}')
         #    o tableExceptList: (NotRequired - Default list:{})
         #    o tableTargetList: (NotRequired - Default list:{})
         #    o columnExceptMap: (NotRequired - Default map:{})

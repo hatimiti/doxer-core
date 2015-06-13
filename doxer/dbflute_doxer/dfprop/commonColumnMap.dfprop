@@ -1,5 +1,5 @@
 # /---------------------------------------------------------------------------
-# commonColumnMap: (NotRequired - Default map:{})
+# commonColumnMap: (Default map:{})
 #
 # The definition of common column(contains auto set-up).
 # For example, the date you registered the record,
@@ -15,13 +15,13 @@
 #         ; UPDATE_DATETIME=TIMESTAMP   ; UPDATE_USER=VARCHAR
 #     }
 #     ; beforeInsertMap = map:{
-#         ; REGISTER_DATETIME = $$AccessContext$$.getAccessTimestampOnThread()
+#         ; REGISTER_DATETIME = $$AccessContext$$.getAccessLocalDateTimeOnThread()
 #         ; REGISTER_USER     = $$AccessContext$$.getAccessUserOnThread()
 #         ; UPDATE_DATETIME   = entity.getRegisterDatetime()
 #         ; UPDATE_USER       = entity.getRegisterUser()
 #     }
 #     ; beforeUpdateMap = map:{
-#         ; UPDATE_DATETIME   = $$AccessContext$$.getAccessTimestampOnThread()
+#         ; UPDATE_DATETIME   = $$AccessContext$$.getAccessLocalDateTimeOnThread()
 #         ; UPDATE_USER       = $$AccessContext$$.getAccessUserOnThread()
 #     }
 # }
@@ -29,20 +29,31 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
-    #; commonColumnMap = map:{
-    #    ; REGISTER_DATETIME=TIMESTAMP ; REGISTER_USER=VARCHAR
-    #    ; UPDATE_DATETIME=TIMESTAMP   ; UPDATE_USER=VARCHAR
-    #}
-    #; beforeInsertMap = map:{
-    #    ; REGISTER_DATETIME = $$AccessContext$$.getAccessTimestampOnThread()
-    #    ; REGISTER_USER     = $$AccessContext$$.getAccessUserOnThread()
-    #    ; UPDATE_DATETIME   = entity.getRegisterDatetime()
-    #    ; UPDATE_USER       = entity.getRegisterUser()
-    #}
-    #; beforeUpdateMap = map:{
-    #    ; UPDATE_DATETIME   = $$AccessContext$$.getAccessTimestampOnThread()
-    #    ; UPDATE_USER       = $$AccessContext$$.getAccessUserOnThread()
-    #}
+    ; commonColumnMap = map:{
+        ; reg_user_id       = VARCHAR
+        ; reg_tm            = TIMESTAMP
+        ; reg_func_cd       = VARCHAR
+        ; upd_user_id       = VARCHAR
+        ; upd_tm            = TIMESTAMP
+        ; upd_func_cd       = VARCHAR
+        ; version_no        = INTEGER
+#        ; DEL_NO=INTEGER
+    }
+    ; beforeInsertMap = map:{
+        ; reg_user_id       = $$AccessContext$$.getAccessUserOnThread()
+        ; reg_tm            = $$AccessContext$$.getAccessLocalDateTimeOnThread()
+        ; reg_func_cd       = $$AccessContext$$.getAccessProcessOnThread()
+        ; upd_user_id       = entity.getRegUserId()
+        ; upd_tm            = entity.getRegTm()
+        ; upd_func_cd       = entity.getRegFuncCd()
+        ; version_no        = 1
+#        ; DEL_NO            = 0
+    }
+    ; beforeUpdateMap = map:{
+        ; upd_user_id       = $$AccessContext$$.getAccessUserOnThread()
+        ; upd_tm            = $$AccessContext$$.getAccessLocalDateTimeOnThread()
+        ; upd_func_cd       = $$AccessContext$$.getAccessProcessOnThread()
+    }
 }
 # ----------------/
 #
