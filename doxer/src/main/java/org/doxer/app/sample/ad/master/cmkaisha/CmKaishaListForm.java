@@ -13,6 +13,7 @@ import org.doxer.app.base.type.sample.ad.master.CmKaishaList;
 import org.doxer.app.db.dbflute.bsentity.dbmeta.CmKaishaDbm;
 import org.doxer.xbase.form.BaseSortPageForm;
 import org.doxer.xbase.support.Condition;
+import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
@@ -22,17 +23,17 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class CmKaishaListForm extends BaseSortPageForm {
 
-	@Condition(session = true)
-	public Id cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "会社ID");
-	@Condition(session = true)
-	public Mei kaishaMei = new KaishaMei(ARBITRARY, "kaishaMei", "会社名");
+	@Condition(session = true) Id cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "cmKaishaId");
+	@Condition(session = true) Mei kaishaMei = new KaishaMei(ARBITRARY, "kaishaMei", "kaishaMei");
 
-	public CmKaishaList kaishaList;
+	CmKaishaList kaishaList;
 
-	@Override
-	public void validate(AppMessagesContainer container) {
-		this.cmKaishaId.validate(container);
-		this.kaishaMei.validate(container);
+	class Validate implements FormValidator {
+		@Override
+		public void validate(AppMessagesContainer c) {
+			cmKaishaId.validate(c);
+			kaishaMei.validate(c);
+		}
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import com.github.hatimiti.flutist.common.util._Obj;
 import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
 
-abstract class FormType<T> extends Type<T> {
+public abstract class FormType<T> extends Type<T> {
 
 	@Condition
 	protected T val;
@@ -46,7 +46,7 @@ abstract class FormType<T> extends Type<T> {
 	public T getVal() {
 		return this.val;
 	}
-	
+
 	public void setStrictVal(final T val) {
 		T tmp = this.val;
 		this.val = val;
@@ -119,7 +119,7 @@ abstract class FormType<T> extends Type<T> {
 		this.isRequiredCheckTarget = false;
 		return this;
 	}
-	
+
 	protected String getLabel() {
 		return _Container.buildMessage(this.labelKey);
 	}
@@ -132,5 +132,5 @@ abstract class FormType<T> extends Type<T> {
 	public String toString() {
 		return getVal().toString();
 	}
-	
+
 }

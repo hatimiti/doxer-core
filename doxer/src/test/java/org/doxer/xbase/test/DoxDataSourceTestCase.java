@@ -15,19 +15,24 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.ext.mssql.InsertIdentityOperation;
 import org.dbunit.operation.DatabaseOperation;
+import org.doxer.Application;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.github.hatimiti.flutist.common.util._Obj;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration("WebContent")
+@SpringApplicationConfiguration(classes = Application.class)
 @ContextConfiguration(locations = {"classpath:/spring/*.xml"})
 public abstract class DoxDataSourceTestCase extends DataSourceBasedDBTestCase {
 

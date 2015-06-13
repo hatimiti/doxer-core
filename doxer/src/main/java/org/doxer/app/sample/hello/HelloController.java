@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 
 import javax.annotation.Resource;
 
+import org.doxer.app.sample.hello.HelloForm.Validate;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.doxer.xbase.controller.DoxController;
@@ -42,7 +43,7 @@ public class HelloController extends DoxController {
 	}
 
 //	@Token(CHECK_AND_SET)
-	@DoValidation("/hello/hello")
+	@DoValidation(v = { Validate.class }, to = "/hello/hello")
 	@RequestMapping("/input")
 	public String input(HelloForm form) {
 		this.helloService.search(form);

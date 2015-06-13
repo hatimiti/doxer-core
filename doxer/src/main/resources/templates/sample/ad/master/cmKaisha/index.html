@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="/intra/common/layout">
+	layout:decorator="/common/layout">
 <head>
 	<!--/*/ <th:block th:remove="all"> /*/-->
 	<meta charset="UTF-8" />
@@ -15,15 +15,17 @@
 <div layout:fragment="contents">
 
 <form action=".">
-	会社ID：<input type="text" sa:text="cmKaishaId" id="cmKaishaIdText" />(完全一致)<br />
-	会社名：<input type="text" sa:text="kaishaMei" id="kaishaMeiText" />(前方一致)<br />
+	会社ID：<input type="text" th:field="${form.cmKaishaId.val}" />(完全一致)<br />
+<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
+	会社名：<input type="text" th:field="${form.kaishaMei.val}" />(前方一致)<br />
+<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('kaishaMei.val')}" th:text="${e}">xxx</div>
 	<input type="submit" name="search" value="検索" /><br />
 </form>
-<form action="../cmKaisha">
+<form action="./prepareRegister">
 	<input type="submit" name="prepareRegister" value="登録" />
 </form>
 
-<div th:if="${not #lists.isEmpty(kaishaList)}">
+<div th:if="${not #lists.isEmpty(form.kaishaList)}">
 <div th:include="/common/fragment/fragments :: pageLink(${page},'search',${false})">ページング</div>
 <table summary="会社名一覧" class="Result">
 	<thead>

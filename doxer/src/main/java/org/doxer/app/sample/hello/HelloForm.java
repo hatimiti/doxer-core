@@ -9,6 +9,7 @@ import org.doxer.app.base.type.form.common.TelNo;
 import org.doxer.app.base.type.form.hello.Val;
 import org.doxer.app.db.dbflute.exentity.TcmSample;
 import org.doxer.xbase.form.DoxForm;
+import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,10 +28,12 @@ public class HelloForm extends DoxForm {
 
 	private ListResultBean<TcmSample> results;
 
-	@Override
-	public void validate(AppMessagesContainer container) {
-		fval.validate(container);
-		telNo.validate(container);
+	class Validate implements FormValidator {
+		@Override
+		public void validate(AppMessagesContainer c) {
+			fval.validate(c);
+			telNo.validate(c);
+		}
 	}
 
 }
