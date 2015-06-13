@@ -54,24 +54,14 @@ public class CmKaishaService extends DoxService {
 
 		// 会社登録
 		CmKaisha kaisha = new CmKaisha();
-		kaisha.setKaishaMei(form.kaishaMei.getVal());
+		form.copyToEntity(kaisha);
 		this.cmKaishaBhv.insert(kaisha);
 
-
-//		CmKishTesuryoEntityDomain cmKishaTesuryoED
-//			= CmKishTesuryoEntityDomain.createInstance(form.cmKishTesuryoForms);
-
-//		cmKishaTesuryoED.registerTo(kaisha);
-
 		// 手数料登録
-		for (CmKishTesuryoForm tesuryoForm : form.cmKishTesuryoForms) {
-			registerCmKishTesuryo(tesuryoForm, kaisha);
-		}
+		form.cmKishTesuryoForms.forEach(t -> registerCmKishTesuryo(t, kaisha));
 
 		// 連絡先登録
-		for (CmKishRenrakusakiForm renrakusakiForm : form.cmKishRenrakusakiForms) {
-			registerCmKishRenrakusaki(renrakusakiForm, kaisha);
-		}
+		form.cmKishRenrakusakiForms.forEach(r -> registerCmKishRenrakusaki(r, kaisha));
 
 		return kaisha;
 	}

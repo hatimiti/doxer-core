@@ -56,9 +56,7 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 					c.setAccessible(true);
 					c.newInstance(new Object[] { form }).validate(container);
 				} catch (Exception e) {
-					// No Operator
-					LOG.info("valid method not found. message = {}, stackTracd = {}",
-							e.getMessage(), e.getStackTrace());
+					throw new RuntimeException(e);
 				}
 			});
 
