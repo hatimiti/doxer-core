@@ -52,11 +52,11 @@ public class CmKaishaController extends BaseMasterController {
 	@DoValidation(value = "backToPrepare", transition = FORWORD)
 	@RequestMapping(value = "/", params = "confirmRegister")
 	public String confirmRegister(CmKaishaForm form) {
-		return "confirmRegister.jsp";
+		return view(BASE_URI + "/confirmRegister", form);
 	}
 
 	@Token(CHECK)
-	@DoValidation(value = "prepareRegister.html", transition = REDIRECT)
+	@DoValidation(value = "prepareRegister", transition = REDIRECT)
 	@RequestMapping("/register")
 	public String register(CmKaishaForm form) {
 		CmKaisha kaisha = this.cmKaishaService.register(form);
