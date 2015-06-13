@@ -68,6 +68,7 @@ public class Page implements Serializable {
 
 		Class<?> formClass = form.getClass();
 		for (Field formField : _Ref.getAllFields(formClass)) {
+			formField.setAccessible(true);
 			Condition condition = formField.getAnnotation(Condition.class);
 			if (condition == null) {
 				continue;

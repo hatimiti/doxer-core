@@ -28,7 +28,7 @@ import com.github.hatimiti.flutist.common.annotation.Function;
  */
 @Controller
 @Function("S0101")
-@SessionAttributes("cmKaishaForm")
+@SessionAttributes(types = { CmKaishaListForm.class, CmKaishaForm.class })
 @RequestMapping(CmKaishaController.BASE_URI)
 public class CmKaishaController extends BaseMasterController {
 
@@ -36,9 +36,18 @@ public class CmKaishaController extends BaseMasterController {
 
 	@Resource CmKaishaService cmKaishaService;
 
+	// 一覧
+
 	@RequestMapping("/")
-	public String index(CmKaishaForm form) {
-		return prepareRegister(form);
+	public String index(CmKaishaListForm form) {
+		return view(BASE_URI, "/index", form);
+	}
+
+	@DoValidation(v = { CmKaishaListForm.Validate.class }, to = BASE_URI + "/index")
+	@RequestMapping(value = "/", params = "search")
+	public String search(CmKaishaListForm form) {
+		this.cmKaishaService.search(form);
+		return view(BASE_URI, "/index", form);
 	}
 
 	// 登録
@@ -49,7 +58,7 @@ public class CmKaishaController extends BaseMasterController {
 		copy(new CmKaishaForm(), form);
 		form.mode = Mode.Register;
 		this.cmKaishaService.prepareRegister(form);
-		return view(BASE_URI + "/prepareRegister", form);
+		return view(BASE_URI, "/prepareRegister", form);
 	}
 
 	@DoValidation(v = { Validate.class }, to = "backToPrepare", transition = FORWORD)
