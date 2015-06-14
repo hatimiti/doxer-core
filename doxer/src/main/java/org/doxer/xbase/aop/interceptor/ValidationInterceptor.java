@@ -1,7 +1,5 @@
 package org.doxer.xbase.aop.interceptor;
 
-import static org.doxer.xbase.util._Container.*;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -9,6 +7,7 @@ import java.util.Optional;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
+import org.doxer.xbase.controller.DoxController.DoxModelAndView;
 import org.doxer.xbase.form.Form;
 import org.doxer.xbase.util._Container;
 import org.doxer.xbase.validation.validator.FormValidator;
@@ -63,14 +62,14 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 		return container;
 	}
 
-	protected String buildReturnValue(DoValidation dv, Form form, Object controller) {
+	protected Object buildReturnValue(DoValidation dv, Form form, Object controller) {
 		switch (dv.transition()) {
 		case REDIRECT:
-			return getRedirectPath(dv.to());
+			return DoxModelAndView.redirect(dv.to(), null);
 		case FORWORD:
 			Method m = _Ref.getMethod(controller.getClass(), dv.to(), form.getClass()).get();
 			try {
-				return (String) m.invoke(controller, form);
+				return m.invoke(controller, form);
 			} catch (Exception e) {
 				LOG.error("No found method for forward. message = {}, stackTrace = {}",
 						e.getMessage(), e.getStackTrace());
@@ -84,7 +83,7 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 //			return getForwardPath(v.to());
 		case VIEW:
 		default:
-			return dv.to();
+			return DoxModelAndView.view(dv.to(), form);
 		}
 	}
 }

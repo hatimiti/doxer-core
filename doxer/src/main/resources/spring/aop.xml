@@ -22,7 +22,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			<list>
 				<value>stopWatchInterceptor</value>
 				<value>setCommonColumnInterceptor</value>
-				<value>registForm4ModelAndViewInterceptor</value>
 				<value>tokenInterceptor</value>
 				<value>validationInterceptor</value>
 			</list>
@@ -67,7 +66,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="transactionAttributeSource" ref="txAttribute" />
 	</bean>
-	
+
 	<!--
 		org.springframework.transaction.annotation.@Transactional アノテーションによる
 		トランザクション制御を行う設定。

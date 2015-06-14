@@ -1,5 +1,7 @@
 package org.doxer.app.sample.lang;
 
+import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
+
 import javax.annotation.Resource;
 
 import org.doxer.xbase.controller.BaseLangController;
@@ -15,12 +17,12 @@ public class LangController extends BaseLangController {
 	public AccessUser accessUser;
 
 	@RequestMapping("/")
-	public String index(LangForm form) {
+	public DoxModelAndView index(LangForm form) {
 		return view("/lang/lang", form);
 	}
-	
+
 	@RequestMapping("/lang")
-	public String lang(LangForm form) {
+	public DoxModelAndView lang(LangForm form) {
 		setupLocale(form.lang);
 		accessUser.setLangCd(form.lang);
 		return view("/lang/lang", form);

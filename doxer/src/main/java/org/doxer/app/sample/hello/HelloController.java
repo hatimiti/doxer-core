@@ -2,6 +2,7 @@ package org.doxer.app.sample.hello;
 
 import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
+import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
 import static org.doxer.xbase.util._Container.*;
 
 import java.io.BufferedOutputStream;
@@ -35,36 +36,36 @@ public class HelloController extends DoxController {
 
 	@Token(SET)
 	@RequestMapping("/index")
-	public String index(HelloForm form) {
+	public DoxModelAndView index(HelloForm form) {
 		LOG.info("ログ出力テスト 時間={}", _Container.getAccessDate());
 		LOG.info("user = {}", accessUser);
 		accessUser.setNameMei("hatimiti");
-		return view("/hello/hello", form);
+		return view("/hello/hello.html", form);
 	}
 
 //	@Token(CHECK_AND_SET)
-	@DoValidation(v = { Validate.class }, to = "/hello/hello")
+	@DoValidation(v = { Validate.class }, to = "/hello/hello.html")
 	@RequestMapping("/input")
-	public String input(HelloForm form) {
+	public DoxModelAndView input(HelloForm form) {
 		this.helloService.search(form);
 		LOG.info("ログ出力テスト2, {}", form.getResults());
 		addMessage(new AppMessage(INFO, "hello2", buildMessage("dictionary.val"), buildMessage("samplemes")));
-		return view("/hello/hello", form);
+		return view("/hello/hello.html", form);
 	}
 
 	@RequestMapping("/redirect")
-	public String redirect(HelloForm form, RedirectAttributes ra) {
+	public DoxModelAndView redirectTo(HelloForm form, RedirectAttributes ra) {
 		ra.addAttribute("val", "リダイレクトで遷移しました");
 		return redirect("input", ra);
 	}
 
 	@RequestMapping("/forward")
-	public String forward(HelloForm form) {
+	public DoxModelAndView forwardTo(HelloForm form) {
 		return forward("input");
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public String upload(HelloForm form) {
+	public DoxModelAndView upload(HelloForm form) {
 
 		try (OutputStream stream = new BufferedOutputStream(
 				new FileOutputStream(Paths.get("//LS-XHLE38/share/var/", form.getFileName()).toFile()))) {
@@ -76,7 +77,7 @@ public class HelloController extends DoxController {
 			LOG.info("message = {}, stacktrace = {}", e.getMessage(), e.getStackTrace());
 		}
 
-		return view("/hello/hello", form);
+		return view("/hello/hello.html", form);
 	}
 
 	@RequestMapping(value = "/download")

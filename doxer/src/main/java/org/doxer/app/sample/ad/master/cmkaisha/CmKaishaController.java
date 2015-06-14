@@ -3,6 +3,7 @@ package org.doxer.app.sample.ad.master.cmkaisha;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.xbase.aop.interceptor.supports.DoValidation.TransitionMethod.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
+import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
 
 import javax.annotation.Resource;
 
@@ -39,13 +40,13 @@ public class CmKaishaController extends BaseMasterController {
 	// 一覧
 
 	@RequestMapping
-	public String index(CmKaishaListForm form) {
+	public DoxModelAndView index(CmKaishaListForm form) {
 		return view(BASE_URI, "index.html", form);
 	}
 
 	@DoValidation(v = { CmKaishaListForm.Validate.class }, to = BASE_URI + "index.html")
 	@RequestMapping("search")
-	public String search(CmKaishaListForm form) {
+	public DoxModelAndView search(CmKaishaListForm form) {
 		this.cmKaishaService.search(form);
 		return view(BASE_URI, "index.html", form);
 	}
@@ -54,7 +55,7 @@ public class CmKaishaController extends BaseMasterController {
 
 	@Token(SET)
 	@RequestMapping(params = "prepareRegister")
-	public String prepareRegister(CmKaishaForm form) {
+	public DoxModelAndView prepareRegister(CmKaishaForm form) {
 		copy(new CmKaishaForm(), form);
 		form.mode = Mode.Register;
 		this.cmKaishaService.prepareRegister(form);
@@ -63,14 +64,14 @@ public class CmKaishaController extends BaseMasterController {
 
 	@DoValidation(v = { Validate.class }, to = "backToPrepare", transition = FORWORD)
 	@RequestMapping(params = "confirmRegister")
-	public String confirmRegister(CmKaishaForm form) {
+	public DoxModelAndView confirmRegister(CmKaishaForm form) {
 		return view(BASE_URI, "confirm.html", form);
 	}
 
 	@Token(CHECK)
 	@DoValidation(v = { Validate.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "register")
-	public String register(CmKaishaForm form, RedirectAttributes ra) {
+	public DoxModelAndView register(CmKaishaForm form, RedirectAttributes ra) {
 		CmKaisha kaisha = this.cmKaishaService.register(form);
 		saveRegisterMessage(kaisha.getCmKaishaId());
 		return redirect("complete", ra);
@@ -81,7 +82,7 @@ public class CmKaishaController extends BaseMasterController {
 	@Token(SET)
 	@DoValidation(v = { ValidId.class }, to = "backToList")
 	@RequestMapping(params = "prepareUpdate")
-	public String prepareUpdate(CmKaishaForm form) {
+	public DoxModelAndView prepareUpdate(CmKaishaForm form) {
 
 		final CmKaishaId tmpId = form.cmKaishaId;
 		copy(new CmKaishaForm(), form);
@@ -95,14 +96,14 @@ public class CmKaishaController extends BaseMasterController {
 
 	@DoValidation(v = { Validate.class, ValidId.class }, to = "backToPrepare", transition = FORWORD)
 	@RequestMapping(params = "confirmUpdate")
-	public String confirmUpdate(CmKaishaForm form) {
+	public DoxModelAndView confirmUpdate(CmKaishaForm form) {
 		return view(BASE_URI, "confirm.html", form);
 	}
 
 	@Token(CHECK)
 	@DoValidation(v = { Validate.class, ValidId.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "update")
-	public String update(CmKaishaForm form, RedirectAttributes ra) {
+	public DoxModelAndView update(CmKaishaForm form, RedirectAttributes ra) {
 		CmKaisha kaisha = this.cmKaishaService.update(form);
 		saveUpdateMessage(kaisha.getCmKaishaId());
 		return redirect("complete", ra);
@@ -113,7 +114,7 @@ public class CmKaishaController extends BaseMasterController {
 	@Token(SET)
 	@DoValidation(v = { ValidId.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "confirmDelete")
-	public String confirmDelete(CmKaishaForm form) {
+	public DoxModelAndView confirmDelete(CmKaishaForm form) {
 
 		final CmKaishaId tmpId = form.cmKaishaId;
 		copy(new CmKaishaForm(), form);
@@ -128,7 +129,7 @@ public class CmKaishaController extends BaseMasterController {
 	@Token(CHECK)
 	@DoValidation(v = { ValidId.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "delete")
-	public String delete(CmKaishaForm form, RedirectAttributes ra) {
+	public DoxModelAndView delete(CmKaishaForm form, RedirectAttributes ra) {
 		CmKaisha kaisha = this.cmKaishaService.delete(form);
 		saveDeleteMessage(kaisha.getCmKaishaId());
 		return redirect("complete", ra);
@@ -138,29 +139,29 @@ public class CmKaishaController extends BaseMasterController {
 
 	@DoValidation(v = { ValidAddTesuryo.class }, to = "backToPrepare", transition = FORWORD)
 	@RequestMapping(params = "addTesuryo")
-	public String addTesuryo(CmKaishaForm form) {
+	public DoxModelAndView addTesuryo(CmKaishaForm form) {
 		this.cmKaishaService.addTesuryo(form);
 		return backToPrepare(form);
 	}
 
 	@RequestMapping(params = "addRenrakusaki")
-	public String addRenrakusaki(CmKaishaForm form) {
+	public DoxModelAndView addRenrakusaki(CmKaishaForm form) {
 		this.cmKaishaService.addRenrakusaki(form);
 		return backToPrepare(form);
 	}
 
 	@RequestMapping("complete")
-	public String complete(CmKaishaForm form) {
+	public DoxModelAndView complete(CmKaishaForm form) {
 		return view(BASE_URI, "complete.html", form);
 	}
 
 	@RequestMapping(params = "backToList")
-	public String backToList(CmKaishaForm form, RedirectAttributes ra) {
+	public DoxModelAndView backToList(CmKaishaForm form, RedirectAttributes ra) {
 		return redirect("search", ra);
 	}
 
 	@RequestMapping(params = "backToPrepare")
-	public String backToPrepare(CmKaishaForm form) {
+	public DoxModelAndView backToPrepare(CmKaishaForm form) {
 		if (Mode.Delete == form.mode) {
 			return backToList(form, null);
 		}
