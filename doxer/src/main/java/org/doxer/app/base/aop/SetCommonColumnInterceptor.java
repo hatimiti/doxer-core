@@ -1,4 +1,4 @@
-package org.doxer.app.aop;
+package org.doxer.app.base.aop;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
