@@ -18,14 +18,14 @@ public class LangController extends BaseLangController {
 
 	@RequestMapping("/")
 	public DoxModelAndView index(LangForm form) {
-		return view("/lang/lang", form);
+		return view("/lang/lang.html", form);
 	}
 
 	@RequestMapping("/lang")
 	public DoxModelAndView lang(LangForm form) {
 		setupLocale(form.lang);
 		accessUser.setLangCd(form.lang);
-		return view("/lang/lang", form);
+		return view("/lang/lang.html", form);
 	}
 
 }
