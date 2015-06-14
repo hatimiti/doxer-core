@@ -3,6 +3,7 @@ package org.doxer.app.sample.ad.master.cmkaisha;
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import org.doxer.app.base.type.form.common.MailAddress;
 import org.doxer.app.base.type.form.common.TelNo;
@@ -18,6 +19,7 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Num;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Component
 public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
@@ -27,6 +29,10 @@ public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 	@Condition TelNo telNo = new TelNo(ARBITRARY, "telNo", "telNo");
 	@Condition MailAddress mailAddress = new MailAddress(ARBITRARY, "mailAddress", "mailAddress");
 	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED, "renrakusakiYotoKb", "renrakusakiYotoKb");
+
+	public CmKishRenrakusakiForm(CmKishRenrakusaki entity) {
+		entity.copyToForm(this);
+	}
 
 	public void validate(AppMessagesContainer container, String name, int index) {
 		this.cmKishRenrakusakiId.validate(container, name, index);

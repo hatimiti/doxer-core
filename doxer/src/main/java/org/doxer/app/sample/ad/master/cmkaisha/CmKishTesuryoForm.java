@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import org.doxer.app.base.type.form.common.Dt;
 import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
@@ -23,6 +24,7 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Str;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Component
 public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
@@ -34,6 +36,10 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 	@Condition TesuryoIntSu tesuryoIntSu = new TesuryoIntSu(REQUIRED, "tesuryoIntSu", "tesuryoIntSu");
 	@Condition TesuryoDmSu tesuryoDmSu = new TesuryoDmSu(ARBITRARY, "tesuryoDmSu", "tesuryoDmSu");
 	@Condition TesuryoKb tesuryoKb = new TesuryoKb(REQUIRED, "tesuryoKb", "tesuryoKb");
+
+	public CmKishTesuryoForm(CmKishTesuryo entity) {
+		entity.copyToForm(this);
+	}
 
 	public String getTesuryoSu() {
 		String tesuryoSu = this.tesuryoIntSu.getVal();

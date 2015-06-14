@@ -148,7 +148,9 @@ public class CmKaishaService extends DoxService {
 
 		CmKaisha kaisha = selectByPkWithRel(form.cmKaishaId);
 		kaisha.getCmKishTesuryoList()
-			.forEach(t -> this.cmKishTesuryoBhv.delete(t));
+			.forEach(this.cmKishTesuryoBhv::delete);
+		kaisha.getCmKishRenrakusakiList()
+			.forEach(this.cmKishRenrakusakiBhv::delete);
 
 		this.cmKaishaBhv.delete(kaisha);
 		return kaisha;
@@ -195,17 +197,13 @@ public class CmKaishaService extends DoxService {
 		CmKaisha cmKaisha = selectByPkWithRel(form.cmKaishaId);
 		cmKaisha.copyToForm(form);
 
-		for (CmKishTesuryo tesuryo : cmKaisha.getCmKishTesuryoList()) {
-			CmKishTesuryoForm tesuryoForm = new CmKishTesuryoForm();
-			tesuryo.copyToForm(tesuryoForm);
-			form.cmKishTesuryoForms.add(tesuryoForm);
-		}
+		cmKaisha.getCmKishTesuryoList().stream()
+			.map(CmKishTesuryoForm::new)
+			.forEach(form.cmKishTesuryoForms::add);
 
-		for (CmKishRenrakusaki renrakusaki : cmKaisha.getCmKishRenrakusakiList()) {
-			CmKishRenrakusakiForm renrakusakiForm = new CmKishRenrakusakiForm();
-			renrakusaki.copyToForm(renrakusakiForm);
-			form.cmKishRenrakusakiForms.add(renrakusakiForm);
-		}
+		cmKaisha.getCmKishRenrakusakiList().stream()
+			.map(CmKishRenrakusakiForm::new)
+			.forEach(form.cmKishRenrakusakiForms::add);
 	}
 
 	protected CmKaisha selectByPkWithRel(CmKaishaId cmKaishaId) {
