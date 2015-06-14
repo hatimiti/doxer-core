@@ -125,7 +125,15 @@ pmd { // コーディングチェック
 	]
 }
 pmdMain {
-	excludes = ["**/org/seasar/**/*.java", "**/org/doxer/app/db/dbflute/**/*.java"]
+	excludes = [
+		'**/org/seasar/**/*.java',
+		'**/db/dbflute/allcommon/**/*.java',
+		'**/db/dbflute/bsbhv/**/*.java',
+		'**/db/dbflute/bsentity/**/*.java',
+		'**/db/dbflute/cbean/bs/**/*.java',
+		'**/db/dbflute/cbean/cq/bs/**/*.java',
+		'**/db/dbflute/cbean/cq/ciq/**/*.java',
+	]
 }
 
 jacoco { // コードカバレッジ測定
@@ -158,6 +166,12 @@ check << { // CPD: 重複コードチェック
 	{
 		fileset(dir: 'src/main/java') {
 			include(name: '**/*.java')
+			exclude(name: '**/db/dbflute/allcommon/**/*.java')
+			exclude(name: '**/db/dbflute/bsbhv/**/*.java')
+			exclude(name: '**/db/dbflute/bsentity/**/*.java')
+			exclude(name: '**/db/dbflute/cbean/bs/**/*.java')
+			exclude(name: '**/db/dbflute/cbean/cq/bs/**/*.java')
+			exclude(name: '**/db/dbflute/cbean/cq/ciq/**/*.java')
 		}
 	}
 }
