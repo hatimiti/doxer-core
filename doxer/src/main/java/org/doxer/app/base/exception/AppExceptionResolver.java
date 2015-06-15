@@ -1,5 +1,10 @@
 package org.doxer.app.base.exception;
 
+import static java.lang.String.*;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,6 +31,15 @@ public class AppExceptionResolver implements HandlerExceptionResolver {
 				ex.getMessage(), ex.getStackTrace());
 
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("causeException", new StringBuilder()
+				.append(format("name = %s\r\n", ex.toString()))
+				.append(format("cause = %s\r\n", ex.getCause()))
+				.append(format("stackTrace =\r\n%s", Stream
+						.of(ex.getStackTrace())
+						.map(s -> s.toString())
+						.collect(Collectors.joining("\r\n"))
+				))
+		);
 		mav.setViewName("/error.html");
 
 		return mav;

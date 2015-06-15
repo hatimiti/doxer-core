@@ -8,7 +8,10 @@
 </head>
 <body>
 <div layout:fragment="contents">
-エラー
+システムエラーが発生しました。
+<pre th:text="${causeException}" th:if="${T(org.doxer.xbase.util._Env).isDev()}">
+例外オブジェクトの内容
+</pre>
 </div>
 </body>
 </html>

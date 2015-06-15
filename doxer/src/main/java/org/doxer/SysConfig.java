@@ -2,8 +2,15 @@ package org.doxer;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
+import org.doxer.xbase.controller.DoxErrorController;
 import org.doxer.xbase.thymeleaf.dialect.sa.JUtilityDialect;
 import org.doxer.xbase.thymeleaf.dialect.sa.SADialect;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.SearchStrategy;
+import org.springframework.boot.autoconfigure.web.BasicErrorController;
+import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -55,6 +62,18 @@ public class SysConfig {
 		viewResolver.setCache(false);
 		viewResolver.setCharacterEncoding("UTF-8");
 		return viewResolver;
+	}
+
+	@Bean
+	@ConditionalOnMissingBean(value = ErrorAttributes.class, search = SearchStrategy.CURRENT)
+	public DefaultErrorAttributes errorAttributes() {
+	    return new DefaultErrorAttributes();
+	}
+
+	@Bean
+	@ConditionalOnMissingBean(value = ErrorController.class, search = SearchStrategy.CURRENT)
+	public BasicErrorController basicErrorController(ErrorAttributes errorAttributes) {
+	    return new DoxErrorController(errorAttributes);
 	}
 
 }
