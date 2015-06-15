@@ -149,6 +149,8 @@ jacocoTestReport {
 }
 
 test {
+	systemProperty 'spring.profiles.active', 'ut'
+
 	jacoco {
 		append = false
 		destinationFile = file("$buildDir/reports/jacoco/test.exec")
