@@ -11,7 +11,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpSession;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,8 +22,8 @@ import com.github.hatimiti.flutist.common.util._Obj;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("WebContent")
-@SpringApplicationConfiguration(classes = Application.class)
-@ContextConfiguration(locations = {"classpath:/spring/*.xml"})
+//@ContextConfiguration(locations = {"classpath:/spring/*.xml"})
+@SpringApplicationConfiguration(classes = { Application.class })
 public abstract class DoxControllerTestCase {
 
 	protected static final Logger logger = _Obj.getLogger();

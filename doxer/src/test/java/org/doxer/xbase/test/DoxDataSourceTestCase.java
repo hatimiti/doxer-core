@@ -24,7 +24,6 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -33,7 +32,7 @@ import com.github.hatimiti.flutist.common.util._Obj;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("WebContent")
 @SpringApplicationConfiguration(classes = Application.class)
-@ContextConfiguration(locations = {"classpath:/spring/*.xml"})
+//@ContextConfiguration(locations = {"classpath:/spring/*.xml"})
 public abstract class DoxDataSourceTestCase extends DataSourceBasedDBTestCase {
 
 	protected static final Logger logger = _Obj.getLogger();
