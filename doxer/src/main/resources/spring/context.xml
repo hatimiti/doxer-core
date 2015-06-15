@@ -11,7 +11,10 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 	<context:component-scan base-package="org.doxer" />
 
 <!-- gradleでのtestタスクが失敗するためコメント化 	<context:property-placeholder location="classpath:**/*.properties" /> -->
-	<context:property-placeholder location="classpath:/appenv.properties" />
+	<context:property-placeholder location="
+		classpath:/application.properties,
+		classpath:/application-#{systemProperties['spring.profiles.active']}.properties"
+	/>
 
 	<bean id="dataSource"
 			destroy-method="close"
@@ -33,6 +36,8 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 			class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
+				<value>classpath:/application-#{systemProperties['spring.profiles.active']}</value>
+				<value>classpath:/application</value>
 				<value>classpath:/i18n/dictionary</value>
 				<value>classpath:/i18n/messages</value>
 				<value>classpath:/i18n/validations</value>
