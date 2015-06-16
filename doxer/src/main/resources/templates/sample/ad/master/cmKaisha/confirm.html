@@ -20,16 +20,16 @@
 	<h3>基本情報</h3>
 
 	<span th:if="${form.mode.code() ne application.Mode.Register}">
-		会社ID:<span th:text="${form.cmKaishaId.val}">100</span>
+		会社ID:<span th:text="${form.cmKaishaId}">100</span>
 	</span>
 
-	会社名:<span th:text="${form.kaishaMei.val}">サンプル会社名</span><br />
+	会社名:<span th:text="${form.kaishaMei}">サンプル会社名</span><br />
 
 	<h3>手数料</h3>
 	<table th:remove="all-but-first">
 		<tr th:each="tesuryo : ${form.cmKishTesuryoForms}">
 			<td style="padding-right: 5px;"
-				th:text="${tesuryo.tekiyoKikanFromDt.val}">2013/10/20</td>
+				th:text="${tesuryo.tekiyoKikanFromDt}">2013/10/20</td>
 			<td th:text="${tesuryo.tesuryoSu}">10.5</td>
 		</tr>
 		<tr>
@@ -51,12 +51,12 @@
 			</td>
 		</tr>
 		<tr><td>メールアドレス<span th:text="${s.count}">1</span>
-				<span th:text="${cmKishRenrakusakiForm.mailAddress.val}">hello@exsample.com</span><br />
+				<span th:text="${cmKishRenrakusakiForm.mailAddress}">hello@exsample.com</span><br />
 			</td>
 		</tr>
 		<tr>
 			<td>連絡先用途<span th:text="${s.count}">1</span>
-				<span th:text="${cmKishRenrakusakiForm.renrakusakiYotoKb.val}">緊急</span>
+				<span th:text="${cmKishRenrakusakiForm.renrakusakiYotoKb}">緊急</span>
 			</td>
 		</tr>
 		</tbody>

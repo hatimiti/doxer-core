@@ -7,7 +7,7 @@ import org.doxer.xbase.thymeleaf.processor.sa.ErrorsMessageProcessor;
 import org.doxer.xbase.thymeleaf.processor.sa.ErrorsStyleClassProcessor;
 import org.doxer.xbase.thymeleaf.processor.sa.I18nTextAttrProcessor;
 import org.doxer.xbase.thymeleaf.processor.sa.RadioAttrProcessor;
-import org.doxer.xbase.thymeleaf.processor.sa.TextAttrProcessor;
+import org.doxer.xbase.thymeleaf.processor.sa.InputFieldAttrProcessor;
 import org.thymeleaf.dialect.AbstractDialect;
 import org.thymeleaf.processor.IProcessor;
 
@@ -24,7 +24,7 @@ public class SADialect extends AbstractDialect {
 		HashSet<IProcessor> processors = new HashSet<IProcessor>();
 		processors.add(new ErrorsMessageProcessor());
 		processors.add(new ErrorsStyleClassProcessor());
-		processors.add(new TextAttrProcessor());
+		processors.add(new InputFieldAttrProcessor());
 		processors.add(new RadioAttrProcessor());
 		processors.add(new I18nTextAttrProcessor());
 		return processors;

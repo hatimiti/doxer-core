@@ -15,16 +15,16 @@
 <body>
 <div layout:fragment="contents">
 	<div class="ErrorsProperty" th:each="e : ${#sa.globalMessages()}" th:text="${e}">xxx</div>
-	<p th:text="'Hello, ' + ${form.fval.val} + '!'" />
+	<p th:text="'Hello, ' + ${form.fval} + '!'" />
 
 	<h3>Basic Input</h3>
 	<form action="/doxer/sample/hello/input" method="POST">
-		<input type="text" th:field="${form.fval.val}" />
+		<input type="text" sa:field="${form.fval}" />
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('fval.val')}" th:text="${e}">xxx</div>
 		<br />
-		<input type="text" th:field="${form.telNo.val[0]}" />
-		<input type="text" th:field="${form.telNo.val[1]}" />
-		<input type="text" th:field="${form.telNo.val[2]}" />
+		<input type="text" sa:field="${form.telNo},val[0]" />
+		<input type="text" sa:field="${form.telNo},val[1]" />
+		<input type="text" sa:field="${form.telNo},val[2]" />
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo.val')}" th:text="${e}">xxx</div>
 		<br />
 		<input type="submit" name="send" />

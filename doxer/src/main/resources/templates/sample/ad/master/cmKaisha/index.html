@@ -15,9 +15,9 @@
 <div layout:fragment="contents">
 
 <form action="./search">
-	会社ID：<input type="text" th:field="${form.cmKaishaId.val}" />(完全一致)<br />
+	会社ID：<input type="text" sa:field="${form.cmKaishaId}" />(完全一致)<br />
 <div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
-	会社名：<input type="text" th:field="${form.kaishaMei.val}" />(前方一致)<br />
+	会社名：<input type="text" sa:field="${form.kaishaMei}" />(前方一致)<br />
 <div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('kaishaMei.val')}" th:text="${e}">xxx</div>
 	<input type="submit" name="search" value="検索" /><br />
 </form>
