@@ -28,10 +28,7 @@
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo.val')}" th:text="${e}">xxx</div>
 		<br />
 		<input type="submit" name="send" />
-
-		<input type="hidden"
-				th:name="${T(org.doxer.xbase.util.TokenProcessor).TOKEN_KEY}"
-				th:value="${#httpSession.getAttribute(T(org.doxer.xbase.util.TokenProcessor).TRANSACTION_TOKEN_KEY)}" /><br />
+		<input type="hidden" sa:token="true" />
 	</form>
 	<table>
 		<tr><th>ID</th><th>名前</th></tr>
