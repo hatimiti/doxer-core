@@ -2,8 +2,6 @@ package org.doxer.xbase.form;
 
 import org.dbflute.Entity;
 
-import com.github.hatimiti.flutist.common.domain.supports.Condition;
-
 /**
  * エンティティと対となる Form のための基底クラス．<br />
  * 基本的にはマスタメンテなどに利用する．
@@ -19,7 +17,6 @@ public abstract class BaseEntityForm<E extends Entity> extends DoxForm {
 	/**
 	 * 楽観的排他用 更新番号
 	 */
-	@Condition(session = true)
-	public String updNum;
+	protected Integer versionNo;
 
 }

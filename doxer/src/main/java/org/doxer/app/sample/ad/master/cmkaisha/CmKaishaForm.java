@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 
 import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
 import org.doxer.app.base.type.form.sample.ad.master.KaishaMei;
+import org.doxer.app.base.type.form.sample.ad.master.KaishaMeiEn;
 import org.doxer.app.base.type.sample.ad.master.CmKishTesuryoFormList;
 import org.doxer.app.db.dbflute.allcommon.CDef.Mode;
 import org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb;
@@ -31,6 +32,7 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 
 	@Condition CmKaishaId cmKaishaId = new CmKaishaId(CONDITION, "cmKaishaId", "cmKaishaId");
 	@Condition KaishaMei kaishaMei = new KaishaMei(REQUIRED, "kaishaMei", "kaishaMei");
+	@Condition KaishaMeiEn kaishaMeiEn = new KaishaMeiEn(ARBITRARY, "kaishaMeiEn", "kaishaMeiEn");
 	@Condition CmKishTesuryoForm cmKishTesuryoForm;
 	@Condition(session = true) List<CmKishRenrakusakiForm> cmKishRenrakusakiForms;
 
@@ -74,8 +76,10 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 
 	@Override
 	public void copyToEntity(CmKaisha entity) {
-		//TODO verNoもコピーの必要有り
+		entity.setCmKaishaId(this.cmKaishaId.getValL());
 		entity.setKaishaMei(this.kaishaMei.getVal());
+		entity.setKaishaMeiEn(this.kaishaMeiEn.getVal());
+		entity.setVersionNo(this.versionNo);
 	}
 
 	public void clearCmKishTesuryoFormByDefault() {
