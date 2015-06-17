@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.util._Num;
+import com.github.hatimiti.flutist.common.util._Str;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED, "renrakusakiYotoKb", "renrakusakiYotoKb");
 
 	public CmKishRenrakusakiForm(CmKishRenrakusaki entity) {
-		entity.copyToForm(this);
+		this.copyFrom(entity);
 	}
 
 	public void validate(AppMessagesContainer container, String name, int index) {
@@ -43,13 +43,15 @@ public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 	}
 
 	@Override
-	public void copyToEntity(CmKishRenrakusaki entity) {
-		entity.setCmKaishaId(this.cmKaishaId.getValL());
-		entity.setTelNo1(_Num.toI_Null(this.telNo.getVal()[0]));
-		entity.setTelNo2(_Num.toI_Null(this.telNo.getVal()[1]));
-		entity.setTelNo3(_Num.toI_Null(this.telNo.getVal()[2]));
-		entity.setMailAddress(this.mailAddress.getVal());
-		entity.setRenrakusakiYotoKbAsRenrakusakiYotoKb(this.renrakusakiYotoKb.toKb());
+	public void copyFrom(CmKishRenrakusaki entity) {
+		this.cmKishRenrakusakiId.setStrictValL(entity.getCmKishRenrakusakiId());
+		this.cmKaishaId.setStrictValL(entity.getCmKaishaId());
+		this.telNo.setStrictVal(
+				_Str.toEmpty(entity.getTelNo1()),
+				_Str.toEmpty(entity.getTelNo2()),
+				_Str.toEmpty(entity.getTelNo3()));
+		this.mailAddress.setStrictVal(entity.getMailAddress());
+		this.renrakusakiYotoKb.setStrictVal(entity.getRenrakusakiYotoKb());
 	}
 
 }

@@ -100,7 +100,7 @@ public class CmKaishaService extends DoxService {
 				if (dbTesuryo.getTekiyoKikanFromDt()
 						.equals(fmTesuryo.tekiyoKikanFromDt.getVal())) {
 
-					fmTesuryo.copyToEntity(dbTesuryo);
+					dbTesuryo.copyFrom(fmTesuryo);
 					this.cmKishTesuryoBhv.update(dbTesuryo);
 					continue lp1;
 				}
@@ -179,7 +179,7 @@ public class CmKaishaService extends DoxService {
 			CmKishTesuryoForm cmKishTesuryoForm, CmKaisha cmKaisha) {
 
 		CmKishTesuryo insTesuryo = new CmKishTesuryo();
-		cmKishTesuryoForm.copyToEntity(insTesuryo);
+		insTesuryo.copyFrom(cmKishTesuryoForm);
 		insTesuryo.setCmKaishaId(cmKaisha.getCmKaishaId());
 		this.cmKishTesuryoBhv.insert(insTesuryo);
 	}
@@ -188,7 +188,7 @@ public class CmKaishaService extends DoxService {
 			CmKishRenrakusakiForm cmKishRenrakusakiForm, CmKaisha cmKaisha) {
 
 		CmKishRenrakusaki renrakusaki = new CmKishRenrakusaki();
-		cmKishRenrakusakiForm.copyToEntity(renrakusaki);
+		renrakusaki.copyFrom(cmKishRenrakusakiForm);
 		renrakusaki.setCmKaishaId(cmKaisha.getCmKaishaId());
 		this.cmKishRenrakusakiBhv.insert(renrakusaki);
 	}

@@ -1,9 +1,6 @@
 package org.doxer.app.sample.ad.master.cmkaisha;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
-
-import java.math.BigDecimal;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -38,7 +35,7 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 	@Condition TesuryoKb tesuryoKb = new TesuryoKb(REQUIRED, "tesuryoKb", "tesuryoKb");
 
 	public CmKishTesuryoForm(CmKishTesuryo entity) {
-		entity.copyToForm(this);
+		this.copyFrom(entity);
 	}
 
 	public String getTesuryoSu() {
@@ -61,12 +58,14 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 	}
 
 	@Override
-	public void copyToEntity(CmKishTesuryo entity) {
-		entity.setCmKaishaId(this.cmKaishaId.getValL());
-		entity.setTekiyoKikanFromDt(this.tekiyoKikanFromDt.getVal());
-		entity.setTekiyoKikanToDt(this.tekiyoKikanToDt.getVal());
-		entity.setTesuryoSu(new BigDecimal(this.getTesuryoSu()));
-		entity.setTesuryoKbAsTesuryoKb(this.tesuryoKb.toKb());
+	public void copyFrom(CmKishTesuryo entity) {
+		this.getCmKishTesuryoId().setStrictValL(entity.getCmKishTesuryoId());
+		this.getCmKaishaId().setStrictValL(entity.getCmKaishaId());
+		this.getTekiyoKikanFromDt().setStrictVal(entity.getTekiyoKikanFromDt());
+		this.getTekiyoKikanToDt().setStrictVal(entity.getTekiyoKikanToDt());
+		this.getTesuryoKb().setStrictVal(entity.getTesuryoKb());
+		this.getTesuryoIntSu().setStrictVal(_Str.getIntegerOf(entity.getTesuryoSu()));
+		this.getTesuryoDmSu().setStrictVal(_Str.getDecimalOf(entity.getTesuryoSu()));
 	}
 
 }

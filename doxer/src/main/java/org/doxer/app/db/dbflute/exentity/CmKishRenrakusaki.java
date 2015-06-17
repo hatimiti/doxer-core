@@ -3,7 +3,7 @@ package org.doxer.app.db.dbflute.exentity;
 import org.doxer.app.db.dbflute.bsentity.BsCmKishRenrakusaki;
 import org.doxer.app.sample.ad.master.cmkaisha.CmKishRenrakusakiForm;
 
-import com.github.hatimiti.flutist.common.util._Str;
+import com.github.hatimiti.flutist.common.util._Num;
 
 /**
  * The entity of CM_KISH_RENRAKUSAKI.
@@ -18,14 +18,12 @@ public class CmKishRenrakusaki extends BsCmKishRenrakusaki {
     /** The serial version UID for object serialization. (Default) */
     private static final long serialVersionUID = 1L;
 
-	public void copyToForm(CmKishRenrakusakiForm form) {
-		form.getCmKishRenrakusakiId().setStrictValL(this.getCmKishRenrakusakiId());
-		form.getCmKaishaId().setStrictValL(this.getCmKaishaId());
-		form.getTelNo().setStrictVal(
-				_Str.toEmpty(this.getTelNo1()),
-				_Str.toEmpty(this.getTelNo2()),
-				_Str.toEmpty(this.getTelNo3()));
-		form.getMailAddress().setStrictVal(this.getMailAddress());
-		form.getRenrakusakiYotoKb().setStrictVal(this.getRenrakusakiYotoKb());
+	public void copyFrom(CmKishRenrakusakiForm form) {
+		this.setCmKaishaId(form.getCmKaishaId().getValL());
+		this.setTelNo1(_Num.toI_Null(form.getTelNo().getVal()[0]));
+		this.setTelNo2(_Num.toI_Null(form.getTelNo().getVal()[1]));
+		this.setTelNo3(_Num.toI_Null(form.getTelNo().getVal()[2]));
+		this.setMailAddress(form.getMailAddress().getVal());
+		this.setRenrakusakiYotoKbAsRenrakusakiYotoKb(form.getRenrakusakiYotoKb().toKb());
 	}
 }
