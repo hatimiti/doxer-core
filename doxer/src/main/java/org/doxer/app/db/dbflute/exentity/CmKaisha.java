@@ -16,10 +16,10 @@ public class CmKaisha extends BsCmKaisha {
     /** The serial version UID for object serialization. (Default) */
     private static final long serialVersionUID = 1L;
 
-	public void copyToForm(CmKaishaForm form) {
-		form.getCmKaishaId().setStrictValL(this.getCmKaishaId());
-		form.getKaishaMei().setStrictVal(this.getKaishaMei());
-		form.getKaishaMeiEn().setStrictVal(this.getKaishaMeiEn());
-		form.setVersionNo(this.getVersionNo());
+	public void copyFrom(CmKaishaForm form) {
+		this.setCmKaishaId(form.getCmKaishaId().getValL());
+		this.setKaishaMei(form.getKaishaMei().getVal());
+		this.setKaishaMeiEn(form.getKaishaMeiEn().getVal());
+		this.setVersionNo(form.getVersionNo());
 	}
 }

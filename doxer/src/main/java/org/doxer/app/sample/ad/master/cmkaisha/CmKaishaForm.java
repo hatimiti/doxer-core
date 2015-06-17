@@ -74,12 +74,11 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 		}
 	}
 
-	@Override
-	public void copyToEntity(CmKaisha entity) {
-		entity.setCmKaishaId(this.cmKaishaId.getValL());
-		entity.setKaishaMei(this.kaishaMei.getVal());
-		entity.setKaishaMeiEn(this.kaishaMeiEn.getVal());
-		entity.setVersionNo(this.versionNo);
+	public void copyFrom(CmKaisha entity) {
+		this.cmKaishaId.setStrictValL(entity.getCmKaishaId());
+		this.kaishaMei.setStrictVal(entity.getKaishaMei());
+		this.kaishaMeiEn.setStrictVal(entity.getKaishaMeiEn());
+		this.versionNo = entity.getVersionNo();
 	}
 
 	public void clearCmKishTesuryoFormByDefault() {

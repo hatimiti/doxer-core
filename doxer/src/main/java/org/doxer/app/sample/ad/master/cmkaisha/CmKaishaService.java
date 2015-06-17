@@ -56,7 +56,8 @@ public class CmKaishaService extends DoxService {
 
 		// 会社登録
 		CmKaisha kaisha = new CmKaisha();
-		form.copyToEntity(kaisha);
+		kaisha.copyFrom(form);
+
 		this.cmKaishaBhv.insert(kaisha);
 
 		// 手数料登録
@@ -83,7 +84,7 @@ public class CmKaishaService extends DoxService {
 			final CmKaishaForm form) {
 
 		CmKaisha kaisha = this.cmKaishaBhv.selectByPk4Update(form.cmKaishaId.getValL());
-		form.copyToEntity(kaisha);
+		kaisha.copyFrom(form);
 		this.cmKaishaBhv.update(kaisha);
 
 		// 手数料登録
@@ -195,7 +196,7 @@ public class CmKaishaService extends DoxService {
 	protected void setCmKaishaWithRel(CmKaishaForm form) {
 
 		CmKaisha cmKaisha = selectByPkWithRel(form.cmKaishaId);
-		cmKaisha.copyToForm(form);
+		form.copyFrom(cmKaisha);
 
 		cmKaisha.getCmKishTesuryoList().stream()
 			.map(CmKishTesuryoForm::new)

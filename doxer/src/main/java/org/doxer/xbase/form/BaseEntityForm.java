@@ -1,7 +1,6 @@
 package org.doxer.xbase.form;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import org.dbflute.Entity;
 
@@ -15,13 +14,12 @@ public abstract class BaseEntityForm<E extends Entity> extends DoxForm {
 
 	private static final long serialVersionUID = 1L;
 
-	public abstract void copyToEntity(E entity);
+	public abstract void copyFrom(E entity);
 
 	/**
 	 * 楽観的排他用 更新番号
 	 */
 	@Getter
-	@Setter
 	protected Integer versionNo;
 
 }
