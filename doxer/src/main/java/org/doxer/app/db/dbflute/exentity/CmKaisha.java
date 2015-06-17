@@ -19,5 +19,7 @@ public class CmKaisha extends BsCmKaisha {
 	public void copyToForm(CmKaishaForm form) {
 		form.getCmKaishaId().setStrictValL(this.getCmKaishaId());
 		form.getKaishaMei().setStrictVal(this.getKaishaMei());
+		form.getKaishaMeiEn().setStrictVal(this.getKaishaMeiEn());
+		form.setVersionNo(this.getVersionNo());
 	}
 }

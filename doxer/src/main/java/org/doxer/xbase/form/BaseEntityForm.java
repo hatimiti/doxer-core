@@ -1,5 +1,8 @@
 package org.doxer.xbase.form;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.dbflute.Entity;
 
 /**
@@ -17,6 +20,8 @@ public abstract class BaseEntityForm<E extends Entity> extends DoxForm {
 	/**
 	 * 楽観的排他用 更新番号
 	 */
+	@Getter
+	@Setter
 	protected Integer versionNo;
 
 }

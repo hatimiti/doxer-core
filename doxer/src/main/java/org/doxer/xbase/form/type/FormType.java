@@ -2,6 +2,8 @@ package org.doxer.xbase.form.type;
 
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 
+import java.util.Optional;
+
 import org.doxer.xbase.util._Container;
 
 import com.github.hatimiti.flutist.common.domain.supports.Condition;
@@ -130,7 +132,7 @@ public abstract class FormType<T> extends Type<T> {
 
 	@Override
 	public String toString() {
-		return getVal().toString();
+		return Optional.ofNullable(getVal()).map(Object::toString).orElse("");
 	}
 
 }
