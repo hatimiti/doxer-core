@@ -9,6 +9,7 @@
 <body>
 <div layout:fragment="contents">
 システムエラーが発生しました。
+<div class="ErrorsProperty" th:each="e : ${#sa.allMessages()}" th:text="${e}">xxx</div>
 <pre th:text="${causeException}" th:if="${T(org.doxer.xbase.util._Env).isDev()}">
 例外オブジェクトの内容
 </pre>

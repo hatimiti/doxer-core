@@ -163,6 +163,10 @@ public final class _Container {
 		APPMESSAGES.remove();
 	}
 
+	public static List<String> getAllMessages() {
+		return buildMessages(getAppMessagesContainer().getAllMessageList());
+	}
+
 	public static List<String> getGlobalMessages() {
 		return buildMessages(getAppMessagesContainer().getGlobalMessages());
 	}
