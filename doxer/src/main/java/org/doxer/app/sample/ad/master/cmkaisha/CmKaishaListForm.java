@@ -37,7 +37,7 @@ public class CmKaishaListForm extends BaseSortPageForm {
 	}
 
 	@Override
-	protected ColumnInfo getDefaultSortColName() {
+	public ColumnInfo getDefaultSortColName() {
 		return CmKaishaDbm.getInstance().columnCmKaishaId();
 	}
 

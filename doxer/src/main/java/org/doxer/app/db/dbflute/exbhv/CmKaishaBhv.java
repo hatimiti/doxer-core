@@ -9,7 +9,7 @@ import org.doxer.app.db.dbflute.cbean.CmKaishaCB;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaListForm;
 import org.doxer.xbase.support.SortOrder;
-import org.doxer.xbase.support.TableHeaderSortable;
+import org.doxer.xbase.support.TableHeaderSortableBhv;
 
 /**
  * The behavior of CM_KAISHA.
@@ -21,7 +21,7 @@ import org.doxer.xbase.support.TableHeaderSortable;
  */
 @org.springframework.stereotype.Component("cmKaishaBhv")
 public class CmKaishaBhv extends BsCmKaishaBhv
-		implements TableHeaderSortable<CmKaishaCB> {
+		implements TableHeaderSortableBhv<CmKaishaCB> {
 
 	public CmKaisha selectByPk4Update(Long cmKaishaId) {
 //		cb.lockForUpdateWait(LOCK_WAIT_TIME);
@@ -39,7 +39,7 @@ public class CmKaishaBhv extends BsCmKaishaBhv
 			cb.query().setKaishaMei_LikeSearch(
 					form.getKaishaMei().getVal(), op -> op.likePrefix());
 			cb.paging(form.getPageSize(), form.getPageNumber());
-			setOrder(cb, form.sortColName, form.sortOrder);
+			setOrder(cb, form.getSortColName(), form.getSortOrder());
 		});
 		return userPage;
 	}
@@ -66,18 +66,18 @@ public class CmKaishaBhv extends BsCmKaishaBhv
 		switch (SortOrder.valueOf(sort)) {
 		case ASC:
 
-			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId(), sortColName)) {
+			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId().getColumnDbName(), sortColName)) {
 				cb.query().addOrderBy_CmKaishaId_Asc();
-			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei(), sortColName)) {
+			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei().getColumnDbName(), sortColName)) {
 				cb.query().addOrderBy_KaishaMei_Asc();
 			}
 			break;
 
 		case DESC:
 
-			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId(), sortColName)) {
+			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId().getColumnDbName(), sortColName)) {
 				cb.query().addOrderBy_CmKaishaId_Desc();
-			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei(), sortColName)) {
+			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei().getColumnDbName(), sortColName)) {
 				cb.query().addOrderBy_KaishaMei_Desc();
 			}
 			break;

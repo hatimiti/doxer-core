@@ -2,7 +2,7 @@ package org.doxer.xbase.support;
 
 /**
  * 並び替えの順序を表す列挙型
- * @author m-kakimi
+ * @author hatimiti
  */
 public enum SortOrder {
 
@@ -20,6 +20,17 @@ public enum SortOrder {
 
 	private SortOrder(final String value) {
 		this.value = value;
+	}
+
+	/**
+	 * 自身の逆順を表す値を返す．
+	 * @return 自身がASCの場合はDESC、自身がDESCの場合はASCを返す．
+	 */
+	public SortOrder reverse() {
+		switch (this) {
+		case ASC: return DESC;
+		default: return ASC;
+		}
 	}
 
 	/**

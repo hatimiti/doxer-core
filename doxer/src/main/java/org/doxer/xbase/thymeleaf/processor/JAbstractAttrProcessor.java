@@ -1,5 +1,6 @@
 package org.doxer.xbase.thymeleaf.processor;
 
+import org.doxer.xbase.form.DoxForm;
 import org.springframework.web.servlet.support.BindStatus;
 import org.thymeleaf.Arguments;
 import org.thymeleaf.Configuration;
@@ -68,6 +69,10 @@ public abstract class JAbstractAttrProcessor extends AbstractAttrProcessor {
 	protected IStandardExpressionParser getParser() {
 		return StandardExpressions.getExpressionParser(
 				arguments.getConfiguration());
+	}
+
+	protected DoxForm getForm(Arguments arguments) {
+		return (DoxForm) arguments.getContext().getVariables().get("form");
 	}
 
 	@Override
