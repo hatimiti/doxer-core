@@ -12,6 +12,8 @@ import org.thymeleaf.dom.Element;
 import org.thymeleaf.dom.Text;
 import org.thymeleaf.processor.ProcessorResult;
 
+import com.github.hatimiti.flutist.common.util._Str;
+
 
 /**
  * @author hatimiti
@@ -33,7 +35,7 @@ public class LinkSortByAttrProcessor extends JAbstractAttrProcessor {
 
 		TableHeaderSortableForm sortForm = (TableHeaderSortableForm) getForm(arguments);
 		String nowSortColName = sortForm.getSortColName();
-		String sortColName = getAttributeValuePart(0);
+		String sortColName = _Str.toEmpty(eval(getAttributeValuePart(0)));
 		String sortOrder = sortForm.getSortOrder();
 
 		StringBuilder query = new StringBuilder("?")

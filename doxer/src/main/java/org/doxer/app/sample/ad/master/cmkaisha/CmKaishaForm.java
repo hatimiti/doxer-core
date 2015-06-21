@@ -46,6 +46,7 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 		public void validate(AppMessagesContainer c) {
 			cmKaishaId.validate(c);
 			kaishaMei.validWithUniqueCheck(c, cmKaishaId);
+			kaishaMeiEn.validWithUniqueCheck(c, cmKaishaId);
 
 			// 手数料必須チェック
 			if (isEmpty(cmKishTesuryoForms)) {

@@ -42,4 +42,20 @@ public enum SortOrder {
 		return this.value;
 	}
 
+	public boolean isAsc() {
+		return this == ASC;
+	}
+
+	public boolean isDesc() {
+		return this == DESC;
+	}
+
+	public static boolean isAsc(String value) {
+		return valueOf(value) == ASC;
+	}
+
+	public static boolean isDesc(String value) {
+		return valueOf(value) == DESC;
+	}
+
 }

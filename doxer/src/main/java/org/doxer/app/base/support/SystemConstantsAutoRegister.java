@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import org.doxer.app.db.DBMetaManager;
 import org.doxer.app.db.dbflute.allcommon.CDef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -52,6 +53,7 @@ public class SystemConstantsAutoRegister extends ConstantsAutoRegister
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		Arrays.stream(CDef.class.getClasses())
 			.forEach(c -> register(application, c.getName()));
+		register(application, DBMetaManager.class.getName());
 	}
 
 }

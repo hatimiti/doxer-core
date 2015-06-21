@@ -1,14 +1,15 @@
 package org.doxer.app.db.dbflute.exbhv;
 
 import static com.github.hatimiti.flutist.common.util._Obj.*;
+import static org.doxer.app.db.DBMetaManager.*;
+import static org.doxer.xbase.support.SortOrder.*;
 
 import org.dbflute.cbean.result.PagingResultBean;
 import org.doxer.app.db.dbflute.bsbhv.BsCmKaishaBhv;
-import org.doxer.app.db.dbflute.bsentity.dbmeta.CmKaishaDbm;
 import org.doxer.app.db.dbflute.cbean.CmKaishaCB;
+import org.doxer.app.db.dbflute.cbean.cq.bs.BsCmKaishaCQ;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaListForm;
-import org.doxer.xbase.support.SortOrder;
 import org.doxer.xbase.support.TableHeaderSortableBhv;
 
 /**
@@ -21,7 +22,7 @@ import org.doxer.xbase.support.TableHeaderSortableBhv;
  */
 @org.springframework.stereotype.Component("cmKaishaBhv")
 public class CmKaishaBhv extends BsCmKaishaBhv
-		implements TableHeaderSortableBhv<CmKaishaCB> {
+		implements TableHeaderSortableBhv<CmKaishaCB, BsCmKaishaCQ> {
 
 	public CmKaisha selectByPk4Update(Long cmKaishaId) {
 //		cb.lockForUpdateWait(LOCK_WAIT_TIME);
@@ -61,28 +62,15 @@ public class CmKaishaBhv extends BsCmKaishaBhv
 	}
 
 	@Override
-	public void setOrder(CmKaishaCB cb, String sortColName, String sort) {
-
-		switch (SortOrder.valueOf(sort)) {
-		case ASC:
-
-			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId().getColumnDbName(), sortColName)) {
-				cb.query().addOrderBy_CmKaishaId_Asc();
-			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei().getColumnDbName(), sortColName)) {
-				cb.query().addOrderBy_KaishaMei_Asc();
-			}
-			break;
-
-		case DESC:
-
-			if (eq(CmKaishaDbm.getInstance().columnCmKaishaId().getColumnDbName(), sortColName)) {
-				cb.query().addOrderBy_CmKaishaId_Desc();
-			} else if (eq(CmKaishaDbm.getInstance().columnKaishaMei().getColumnDbName(), sortColName)) {
-				cb.query().addOrderBy_KaishaMei_Desc();
-			}
-			break;
-
-		}
+	public BsCmKaishaCQ setOrder(CmKaishaCB cb, String sortColName, String sort) {
+		return
+			eq(CM_KAISHA$CM_KAISHA_ID, sortColName) ? isAsc(sort)
+					? cb.query().addOrderBy_CmKaishaId_Asc() : cb.query().addOrderBy_CmKaishaId_Desc() :
+			eq(CM_KAISHA$KAISHA_MEI, sortColName) ? isAsc(sort)
+					? cb.query().addOrderBy_KaishaMei_Asc() : cb.query().addOrderBy_KaishaMei_Desc() :
+			eq(CM_KAISHA$KAISHA_MEI_EN, sortColName) ? isAsc(sort)
+					? cb.query().addOrderBy_KaishaMeiEn_Asc() : cb.query().addOrderBy_KaishaMeiEn_Desc() :
+			null;
 	}
 
 }

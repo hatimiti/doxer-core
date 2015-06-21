@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sa=""
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="/common/layout.html">
 <head>
@@ -24,17 +25,19 @@
 <form action=".">
 	<input type="submit" name="prepareRegister" value="登録" />
 </form>
-
 <div th:if="${not #lists.isEmpty(form.kaishaList)}">
 <div th:include="/common/fragment/fragments.html :: pageLink(${form.page}, 'search', ${false})">ページング</div>
 <table summary="会社名一覧" class="Result">
 	<thead>
 		<tr>
 			<th abbr="snm" class="ResultItem_Company">
-				会社ID<a href="./search" sa:sortby="CM_KAISHA_ID">▲</a>
+				会社ID<a href="./search" sa:sortby="${application.DBMetaManager.CM_KAISHA$CM_KAISHA_ID}">▲</a>
 			</th>
 			<th abbr="snm" class="ResultItem_Company">
-				会社名<a href="./search" sa:sortby="KAISHA_MEI">▲</a>
+				会社名<a href="./search" sa:sortby="${application.DBMetaManager.CM_KAISHA$KAISHA_MEI}">▲</a>
+			</th>
+			<th abbr="snm" class="ResultItem_Company">
+				会社名(英)<a href="./search" sa:sortby="${application.DBMetaManager.CM_KAISHA$KAISHA_MEI_EN}">▲</a>
 			</th>
 			<th abbr="change" class="ResultItem_Button">変更</th>
 			<th abbr="delete" class="ResultItem_Button">削除</th>
@@ -44,6 +47,7 @@
 		<tr>
 			<td class="ResultItem_Company" th:text="${cmKaisha.cmKaishaId}">12</td>
 			<td class="ResultItem_Company" th:text="${cmKaisha.kaishaMei}">株式会社イーエックス</td>
+			<td class="ResultItem_Company" th:text="${cmKaisha.kaishaMeiEn}">Co, Ex</td>
 			<td class="ResultItem_Button">
 				<form action="." method="post">
 					<input type="hidden" name="cmKaishaId.val" th:value="${cmKaisha.cmKaishaId}" />

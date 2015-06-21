@@ -20,12 +20,14 @@
 	<h3>基本情報</h3>
 
 	<span th:if="${form.mode.code() ne application.Mode.Register}">
-		会社ID:<span th:text="${form.cmKaishaId}">100</span>
+		会社ID:<span th:text="${form.cmKaishaId}">100</span><br />
 	</span>
 
-	会社名:<input type="text" value="sample会社名"
-		sa:field="${form.kaishaMei}" sa:errclass="ErrorsProperty" /><br />
+	会社名:<input type="text" value="sample会社名" sa:field="${form.kaishaMei}" sa:errclass="ErrorsProperty" /><br />
 	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('kaishaMei.val')}" th:text="${e}">xxx</div>
+
+	会社名(英):<input type="text" value="Co, Ex" sa:field="${form.kaishaMeiEn}" sa:errclass="ErrorsProperty" /><br />
+	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('kaishaMeiEn.val')}" th:text="${e}">xxx</div>
 
 	<h3>手数料</h3>
 	<table>
