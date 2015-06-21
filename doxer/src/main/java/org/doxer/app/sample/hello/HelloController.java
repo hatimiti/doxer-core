@@ -3,6 +3,7 @@ package org.doxer.app.sample.hello;
 import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
 import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
+import static org.doxer.xbase.report.birt.DoxBirt.BIRT_OUTPUT_FORMAT.*;
 import static org.doxer.xbase.util._Container.*;
 
 import java.io.BufferedOutputStream;
@@ -17,6 +18,7 @@ import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.doxer.xbase.controller.DoxController;
 import org.doxer.xbase.form.AccessUser;
+import org.doxer.xbase.report.birt.DoxBirt;
 import org.doxer.xbase.util._Container;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,6 +85,12 @@ public class HelloController extends DoxController {
 	@RequestMapping(value = "/download")
 	public void download(HelloForm form) {
 		_Container.downloadFile(Paths.get("//LS-XHLE38/share/var/", form.getFileName()));
+	}
+
+	@RequestMapping(value = "/output-report")
+	public void outputReport(HelloForm form) {
+		DoxBirt birt = new DoxBirt("/sample/hello/hello.rptdesign", "//LS-XHLE38/share/var/hello.pdf", PDF);
+		birt.output("hello", "Hello, BIRT");
 	}
 
 }
