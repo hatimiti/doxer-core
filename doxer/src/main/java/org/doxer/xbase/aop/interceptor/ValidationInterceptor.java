@@ -12,6 +12,8 @@ import org.doxer.xbase.form.Form;
 import org.doxer.xbase.util._Container;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Ref;
@@ -67,9 +69,21 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 		case REDIRECT:
 			return DoxModelAndView.redirect(dv.to(), null);
 		case FORWORD:
-			Method m = _Ref.getMethod(controller.getClass(), dv.to(), form.getClass()).get();
+
+			Optional<Method> method = _Ref.getMethodsByName(controller.getClass(), dv.to()).stream().findFirst();
+			Class<?>[] types = method.get().getParameterTypes();
+			Object[] args = new Object[types.length];
+
+			for (int i = 0; i < types.length; i++) {
+				if (types[i] == form.getClass()) {
+					args[i] = form;
+				} else if (types[i] == RedirectAttributes.class) {
+					args[i] = new RedirectAttributesModelMap();
+				}
+			}
+
 			try {
-				return m.invoke(controller, form);
+				return method.get().invoke(controller, args);
 			} catch (Exception e) {
 				LOG.error("No found method for forward. message = {}, stackTrace = {}",
 						e.getMessage(), e.getStackTrace());
