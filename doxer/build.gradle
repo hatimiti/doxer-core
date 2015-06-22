@@ -55,6 +55,7 @@ dependencies {
 	compile (group: SPRING_BOOT_GROUP_ID, name: 'spring-boot-starter-web', version: SPRING_BOOT_VERSION) {
 //		exclude module: 'hibernate-validator'
 	}
+	compile group: SPRING_BOOT_GROUP_ID, name: 'spring-boot-devtools', version: SPRING_BOOT_VERSION
 //	compile group: SPRING_GROUPID, name: 'spring-context', version: SPRING_VERSION
 //	compile group: SPRING_GROUPID, name: 'spring-web', version: SPRING_VERSION
 //	compile group: SPRING_GROUPID, name: 'spring-webmvc', version: SPRING_VERSION
