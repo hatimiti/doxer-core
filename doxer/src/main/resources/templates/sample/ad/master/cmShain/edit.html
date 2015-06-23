@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sa=""
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/common/layout.html">
+<head>
+	<!--/*/ <th:block th:remove="all"> /*/-->
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../../../../webcontents/share/css/init.css" />
+	<script src="/webcontents/share/js/jquery.js" ></script>
+	<!--/*/ </th:block> /*/-->
+	<title th:if="${form.mode.code() eq application.Mode.Register}">社員登録画面</title>
+	<title th:if="${form.mode.code() eq application.Mode.Update}"  >社員更新画面</title>
+	<title th:if="${form.mode.code() eq application.Mode.Delete}"  >社員削除画面</title>
+</head>
+<body>
+<div layout:fragment="contents">
+	<form action="." method="post">
+	<h3>基本情報</h3>
+
+	<span th:if="${form.mode.code() ne application.Mode.Register}">
+		社員ID:<span th:text="${form.cmShainId}">100</span><br />
+	</span>
+
+	会社ID:<input type="text" value="10" sa:field="${form.cmKaishaId}" sa:errclass="ErrorsProperty" /><br />
+	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
+
+	社員名(姓):<input type="text" value="田中" sa:field="${form.shainSei}" sa:errclass="ErrorsProperty" /><br />
+	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainSei.val')}" th:text="${e}">xxx</div>
+	社員名(名):<input type="text" value="一郎" sa:field="${form.shainMei}" sa:errclass="ErrorsProperty" /><br />
+	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei.val')}" th:text="${e}">xxx</div>
+
+	社員名(姓)(英):<input type="text" value="Tanaka" sa:field="${form.shainSeiEn}" sa:errclass="ErrorsProperty" /><br />
+	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainSeiEn.val')}" th:text="${e}">xxx</div>
+	社員名(名)(英):<input type="text" value="Ichiro" sa:field="${form.shainMeiEn}" sa:errclass="ErrorsProperty" /><br />
+	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMeiEn.val')}" th:text="${e}">xxx</div>
+
+	<input type="submit" name="backToList" value="戻る" />
+	<span th:switch="${form.mode.code()}">
+		<input type="submit" name="confirmRegister" value="次へ" th:case="${application.Mode.Register}" />
+		<input type="submit" name="confirmUpdate"   value="次へ" th:case="${application.Mode.Update}" />
+	</span>
+	<input type="hidden" sa:token="true" />
+	</form>
+
+</div>
+</body>
+</html>

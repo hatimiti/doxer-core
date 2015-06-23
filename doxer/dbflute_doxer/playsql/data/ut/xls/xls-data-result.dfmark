@@ -7,5 +7,9 @@
 data-directory: playsql/data/ut/xls
 
 [data-xls-template.xls]
+  cm_kaisha (8)
+  cm_kish_tesuryo (16)
+  cm_kish_renrakusaki (1)
+  cm_shain (5)
   cm_tesuryo_kb (2)
   cm_renrakusaki_yoto_kb (2)

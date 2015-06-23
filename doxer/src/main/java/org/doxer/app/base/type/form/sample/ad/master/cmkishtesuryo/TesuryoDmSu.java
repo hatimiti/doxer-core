@@ -1,4 +1,4 @@
-package org.doxer.app.base.type.form.sample.ad.master;
+package org.doxer.app.base.type.form.sample.ad.master.cmkishtesuryo;
 
 import org.doxer.app.base.type.form.base.Su;
 import org.doxer.app.db.dbflute.bsentity.dbmeta.CmKishTesuryoDbm;

@@ -1,0 +1,30 @@
+/*
+ * 新たにテーブルを定義する際の手順を示す．
+ */
+
+01．/doxer/dbflute_doxer/playsql/replace-schema.sql
+　DDLを定義する．
+　※初期投入データが必要な場合は
+　　「/doxer/dbflute_doxer/playsql/data/ut/xls/data-xls-template.xls」
+　　にデータを定義します．
+
+02．/doxer/dbflute_doxer/dfprop/additionalForeignKeyMap.dfprop
+　DDLに外部キー制約を設定しない場合は、当ファイルにテーブル間の関連付けを行う．
+
+    ; FK_<関連元テーブル名>_<関連先テーブル名> = map:{
+        ; localTableName  = 関連元テーブル名     ; foreignTableName  = 関連先テーブル名
+        ; localColumnName = 関連元カラム名       ; foreignColumnName = 関連先カラム名
+    }
+
+03．/doxer/dbflute_doxer/manage.bat
+　1: renewal を指定して実行する．
+　　01．で作成したDDLが実行され、最新のテーブル定義に置き換わります．
+　　「BUILD SUCCESSFUL」と表示されることを確認します．
+　　「BUILD FAILED」と表示された場合は、コンソールのエラーメッセージでエラー内容を確認します．
+
+　※対象スキーマが削除されるので注意！！
+　　対象スキーマを変更したい場合は
+　　「/doxer/dbflute_doxer/dfprop/databaseInfoMap.dfprop」
+　　の接続先を修正します．
+　※正常完了した場合、EntityやBhvが自動生成されています．
+

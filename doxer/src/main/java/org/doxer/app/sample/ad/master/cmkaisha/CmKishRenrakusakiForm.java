@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 
 import org.doxer.app.base.type.form.common.MailAddress;
 import org.doxer.app.base.type.form.common.TelNo;
-import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
-import org.doxer.app.base.type.form.sample.ad.master.CmKishRenrakusakiId;
-import org.doxer.app.base.type.form.sample.ad.master.RenrakusakiYotoKb;
+import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
+import org.doxer.app.base.type.form.sample.ad.master.cmkishrenrakusaki.CmKishRenrakusakiId;
+import org.doxer.app.base.type.form.sample.ad.master.cmkishrenrakusaki.RenrakusakiYotoKb;
 import org.doxer.app.db.dbflute.exentity.CmKishRenrakusaki;
 import org.doxer.xbase.form.BaseEntityForm;
 import org.springframework.stereotype.Component;

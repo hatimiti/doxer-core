@@ -6,11 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import org.doxer.app.base.type.form.common.Dt;
-import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
-import org.doxer.app.base.type.form.sample.ad.master.CmKishTesuryoId;
-import org.doxer.app.base.type.form.sample.ad.master.TesuryoDmSu;
-import org.doxer.app.base.type.form.sample.ad.master.TesuryoIntSu;
-import org.doxer.app.base.type.form.sample.ad.master.TesuryoKb;
+import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
+import org.doxer.app.base.type.form.sample.ad.master.cmkishtesuryo.CmKishTesuryoId;
+import org.doxer.app.base.type.form.sample.ad.master.cmkishtesuryo.TesuryoDmSu;
+import org.doxer.app.base.type.form.sample.ad.master.cmkishtesuryo.TesuryoIntSu;
+import org.doxer.app.base.type.form.sample.ad.master.cmkishtesuryo.TesuryoKb;
 import org.doxer.app.db.dbflute.allcommon.CDef;
 import org.doxer.app.db.dbflute.exentity.CmKishTesuryo;
 import org.doxer.xbase.form.BaseEntityForm;

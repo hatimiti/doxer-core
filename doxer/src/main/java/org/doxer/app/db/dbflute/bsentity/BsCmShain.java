@@ -1,50 +1,56 @@
 package org.doxer.app.db.dbflute.bsentity;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.dbflute.dbmeta.DBMeta;
+import org.dbflute.Entity;
 import org.dbflute.dbmeta.AbstractEntity;
+import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.accessory.DomainEntity;
-import org.doxer.app.db.dbflute.allcommon.EntityDefinedCommonColumn;
+import org.dbflute.optional.OptionalEntity;
 import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
-import org.doxer.app.db.dbflute.exentity.*;
+import org.doxer.app.db.dbflute.allcommon.EntityDefinedCommonColumn;
+import org.doxer.app.db.dbflute.exentity.CmKaisha;
+import org.doxer.app.db.dbflute.exentity.CmShain;
 
 /**
- * The entity of CM_KAISHA as TABLE. <br>
+ * The entity of CM_SHAIN as TABLE. <br>
  * <pre>
  * [primary-key]
- *     CM_KAISHA_ID
- * 
+ *     CM_SHAIN_ID
+ *
  * [column]
- *     CM_KAISHA_ID, KAISHA_MEI, KAISHA_MEI_EN, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
- * 
+ *     CM_SHAIN_ID, CM_KAISHA_ID, SHAIN_SEI, SHAIN_MEI, SHAIN_SEI_EN, SHAIN_MEI_EN, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
+ *
  * [sequence]
- *     
- * 
+ *
+ *
  * [identity]
- *     CM_KAISHA_ID
- * 
+ *     CM_SHAIN_ID
+ *
  * [version-no]
  *     VERSION_NO
- * 
+ *
  * [foreign table]
- *     
- * 
+ *     CM_KAISHA
+ *
  * [referrer table]
- *     CM_KISH_TESURYO, CM_KISH_RENRAKUSAKI, CM_SHAIN
- * 
+ *
+ *
  * [foreign property]
- *     
- * 
+ *     cmKaisha
+ *
  * [referrer property]
- *     cmKishTesuryoList, cmKishRenrakusakiList, cmShainList
- * 
+ *
+ *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ * Long cmShainId = entity.getCmShainId();
  * Long cmKaishaId = entity.getCmKaishaId();
- * String kaishaMei = entity.getKaishaMei();
- * String kaishaMeiEn = entity.getKaishaMeiEn();
+ * String shainSei = entity.getShainSei();
+ * String shainMei = entity.getShainMei();
+ * String shainSeiEn = entity.getShainSeiEn();
+ * String shainMeiEn = entity.getShainMeiEn();
  * String regUserId = entity.getRegUserId();
  * java.time.LocalDateTime regTm = entity.getRegTm();
  * String regFuncCd = entity.getRegFuncCd();
@@ -52,9 +58,12 @@ import org.doxer.app.db.dbflute.exentity.*;
  * java.time.LocalDateTime updTm = entity.getUpdTm();
  * String updFuncCd = entity.getUpdFuncCd();
  * Integer versionNo = entity.getVersionNo();
+ * entity.setCmShainId(cmShainId);
  * entity.setCmKaishaId(cmKaishaId);
- * entity.setKaishaMei(kaishaMei);
- * entity.setKaishaMeiEn(kaishaMeiEn);
+ * entity.setShainSei(shainSei);
+ * entity.setShainMei(shainMei);
+ * entity.setShainSeiEn(shainSeiEn);
+ * entity.setShainMeiEn(shainMeiEn);
  * entity.setRegUserId(regUserId);
  * entity.setRegTm(regTm);
  * entity.setRegFuncCd(regFuncCd);
@@ -66,7 +75,7 @@ import org.doxer.app.db.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
+public abstract class BsCmShain extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
@@ -77,14 +86,23 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)} */
+    /** CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)} */
+    protected Long _cmShainId;
+
+    /** CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} */
     protected Long _cmKaishaId;
 
-    /** KAISHA_MEI: {UQ, NotNull, VARCHAR(50)} */
-    protected String _kaishaMei;
+    /** SHAIN_SEI: {NotNull, VARCHAR(50)} */
+    protected String _shainSei;
 
-    /** KAISHA_MEI_EN: {VARCHAR(100)} */
-    protected String _kaishaMeiEn;
+    /** SHAIN_MEI: {NotNull, VARCHAR(50)} */
+    protected String _shainMei;
+
+    /** SHAIN_SEI_EN: {VARCHAR(100)} */
+    protected String _shainSeiEn;
+
+    /** SHAIN_MEI_EN: {VARCHAR(100)} */
+    protected String _shainMeiEn;
 
     /** REG_USER_ID: {NotNull, VARCHAR(10)} */
     protected String _regUserId;
@@ -117,7 +135,7 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "CM_KAISHA";
+        return "CM_SHAIN";
     }
 
     // ===================================================================================
@@ -125,87 +143,37 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     //                                                                        ============
     /** {@inheritDoc} */
     public boolean hasPrimaryKeyValue() {
-        if (_cmKaishaId == null) { return false; }
+        if (_cmShainId == null) { return false; }
         return true;
-    }
-
-    /**
-     * To be unique by the unique column. <br>
-     * You can update the entity by the key when entity update (NOT batch update).
-     * @param kaishaMei : UQ, NotNull, VARCHAR(50). (NotNull)
-     */
-    public void uniqueBy(String kaishaMei) {
-        __uniqueDrivenProperties.clear();
-        __uniqueDrivenProperties.addPropertyName("kaishaMei");
-        setKaishaMei(kaishaMei);
     }
 
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'. */
+    protected OptionalEntity<CmKaisha> _cmKaisha;
+
+    /**
+     * [get] CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'cmKaisha'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<CmKaisha> getCmKaisha() {
+        if (_cmKaisha == null) { _cmKaisha = OptionalEntity.relationEmpty(this, "cmKaisha"); }
+        return _cmKaisha;
+    }
+
+    /**
+     * [set] CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @param cmKaisha The entity of foreign property 'cmKaisha'. (NullAllowed)
+     */
+    public void setCmKaisha(OptionalEntity<CmKaisha> cmKaisha) {
+        _cmKaisha = cmKaisha;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'. */
-    protected List<CmKishTesuryo> _cmKishTesuryoList;
-
-    /**
-     * [get] CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
-     * @return The entity list of referrer property 'cmKishTesuryoList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<CmKishTesuryo> getCmKishTesuryoList() {
-        if (_cmKishTesuryoList == null) { _cmKishTesuryoList = newReferrerList(); }
-        return _cmKishTesuryoList;
-    }
-
-    /**
-     * [set] CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
-     * @param cmKishTesuryoList The entity list of referrer property 'cmKishTesuryoList'. (NullAllowed)
-     */
-    public void setCmKishTesuryoList(List<CmKishTesuryo> cmKishTesuryoList) {
-        _cmKishTesuryoList = cmKishTesuryoList;
-    }
-
-    /** CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'. */
-    protected List<CmKishRenrakusaki> _cmKishRenrakusakiList;
-
-    /**
-     * [get] CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
-     * @return The entity list of referrer property 'cmKishRenrakusakiList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<CmKishRenrakusaki> getCmKishRenrakusakiList() {
-        if (_cmKishRenrakusakiList == null) { _cmKishRenrakusakiList = newReferrerList(); }
-        return _cmKishRenrakusakiList;
-    }
-
-    /**
-     * [set] CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
-     * @param cmKishRenrakusakiList The entity list of referrer property 'cmKishRenrakusakiList'. (NullAllowed)
-     */
-    public void setCmKishRenrakusakiList(List<CmKishRenrakusaki> cmKishRenrakusakiList) {
-        _cmKishRenrakusakiList = cmKishRenrakusakiList;
-    }
-
-    /** CM_SHAIN by CM_KAISHA_ID, named 'cmShainList'. */
-    protected List<CmShain> _cmShainList;
-
-    /**
-     * [get] CM_SHAIN by CM_KAISHA_ID, named 'cmShainList'.
-     * @return The entity list of referrer property 'cmShainList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<CmShain> getCmShainList() {
-        if (_cmShainList == null) { _cmShainList = newReferrerList(); }
-        return _cmShainList;
-    }
-
-    /**
-     * [set] CM_SHAIN by CM_KAISHA_ID, named 'cmShainList'.
-     * @param cmShainList The entity list of referrer property 'cmShainList'. (NullAllowed)
-     */
-    public void setCmShainList(List<CmShain> cmShainList) {
-        _cmShainList = cmShainList;
-    }
-
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -215,9 +183,9 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     //                                                                      ==============
     @Override
     protected boolean doEquals(Object obj) {
-        if (obj instanceof BsCmKaisha) {
-            BsCmKaisha other = (BsCmKaisha)obj;
-            if (!xSV(_cmKaishaId, other._cmKaishaId)) { return false; }
+        if (obj instanceof BsCmShain) {
+            BsCmShain other = (BsCmShain)obj;
+            if (!xSV(_cmShainId, other._cmShainId)) { return false; }
             return true;
         } else {
             return false;
@@ -228,28 +196,30 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     protected int doHashCode(int initial) {
         int hs = initial;
         hs = xCH(hs, asTableDbName());
-        hs = xCH(hs, _cmKaishaId);
+        hs = xCH(hs, _cmShainId);
         return hs;
     }
 
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_cmKishTesuryoList != null) { for (CmKishTesuryo et : _cmKishTesuryoList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "cmKishTesuryoList")); } } }
-        if (_cmKishRenrakusakiList != null) { for (CmKishRenrakusaki et : _cmKishRenrakusakiList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "cmKishRenrakusakiList")); } } }
-        if (_cmShainList != null) { for (CmShain et : _cmShainList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "cmShainList")); } } }
+        if (_cmKaisha != null && _cmKaisha.isPresent())
+        { sb.append(li).append(xbRDS(_cmKaisha, "cmKaisha")); }
         return sb.toString();
+    }
+    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
+        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
+        sb.append(dm).append(xfND(_cmShainId));
         sb.append(dm).append(xfND(_cmKaishaId));
-        sb.append(dm).append(xfND(_kaishaMei));
-        sb.append(dm).append(xfND(_kaishaMeiEn));
+        sb.append(dm).append(xfND(_shainSei));
+        sb.append(dm).append(xfND(_shainMei));
+        sb.append(dm).append(xfND(_shainSeiEn));
+        sb.append(dm).append(xfND(_shainMeiEn));
         sb.append(dm).append(xfND(_regUserId));
         sb.append(dm).append(xfND(_regTm));
         sb.append(dm).append(xfND(_regFuncCd));
@@ -267,12 +237,8 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_cmKishTesuryoList != null && !_cmKishTesuryoList.isEmpty())
-        { sb.append(dm).append("cmKishTesuryoList"); }
-        if (_cmKishRenrakusakiList != null && !_cmKishRenrakusakiList.isEmpty())
-        { sb.append(dm).append("cmKishRenrakusakiList"); }
-        if (_cmShainList != null && !_cmShainList.isEmpty())
-        { sb.append(dm).append("cmShainList"); }
+        if (_cmKaisha != null && _cmKaisha.isPresent())
+        { sb.append(dm).append("cmKaisha"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -280,15 +246,33 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     }
 
     @Override
-    public CmKaisha clone() {
-        return (CmKaisha)super.clone();
+    public CmShain clone() {
+        return (CmShain)super.clone();
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)} <br>
+     * [get] CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)} <br>
+     * @return The value of the column 'CM_SHAIN_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Long getCmShainId() {
+        checkSpecifiedProperty("cmShainId");
+        return _cmShainId;
+    }
+
+    /**
+     * [set] CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)} <br>
+     * @param cmShainId The value of the column 'CM_SHAIN_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setCmShainId(Long cmShainId) {
+        registerModifiedProperty("cmShainId");
+        _cmShainId = cmShainId;
+    }
+
+    /**
+     * [get] CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @return The value of the column 'CM_KAISHA_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getCmKaishaId() {
@@ -297,7 +281,7 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [set] CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)} <br>
+     * [set] CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @param cmKaishaId The value of the column 'CM_KAISHA_ID'. (basically NotNull if update: for the constraint)
      */
     public void setCmKaishaId(Long cmKaishaId) {
@@ -306,39 +290,75 @@ public abstract class BsCmKaisha extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [get] KAISHA_MEI: {UQ, NotNull, VARCHAR(50)} <br>
-     * @return The value of the column 'KAISHA_MEI'. (basically NotNull if selected: for the constraint)
+     * [get] SHAIN_SEI: {NotNull, VARCHAR(50)} <br>
+     * @return The value of the column 'SHAIN_SEI'. (basically NotNull if selected: for the constraint)
      */
-    public String getKaishaMei() {
-        checkSpecifiedProperty("kaishaMei");
-        return _kaishaMei;
+    public String getShainSei() {
+        checkSpecifiedProperty("shainSei");
+        return _shainSei;
     }
 
     /**
-     * [set] KAISHA_MEI: {UQ, NotNull, VARCHAR(50)} <br>
-     * @param kaishaMei The value of the column 'KAISHA_MEI'. (basically NotNull if update: for the constraint)
+     * [set] SHAIN_SEI: {NotNull, VARCHAR(50)} <br>
+     * @param shainSei The value of the column 'SHAIN_SEI'. (basically NotNull if update: for the constraint)
      */
-    public void setKaishaMei(String kaishaMei) {
-        registerModifiedProperty("kaishaMei");
-        _kaishaMei = kaishaMei;
+    public void setShainSei(String shainSei) {
+        registerModifiedProperty("shainSei");
+        _shainSei = shainSei;
     }
 
     /**
-     * [get] KAISHA_MEI_EN: {VARCHAR(100)} <br>
-     * @return The value of the column 'KAISHA_MEI_EN'. (NullAllowed even if selected: for no constraint)
+     * [get] SHAIN_MEI: {NotNull, VARCHAR(50)} <br>
+     * @return The value of the column 'SHAIN_MEI'. (basically NotNull if selected: for the constraint)
      */
-    public String getKaishaMeiEn() {
-        checkSpecifiedProperty("kaishaMeiEn");
-        return _kaishaMeiEn;
+    public String getShainMei() {
+        checkSpecifiedProperty("shainMei");
+        return _shainMei;
     }
 
     /**
-     * [set] KAISHA_MEI_EN: {VARCHAR(100)} <br>
-     * @param kaishaMeiEn The value of the column 'KAISHA_MEI_EN'. (NullAllowed: null update allowed for no constraint)
+     * [set] SHAIN_MEI: {NotNull, VARCHAR(50)} <br>
+     * @param shainMei The value of the column 'SHAIN_MEI'. (basically NotNull if update: for the constraint)
      */
-    public void setKaishaMeiEn(String kaishaMeiEn) {
-        registerModifiedProperty("kaishaMeiEn");
-        _kaishaMeiEn = kaishaMeiEn;
+    public void setShainMei(String shainMei) {
+        registerModifiedProperty("shainMei");
+        _shainMei = shainMei;
+    }
+
+    /**
+     * [get] SHAIN_SEI_EN: {VARCHAR(100)} <br>
+     * @return The value of the column 'SHAIN_SEI_EN'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getShainSeiEn() {
+        checkSpecifiedProperty("shainSeiEn");
+        return _shainSeiEn;
+    }
+
+    /**
+     * [set] SHAIN_SEI_EN: {VARCHAR(100)} <br>
+     * @param shainSeiEn The value of the column 'SHAIN_SEI_EN'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setShainSeiEn(String shainSeiEn) {
+        registerModifiedProperty("shainSeiEn");
+        _shainSeiEn = shainSeiEn;
+    }
+
+    /**
+     * [get] SHAIN_MEI_EN: {VARCHAR(100)} <br>
+     * @return The value of the column 'SHAIN_MEI_EN'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getShainMeiEn() {
+        checkSpecifiedProperty("shainMeiEn");
+        return _shainMeiEn;
+    }
+
+    /**
+     * [set] SHAIN_MEI_EN: {VARCHAR(100)} <br>
+     * @param shainMeiEn The value of the column 'SHAIN_MEI_EN'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setShainMeiEn(String shainMeiEn) {
+        registerModifiedProperty("shainMeiEn");
+        _shainMeiEn = shainMeiEn;
     }
 
     /**

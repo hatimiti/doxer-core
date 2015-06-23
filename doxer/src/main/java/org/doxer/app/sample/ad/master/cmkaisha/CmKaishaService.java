@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
+import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
 import org.doxer.app.base.type.sample.ad.master.CmKaishaList;
 import org.doxer.app.base.type.sample.ad.master.CmKishTesuryoFormList;
 import org.doxer.app.db.dbflute.allcommon.CDef.RenrakusakiYotoKb;

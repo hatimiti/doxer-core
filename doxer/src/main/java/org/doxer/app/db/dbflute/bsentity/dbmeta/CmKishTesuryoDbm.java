@@ -97,7 +97,7 @@ public class CmKishTesuryoDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKishTesuryoId = cci("CM_KISH_TESURYO_ID", "CM_KISH_TESURYO_ID", null, null, Long.class, "cmKishTesuryoId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_8809B907_C59F_4276_9C40_1D05B6CBF126", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKishTesuryoId = cci("CM_KISH_TESURYO_ID", "CM_KISH_TESURYO_ID", null, null, Long.class, "cmKishTesuryoId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_030D6349_F596_4240_87F0_4DD946CE60BA", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnTekiyoKikanFromDt = cci("TEKIYO_KIKAN_FROM_DT", "TEKIYO_KIKAN_FROM_DT", null, null, String.class, "tekiyoKikanFromDt", null, false, false, true, "CHAR", 8, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTekiyoKikanToDt = cci("TEKIYO_KIKAN_TO_DT", "TEKIYO_KIKAN_TO_DT", null, null, String.class, "tekiyoKikanToDt", null, false, false, true, "CHAR", 8, 0, null, false, null, null, null, null, null, false);

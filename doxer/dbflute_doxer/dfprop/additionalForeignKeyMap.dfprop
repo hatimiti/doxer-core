@@ -45,5 +45,9 @@ map:{
     ; FK_CM_KISH_RENRAKUSAKI_CM_KAISHA = map:{
         ; localTableName  = cm_kish_renrakusaki ; foreignTableName  = cm_kaisha
     }
+    ; FK_CM_SHAIN_CM_KAISHA = map:{
+        ; localTableName  = cm_shain            ; foreignTableName  = cm_kaisha
+        ; localColumnName = cm_kaisha_id        ; foreignColumnName = cm_kaisha_id
+    }
 }
 # ----------------/

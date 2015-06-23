@@ -1,4 +1,4 @@
-package org.doxer.app.base.type.form.sample.ad.master;
+package org.doxer.app.base.type.form.sample.ad.master.cmkaisha;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
 
@@ -30,7 +30,6 @@ public class KaishaMeiEn extends KaishaMei {
 		return CmKaishaDbm.getInstance().columnKaishaMeiEn().getColumnSize();
 	}
 
-	@Override
 	protected void setNotExistsMeiColumn(CmKaishaCB cb) {
 		cb.query().setKaishaMeiEn_Equal(getVal());
 	}

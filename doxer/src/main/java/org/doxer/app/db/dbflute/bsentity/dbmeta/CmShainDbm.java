@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
+import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -13,17 +14,17 @@ import org.doxer.app.db.dbflute.allcommon.*;
 import org.doxer.app.db.dbflute.exentity.*;
 
 /**
- * The DB meta of CM_KAISHA. (Singleton)
+ * The DB meta of CM_SHAIN. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
-public class CmKaishaDbm extends AbstractDBMeta {
+public class CmShainDbm extends AbstractDBMeta {
 
     // ===================================================================================
     //                                                                           Singleton
     //                                                                           =========
-    private static final CmKaishaDbm _instance = new CmKaishaDbm();
-    private CmKaishaDbm() {}
-    public static CmKaishaDbm getInstance() { return _instance; }
+    private static final CmShainDbm _instance = new CmShainDbm();
+    private CmShainDbm() {}
+    public static CmShainDbm getInstance() { return _instance; }
 
     // ===================================================================================
     //                                                                       Current DBDef
@@ -42,27 +43,42 @@ public class CmKaishaDbm extends AbstractDBMeta {
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     { xsetupEpg(); }
     protected void xsetupEpg() {
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getCmKaishaId(), (et, vl) -> ((CmKaisha)et).setCmKaishaId(ctl(vl)), "cmKaishaId");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getKaishaMei(), (et, vl) -> ((CmKaisha)et).setKaishaMei((String)vl), "kaishaMei");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getKaishaMeiEn(), (et, vl) -> ((CmKaisha)et).setKaishaMeiEn((String)vl), "kaishaMeiEn");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getRegUserId(), (et, vl) -> ((CmKaisha)et).setRegUserId((String)vl), "regUserId");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getRegTm(), (et, vl) -> ((CmKaisha)et).setRegTm(ctldt(vl)), "regTm");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getRegFuncCd(), (et, vl) -> ((CmKaisha)et).setRegFuncCd((String)vl), "regFuncCd");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getUpdUserId(), (et, vl) -> ((CmKaisha)et).setUpdUserId((String)vl), "updUserId");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getUpdTm(), (et, vl) -> ((CmKaisha)et).setUpdTm(ctldt(vl)), "updTm");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getUpdFuncCd(), (et, vl) -> ((CmKaisha)et).setUpdFuncCd((String)vl), "updFuncCd");
-        setupEpg(_epgMap, et -> ((CmKaisha)et).getVersionNo(), (et, vl) -> ((CmKaisha)et).setVersionNo(cti(vl)), "versionNo");
+        setupEpg(_epgMap, et -> ((CmShain)et).getCmShainId(), (et, vl) -> ((CmShain)et).setCmShainId(ctl(vl)), "cmShainId");
+        setupEpg(_epgMap, et -> ((CmShain)et).getCmKaishaId(), (et, vl) -> ((CmShain)et).setCmKaishaId(ctl(vl)), "cmKaishaId");
+        setupEpg(_epgMap, et -> ((CmShain)et).getShainSei(), (et, vl) -> ((CmShain)et).setShainSei((String)vl), "shainSei");
+        setupEpg(_epgMap, et -> ((CmShain)et).getShainMei(), (et, vl) -> ((CmShain)et).setShainMei((String)vl), "shainMei");
+        setupEpg(_epgMap, et -> ((CmShain)et).getShainSeiEn(), (et, vl) -> ((CmShain)et).setShainSeiEn((String)vl), "shainSeiEn");
+        setupEpg(_epgMap, et -> ((CmShain)et).getShainMeiEn(), (et, vl) -> ((CmShain)et).setShainMeiEn((String)vl), "shainMeiEn");
+        setupEpg(_epgMap, et -> ((CmShain)et).getRegUserId(), (et, vl) -> ((CmShain)et).setRegUserId((String)vl), "regUserId");
+        setupEpg(_epgMap, et -> ((CmShain)et).getRegTm(), (et, vl) -> ((CmShain)et).setRegTm(ctldt(vl)), "regTm");
+        setupEpg(_epgMap, et -> ((CmShain)et).getRegFuncCd(), (et, vl) -> ((CmShain)et).setRegFuncCd((String)vl), "regFuncCd");
+        setupEpg(_epgMap, et -> ((CmShain)et).getUpdUserId(), (et, vl) -> ((CmShain)et).setUpdUserId((String)vl), "updUserId");
+        setupEpg(_epgMap, et -> ((CmShain)et).getUpdTm(), (et, vl) -> ((CmShain)et).setUpdTm(ctldt(vl)), "updTm");
+        setupEpg(_epgMap, et -> ((CmShain)et).getUpdFuncCd(), (et, vl) -> ((CmShain)et).setUpdFuncCd((String)vl), "updFuncCd");
+        setupEpg(_epgMap, et -> ((CmShain)et).getVersionNo(), (et, vl) -> ((CmShain)et).setVersionNo(cti(vl)), "versionNo");
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
 
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    { xsetupEfpg(); }
+    @SuppressWarnings("unchecked")
+    protected void xsetupEfpg() {
+        setupEfpg(_efpgMap, et -> ((CmShain)et).getCmKaisha(), (et, vl) -> ((CmShain)et).setCmKaisha((OptionalEntity<CmKaisha>)vl), "cmKaisha");
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
+
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "CM_KAISHA";
-    protected final String _tableDispName = "CM_KAISHA";
-    protected final String _tablePropertyName = "cmKaisha";
-    protected final TableSqlName _tableSqlName = new TableSqlName("CM_KAISHA", _tableDbName);
+    protected final String _tableDbName = "CM_SHAIN";
+    protected final String _tableDispName = "CM_SHAIN";
+    protected final String _tablePropertyName = "cmShain";
+    protected final TableSqlName _tableSqlName = new TableSqlName("CM_SHAIN", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTableDispName() { return _tableDispName; }
@@ -72,9 +88,12 @@ public class CmKaishaDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_53A0EF60_510F_4D68_A06D_54F937DFC929", false, null, null, null, "cmKishTesuryoList,cmKishRenrakusakiList,cmShainList", null, false);
-    protected final ColumnInfo _columnKaishaMei = cci("KAISHA_MEI", "KAISHA_MEI", null, null, String.class, "kaishaMei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnKaishaMeiEn = cci("KAISHA_MEI_EN", "KAISHA_MEI_EN", null, null, String.class, "kaishaMeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmShainId = cci("CM_SHAIN_ID", "CM_SHAIN_ID", null, null, Long.class, "cmShainId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_E0863774_C64C_43D7_8801_9B9262A9B35C", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
+    protected final ColumnInfo _columnShainSei = cci("SHAIN_SEI", "SHAIN_SEI", null, null, String.class, "shainSei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnShainMei = cci("SHAIN_MEI", "SHAIN_MEI", null, null, String.class, "shainMei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnShainSeiEn = cci("SHAIN_SEI_EN", "SHAIN_SEI_EN", null, null, String.class, "shainSeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnShainMeiEn = cci("SHAIN_MEI_EN", "SHAIN_MEI_EN", null, null, String.class, "shainMeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
@@ -84,20 +103,35 @@ public class CmKaishaDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "DECIMAL", 9, 0, null, true, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnCmShainId() { return _columnCmShainId; }
+    /**
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCmKaishaId() { return _columnCmKaishaId; }
     /**
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnKaishaMei() { return _columnKaishaMei; }
+    public ColumnInfo columnShainSei() { return _columnShainSei; }
     /**
-     * KAISHA_MEI_EN: {VARCHAR(100)}
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnKaishaMeiEn() { return _columnKaishaMeiEn; }
+    public ColumnInfo columnShainMei() { return _columnShainMei; }
+    /**
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnShainSeiEn() { return _columnShainSeiEn; }
+    /**
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnShainMeiEn() { return _columnShainMeiEn; }
     /**
      * REG_USER_ID: {NotNull, VARCHAR(10)}
      * @return The information object of specified column. (NotNull)
@@ -136,9 +170,12 @@ public class CmKaishaDbm extends AbstractDBMeta {
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
+        ls.add(columnCmShainId());
         ls.add(columnCmKaishaId());
-        ls.add(columnKaishaMei());
-        ls.add(columnKaishaMeiEn());
+        ls.add(columnShainSei());
+        ls.add(columnShainMei());
+        ls.add(columnShainSeiEn());
+        ls.add(columnShainMeiEn());
         ls.add(columnRegUserId());
         ls.add(columnRegTm());
         ls.add(columnRegFuncCd());
@@ -157,14 +194,9 @@ public class CmKaishaDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                       Primary Element
     //                                       ---------------
-    protected UniqueInfo cpui() { return hpcpui(columnCmKaishaId()); }
+    protected UniqueInfo cpui() { return hpcpui(columnCmShainId()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
-
-    // -----------------------------------------------------
-    //                                        Unique Element
-    //                                        --------------
-    public UniqueInfo uniqueOf() { return hpcui(columnKaishaMei()); }
 
     // ===================================================================================
     //                                                                       Relation Info
@@ -174,34 +206,18 @@ public class CmKaishaDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * CM_KAISHA by my CM_KAISHA_ID, named 'cmKaisha'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignCmKaisha() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKaishaDbm.getInstance().columnCmKaishaId());
+        return cfi("FK_CM_SHAIN_CM_KAISHA", "cmKaisha", this, CmKaishaDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, true, null, null, false, "cmShainList", false);
+    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
-    /**
-     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoList'.
-     * @return The information object of referrer property. (NotNull)
-     */
-    public ReferrerInfo referrerCmKishTesuryoList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKishTesuryoDbm.getInstance().columnCmKaishaId());
-        return cri("FK_CM_KISH_TESURYO_CM_KAISHA", "cmKishTesuryoList", this, CmKishTesuryoDbm.getInstance(), mp, false, "cmKaisha");
-    }
-    /**
-     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiList'.
-     * @return The information object of referrer property. (NotNull)
-     */
-    public ReferrerInfo referrerCmKishRenrakusakiList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmKishRenrakusakiDbm.getInstance().columnCmKaishaId());
-        return cri("FK_CM_KISH_RENRAKUSAKI_CM_KAISHA", "cmKishRenrakusakiList", this, CmKishRenrakusakiDbm.getInstance(), mp, false, "cmKaisha");
-    }
-    /**
-     * CM_SHAIN by CM_KAISHA_ID, named 'cmShainList'.
-     * @return The information object of referrer property. (NotNull)
-     */
-    public ReferrerInfo referrerCmShainList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCmKaishaId(), CmShainDbm.getInstance().columnCmKaishaId());
-        return cri("FK_CM_SHAIN_CM_KAISHA", "cmShainList", this, CmShainDbm.getInstance(), mp, false, "cmKaisha");
-    }
 
     // ===================================================================================
     //                                                                        Various Info
@@ -220,27 +236,27 @@ public class CmKaishaDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                           Type Name
     //                                                                           =========
-    public String getEntityTypeName() { return "org.doxer.app.db.dbflute.exentity.CmKaisha"; }
-    public String getConditionBeanTypeName() { return "org.doxer.app.db.dbflute.cbean.CmKaishaCB"; }
-    public String getBehaviorTypeName() { return "org.doxer.app.db.dbflute.exbhv.CmKaishaBhv"; }
+    public String getEntityTypeName() { return "org.doxer.app.db.dbflute.exentity.CmShain"; }
+    public String getConditionBeanTypeName() { return "org.doxer.app.db.dbflute.cbean.CmShainCB"; }
+    public String getBehaviorTypeName() { return "org.doxer.app.db.dbflute.exbhv.CmShainBhv"; }
 
     // ===================================================================================
     //                                                                         Object Type
     //                                                                         ===========
-    public Class<CmKaisha> getEntityType() { return CmKaisha.class; }
+    public Class<CmShain> getEntityType() { return CmShain.class; }
 
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public CmKaisha newEntity() { return new CmKaisha(); }
+    public CmShain newEntity() { return new CmShain(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
     public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptPrimaryKeyMap((CmKaisha)et, mp); }
+    { doAcceptPrimaryKeyMap((CmShain)et, mp); }
     public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptAllColumnMap((CmKaisha)et, mp); }
+    { doAcceptAllColumnMap((CmShain)et, mp); }
     public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
     public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

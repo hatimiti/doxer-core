@@ -10,9 +10,9 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import org.doxer.app.base.type.form.sample.ad.master.CmKaishaId;
-import org.doxer.app.base.type.form.sample.ad.master.KaishaMei;
-import org.doxer.app.base.type.form.sample.ad.master.KaishaMeiEn;
+import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
+import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.KaishaMei;
+import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.KaishaMeiEn;
 import org.doxer.app.base.type.sample.ad.master.CmKishTesuryoFormList;
 import org.doxer.app.db.dbflute.allcommon.CDef.Mode;
 import org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb;

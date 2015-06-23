@@ -1,4 +1,65 @@
 map:{
+    ; 2015/06/23 22:32:52 = map:{
+        ; diffDate = 2015/06/23 22:32:52
+        ; tableCount = map:{
+            ; next = 7
+            ; previous = 6
+        }
+        ; tableDiff = map:{
+            ; CM_SHAIN = map:{
+                ; tableName = CM_SHAIN
+                ; diffType = ADD
+            }
+            ; CM_KAISHA = map:{
+                ; tableName = CM_KAISHA
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = DOXER_DEV.PUBLIC
+                    ; previous = DOXER.PUBLIC
+                }
+            }
+            ; CM_KISH_RENRAKUSAKI = map:{
+                ; tableName = CM_KISH_RENRAKUSAKI
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = DOXER_DEV.PUBLIC
+                    ; previous = DOXER.PUBLIC
+                }
+            }
+            ; CM_KISH_TESURYO = map:{
+                ; tableName = CM_KISH_TESURYO
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = DOXER_DEV.PUBLIC
+                    ; previous = DOXER.PUBLIC
+                }
+            }
+            ; CM_RENRAKUSAKI_YOTO_KB = map:{
+                ; tableName = CM_RENRAKUSAKI_YOTO_KB
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = DOXER_DEV.PUBLIC
+                    ; previous = DOXER.PUBLIC
+                }
+            }
+            ; CM_TESURYO_KB = map:{
+                ; tableName = CM_TESURYO_KB
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = DOXER_DEV.PUBLIC
+                    ; previous = DOXER.PUBLIC
+                }
+            }
+            ; TCM_SAMPLE = map:{
+                ; tableName = TCM_SAMPLE
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = DOXER_DEV.PUBLIC
+                    ; previous = DOXER.PUBLIC
+                }
+            }
+        }
+    }
     ; 2015/06/13 21:12:47 = map:{
         ; diffDate = 2015/06/13 21:12:47
         ; tableDiff = map:{

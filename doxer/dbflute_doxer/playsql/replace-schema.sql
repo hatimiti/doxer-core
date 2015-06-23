@@ -177,6 +177,44 @@ CREATE TABLE cm_renrakusaki_yoto_kb
 );
 
 DROP TABLE IF EXISTS
+	cm_shain
+	CASCADE
+;
+CREATE TABLE cm_shain
+(
+	-- CM社員ID
+	cm_shain_id identity NOT NULL,
+	-- CM会社ID(FK)
+	cm_kaisha_id bigint NOT NULL,
+	-- 社員名(姓)
+	shain_sei varchar(50) NOT NULL,
+	-- 社員名(名)
+	shain_mei varchar(50) NOT NULL,
+
+	-- 社員名(姓)(英語)
+	shain_sei_en varchar(100),
+	-- 社員名(名)(英語)
+	shain_mei_en varchar(100),
+
+	-- 登録者ID
+	reg_user_id varchar(10) NOT NULL,
+	-- 登録日時
+	reg_tm timestamp NOT NULL,
+	-- 登録機能区分ID
+	reg_func_cd varchar(9) NOT NULL,
+	-- 更新者ID
+	upd_user_id varchar(10) NOT NULL,
+	-- 更新日時
+	upd_tm timestamp NOT NULL,
+	-- 更新機能区分
+	upd_func_cd varchar(9) NOT NULL,
+	-- バージョン番号
+	version_no numeric(9,0) NOT NULL,
+
+	PRIMARY KEY (cm_shain_id)
+);
+
+DROP TABLE IF EXISTS
 	TCM_SAMPLE
 	CASCADE
 ;

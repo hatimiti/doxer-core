@@ -12,21 +12,21 @@ import org.doxer.app.db.dbflute.cbean.cq.bs.*;
 import org.doxer.app.db.dbflute.cbean.cq.*;
 
 /**
- * The condition-query for in-line of CM_KAISHA.
+ * The condition-query for in-line of CM_SHAIN.
  * @author DBFlute(AutoGenerator)
  */
-public class CmKaishaCIQ extends AbstractBsCmKaishaCQ {
+public class CmShainCIQ extends AbstractBsCmShainCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsCmKaishaCQ _myCQ;
+    protected BsCmShainCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public CmKaishaCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsCmKaishaCQ myCQ) {
+    public CmShainCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsCmShainCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -61,39 +61,12 @@ public class CmKaishaCIQ extends AbstractBsCmKaishaCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
+    protected ConditionValue xgetCValueCmShainId() { return _myCQ.xdfgetCmShainId(); }
     protected ConditionValue xgetCValueCmKaishaId() { return _myCQ.xdfgetCmKaishaId(); }
-    public String keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepCmKaishaId_ExistsReferrer_CmShainList(CmShainCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepCmKaishaId_NotExistsReferrer_CmShainList(CmShainCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_SpecifyDerivedReferrer_CmShainList(CmShainCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_QueryDerivedReferrer_CmShainList(CmShainCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepCmKaishaId_QueryDerivedReferrer_CmShainListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueKaishaMei() { return _myCQ.xdfgetKaishaMei(); }
-    protected ConditionValue xgetCValueKaishaMeiEn() { return _myCQ.xdfgetKaishaMeiEn(); }
+    protected ConditionValue xgetCValueShainSei() { return _myCQ.xdfgetShainSei(); }
+    protected ConditionValue xgetCValueShainMei() { return _myCQ.xdfgetShainMei(); }
+    protected ConditionValue xgetCValueShainSeiEn() { return _myCQ.xdfgetShainSeiEn(); }
+    protected ConditionValue xgetCValueShainMeiEn() { return _myCQ.xdfgetShainMeiEn(); }
     protected ConditionValue xgetCValueRegUserId() { return _myCQ.xdfgetRegUserId(); }
     protected ConditionValue xgetCValueRegTm() { return _myCQ.xdfgetRegTm(); }
     protected ConditionValue xgetCValueRegFuncCd() { return _myCQ.xdfgetRegFuncCd(); }
@@ -102,15 +75,15 @@ public class CmKaishaCIQ extends AbstractBsCmKaishaCQ {
     protected ConditionValue xgetCValueUpdFuncCd() { return _myCQ.xdfgetUpdFuncCd(); }
     protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(CmKaishaCQ sq)
+    public String keepScalarCondition(CmShainCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(CmKaishaCQ sq)
+    public String keepSpecifyMyselfDerived(CmShainCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(CmKaishaCQ sq)
+    public String keepQueryMyselfDerived(CmShainCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(CmKaishaCQ sq)
+    public String keepMyselfExists(CmShainCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
 
     protected void throwIICBOE(String name)
@@ -120,6 +93,6 @@ public class CmKaishaCIQ extends AbstractBsCmKaishaCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return CmKaishaCB.class.getName(); }
-    protected String xinCQ() { return CmKaishaCQ.class.getName(); }
+    protected String xinCB() { return CmShainCB.class.getName(); }
+    protected String xinCQ() { return CmShainCQ.class.getName(); }
 }

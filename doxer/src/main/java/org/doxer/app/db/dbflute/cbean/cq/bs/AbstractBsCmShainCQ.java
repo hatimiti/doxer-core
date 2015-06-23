@@ -16,15 +16,15 @@ import org.doxer.app.db.dbflute.cbean.*;
 import org.doxer.app.db.dbflute.cbean.cq.*;
 
 /**
- * The abstract condition-query of CM_KAISHA.
+ * The abstract condition-query of CM_SHAIN.
  * @author DBFlute(AutoGenerator)
  */
-public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
+public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsCmKaishaCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public AbstractBsCmShainCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "CM_KAISHA";
+        return "CM_SHAIN";
     }
 
     // ===================================================================================
@@ -45,7 +45,136 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainId The value of cmShainId as equal. (NullAllowed: if null, no condition)
+     */
+    public void setCmShainId_Equal(Long cmShainId) {
+        doSetCmShainId_Equal(cmShainId);
+    }
+
+    protected void doSetCmShainId_Equal(Long cmShainId) {
+        regCmShainId(CK_EQ, cmShainId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainId The value of cmShainId as notEqual. (NullAllowed: if null, no condition)
+     */
+    public void setCmShainId_NotEqual(Long cmShainId) {
+        doSetCmShainId_NotEqual(cmShainId);
+    }
+
+    protected void doSetCmShainId_NotEqual(Long cmShainId) {
+        regCmShainId(CK_NES, cmShainId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainId The value of cmShainId as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setCmShainId_GreaterThan(Long cmShainId) {
+        regCmShainId(CK_GT, cmShainId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainId The value of cmShainId as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setCmShainId_LessThan(Long cmShainId) {
+        regCmShainId(CK_LT, cmShainId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainId The value of cmShainId as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setCmShainId_GreaterEqual(Long cmShainId) {
+        regCmShainId(CK_GE, cmShainId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainId The value of cmShainId as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setCmShainId_LessEqual(Long cmShainId) {
+        regCmShainId(CK_LE, cmShainId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param minNumber The min number of cmShainId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of cmShainId. (NullAllowed: if null, no to-condition)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setCmShainId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setCmShainId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param minNumber The min number of cmShainId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of cmShainId. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setCmShainId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueCmShainId(), "CM_SHAIN_ID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainIdList The collection of cmShainId as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setCmShainId_InScope(Collection<Long> cmShainIdList) {
+        doSetCmShainId_InScope(cmShainIdList);
+    }
+
+    protected void doSetCmShainId_InScope(Collection<Long> cmShainIdList) {
+        regINS(CK_INS, cTL(cmShainIdList), xgetCValueCmShainId(), "CM_SHAIN_ID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param cmShainIdList The collection of cmShainId as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setCmShainId_NotInScope(Collection<Long> cmShainIdList) {
+        doSetCmShainId_NotInScope(cmShainIdList);
+    }
+
+    protected void doSetCmShainId_NotInScope(Collection<Long> cmShainIdList) {
+        regINS(CK_NINS, cTL(cmShainIdList), xgetCValueCmShainId(), "CM_SHAIN_ID");
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     */
+    public void setCmShainId_IsNull() { regCmShainId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)}
+     */
+    public void setCmShainId_IsNotNull() { regCmShainId(CK_ISNN, DOBJ); }
+
+    protected void regCmShainId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCmShainId(), "CM_SHAIN_ID"); }
+    protected abstract ConditionValue xgetCValueCmShainId();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as equal. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_Equal(Long cmKaishaId) {
@@ -58,7 +187,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as notEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_NotEqual(Long cmKaishaId) {
@@ -71,7 +200,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterThan(Long cmKaishaId) {
@@ -80,7 +209,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessThan(Long cmKaishaId) {
@@ -89,7 +218,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterEqual(Long cmKaishaId) {
@@ -98,7 +227,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessEqual(Long cmKaishaId) {
@@ -109,7 +238,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -122,7 +251,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -133,7 +262,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_InScope(Collection<Long> cmKaishaIdList) {
@@ -146,7 +275,7 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_NotInScope(Collection<Long> cmKaishaIdList) {
@@ -157,527 +286,584 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(cmKaishaIdList), xgetCValueCmKaishaId(), "CM_KAISHA_ID");
     }
 
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select cm_kaisha_id from CM_KISH_TESURYO where ...)} <br>
-     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsCmKishTesuryo</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     tesuryoCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CmKishTesuryoList for 'exists'. (NotNull)
-     */
-    public void existsCmKishTesuryo(SubQuery<CmKishTesuryoCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(cb.query());
-        registerExistsReferrer(cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmKishTesuryoList");
-    }
-    public abstract String keepCmKaishaId_ExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select CM_KAISHA_ID from CM_KISH_RENRAKUSAKI where ...)} <br>
-     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsCmKishRenrakusaki</span>(renrakusakiCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     renrakusakiCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CmKishRenrakusakiList for 'exists'. (NotNull)
-     */
-    public void existsCmKishRenrakusaki(SubQuery<CmKishRenrakusakiCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(cb.query());
-        registerExistsReferrer(cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", pp, "cmKishRenrakusakiList");
-    }
-    public abstract String keepCmKaishaId_ExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select cm_kaisha_id from CM_SHAIN where ...)} <br>
-     * CM_SHAIN by CM_KAISHA_ID, named 'cmShainAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsCmShain</span>(shainCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     shainCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CmShainList for 'exists'. (NotNull)
-     */
-    public void existsCmShain(SubQuery<CmShainCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        CmShainCB cb = new CmShainCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_ExistsReferrer_CmShainList(cb.query());
-        registerExistsReferrer(cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmShainList");
-    }
-    public abstract String keepCmKaishaId_ExistsReferrer_CmShainList(CmShainCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select cm_kaisha_id from CM_KISH_TESURYO where ...)} <br>
-     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsCmKishTesuryo</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     tesuryoCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CmKaishaId_NotExistsReferrer_CmKishTesuryoList for 'not exists'. (NotNull)
-     */
-    public void notExistsCmKishTesuryo(SubQuery<CmKishTesuryoCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(cb.query());
-        registerNotExistsReferrer(cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmKishTesuryoList");
-    }
-    public abstract String keepCmKaishaId_NotExistsReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select CM_KAISHA_ID from CM_KISH_RENRAKUSAKI where ...)} <br>
-     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsCmKishRenrakusaki</span>(renrakusakiCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     renrakusakiCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CmKaishaId_NotExistsReferrer_CmKishRenrakusakiList for 'not exists'. (NotNull)
-     */
-    public void notExistsCmKishRenrakusaki(SubQuery<CmKishRenrakusakiCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(cb.query());
-        registerNotExistsReferrer(cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", pp, "cmKishRenrakusakiList");
-    }
-    public abstract String keepCmKaishaId_NotExistsReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select cm_kaisha_id from CM_SHAIN where ...)} <br>
-     * CM_SHAIN by CM_KAISHA_ID, named 'cmShainAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsCmShain</span>(shainCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     shainCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CmKaishaId_NotExistsReferrer_CmShainList for 'not exists'. (NotNull)
-     */
-    public void notExistsCmShain(SubQuery<CmShainCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        CmShainCB cb = new CmShainCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCmKaishaId_NotExistsReferrer_CmShainList(cb.query());
-        registerNotExistsReferrer(cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmShainList");
-    }
-    public abstract String keepCmKaishaId_NotExistsReferrer_CmShainList(CmShainCQ sq);
-
-    public void xsderiveCmKishTesuryoList(String fn, SubQuery<CmKishTesuryoCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmKishTesuryoList", al, op);
-    }
-    public abstract String keepCmKaishaId_SpecifyDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
-
-    public void xsderiveCmKishRenrakusakiList(String fn, SubQuery<CmKishRenrakusakiCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", pp, "cmKishRenrakusakiList", al, op);
-    }
-    public abstract String keepCmKaishaId_SpecifyDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
-
-    public void xsderiveCmShainList(String fn, SubQuery<CmShainCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        CmShainCB cb = new CmShainCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepCmKaishaId_SpecifyDerivedReferrer_CmShainList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", pp, "cmShainList", al, op);
-    }
-    public abstract String keepCmKaishaId_SpecifyDerivedReferrer_CmShainList(CmShainCQ sq);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from CM_KISH_TESURYO where ...)} <br>
-     * CM_KISH_TESURYO by CM_KAISHA_ID, named 'cmKishTesuryoAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedCmKishTesuryo()</span>.<span style="color: #CC4747">max</span>(tesuryoCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     tesuryoCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     tesuryoCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<CmKishTesuryoCB> derivedCmKishTesuryo() {
-        return xcreateQDRFunctionCmKishTesuryoList();
-    }
-    protected HpQDRFunction<CmKishTesuryoCB> xcreateQDRFunctionCmKishTesuryoList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCmKishTesuryoList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveCmKishTesuryoList(String fn, SubQuery<CmKishTesuryoCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        CmKishTesuryoCB cb = new CmKishTesuryoCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(cb.query()); String prpp = keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", sqpp, "cmKishTesuryoList", rd, vl, prpp, op);
-    }
-    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoList(CmKishTesuryoCQ sq);
-    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishTesuryoListParameter(Object vl);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from CM_KISH_RENRAKUSAKI where ...)} <br>
-     * CM_KISH_RENRAKUSAKI by CM_KAISHA_ID, named 'cmKishRenrakusakiAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedCmKishRenrakusaki()</span>.<span style="color: #CC4747">max</span>(renrakusakiCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     renrakusakiCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     renrakusakiCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<CmKishRenrakusakiCB> derivedCmKishRenrakusaki() {
-        return xcreateQDRFunctionCmKishRenrakusakiList();
-    }
-    protected HpQDRFunction<CmKishRenrakusakiCB> xcreateQDRFunctionCmKishRenrakusakiList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCmKishRenrakusakiList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveCmKishRenrakusakiList(String fn, SubQuery<CmKishRenrakusakiCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(cb.query()); String prpp = keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "CM_KAISHA_ID", sqpp, "cmKishRenrakusakiList", rd, vl, prpp, op);
-    }
-    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiList(CmKishRenrakusakiCQ sq);
-    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmKishRenrakusakiListParameter(Object vl);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from CM_SHAIN where ...)} <br>
-     * CM_SHAIN by CM_KAISHA_ID, named 'cmShainAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedCmShain()</span>.<span style="color: #CC4747">max</span>(shainCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     shainCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     shainCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<CmShainCB> derivedCmShain() {
-        return xcreateQDRFunctionCmShainList();
-    }
-    protected HpQDRFunction<CmShainCB> xcreateQDRFunctionCmShainList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCmShainList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveCmShainList(String fn, SubQuery<CmShainCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        CmShainCB cb = new CmShainCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepCmKaishaId_QueryDerivedReferrer_CmShainList(cb.query()); String prpp = keepCmKaishaId_QueryDerivedReferrer_CmShainListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "CM_KAISHA_ID", "cm_kaisha_id", sqpp, "cmShainList", rd, vl, prpp, op);
-    }
-    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmShainList(CmShainCQ sq);
-    public abstract String keepCmKaishaId_QueryDerivedReferrer_CmShainListParameter(Object vl);
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
-     */
-    public void setCmKaishaId_IsNull() { regCmKaishaId(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {PK, ID, NotNull, BIGINT(19)}
-     */
-    public void setCmKaishaId_IsNotNull() { regCmKaishaId(CK_ISNN, DOBJ); }
-
     protected void regCmKaishaId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCmKaishaId(), "CM_KAISHA_ID"); }
     protected abstract ConditionValue xgetCValueCmKaishaId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as equal. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_Equal(String kaishaMei) {
-        doSetKaishaMei_Equal(fRES(kaishaMei));
+    public void setShainSei_Equal(String shainSei) {
+        doSetShainSei_Equal(fRES(shainSei));
     }
 
-    protected void doSetKaishaMei_Equal(String kaishaMei) {
-        regKaishaMei(CK_EQ, kaishaMei);
+    protected void doSetShainSei_Equal(String shainSei) {
+        regShainSei(CK_EQ, shainSei);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as notEqual. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_NotEqual(String kaishaMei) {
-        doSetKaishaMei_NotEqual(fRES(kaishaMei));
+    public void setShainSei_NotEqual(String shainSei) {
+        doSetShainSei_NotEqual(fRES(shainSei));
     }
 
-    protected void doSetKaishaMei_NotEqual(String kaishaMei) {
-        regKaishaMei(CK_NES, kaishaMei);
+    protected void doSetShainSei_NotEqual(String shainSei) {
+        regShainSei(CK_NES, shainSei);
     }
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as greaterThan. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as greaterThan. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_GreaterThan(String kaishaMei) {
-        regKaishaMei(CK_GT, fRES(kaishaMei));
+    public void setShainSei_GreaterThan(String shainSei) {
+        regShainSei(CK_GT, fRES(shainSei));
     }
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as lessThan. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as lessThan. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_LessThan(String kaishaMei) {
-        regKaishaMei(CK_LT, fRES(kaishaMei));
+    public void setShainSei_LessThan(String shainSei) {
+        regShainSei(CK_LT, fRES(shainSei));
     }
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as greaterEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_GreaterEqual(String kaishaMei) {
-        regKaishaMei(CK_GE, fRES(kaishaMei));
+    public void setShainSei_GreaterEqual(String shainSei) {
+        regShainSei(CK_GE, fRES(shainSei));
     }
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as lessEqual. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as lessEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_LessEqual(String kaishaMei) {
-        regKaishaMei(CK_LE, fRES(kaishaMei));
+    public void setShainSei_LessEqual(String shainSei) {
+        regShainSei(CK_LE, fRES(shainSei));
     }
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMeiList The collection of kaishaMei as inScope. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSeiList The collection of shainSei as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_InScope(Collection<String> kaishaMeiList) {
-        doSetKaishaMei_InScope(kaishaMeiList);
+    public void setShainSei_InScope(Collection<String> shainSeiList) {
+        doSetShainSei_InScope(shainSeiList);
     }
 
-    protected void doSetKaishaMei_InScope(Collection<String> kaishaMeiList) {
-        regINS(CK_INS, cTL(kaishaMeiList), xgetCValueKaishaMei(), "KAISHA_MEI");
+    protected void doSetShainSei_InScope(Collection<String> shainSeiList) {
+        regINS(CK_INS, cTL(shainSeiList), xgetCValueShainSei(), "SHAIN_SEI");
     }
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMeiList The collection of kaishaMei as notInScope. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSeiList The collection of shainSei as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMei_NotInScope(Collection<String> kaishaMeiList) {
-        doSetKaishaMei_NotInScope(kaishaMeiList);
+    public void setShainSei_NotInScope(Collection<String> shainSeiList) {
+        doSetShainSei_NotInScope(shainSeiList);
     }
 
-    protected void doSetKaishaMei_NotInScope(Collection<String> kaishaMeiList) {
-        regINS(CK_NINS, cTL(kaishaMeiList), xgetCValueKaishaMei(), "KAISHA_MEI");
+    protected void doSetShainSei_NotInScope(Collection<String> shainSeiList) {
+        regINS(CK_NINS, cTL(shainSeiList), xgetCValueShainSei(), "SHAIN_SEI");
     }
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)} <br>
-     * <pre>e.g. setKaishaMei_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param kaishaMei The value of kaishaMei as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setShainSei_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param shainSei The value of shainSei as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setKaishaMei_LikeSearch(String kaishaMei, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setKaishaMei_LikeSearch(kaishaMei, xcLSOP(opLambda));
+    public void setShainSei_LikeSearch(String shainSei, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainSei_LikeSearch(shainSei, xcLSOP(opLambda));
     }
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)} <br>
-     * <pre>e.g. setKaishaMei_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param kaishaMei The value of kaishaMei as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setShainSei_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param shainSei The value of shainSei as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
-    protected void setKaishaMei_LikeSearch(String kaishaMei, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(kaishaMei), xgetCValueKaishaMei(), "KAISHA_MEI", likeSearchOption);
+    protected void setShainSei_LikeSearch(String shainSei, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(shainSei), xgetCValueShainSei(), "SHAIN_SEI", likeSearchOption);
     }
 
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setKaishaMei_NotLikeSearch(String kaishaMei, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setKaishaMei_NotLikeSearch(kaishaMei, xcLSOP(opLambda));
+    public void setShainSei_NotLikeSearch(String shainSei, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainSei_NotLikeSearch(shainSei, xcLSOP(opLambda));
     }
 
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI: {UQ, NotNull, VARCHAR(50)}
-     * @param kaishaMei The value of kaishaMei as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_SEI: {NotNull, VARCHAR(50)}
+     * @param shainSei The value of shainSei as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
-    protected void setKaishaMei_NotLikeSearch(String kaishaMei, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(kaishaMei), xgetCValueKaishaMei(), "KAISHA_MEI", likeSearchOption);
+    protected void setShainSei_NotLikeSearch(String shainSei, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(shainSei), xgetCValueShainSei(), "SHAIN_SEI", likeSearchOption);
     }
 
-    protected void regKaishaMei(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueKaishaMei(), "KAISHA_MEI"); }
-    protected abstract ConditionValue xgetCValueKaishaMei();
+    protected void regShainSei(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueShainSei(), "SHAIN_SEI"); }
+    protected abstract ConditionValue xgetCValueShainSei();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as equal. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_Equal(String kaishaMeiEn) {
-        doSetKaishaMeiEn_Equal(fRES(kaishaMeiEn));
+    public void setShainMei_Equal(String shainMei) {
+        doSetShainMei_Equal(fRES(shainMei));
     }
 
-    protected void doSetKaishaMeiEn_Equal(String kaishaMeiEn) {
-        regKaishaMeiEn(CK_EQ, kaishaMeiEn);
+    protected void doSetShainMei_Equal(String shainMei) {
+        regShainMei(CK_EQ, shainMei);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as notEqual. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_NotEqual(String kaishaMeiEn) {
-        doSetKaishaMeiEn_NotEqual(fRES(kaishaMeiEn));
+    public void setShainMei_NotEqual(String shainMei) {
+        doSetShainMei_NotEqual(fRES(shainMei));
     }
 
-    protected void doSetKaishaMeiEn_NotEqual(String kaishaMeiEn) {
-        regKaishaMeiEn(CK_NES, kaishaMeiEn);
+    protected void doSetShainMei_NotEqual(String shainMei) {
+        regShainMei(CK_NES, shainMei);
     }
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as greaterThan. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as greaterThan. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_GreaterThan(String kaishaMeiEn) {
-        regKaishaMeiEn(CK_GT, fRES(kaishaMeiEn));
+    public void setShainMei_GreaterThan(String shainMei) {
+        regShainMei(CK_GT, fRES(shainMei));
     }
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as lessThan. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as lessThan. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_LessThan(String kaishaMeiEn) {
-        regKaishaMeiEn(CK_LT, fRES(kaishaMeiEn));
+    public void setShainMei_LessThan(String shainMei) {
+        regShainMei(CK_LT, fRES(shainMei));
     }
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as greaterEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_GreaterEqual(String kaishaMeiEn) {
-        regKaishaMeiEn(CK_GE, fRES(kaishaMeiEn));
+    public void setShainMei_GreaterEqual(String shainMei) {
+        regShainMei(CK_GE, fRES(shainMei));
     }
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as lessEqual. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as lessEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_LessEqual(String kaishaMeiEn) {
-        regKaishaMeiEn(CK_LE, fRES(kaishaMeiEn));
+    public void setShainMei_LessEqual(String shainMei) {
+        regShainMei(CK_LE, fRES(shainMei));
     }
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEnList The collection of kaishaMeiEn as inScope. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMeiList The collection of shainMei as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_InScope(Collection<String> kaishaMeiEnList) {
-        doSetKaishaMeiEn_InScope(kaishaMeiEnList);
+    public void setShainMei_InScope(Collection<String> shainMeiList) {
+        doSetShainMei_InScope(shainMeiList);
     }
 
-    protected void doSetKaishaMeiEn_InScope(Collection<String> kaishaMeiEnList) {
-        regINS(CK_INS, cTL(kaishaMeiEnList), xgetCValueKaishaMeiEn(), "KAISHA_MEI_EN");
+    protected void doSetShainMei_InScope(Collection<String> shainMeiList) {
+        regINS(CK_INS, cTL(shainMeiList), xgetCValueShainMei(), "SHAIN_MEI");
     }
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEnList The collection of kaishaMeiEn as notInScope. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMeiList The collection of shainMei as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setKaishaMeiEn_NotInScope(Collection<String> kaishaMeiEnList) {
-        doSetKaishaMeiEn_NotInScope(kaishaMeiEnList);
+    public void setShainMei_NotInScope(Collection<String> shainMeiList) {
+        doSetShainMei_NotInScope(shainMeiList);
     }
 
-    protected void doSetKaishaMeiEn_NotInScope(Collection<String> kaishaMeiEnList) {
-        regINS(CK_NINS, cTL(kaishaMeiEnList), xgetCValueKaishaMeiEn(), "KAISHA_MEI_EN");
+    protected void doSetShainMei_NotInScope(Collection<String> shainMeiList) {
+        regINS(CK_NINS, cTL(shainMeiList), xgetCValueShainMei(), "SHAIN_MEI");
     }
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)} <br>
-     * <pre>e.g. setKaishaMeiEn_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param kaishaMeiEn The value of kaishaMeiEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setShainMei_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param shainMei The value of shainMei as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setKaishaMeiEn_LikeSearch(String kaishaMeiEn, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setKaishaMeiEn_LikeSearch(kaishaMeiEn, xcLSOP(opLambda));
+    public void setShainMei_LikeSearch(String shainMei, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainMei_LikeSearch(shainMei, xcLSOP(opLambda));
     }
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)} <br>
-     * <pre>e.g. setKaishaMeiEn_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param kaishaMeiEn The value of kaishaMeiEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setShainMei_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param shainMei The value of shainMei as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
-    protected void setKaishaMeiEn_LikeSearch(String kaishaMeiEn, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(kaishaMeiEn), xgetCValueKaishaMeiEn(), "KAISHA_MEI_EN", likeSearchOption);
+    protected void setShainMei_LikeSearch(String shainMei, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(shainMei), xgetCValueShainMei(), "SHAIN_MEI", likeSearchOption);
     }
 
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setKaishaMeiEn_NotLikeSearch(String kaishaMeiEn, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setKaishaMeiEn_NotLikeSearch(kaishaMeiEn, xcLSOP(opLambda));
+    public void setShainMei_NotLikeSearch(String shainMei, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainMei_NotLikeSearch(shainMei, xcLSOP(opLambda));
     }
 
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
-     * @param kaishaMeiEn The value of kaishaMeiEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * SHAIN_MEI: {NotNull, VARCHAR(50)}
+     * @param shainMei The value of shainMei as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
-    protected void setKaishaMeiEn_NotLikeSearch(String kaishaMeiEn, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(kaishaMeiEn), xgetCValueKaishaMeiEn(), "KAISHA_MEI_EN", likeSearchOption);
+    protected void setShainMei_NotLikeSearch(String shainMei, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(shainMei), xgetCValueShainMei(), "SHAIN_MEI", likeSearchOption);
+    }
+
+    protected void regShainMei(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueShainMei(), "SHAIN_MEI"); }
+    protected abstract ConditionValue xgetCValueShainMei();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_Equal(String shainSeiEn) {
+        doSetShainSeiEn_Equal(fRES(shainSeiEn));
+    }
+
+    protected void doSetShainSeiEn_Equal(String shainSeiEn) {
+        regShainSeiEn(CK_EQ, shainSeiEn);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_NotEqual(String shainSeiEn) {
+        doSetShainSeiEn_NotEqual(fRES(shainSeiEn));
+    }
+
+    protected void doSetShainSeiEn_NotEqual(String shainSeiEn) {
+        regShainSeiEn(CK_NES, shainSeiEn);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as greaterThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_GreaterThan(String shainSeiEn) {
+        regShainSeiEn(CK_GT, fRES(shainSeiEn));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as lessThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_LessThan(String shainSeiEn) {
+        regShainSeiEn(CK_LT, fRES(shainSeiEn));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_GreaterEqual(String shainSeiEn) {
+        regShainSeiEn(CK_GE, fRES(shainSeiEn));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as lessEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_LessEqual(String shainSeiEn) {
+        regShainSeiEn(CK_LE, fRES(shainSeiEn));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEnList The collection of shainSeiEn as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_InScope(Collection<String> shainSeiEnList) {
+        doSetShainSeiEn_InScope(shainSeiEnList);
+    }
+
+    protected void doSetShainSeiEn_InScope(Collection<String> shainSeiEnList) {
+        regINS(CK_INS, cTL(shainSeiEnList), xgetCValueShainSeiEn(), "SHAIN_SEI_EN");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEnList The collection of shainSeiEn as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainSeiEn_NotInScope(Collection<String> shainSeiEnList) {
+        doSetShainSeiEn_NotInScope(shainSeiEnList);
+    }
+
+    protected void doSetShainSeiEn_NotInScope(Collection<String> shainSeiEnList) {
+        regINS(CK_NINS, cTL(shainSeiEnList), xgetCValueShainSeiEn(), "SHAIN_SEI_EN");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)} <br>
+     * <pre>e.g. setShainSeiEn_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param shainSeiEn The value of shainSeiEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setShainSeiEn_LikeSearch(String shainSeiEn, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainSeiEn_LikeSearch(shainSeiEn, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)} <br>
+     * <pre>e.g. setShainSeiEn_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param shainSeiEn The value of shainSeiEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setShainSeiEn_LikeSearch(String shainSeiEn, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(shainSeiEn), xgetCValueShainSeiEn(), "SHAIN_SEI_EN", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setShainSeiEn_NotLikeSearch(String shainSeiEn, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainSeiEn_NotLikeSearch(shainSeiEn, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_SEI_EN: {VARCHAR(100)}
+     * @param shainSeiEn The value of shainSeiEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setShainSeiEn_NotLikeSearch(String shainSeiEn, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(shainSeiEn), xgetCValueShainSeiEn(), "SHAIN_SEI_EN", likeSearchOption);
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
+     * SHAIN_SEI_EN: {VARCHAR(100)}
      */
-    public void setKaishaMeiEn_IsNull() { regKaishaMeiEn(CK_ISN, DOBJ); }
+    public void setShainSeiEn_IsNull() { regShainSeiEn(CK_ISN, DOBJ); }
 
     /**
      * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
+     * SHAIN_SEI_EN: {VARCHAR(100)}
      */
-    public void setKaishaMeiEn_IsNullOrEmpty() { regKaishaMeiEn(CK_ISNOE, DOBJ); }
+    public void setShainSeiEn_IsNullOrEmpty() { regShainSeiEn(CK_ISNOE, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * KAISHA_MEI_EN: {VARCHAR(100)}
+     * SHAIN_SEI_EN: {VARCHAR(100)}
      */
-    public void setKaishaMeiEn_IsNotNull() { regKaishaMeiEn(CK_ISNN, DOBJ); }
+    public void setShainSeiEn_IsNotNull() { regShainSeiEn(CK_ISNN, DOBJ); }
 
-    protected void regKaishaMeiEn(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueKaishaMeiEn(), "KAISHA_MEI_EN"); }
-    protected abstract ConditionValue xgetCValueKaishaMeiEn();
+    protected void regShainSeiEn(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueShainSeiEn(), "SHAIN_SEI_EN"); }
+    protected abstract ConditionValue xgetCValueShainSeiEn();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_Equal(String shainMeiEn) {
+        doSetShainMeiEn_Equal(fRES(shainMeiEn));
+    }
+
+    protected void doSetShainMeiEn_Equal(String shainMeiEn) {
+        regShainMeiEn(CK_EQ, shainMeiEn);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_NotEqual(String shainMeiEn) {
+        doSetShainMeiEn_NotEqual(fRES(shainMeiEn));
+    }
+
+    protected void doSetShainMeiEn_NotEqual(String shainMeiEn) {
+        regShainMeiEn(CK_NES, shainMeiEn);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as greaterThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_GreaterThan(String shainMeiEn) {
+        regShainMeiEn(CK_GT, fRES(shainMeiEn));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as lessThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_LessThan(String shainMeiEn) {
+        regShainMeiEn(CK_LT, fRES(shainMeiEn));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_GreaterEqual(String shainMeiEn) {
+        regShainMeiEn(CK_GE, fRES(shainMeiEn));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as lessEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_LessEqual(String shainMeiEn) {
+        regShainMeiEn(CK_LE, fRES(shainMeiEn));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEnList The collection of shainMeiEn as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_InScope(Collection<String> shainMeiEnList) {
+        doSetShainMeiEn_InScope(shainMeiEnList);
+    }
+
+    protected void doSetShainMeiEn_InScope(Collection<String> shainMeiEnList) {
+        regINS(CK_INS, cTL(shainMeiEnList), xgetCValueShainMeiEn(), "SHAIN_MEI_EN");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEnList The collection of shainMeiEn as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setShainMeiEn_NotInScope(Collection<String> shainMeiEnList) {
+        doSetShainMeiEn_NotInScope(shainMeiEnList);
+    }
+
+    protected void doSetShainMeiEn_NotInScope(Collection<String> shainMeiEnList) {
+        regINS(CK_NINS, cTL(shainMeiEnList), xgetCValueShainMeiEn(), "SHAIN_MEI_EN");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)} <br>
+     * <pre>e.g. setShainMeiEn_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param shainMeiEn The value of shainMeiEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setShainMeiEn_LikeSearch(String shainMeiEn, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainMeiEn_LikeSearch(shainMeiEn, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)} <br>
+     * <pre>e.g. setShainMeiEn_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param shainMeiEn The value of shainMeiEn as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setShainMeiEn_LikeSearch(String shainMeiEn, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(shainMeiEn), xgetCValueShainMeiEn(), "SHAIN_MEI_EN", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setShainMeiEn_NotLikeSearch(String shainMeiEn, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setShainMeiEn_NotLikeSearch(shainMeiEn, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     * @param shainMeiEn The value of shainMeiEn as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setShainMeiEn_NotLikeSearch(String shainMeiEn, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(shainMeiEn), xgetCValueShainMeiEn(), "SHAIN_MEI_EN", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     */
+    public void setShainMeiEn_IsNull() { regShainMeiEn(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     */
+    public void setShainMeiEn_IsNullOrEmpty() { regShainMeiEn(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * SHAIN_MEI_EN: {VARCHAR(100)}
+     */
+    public void setShainMeiEn_IsNotNull() { regShainMeiEn(CK_ISNN, DOBJ); }
+
+    protected void regShainMeiEn(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueShainMeiEn(), "SHAIN_MEI_EN"); }
+    protected abstract ConditionValue xgetCValueShainMeiEn();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
@@ -1493,8 +1679,8 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as equal. <br>
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_Equal()</span>.max(new SubQuery&lt;CmKaishaCB&gt;() {
-     *     public void query(CmKaishaCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_Equal()</span>.max(new SubQuery&lt;CmShainCB&gt;() {
+     *     public void query(CmShainCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
      *     }
@@ -1502,16 +1688,16 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSSQFunction<CmKaishaCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ, CmKaishaCB.class);
+    public HpSSQFunction<CmShainCB> scalar_Equal() {
+        return xcreateSSQFunction(CK_EQ, CmShainCB.class);
     }
 
     /**
      * Prepare ScalarCondition as equal. <br>
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_NotEqual()</span>.max(new SubQuery&lt;CmKaishaCB&gt;() {
-     *     public void query(CmKaishaCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_NotEqual()</span>.max(new SubQuery&lt;CmShainCB&gt;() {
+     *     public void query(CmShainCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
      *     }
@@ -1519,16 +1705,16 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSSQFunction<CmKaishaCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES, CmKaishaCB.class);
+    public HpSSQFunction<CmShainCB> scalar_NotEqual() {
+        return xcreateSSQFunction(CK_NES, CmShainCB.class);
     }
 
     /**
      * Prepare ScalarCondition as greaterThan. <br>
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;CmKaishaCB&gt;() {
-     *     public void query(CmKaishaCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;CmShainCB&gt;() {
+     *     public void query(CmShainCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
      *     }
@@ -1536,16 +1722,16 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSSQFunction<CmKaishaCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT, CmKaishaCB.class);
+    public HpSSQFunction<CmShainCB> scalar_GreaterThan() {
+        return xcreateSSQFunction(CK_GT, CmShainCB.class);
     }
 
     /**
      * Prepare ScalarCondition as lessThan. <br>
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_LessThan()</span>.max(new SubQuery&lt;CmKaishaCB&gt;() {
-     *     public void query(CmKaishaCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_LessThan()</span>.max(new SubQuery&lt;CmShainCB&gt;() {
+     *     public void query(CmShainCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
      *     }
@@ -1553,16 +1739,16 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSSQFunction<CmKaishaCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT, CmKaishaCB.class);
+    public HpSSQFunction<CmShainCB> scalar_LessThan() {
+        return xcreateSSQFunction(CK_LT, CmShainCB.class);
     }
 
     /**
      * Prepare ScalarCondition as greaterEqual. <br>
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;CmKaishaCB&gt;() {
-     *     public void query(CmKaishaCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;CmShainCB&gt;() {
+     *     public void query(CmShainCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
      *     }
@@ -1570,16 +1756,16 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSSQFunction<CmKaishaCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE, CmKaishaCB.class);
+    public HpSSQFunction<CmShainCB> scalar_GreaterEqual() {
+        return xcreateSSQFunction(CK_GE, CmShainCB.class);
     }
 
     /**
      * Prepare ScalarCondition as lessEqual. <br>
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_LessEqual()</span>.max(new SubQuery&lt;CmKaishaCB&gt;() {
-     *     public void query(CmKaishaCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_LessEqual()</span>.max(new SubQuery&lt;CmShainCB&gt;() {
+     *     public void query(CmShainCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
      *     }
@@ -1587,56 +1773,56 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSSQFunction<CmKaishaCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE, CmKaishaCB.class);
+    public HpSSQFunction<CmShainCB> scalar_LessEqual() {
+        return xcreateSSQFunction(CK_LE, CmShainCB.class);
     }
 
     @SuppressWarnings("unchecked")
     protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        CmKaishaCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
+        CmShainCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
         op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(CmKaishaCQ sq);
+    public abstract String keepScalarCondition(CmShainCQ sq);
 
-    protected CmKaishaCB xcreateScalarConditionCB() {
-        CmKaishaCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
+    protected CmShainCB xcreateScalarConditionCB() {
+        CmShainCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
-    protected CmKaishaCB xcreateScalarConditionPartitionByCB() {
-        CmKaishaCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
+    protected CmShainCB xcreateScalarConditionPartitionByCB() {
+        CmShainCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String fn, SubQuery<CmKaishaCB> sq, String al, DerivedReferrerOption op) {
+    public void xsmyselfDerive(String fn, SubQuery<CmShainCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        CmKaishaCB cb = new CmKaishaCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "CM_KAISHA_ID";
+        CmShainCB cb = new CmShainCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "CM_SHAIN_ID";
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(CmKaishaCQ sq);
+    public abstract String keepSpecifyMyselfDerived(CmShainCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
-    public HpQDRFunction<CmKaishaCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived(CmKaishaCB.class);
+    public HpQDRFunction<CmShainCB> myselfDerived() {
+        return xcreateQDRFunctionMyselfDerived(CmShainCB.class);
     }
     @SuppressWarnings("unchecked")
     protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        CmKaishaCB cb = new CmKaishaCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
-        String pk = "CM_KAISHA_ID";
+        CmShainCB cb = new CmShainCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
+        String pk = "CM_SHAIN_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
         registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(CmKaishaCQ sq);
+    public abstract String keepQueryMyselfDerived(CmShainCQ sq);
     public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
@@ -1646,13 +1832,13 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
      * Prepare for MyselfExists (correlated sub-query).
      * @param subCBLambda The implementation of sub-query. (NotNull)
      */
-    public void myselfExists(SubQuery<CmKaishaCB> subCBLambda) {
+    public void myselfExists(SubQuery<CmShainCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        CmKaishaCB cb = new CmKaishaCB(); cb.xsetupForMyselfExists(this);
+        CmShainCB cb = new CmShainCB(); cb.xsetupForMyselfExists(this);
         lockCall(() -> subCBLambda.query(cb)); String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(CmKaishaCQ sq);
+    public abstract String keepMyselfExists(CmShainCQ sq);
 
     // ===================================================================================
     //                                                                        Manual Order
@@ -1697,12 +1883,12 @@ public abstract class AbstractBsCmKaishaCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    protected CmKaishaCB newMyCB() {
-        return new CmKaishaCB();
+    protected CmShainCB newMyCB() {
+        return new CmShainCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xabUDT() { return Date.class.getName(); }
-    protected String xabCQ() { return CmKaishaCQ.class.getName(); }
+    protected String xabCQ() { return CmShainCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }
     protected String xabSCP() { return SubQuery.class.getName(); }

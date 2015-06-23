@@ -270,7 +270,7 @@ dl.procedurelist dd.column pre {
 
 <body>
 <h1>Schema for doxer (h2)</h1>
-<p class="mainschema">generated from <strong>DOXER.PUBLIC</strong></p>
+<p class="mainschema">generated from <strong>DOXER_DEV.PUBLIC</strong></p>
 <div class="navilinkarea">
 <p class="sublink">
  <a href="#cdef">Classification Definition</a>
@@ -303,7 +303,7 @@ dl.procedurelist dd.column pre {
 		<td><a href="#cm_kaisha" title="type=TABLE, primaryKey={CM_KAISHA_ID}, nameLength=9, columnCount=10">CM_KAISHA</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KISH_TESURYO</a>, <a href="#cm_kish_renrakusaki" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KISH_RENRAKUSAKI</a></td>
+		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KISH_TESURYO</a>, <a href="#cm_kish_renrakusaki" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KISH_RENRAKUSAKI</a>, <a href="#cm_shain" class="additionalfk" title="FK_CM_SHAIN_CM_KAISHA">CM_SHAIN</a></td>
 		<td class="subcell">CmKaisha</td>
 	</tr>
 	<tr>
@@ -332,6 +332,14 @@ dl.procedurelist dd.column pre {
 	</tr>
 	<tr>
 		<td class="rownumcell">5</td>
+		<td><a href="#cm_shain" title="type=TABLE, primaryKey={CM_SHAIN_ID}, nameLength=8, columnCount=13">CM_SHAIN</a></td>
+		<td class="typecell">TABLE</td>
+		<td class="relcell"><a href="#cm_kaisha" class="additionalfk" title="FK_CM_SHAIN_CM_KAISHA">CM_KAISHA</a></td>
+		<td class="relcell">&nbsp;</td>
+		<td class="subcell">CmShain</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
 		<td><a href="#cm_tesuryo_kb" title="type=TABLE, primaryKey={KB_VAL}, nameLength=13, columnCount=11">CM_TESURYO_KB</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
@@ -339,7 +347,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">CmTesuryoKb</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td><a href="#tcm_sample" title="type=TABLE, primaryKey={TCM_SAMPLE_ID}, nameLength=10, columnCount=3">TCM_SAMPLE</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
@@ -382,7 +390,7 @@ CM_KAISHA
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KISH_TESURYO</a>,<br><a href="#cm_kish_renrakusaki" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KISH_RENRAKUSAKI</a>&nbsp;</td>
+		<td class="relcell"><a href="#cm_kish_tesuryo" class="additionalfk" title="FK_CM_KISH_TESURYO_CM_KAISHA">CM_KISH_TESURYO</a>,<br><a href="#cm_kish_renrakusaki" class="additionalfk" title="FK_CM_KISH_RENRAKUSAKI_CM_KAISHA">CM_KISH_RENRAKUSAKI</a>,<br><a href="#cm_shain" class="additionalfk" title="FK_CM_SHAIN_CM_KAISHA">CM_SHAIN</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">cmKaishaId</td>
 		<td class="subcell">Long</td>
@@ -1200,6 +1208,237 @@ CM_RENRAKUSAKI_YOTO_KB
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="comcolcell optcell" id="cm_renrakusaki_yoto_kb_version_no">VERSION_NO</td>
+		<td class="typecell">DECIMAL</td>
+		<td class="sizecell"> 9 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+</table>
+<h2 id="cm_shain" title="type=TABLE, primaryKey={CM_SHAIN_ID}, nameLength=8, columnCount=13">
+CM_SHAIN
+</h2>
+<table summary="Columns in CM_SHAIN">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="flgcell" title="CONSTRAINT_BF">o</td>
+		<td class="flgcell">o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td id="cm_shain_cm_shain_id">CM_SHAIN_ID</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">cmShainId</td>
+		<td class="subcell">Long</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td id="cm_shain_cm_kaisha_id">CM_KAISHA_ID</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell"><a href="#cm_kaisha" class="additionalfk" title="FK_CM_SHAIN_CM_KAISHA">CM_KAISHA</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">cmKaishaId</td>
+		<td class="subcell">Long</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td id="cm_shain_shain_sei">SHAIN_SEI</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 50 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">shainSei</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td id="cm_shain_shain_mei">SHAIN_MEI</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 50 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">shainMei</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td id="cm_shain_shain_sei_en">SHAIN_SEI_EN</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 100 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">shainSeiEn</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td id="cm_shain_shain_mei_en">SHAIN_MEI_EN</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 100 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">shainMeiEn</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="cm_shain_reg_user_id">REG_USER_ID</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">regUserId</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="cm_shain_reg_tm">REG_TM</td>
+		<td class="typecell">TIMESTAMP</td>
+		<td class="sizecell"> 23, 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">regTm</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="cm_shain_reg_func_cd">REG_FUNC_CD</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 9 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">regFuncCd</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="cm_shain_upd_user_id">UPD_USER_ID</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">updUserId</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">11</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="cm_shain_upd_tm">UPD_TM</td>
+		<td class="typecell">TIMESTAMP</td>
+		<td class="sizecell"> 23, 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">updTm</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="cm_shain_upd_func_cd">UPD_FUNC_CD</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 9 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">updFuncCd</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">13</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell optcell" id="cm_shain_version_no">VERSION_NO</td>
 		<td class="typecell">DECIMAL</td>
 		<td class="sizecell"> 9 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>

@@ -1,4 +1,4 @@
-package org.doxer.app.base.type.form.sample.ad.master;
+package org.doxer.app.base.type.form.sample.ad.master.cmkishrenrakusaki;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;

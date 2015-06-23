@@ -97,7 +97,7 @@ public class CmKishRenrakusakiDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmKishRenrakusakiId = cci("CM_KISH_RENRAKUSAKI_ID", "CM_KISH_RENRAKUSAKI_ID", null, null, Long.class, "cmKishRenrakusakiId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_2A21FF1A_D315_49CE_9C9F_185822436A03", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmKishRenrakusakiId = cci("CM_KISH_RENRAKUSAKI_ID", "CM_KISH_RENRAKUSAKI_ID", null, null, Long.class, "cmKishRenrakusakiId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_EBC3D298_7B83_4580_B974_EBF88532F33C", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnTelNo1 = cci("TEL_NO1", "TEL_NO1", null, null, Integer.class, "telNo1", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTelNo2 = cci("TEL_NO2", "TEL_NO2", null, null, Integer.class, "telNo2", null, false, false, false, "DECIMAL", 5, 0, null, false, null, null, null, null, null, false);
