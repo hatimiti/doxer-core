@@ -10,12 +10,30 @@ import lombok.val;
 
 import org.dbflute.bhv.AbstractBehaviorWritable;
 import org.dbflute.bhv.readable.CBCall;
+import org.doxer.app.db.dbflute.exbhv.CmKaishaBhv;
 import org.doxer.app.db.dbflute.exbhv.CmRenrakusakiYotoKbBhv;
 import org.doxer.app.db.dbflute.exbhv.CmTesuryoKbBhv;
+import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.xbase.util._Container;
+
+import com.github.hatimiti.flutist.common.util._Num;
 
 
 public class JUtility {
+
+	public List<CmKaisha> cmKaishaList() {
+		CmKaishaBhv bhv = _Container.getComponent(CmKaishaBhv.class).get();
+		return bhv.selectList(cb -> {
+				cb.query().addOrderBy_CmKaishaId_Asc();
+			});
+	}
+
+	public CmKaisha cmKaisha(Object cmKaishaId) {
+		CmKaishaBhv bhv = _Container.getComponent(CmKaishaBhv.class).get();
+		return bhv.selectEntity(cb -> {
+				cb.query().setCmKaishaId_Equal(_Num.toL_Null(cmKaishaId.toString()));
+			}).get();
+	}
 
 	public Map<Object, Object> tesuryoKb() {
 		return createKbMap(CmTesuryoKbBhv.class);

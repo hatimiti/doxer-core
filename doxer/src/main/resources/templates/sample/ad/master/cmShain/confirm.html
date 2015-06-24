@@ -20,10 +20,10 @@
 	<h3>基本情報</h3>
 
 	<span th:if="${form.mode.code() ne application.Mode.Register}">
-		社員ID:<span th:text="${form.cmShainId}">100</span>
+		社員ID:<span th:text="${form.cmShainId}">100</span><br />
 	</span>
 
-	会社:<span th:text="${form.cmKaishaId}">サンプル会社名</span><br />
+	会社:<span th:text="${#j.cmKaisha(form.cmKaishaId).kaishaMei}">サンプル会社名</span><br />
 	社員名:<span th:text="${form.shainSei}">サンプル会社名</span>
 			<span th:text="${form.shainMei}">サンプル会社名</span><br />
 	社員名(英):<span th:text="${form.shainMeiEn}">Ichiro</span>

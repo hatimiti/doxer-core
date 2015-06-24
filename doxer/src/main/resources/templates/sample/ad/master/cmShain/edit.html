@@ -23,18 +23,24 @@
 		社員ID:<span th:text="${form.cmShainId}">100</span><br />
 	</span>
 
-	会社ID:<input type="text" value="10" sa:field="${form.cmKaishaId}" sa:errclass="ErrorsProperty" /><br />
+	会社:
+		<select th:field="${form.cmKaishaId.val}" th:remove="all-but-first" sa:errclass="ErrorsProperty" >
+			<option value="1" th:each="k : ${#j.cmKaishaList()}" th:value="${k.cmKaishaId}" sa:i18n="${k.kaishaMei}">ここに会社名</option>
+			<option value="2">bbb</option>
+			<option value="3">ccc</option>
+		</select>
+	<br />
 	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
 
 	社員名(姓):<input type="text" value="田中" sa:field="${form.shainSei}" sa:errclass="ErrorsProperty" /><br />
-	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainSei.val')}" th:text="${e}">xxx</div>
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainSei.val')}" th:text="${e}">xxx</div>
 	社員名(名):<input type="text" value="一郎" sa:field="${form.shainMei}" sa:errclass="ErrorsProperty" /><br />
-	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei.val')}" th:text="${e}">xxx</div>
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei.val')}" th:text="${e}">xxx</div>
 
 	社員名(姓)(英):<input type="text" value="Tanaka" sa:field="${form.shainSeiEn}" sa:errclass="ErrorsProperty" /><br />
-	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainSeiEn.val')}" th:text="${e}">xxx</div>
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainSeiEn.val')}" th:text="${e}">xxx</div>
 	社員名(名)(英):<input type="text" value="Ichiro" sa:field="${form.shainMeiEn}" sa:errclass="ErrorsProperty" /><br />
-	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMeiEn.val')}" th:text="${e}">xxx</div>
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMeiEn.val')}" th:text="${e}">xxx</div>
 
 	<input type="submit" name="backToList" value="戻る" />
 	<span th:switch="${form.mode.code()}">

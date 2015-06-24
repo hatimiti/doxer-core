@@ -18,7 +18,12 @@
 <form action="./search">
 	社員ID：<input type="text" sa:field="${form.cmShainId}" />(完全一致)<br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmShainId.val')}" th:text="${e}">xxx</div>
-	会社ID：<input type="text" sa:field="${form.cmKaishaId}" />(完全一致)<br />
+	会社：
+			<select th:field="${form.cmKaishaId.val}" th:remove="all-but-first" sa:errclass="ErrorsProperty" >
+				<option value="1" th:each="k : ${#j.cmKaishaList()}" th:value="${k.cmKaishaId}" sa:i18n="${k.kaishaMei}">ここに会社名</option>
+				<option value="2">bbb</option>
+				<option value="3">ccc</option>
+			</select><br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
 	社員名：<input type="text" sa:field="${form.shainMei}" />(前方一致)<br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei.val')}" th:text="${e}">xxx</div>
@@ -36,7 +41,7 @@
 				社員ID<a href="./search" sa:sortby="${application.DBMetaManager.CM_SHAIN$CM_SHAIN_ID}">▲</a>
 			</th>
 			<th abbr="snm" class="ResultItem_Company">
-				会社ID<a href="./search" sa:sortby="${application.DBMetaManager.CM_KAISHA$CM_KAISHA_ID}">▲</a>
+				会社<a href="./search" sa:sortby="${application.DBMetaManager.CM_KAISHA$KAISHA_MEI}">▲</a>
 			</th>
 			<th abbr="snm" class="ResultItem_Company">
 				社員名<a href="./search" sa:sortby="${application.DBMetaManager.CM_SHAIN$SHAIN_MEI}">▲</a>
@@ -51,7 +56,7 @@
 	<tbody th:each="cmShain : ${form.shainList}">
 		<tr>
 			<td class="ResultItem_Company" th:text="${cmShain.cmShainId}">1</td>
-			<td class="ResultItem_Company" th:text="${cmShain.cmKaishaId}">12</td>
+			<td class="ResultItem_Company" sa:i18n="${#j.cmKaisha(cmShain.cmKaishaId).kaishaMei}">12</td>
 			<td class="ResultItem_Company" th:text="${cmShain.shainMei}">太郎</td>
 			<td class="ResultItem_Company" th:text="${cmShain.shainMeiEn}">Co, Ex</td>
 			<td class="ResultItem_Button">

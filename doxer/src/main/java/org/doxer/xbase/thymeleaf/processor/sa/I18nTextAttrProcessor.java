@@ -20,16 +20,16 @@ import com.github.hatimiti.flutist.common.util._Regex;
  */
 public class I18nTextAttrProcessor extends AbstractTextChildModifierAttrProcessor  {
 
+	public static final int ATTR_PRECEDENCE = 1300;
 	public static final String PROCESSOR_NAME = "i18n";
 
 	public I18nTextAttrProcessor() {
 		super(PROCESSOR_NAME);
 	}
 
-
 	@Override
 	public int getPrecedence() {
-		return 100;
+		return ATTR_PRECEDENCE;
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class I18nTextAttrProcessor extends AbstractTextChildModifierAttrProcesso
 			Element element,
 			String attributeName) {
 
-		String attributeValue = getAttributeValue(element, attributeName);
+		String attributeValue = element.getAttributeValue(attributeName);
 
 		AccessUser user = _Container.getAccessUser();
 		Locale loc = user.getLocale();
@@ -62,10 +62,6 @@ public class I18nTextAttrProcessor extends AbstractTextChildModifierAttrProcesso
 		Configuration configuration = arguments.getConfiguration();
 		return getExpressionParser(configuration)
 				.parseExpression(configuration, arguments, attributeValue);
-	}
-
-	protected String getAttributeValue(Element element, String attributeName) {
-		return element.getAttributeValue(attributeName);
 	}
 
 }

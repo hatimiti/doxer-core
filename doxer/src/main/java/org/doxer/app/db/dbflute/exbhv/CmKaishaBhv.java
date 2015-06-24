@@ -4,10 +4,10 @@ import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.app.db.DBMetaManager.*;
 import static org.doxer.xbase.support.SortOrder.*;
 
+import org.dbflute.cbean.ConditionQuery;
 import org.dbflute.cbean.result.PagingResultBean;
 import org.doxer.app.db.dbflute.bsbhv.BsCmKaishaBhv;
 import org.doxer.app.db.dbflute.cbean.CmKaishaCB;
-import org.doxer.app.db.dbflute.cbean.cq.bs.BsCmKaishaCQ;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.app.sample.ad.master.cmkaisha.CmKaishaListForm;
 import org.doxer.xbase.support.TableHeaderSortableBhv;
@@ -22,7 +22,7 @@ import org.doxer.xbase.support.TableHeaderSortableBhv;
  */
 @org.springframework.stereotype.Component("cmKaishaBhv")
 public class CmKaishaBhv extends BsCmKaishaBhv
-		implements TableHeaderSortableBhv<CmKaishaCB, BsCmKaishaCQ> {
+		implements TableHeaderSortableBhv<CmKaishaCB> {
 
 	public CmKaisha selectByPk4Update(Long cmKaishaId) {
 //		cb.lockForUpdateWait(LOCK_WAIT_TIME);
@@ -62,7 +62,7 @@ public class CmKaishaBhv extends BsCmKaishaBhv
 	}
 
 	@Override
-	public BsCmKaishaCQ setOrder(CmKaishaCB cb, String sortColName, String sort) {
+	public ConditionQuery setOrder(CmKaishaCB cb, String sortColName, String sort) {
 		return
 			eq(CM_KAISHA$CM_KAISHA_ID, sortColName) ? isAsc(sort)
 					? cb.query().addOrderBy_CmKaishaId_Asc() : cb.query().addOrderBy_CmKaishaId_Desc() :

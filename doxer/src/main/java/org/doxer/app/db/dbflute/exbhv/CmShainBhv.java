@@ -4,10 +4,10 @@ import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.app.db.DBMetaManager.*;
 import static org.doxer.xbase.support.SortOrder.*;
 
+import org.dbflute.cbean.ConditionQuery;
 import org.dbflute.cbean.result.PagingResultBean;
 import org.doxer.app.db.dbflute.bsbhv.BsCmShainBhv;
 import org.doxer.app.db.dbflute.cbean.CmShainCB;
-import org.doxer.app.db.dbflute.cbean.cq.bs.BsCmShainCQ;
 import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.app.sample.ad.master.cmshain.CmShainListForm;
 import org.doxer.xbase.support.TableHeaderSortableBhv;
@@ -22,7 +22,7 @@ import org.doxer.xbase.support.TableHeaderSortableBhv;
  */
 @org.springframework.stereotype.Component("cmShainBhv")
 public class CmShainBhv extends BsCmShainBhv
-		implements TableHeaderSortableBhv<CmShainCB, BsCmShainCQ> {
+		implements TableHeaderSortableBhv<CmShainCB> {
 
 	public CmShain selectByPk4Update(Long cmShainId) {
 //		cb.lockForUpdateWait(LOCK_WAIT_TIME);
@@ -57,16 +57,20 @@ public class CmShainBhv extends BsCmShainBhv
 	}
 
 	@Override
-	public BsCmShainCQ setOrder(CmShainCB cb, String sortColName, String sort) {
+	public ConditionQuery setOrder(CmShainCB cb, String sortColName, String sort) {
 		return
 				eq(CM_SHAIN$CM_SHAIN_ID, sortColName) ? isAsc(sort)
-						? cb.query().addOrderBy_CmShainId_Asc() : cb.query().addOrderBy_CmShainId_Desc() :
-				eq(CM_KAISHA$CM_KAISHA_ID, sortColName) ? isAsc(sort)
-						? cb.query().addOrderBy_CmKaishaId_Asc() : cb.query().addOrderBy_CmKaishaId_Desc() :
+						? cb.query().addOrderBy_CmShainId_Asc()
+						: cb.query().addOrderBy_CmShainId_Desc() :
+				eq(CM_KAISHA$KAISHA_MEI, sortColName) ? isAsc(sort)
+						? cb.query().queryCmKaisha().addOrderBy_KaishaMei_Asc()
+						: cb.query().queryCmKaisha().addOrderBy_KaishaMei_Desc() :
 				eq(CM_SHAIN$SHAIN_MEI, sortColName) ? isAsc(sort)
-						? cb.query().addOrderBy_ShainMei_Asc() : cb.query().addOrderBy_ShainMei_Desc() :
+						? cb.query().addOrderBy_ShainMei_Asc()
+						: cb.query().addOrderBy_ShainMei_Desc() :
 				eq(CM_SHAIN$SHAIN_MEI_EN, sortColName) ? isAsc(sort)
-						? cb.query().addOrderBy_ShainMeiEn_Asc() : cb.query().addOrderBy_ShainMeiEn_Desc() :
+						? cb.query().addOrderBy_ShainMeiEn_Asc()
+						: cb.query().addOrderBy_ShainMeiEn_Desc() :
 				null;
 	}
 }
