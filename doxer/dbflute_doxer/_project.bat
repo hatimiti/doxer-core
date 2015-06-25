@@ -2,7 +2,7 @@
 
 set ANT_OPTS=-Xmx512m
 
-set DBFLUTE_HOME=..\mydbflute\dbflute-1.1.0-sp3
+set DBFLUTE_HOME=..\mydbflute\dbflute-1.1.0-sp5
 
 set MY_PROJECT_NAME=doxer
 

@@ -1,48 +1,47 @@
 package org.doxer.app.db.dbflute.bsentity;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.dbflute.Entity;
-import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.DBMeta;
+import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
 import org.dbflute.optional.OptionalEntity;
-import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
 import org.doxer.app.db.dbflute.allcommon.EntityDefinedCommonColumn;
-import org.doxer.app.db.dbflute.exentity.CmKaisha;
-import org.doxer.app.db.dbflute.exentity.CmShain;
+import org.doxer.app.db.dbflute.allcommon.DBMetaInstanceHandler;
+import org.doxer.app.db.dbflute.exentity.*;
 
 /**
  * The entity of CM_SHAIN as TABLE. <br>
  * <pre>
  * [primary-key]
  *     CM_SHAIN_ID
- *
+ * 
  * [column]
  *     CM_SHAIN_ID, CM_KAISHA_ID, SHAIN_SEI, SHAIN_MEI, SHAIN_SEI_EN, SHAIN_MEI_EN, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
- *
+ * 
  * [sequence]
- *
- *
+ *     
+ * 
  * [identity]
  *     CM_SHAIN_ID
- *
+ * 
  * [version-no]
  *     VERSION_NO
- *
+ * 
  * [foreign table]
  *     CM_KAISHA
- *
+ * 
  * [referrer table]
- *
- *
+ *     
+ * 
  * [foreign property]
  *     cmKaisha
- *
+ * 
  * [referrer property]
- *
- *
+ *     
+ * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long cmShainId = entity.getCmShainId();

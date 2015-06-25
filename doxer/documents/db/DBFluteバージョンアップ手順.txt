@@ -1,0 +1,26 @@
+/*
+ * O/Rマッパ(兼DBツール)であるDBFluteのバージョンアップを行う際の手順を示す．
+ */
+
+01．/doxer/dbflute_doxer/manage.bat
+　94: upgrade を指定して実行する．
+　「BUILD SUCCESSFUL」と表示されたことを確認する．
+　同時に下記のような表示がコンソールに表示されているため、バージョンを控えておく．
+
+　　[df-upgrade]     e.g. pom.xml:
+　　[df-upgrade]      <dbflute.version>1.1.0-sp5</dbflute.version>
+
+02．/doxer/build.gradle
+　下記の例のように dependencies 設定を変更する．
+　01．の手順で表示されたバージョンを指定する．
+　compile group: 'org.dbflute', name: 'dbflute-runtime', version: '1.1.0-sp3'
+　→compile group: 'org.dbflute', name: 'dbflute-runtime', version: '1.1.0-sp5'
+
+03．「プロジェクト右クリック」→「Gradle」→「依存関係のリフレッシュ」
+　jarのダウンロードが完了したら「パッケージ・エクスプローラ」より「Gradle 依存関係」を確認し
+　「dbflute-runtime-<指定したバージョン>.jar」が含まれていることを確認する．
+
+04．/doxer/dbflute_doxer/manage.bat
+　2 : regenerate を指定して実行する．
+　「BUILD SUCCESSFUL」と表示されたことを確認する．
+　「BUILD FAILED」と表示された場合は、コンソールのエラーメッセージでエラー内容を確認します．

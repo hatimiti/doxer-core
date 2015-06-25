@@ -1,0 +1,19 @@
+/*
+ * システムが依存するライブラリ群のバージョンアップを行う際の手順を示す．
+ *
+ * ＜実施タイミング＞
+ * http://mvnrepository.com/
+ * から対象のライブラリを検索し、バージョンが更新されている場合．
+ */
+
+01．/doxer/build.gradle
+　下記の例のように dependencies 設定を変更する．
+　compile group: 'org.dbflute', name: 'dbflute-runtime', version: '1.1.0-sp3'
+　→compile group: 'org.dbflute', name: 'dbflute-runtime', version: '1.1.0-sp5'
+
+　※変数定義されている場合は、変数の値を修正します．
+　　例：def ASPECTJ_VERSION = '1.8.5' → def ASPECTJ_VERSION = '1.8.6'
+
+02．「プロジェクト右クリック」→「Gradle」→「依存関係のリフレッシュ」
+　jarのダウンロードが完了したら「パッケージ・エクスプローラ」より「Gradle 依存関係」を確認し
+　変更したライブラリが更新されていることを確認する．
