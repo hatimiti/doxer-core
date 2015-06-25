@@ -196,6 +196,11 @@ CREATE TABLE cm_shain
 	-- 社員名(名)(英語)
 	shain_mei_en varchar(100),
 
+	-- ログインCD
+	login_cd varchar(50) NOT NULL,
+	-- パスワード
+	password varchar(50) NOT NULL,
+
 	-- 登録者ID
 	reg_user_id varchar(10) NOT NULL,
 	-- 登録日時

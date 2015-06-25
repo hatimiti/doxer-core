@@ -196,6 +196,11 @@ CREATE TABLE cm_shain
 	-- 社員名(名)(英語)
 	shain_mei_en varchar(100),
 
+	-- ログインCD
+	login_cd varchar(50) NOT NULL,
+	-- パスワード
+	password varchar(50) NOT NULL,
+
 	-- 登録者ID
 	reg_user_id varchar(10) NOT NULL,
 	-- 登録日時
@@ -229,3 +234,4 @@ CREATE TABLE TCM_SAMPLE (
 /* Create Indexes */
 CREATE UNIQUE INDEX UX01_CM_KAISHA ON cm_kaisha (kaisha_mei);
 CREATE UNIQUE INDEX UX01_CM_KISH_TESURYO ON cm_kish_tesuryo (cm_kaisha_id, tekiyo_kikan_from_dt);
+CREATE UNIQUE INDEX UX01_CM_SHAIN ON cm_shain (cm_kaisha_id, login_cd);

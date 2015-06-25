@@ -19,7 +19,7 @@ import org.doxer.app.db.dbflute.exentity.*;
  *     CM_SHAIN_ID
  * 
  * [column]
- *     CM_SHAIN_ID, CM_KAISHA_ID, SHAIN_SEI, SHAIN_MEI, SHAIN_SEI_EN, SHAIN_MEI_EN, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
+ *     CM_SHAIN_ID, CM_KAISHA_ID, SHAIN_SEI, SHAIN_MEI, SHAIN_SEI_EN, SHAIN_MEI_EN, LOGIN_CD, PASSWORD, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
  * 
  * [sequence]
  *     
@@ -50,6 +50,8 @@ import org.doxer.app.db.dbflute.exentity.*;
  * String shainMei = entity.getShainMei();
  * String shainSeiEn = entity.getShainSeiEn();
  * String shainMeiEn = entity.getShainMeiEn();
+ * String loginCd = entity.getLoginCd();
+ * String password = entity.getPassword();
  * String regUserId = entity.getRegUserId();
  * java.time.LocalDateTime regTm = entity.getRegTm();
  * String regFuncCd = entity.getRegFuncCd();
@@ -63,6 +65,8 @@ import org.doxer.app.db.dbflute.exentity.*;
  * entity.setShainMei(shainMei);
  * entity.setShainSeiEn(shainSeiEn);
  * entity.setShainMeiEn(shainMeiEn);
+ * entity.setLoginCd(loginCd);
+ * entity.setPassword(password);
  * entity.setRegUserId(regUserId);
  * entity.setRegTm(regTm);
  * entity.setRegFuncCd(regFuncCd);
@@ -88,7 +92,7 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
     /** CM_SHAIN_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _cmShainId;
 
-    /** CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} */
+    /** CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha} */
     protected Long _cmKaishaId;
 
     /** SHAIN_SEI: {NotNull, VARCHAR(50)} */
@@ -102,6 +106,12 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
 
     /** SHAIN_MEI_EN: {VARCHAR(100)} */
     protected String _shainMeiEn;
+
+    /** LOGIN_CD: {+UQ, NotNull, VARCHAR(50)} */
+    protected String _loginCd;
+
+    /** PASSWORD: {NotNull, VARCHAR(50)} */
+    protected String _password;
 
     /** REG_USER_ID: {NotNull, VARCHAR(10)} */
     protected String _regUserId;
@@ -144,6 +154,19 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
     public boolean hasPrimaryKeyValue() {
         if (_cmShainId == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br>
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param cmKaishaId : UQ+, NotNull, BIGINT(19), FK to cm_kaisha. (NotNull)
+     * @param loginCd : +UQ, NotNull, VARCHAR(50). (NotNull)
+     */
+    public void uniqueBy(Long cmKaishaId, String loginCd) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("cmKaishaId");
+        __uniqueDrivenProperties.addPropertyName("loginCd");
+        setCmKaishaId(cmKaishaId);setLoginCd(loginCd);
     }
 
     // ===================================================================================
@@ -219,6 +242,8 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
         sb.append(dm).append(xfND(_shainMei));
         sb.append(dm).append(xfND(_shainSeiEn));
         sb.append(dm).append(xfND(_shainMeiEn));
+        sb.append(dm).append(xfND(_loginCd));
+        sb.append(dm).append(xfND(_password));
         sb.append(dm).append(xfND(_regUserId));
         sb.append(dm).append(xfND(_regTm));
         sb.append(dm).append(xfND(_regFuncCd));
@@ -271,7 +296,7 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} <br>
+     * [get] CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @return The value of the column 'CM_KAISHA_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getCmKaishaId() {
@@ -280,7 +305,7 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha} <br>
+     * [set] CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha} <br>
      * @param cmKaishaId The value of the column 'CM_KAISHA_ID'. (basically NotNull if update: for the constraint)
      */
     public void setCmKaishaId(Long cmKaishaId) {
@@ -358,6 +383,42 @@ public abstract class BsCmShain extends AbstractEntity implements DomainEntity, 
     public void setShainMeiEn(String shainMeiEn) {
         registerModifiedProperty("shainMeiEn");
         _shainMeiEn = shainMeiEn;
+    }
+
+    /**
+     * [get] LOGIN_CD: {+UQ, NotNull, VARCHAR(50)} <br>
+     * @return The value of the column 'LOGIN_CD'. (basically NotNull if selected: for the constraint)
+     */
+    public String getLoginCd() {
+        checkSpecifiedProperty("loginCd");
+        return _loginCd;
+    }
+
+    /**
+     * [set] LOGIN_CD: {+UQ, NotNull, VARCHAR(50)} <br>
+     * @param loginCd The value of the column 'LOGIN_CD'. (basically NotNull if update: for the constraint)
+     */
+    public void setLoginCd(String loginCd) {
+        registerModifiedProperty("loginCd");
+        _loginCd = loginCd;
+    }
+
+    /**
+     * [get] PASSWORD: {NotNull, VARCHAR(50)} <br>
+     * @return The value of the column 'PASSWORD'. (basically NotNull if selected: for the constraint)
+     */
+    public String getPassword() {
+        checkSpecifiedProperty("password");
+        return _password;
+    }
+
+    /**
+     * [set] PASSWORD: {NotNull, VARCHAR(50)} <br>
+     * @param password The value of the column 'PASSWORD'. (basically NotNull if update: for the constraint)
+     */
+    public void setPassword(String password) {
+        registerModifiedProperty("password");
+        _password = password;
     }
 
     /**

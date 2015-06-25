@@ -49,6 +49,8 @@ public class CmShainDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((CmShain)et).getShainMei(), (et, vl) -> ((CmShain)et).setShainMei((String)vl), "shainMei");
         setupEpg(_epgMap, et -> ((CmShain)et).getShainSeiEn(), (et, vl) -> ((CmShain)et).setShainSeiEn((String)vl), "shainSeiEn");
         setupEpg(_epgMap, et -> ((CmShain)et).getShainMeiEn(), (et, vl) -> ((CmShain)et).setShainMeiEn((String)vl), "shainMeiEn");
+        setupEpg(_epgMap, et -> ((CmShain)et).getLoginCd(), (et, vl) -> ((CmShain)et).setLoginCd((String)vl), "loginCd");
+        setupEpg(_epgMap, et -> ((CmShain)et).getPassword(), (et, vl) -> ((CmShain)et).setPassword((String)vl), "password");
         setupEpg(_epgMap, et -> ((CmShain)et).getRegUserId(), (et, vl) -> ((CmShain)et).setRegUserId((String)vl), "regUserId");
         setupEpg(_epgMap, et -> ((CmShain)et).getRegTm(), (et, vl) -> ((CmShain)et).setRegTm(ctldt(vl)), "regTm");
         setupEpg(_epgMap, et -> ((CmShain)et).getRegFuncCd(), (et, vl) -> ((CmShain)et).setRegFuncCd((String)vl), "regFuncCd");
@@ -88,12 +90,14 @@ public class CmShainDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCmShainId = cci("CM_SHAIN_ID", "CM_SHAIN_ID", null, null, Long.class, "cmShainId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_E0863774_C64C_43D7_8801_9B9262A9B35C", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCmShainId = cci("CM_SHAIN_ID", "CM_SHAIN_ID", null, null, Long.class, "cmShainId", null, true, true, true, "BIGINT", 19, 0, "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_E8CB7387_4942_42DD_AA19_DA45705C69FE", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCmKaishaId = cci("CM_KAISHA_ID", "CM_KAISHA_ID", null, null, Long.class, "cmKaishaId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "cmKaisha", null, null, false);
     protected final ColumnInfo _columnShainSei = cci("SHAIN_SEI", "SHAIN_SEI", null, null, String.class, "shainSei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnShainMei = cci("SHAIN_MEI", "SHAIN_MEI", null, null, String.class, "shainMei", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnShainSeiEn = cci("SHAIN_SEI_EN", "SHAIN_SEI_EN", null, null, String.class, "shainSeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnShainMeiEn = cci("SHAIN_MEI_EN", "SHAIN_MEI_EN", null, null, String.class, "shainMeiEn", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnLoginCd = cci("LOGIN_CD", "LOGIN_CD", null, null, String.class, "loginCd", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnPassword = cci("PASSWORD", "PASSWORD", null, null, String.class, "password", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegUserId = cci("REG_USER_ID", "REG_USER_ID", null, null, String.class, "regUserId", null, false, false, true, "VARCHAR", 10, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegTm = cci("REG_TM", "REG_TM", null, null, java.time.LocalDateTime.class, "regTm", null, false, false, true, "TIMESTAMP", 23, 10, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegFuncCd = cci("REG_FUNC_CD", "REG_FUNC_CD", null, null, String.class, "regFuncCd", null, false, false, true, "VARCHAR", 9, 0, null, true, null, null, null, null, null, false);
@@ -108,7 +112,7 @@ public class CmShainDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnCmShainId() { return _columnCmShainId; }
     /**
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCmKaishaId() { return _columnCmKaishaId; }
@@ -132,6 +136,16 @@ public class CmShainDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnShainMeiEn() { return _columnShainMeiEn; }
+    /**
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnLoginCd() { return _columnLoginCd; }
+    /**
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnPassword() { return _columnPassword; }
     /**
      * REG_USER_ID: {NotNull, VARCHAR(10)}
      * @return The information object of specified column. (NotNull)
@@ -176,6 +190,8 @@ public class CmShainDbm extends AbstractDBMeta {
         ls.add(columnShainMei());
         ls.add(columnShainSeiEn());
         ls.add(columnShainMeiEn());
+        ls.add(columnLoginCd());
+        ls.add(columnPassword());
         ls.add(columnRegUserId());
         ls.add(columnRegTm());
         ls.add(columnRegFuncCd());
@@ -197,6 +213,16 @@ public class CmShainDbm extends AbstractDBMeta {
     protected UniqueInfo cpui() { return hpcpui(columnCmShainId()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
+
+    // -----------------------------------------------------
+    //                                        Unique Element
+    //                                        --------------
+    public UniqueInfo uniqueOf() {
+        List<ColumnInfo> ls = newArrayListSized(4);
+        ls.add(columnCmKaishaId());
+        ls.add(columnLoginCd());
+        return hpcui(ls);
+    }
 
     // ===================================================================================
     //                                                                       Relation Info

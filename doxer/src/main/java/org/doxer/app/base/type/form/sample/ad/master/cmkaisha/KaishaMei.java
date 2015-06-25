@@ -15,7 +15,7 @@ import com.github.hatimiti.flutist.common.validation.Vval;
 
 public class KaishaMei extends Mei {
 
-	protected CmKaishaId myPk;
+	protected CmKaishaId pk;
 
 	public KaishaMei(
 			InputAttribute inputAttribute,
@@ -33,23 +33,18 @@ public class KaishaMei extends Mei {
 	protected void validateCustom(AppMessagesContainer container, String property) {
 		super.validateCustom(container, property);
 
-		if (isNotEmpty(this.myPk)) {
+		if (isNotEmpty(getVal()) && isNotEmpty(this.pk) && isNotEmpty(this.pk.getVal())) {
 			CmKaishaCB cb = new CmKaishaCB();
-			cb.ignoreNullOrEmptyQuery();
-			setNotExistsMeiColumn(cb);
-			cb.query().setCmKaishaId_NotEqual(this.myPk.getValL());
+			cb.query().setKaishaMei_Equal(getVal());
+			cb.query().setCmKaishaId_NotEqual(this.pk.getValL());
 			new NotExistsFieldValidator(container, CmKaishaBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
 		}
 	}
 
-	protected void setNotExistsMeiColumn(CmKaishaCB cb) {
-		cb.query().setKaishaMei_Equal(getVal());
-	}
-
 	public void validWithUniqueCheck(
 			AppMessagesContainer container,
-			CmKaishaId myPk) {
-		this.myPk = myPk;
+			CmKaishaId pk) {
+		this.pk = pk;
 		super.validate(container);
 	}
 

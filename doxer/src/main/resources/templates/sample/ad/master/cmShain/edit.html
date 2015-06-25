@@ -45,6 +45,11 @@
 	社員名(名)(英):<input type="text" value="Ichiro" sa:field="${form.shainMeiEn}" sa:errclass="ErrorsProperty" /><br />
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMeiEn.val')}" th:text="${e}">xxx</div>
 
+	ログインCD:<input type="text" value="aa123" sa:field="${form.loginCd}" sa:errclass="ErrorsProperty" /><br />
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('loginCd.val')}" th:text="${e}">xxx</div>
+	パスワード:<input type="password" value="aaa" sa:field="${form.password}" sa:errclass="ErrorsProperty" /><br />
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('password.val')}" th:text="${e}">xxx</div>
+
 	<input type="submit" name="backToList" value="戻る" />
 	<span th:switch="${form.mode.code()}">
 		<input type="submit" name="confirmRegister" value="次へ" th:case="${application.Mode.Register}" />

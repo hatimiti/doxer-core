@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import org.doxer.app.base.type.form.base.Mei;
 import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
+import org.doxer.app.base.type.form.sample.ad.master.cmshain.LoginCd;
+import org.doxer.app.base.type.form.sample.ad.master.cmshain.Password;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.ShainMei;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.ShainMeiEn;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.ShainSei;
@@ -32,6 +34,9 @@ public class CmShainForm extends BaseEntityForm<CmShain> {
 	@Condition Mei shainSeiEn = new ShainSeiEn(ARBITRARY, "shainSeiEn", "shainSeiEn");
 	@Condition Mei shainMeiEn = new ShainMeiEn(ARBITRARY, "shainMeiEn", "shainMeiEn");
 
+	@Condition LoginCd loginCd = new LoginCd(REQUIRED, "loginCd", "loginCd");
+	@Condition Password password = new Password(REQUIRED, "password", "password");
+
 //	@Session
 	Mode mode;
 
@@ -44,6 +49,8 @@ public class CmShainForm extends BaseEntityForm<CmShain> {
 			shainMei.validate(c);
 			shainSeiEn.validate(c);
 			shainMeiEn.validate(c);
+			loginCd.validWithUniqueCheck(c, cmShainId, cmKaishaId);
+			password.validate(c);
 		}
 	}
 
@@ -62,6 +69,8 @@ public class CmShainForm extends BaseEntityForm<CmShain> {
 		this.shainMei.setStrictVal(entity.getShainMei());
 		this.shainSeiEn.setStrictVal(entity.getShainSeiEn());
 		this.shainMeiEn.setStrictVal(entity.getShainMeiEn());
+		this.loginCd.setStrictVal(entity.getLoginCd());
+		this.password.setStrictVal(entity.getPassword());
 		this.versionNo = entity.getVersionNo();
 	}
 

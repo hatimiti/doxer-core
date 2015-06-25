@@ -22,12 +22,11 @@ public class CmKaishaId extends Id {
 	@Override
 	protected void validateCustom(AppMessagesContainer container, String property) {
 		super.validateCustom(container, property);
-		if (getValL() == null) {
-			return;
+		if (getValL() != null) {
+			CmKaishaCB cb = new CmKaishaCB();
+			cb.query().setCmKaishaId_Equal(getValL());
+			new ExistsFieldValidator(container, CmKaishaBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
 		}
-		CmKaishaCB cb = new CmKaishaCB();
-		cb.query().setCmKaishaId_Equal(getValL());
-		new ExistsFieldValidator(container, CmKaishaBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
 	}
 
 	@Override

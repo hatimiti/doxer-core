@@ -101,14 +101,14 @@ public class BsCmShainCQ extends AbstractBsCmShainCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @return this. (NotNull)
      */
     public BsCmShainCQ addOrderBy_CmKaishaId_Asc() { regOBA("CM_KAISHA_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @return this. (NotNull)
      */
     public BsCmShainCQ addOrderBy_CmKaishaId_Desc() { regOBD("CM_KAISHA_ID"); return this; }
@@ -192,6 +192,46 @@ public class BsCmShainCQ extends AbstractBsCmShainCQ {
      * @return this. (NotNull)
      */
     public BsCmShainCQ addOrderBy_ShainMeiEn_Desc() { regOBD("SHAIN_MEI_EN"); return this; }
+
+    protected ConditionValue _loginCd;
+    public ConditionValue xdfgetLoginCd()
+    { if (_loginCd == null) { _loginCd = nCV(); }
+      return _loginCd; }
+    protected ConditionValue xgetCValueLoginCd() { return xdfgetLoginCd(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsCmShainCQ addOrderBy_LoginCd_Asc() { regOBA("LOGIN_CD"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsCmShainCQ addOrderBy_LoginCd_Desc() { regOBD("LOGIN_CD"); return this; }
+
+    protected ConditionValue _password;
+    public ConditionValue xdfgetPassword()
+    { if (_password == null) { _password = nCV(); }
+      return _password; }
+    protected ConditionValue xgetCValuePassword() { return xdfgetPassword(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsCmShainCQ addOrderBy_Password_Asc() { regOBA("PASSWORD"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsCmShainCQ addOrderBy_Password_Desc() { regOBD("PASSWORD"); return this; }
 
     protected ConditionValue _regUserId;
     public ConditionValue xdfgetRegUserId()

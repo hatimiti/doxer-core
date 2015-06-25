@@ -67,6 +67,8 @@ public class CmShainCIQ extends AbstractBsCmShainCQ {
     protected ConditionValue xgetCValueShainMei() { return _myCQ.xdfgetShainMei(); }
     protected ConditionValue xgetCValueShainSeiEn() { return _myCQ.xdfgetShainSeiEn(); }
     protected ConditionValue xgetCValueShainMeiEn() { return _myCQ.xdfgetShainMeiEn(); }
+    protected ConditionValue xgetCValueLoginCd() { return _myCQ.xdfgetLoginCd(); }
+    protected ConditionValue xgetCValuePassword() { return _myCQ.xdfgetPassword(); }
     protected ConditionValue xgetCValueRegUserId() { return _myCQ.xdfgetRegUserId(); }
     protected ConditionValue xgetCValueRegTm() { return _myCQ.xdfgetRegTm(); }
     protected ConditionValue xgetCValueRegFuncCd() { return _myCQ.xdfgetRegFuncCd(); }

@@ -23,6 +23,8 @@ public class CmShain extends BsCmShain {
 		this.setShainMei(form.getShainMei().getVal());
 		this.setShainSeiEn(form.getShainSeiEn().getVal());
 		this.setShainMeiEn(form.getShainMeiEn().getVal());
+		this.setLoginCd(form.getLoginCd().getVal());
+		this.setPassword(form.getPassword().getVal());
 		this.setVersionNo(form.getVersionNo());
 	}
 

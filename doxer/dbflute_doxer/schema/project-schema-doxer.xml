@@ -4,7 +4,7 @@
 <database name="PUBLIC">
     <table name="CM_KAISHA" schema="DOXER_DEV.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_53A0EF60_510F_4D68_A06D_54F937DFC929"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_667776FA_30CE_4199_8815_330DA8C7CE2B"
             javaType="Long" name="CM_KAISHA_ID" pkName="CONSTRAINT_3"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -33,7 +33,7 @@
     </table>
     <table name="CM_KISH_RENRAKUSAKI" schema="DOXER_DEV.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_EBC3D298_7B83_4580_B974_EBF88532F33C"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_0F7D2C02_34F7_4EA4_A90F_9AA3531B7DC9"
             javaType="Long" name="CM_KISH_RENRAKUSAKI_ID"
             pkName="CONSTRAINT_B" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
@@ -68,7 +68,7 @@
     </table>
     <table name="CM_KISH_TESURYO" schema="DOXER_DEV.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_030D6349_F596_4240_87F0_4DD946CE60BA"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_87AC24E4_F85A_42FC_8D72_39FC865C944A"
             javaType="Long" name="CM_KISH_TESURYO_ID"
             pkName="CONSTRAINT_F" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
@@ -133,7 +133,7 @@
     </table>
     <table name="CM_SHAIN" schema="DOXER_DEV.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_E0863774_C64C_43D7_8801_9B9262A9B35C"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_E8CB7387_4942_42DD_AA19_DA45705C69FE"
             javaType="Long" name="CM_SHAIN_ID" pkName="CONSTRAINT_BF"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -146,6 +146,10 @@
             name="SHAIN_SEI_EN" size="100" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="SHAIN_MEI_EN" size="100" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="LOGIN_CD" required="true" size="50" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="PASSWORD" required="true" size="50" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REG_USER_ID" required="true" size="10" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
@@ -162,6 +166,10 @@
             name="UPD_FUNC_CD" required="true" size="9" type="VARCHAR"/>
         <column comment="" dbType="DECIMAL" javaType="Integer"
             name="VERSION_NO" required="true" size="9" type="DECIMAL"/>
+        <unique name="UX01_CM_SHAIN">
+            <unique-column name="CM_KAISHA_ID" position="1"/>
+            <unique-column name="LOGIN_CD" position="2"/>
+        </unique>
     </table>
     <table name="CM_TESURYO_KB" schema="DOXER_DEV.PUBLIC" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String" name="KB_VAL"
@@ -192,7 +200,7 @@
     </table>
     <table name="TCM_SAMPLE" schema="DOXER_DEV.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_993DF060_AA2D_47C2_8ED4_4C02ED970E10"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_FDB4511B_4211_4169_B7A3_91BBDAD58FF7"
             javaType="Long" name="TCM_SAMPLE_ID" pkName="CONSTRAINT_6"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -202,14 +210,14 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_993DF060_AA2D_47C2_8ED4_4C02ED970E10" schema="DOXER_DEV.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_87AC24E4_F85A_42FC_8D72_39FC865C944A" schema="DOXER_DEV.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_EBC3D298_7B83_4580_B974_EBF88532F33C" schema="DOXER_DEV.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_0F7D2C02_34F7_4EA4_A90F_9AA3531B7DC9" schema="DOXER_DEV.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_53A0EF60_510F_4D68_A06D_54F937DFC929" schema="DOXER_DEV.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_FDB4511B_4211_4169_B7A3_91BBDAD58FF7" schema="DOXER_DEV.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_E0863774_C64C_43D7_8801_9B9262A9B35C" schema="DOXER_DEV.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_667776FA_30CE_4199_8815_330DA8C7CE2B" schema="DOXER_DEV.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_030D6349_F596_4240_87F0_4DD946CE60BA" schema="DOXER_DEV.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_E8CB7387_4942_42DD_AA19_DA45705C69FE" schema="DOXER_DEV.PUBLIC"/>
     </sequenceGroup>
 </database>

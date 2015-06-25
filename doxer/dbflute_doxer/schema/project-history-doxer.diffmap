@@ -1,4 +1,29 @@
 map:{
+    ; 2015/06/25 21:45:58 = map:{
+        ; diffDate = 2015/06/25 21:45:58
+        ; tableDiff = map:{
+            ; CM_SHAIN = map:{
+                ; tableName = CM_SHAIN
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; LOGIN_CD = map:{
+                        ; columnName = LOGIN_CD
+                        ; diffType = ADD
+                    }
+                    ; PASSWORD = map:{
+                        ; columnName = PASSWORD
+                        ; diffType = ADD
+                    }
+                }
+                ; uniqueKeyDiff = map:{
+                    ; UX01_CM_SHAIN = map:{
+                        ; constraintName = UX01_CM_SHAIN
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2015/06/23 22:32:52 = map:{
         ; diffDate = 2015/06/23 22:32:52
         ; tableCount = map:{

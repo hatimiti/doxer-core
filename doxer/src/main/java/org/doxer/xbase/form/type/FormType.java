@@ -1,6 +1,7 @@
 package org.doxer.xbase.form.type;
 
 import static com.github.hatimiti.flutist.common.util._Obj.*;
+import static java.lang.String.*;
 
 import java.util.Optional;
 
@@ -54,7 +55,9 @@ public abstract class FormType<T> extends Type<T> {
 		this.val = val;
 		if (!isValidVal()) {
 			this.val = tmp;
-			throw new IllegalStateException("ドメイン型に適した値ではありません。");
+			throw new IllegalStateException(format("[%s]の値[%s]はドメイン型に適した値ではありません。",
+					this.getClass().getName(),
+					this.toString()));
 		}
 	}
 
@@ -92,7 +95,9 @@ public abstract class FormType<T> extends Type<T> {
 
 	protected void checkValidVal() {
 		if (!isValidVal()) {
-			throw new IllegalStateException("ドメイン型に適した値ではありません。");
+			throw new IllegalStateException(format("[%s]の値[%s]はドメイン型に適した値ではありません。",
+					this.getClass().getName(),
+					this.toString()));
 		}
 	}
 

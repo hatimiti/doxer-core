@@ -174,7 +174,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as equal. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_Equal(Long cmKaishaId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as notEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_NotEqual(Long cmKaishaId) {
@@ -200,7 +200,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterThan(Long cmKaishaId) {
@@ -209,7 +209,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessThan(Long cmKaishaId) {
@@ -218,7 +218,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_GreaterEqual(Long cmKaishaId) {
@@ -227,7 +227,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaId The value of cmKaishaId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setCmKaishaId_LessEqual(Long cmKaishaId) {
@@ -238,7 +238,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -251,7 +251,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param minNumber The min number of cmKaishaId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of cmKaishaId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -262,7 +262,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_InScope(Collection<Long> cmKaishaIdList) {
@@ -275,7 +275,7 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+     * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
      * @param cmKaishaIdList The collection of cmKaishaId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setCmKaishaId_NotInScope(Collection<Long> cmKaishaIdList) {
@@ -864,6 +864,276 @@ public abstract class AbstractBsCmShainCQ extends AbstractConditionQuery {
 
     protected void regShainMeiEn(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueShainMeiEn(), "SHAIN_MEI_EN"); }
     protected abstract ConditionValue xgetCValueShainMeiEn();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_Equal(String loginCd) {
+        doSetLoginCd_Equal(fRES(loginCd));
+    }
+
+    protected void doSetLoginCd_Equal(String loginCd) {
+        regLoginCd(CK_EQ, loginCd);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_NotEqual(String loginCd) {
+        doSetLoginCd_NotEqual(fRES(loginCd));
+    }
+
+    protected void doSetLoginCd_NotEqual(String loginCd) {
+        regLoginCd(CK_NES, loginCd);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as greaterThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_GreaterThan(String loginCd) {
+        regLoginCd(CK_GT, fRES(loginCd));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as lessThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_LessThan(String loginCd) {
+        regLoginCd(CK_LT, fRES(loginCd));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_GreaterEqual(String loginCd) {
+        regLoginCd(CK_GE, fRES(loginCd));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as lessEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_LessEqual(String loginCd) {
+        regLoginCd(CK_LE, fRES(loginCd));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCdList The collection of loginCd as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_InScope(Collection<String> loginCdList) {
+        doSetLoginCd_InScope(loginCdList);
+    }
+
+    protected void doSetLoginCd_InScope(Collection<String> loginCdList) {
+        regINS(CK_INS, cTL(loginCdList), xgetCValueLoginCd(), "LOGIN_CD");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCdList The collection of loginCd as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setLoginCd_NotInScope(Collection<String> loginCdList) {
+        doSetLoginCd_NotInScope(loginCdList);
+    }
+
+    protected void doSetLoginCd_NotInScope(Collection<String> loginCdList) {
+        regINS(CK_NINS, cTL(loginCdList), xgetCValueLoginCd(), "LOGIN_CD");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setLoginCd_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param loginCd The value of loginCd as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setLoginCd_LikeSearch(String loginCd, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setLoginCd_LikeSearch(loginCd, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setLoginCd_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param loginCd The value of loginCd as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setLoginCd_LikeSearch(String loginCd, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(loginCd), xgetCValueLoginCd(), "LOGIN_CD", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setLoginCd_NotLikeSearch(String loginCd, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setLoginCd_NotLikeSearch(loginCd, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+     * @param loginCd The value of loginCd as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setLoginCd_NotLikeSearch(String loginCd, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(loginCd), xgetCValueLoginCd(), "LOGIN_CD", likeSearchOption);
+    }
+
+    protected void regLoginCd(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueLoginCd(), "LOGIN_CD"); }
+    protected abstract ConditionValue xgetCValueLoginCd();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_Equal(String password) {
+        doSetPassword_Equal(fRES(password));
+    }
+
+    protected void doSetPassword_Equal(String password) {
+        regPassword(CK_EQ, password);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_NotEqual(String password) {
+        doSetPassword_NotEqual(fRES(password));
+    }
+
+    protected void doSetPassword_NotEqual(String password) {
+        regPassword(CK_NES, password);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as greaterThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_GreaterThan(String password) {
+        regPassword(CK_GT, fRES(password));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as lessThan. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_LessThan(String password) {
+        regPassword(CK_LT, fRES(password));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_GreaterEqual(String password) {
+        regPassword(CK_GE, fRES(password));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as lessEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_LessEqual(String password) {
+        regPassword(CK_LE, fRES(password));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param passwordList The collection of password as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_InScope(Collection<String> passwordList) {
+        doSetPassword_InScope(passwordList);
+    }
+
+    protected void doSetPassword_InScope(Collection<String> passwordList) {
+        regINS(CK_INS, cTL(passwordList), xgetCValuePassword(), "PASSWORD");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param passwordList The collection of password as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setPassword_NotInScope(Collection<String> passwordList) {
+        doSetPassword_NotInScope(passwordList);
+    }
+
+    protected void doSetPassword_NotInScope(Collection<String> passwordList) {
+        regINS(CK_NINS, cTL(passwordList), xgetCValuePassword(), "PASSWORD");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setPassword_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param password The value of password as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setPassword_LikeSearch(String password, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setPassword_LikeSearch(password, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)} <br>
+     * <pre>e.g. setPassword_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param password The value of password as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setPassword_LikeSearch(String password, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(password), xgetCValuePassword(), "PASSWORD", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setPassword_NotLikeSearch(String password, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setPassword_NotLikeSearch(password, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * PASSWORD: {NotNull, VARCHAR(50)}
+     * @param password The value of password as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setPassword_NotLikeSearch(String password, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(password), xgetCValuePassword(), "PASSWORD", likeSearchOption);
+    }
+
+    protected void regPassword(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValuePassword(), "PASSWORD"); }
+    protected abstract ConditionValue xgetCValuePassword();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>

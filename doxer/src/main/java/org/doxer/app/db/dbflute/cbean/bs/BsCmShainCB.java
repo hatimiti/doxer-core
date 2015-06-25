@@ -87,6 +87,19 @@ public class BsCmShainCB extends AbstractConditionBean {
         return (CmShainCB)this;
     }
 
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param cmKaishaId : UQ+, NotNull, BIGINT(19), FK to cm_kaisha. (NotNull)
+     * @param loginCd : +UQ, NotNull, VARCHAR(50). (NotNull)
+     * @return this. (NotNull)
+     */
+    public CmShainCB acceptUniqueOf(Long cmKaishaId, String loginCd) {
+        assertObjectNotNull("cmKaishaId", cmKaishaId);assertObjectNotNull("loginCd", loginCd);
+        BsCmShainCB cb = this;
+        cb.query().setCmKaishaId_Equal(cmKaishaId);cb.query().setLoginCd_Equal(loginCd);
+        return (CmShainCB)this;
+    }
+
     public ConditionBean addOrderBy_PK_Asc() {
         query().addOrderBy_CmShainId_Asc();
         return this;
@@ -306,7 +319,7 @@ public class BsCmShainCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnCmShainId() { return doColumn("CM_SHAIN_ID"); }
         /**
-         * CM_KAISHA_ID: {NotNull, BIGINT(19), FK to cm_kaisha}
+         * CM_KAISHA_ID: {UQ+, NotNull, BIGINT(19), FK to cm_kaisha}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnCmKaishaId() { return doColumn("CM_KAISHA_ID"); }
@@ -330,6 +343,16 @@ public class BsCmShainCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnShainMeiEn() { return doColumn("SHAIN_MEI_EN"); }
+        /**
+         * LOGIN_CD: {+UQ, NotNull, VARCHAR(50)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnLoginCd() { return doColumn("LOGIN_CD"); }
+        /**
+         * PASSWORD: {NotNull, VARCHAR(50)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnPassword() { return doColumn("PASSWORD"); }
         /**
          * REG_USER_ID: {NotNull, VARCHAR(10)}
          * @return The information object of specified column. (NotNull)

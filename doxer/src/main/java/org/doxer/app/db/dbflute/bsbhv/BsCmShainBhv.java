@@ -28,7 +28,7 @@ import org.doxer.app.db.dbflute.cbean.*;
  *     CM_SHAIN_ID
  *
  * [column]
- *     CM_SHAIN_ID, CM_KAISHA_ID, SHAIN_SEI, SHAIN_MEI, SHAIN_SEI_EN, SHAIN_MEI_EN, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
+ *     CM_SHAIN_ID, CM_KAISHA_ID, SHAIN_SEI, SHAIN_MEI, SHAIN_SEI_EN, SHAIN_MEI_EN, LOGIN_CD, PASSWORD, REG_USER_ID, REG_TM, REG_FUNC_CD, UPD_USER_ID, UPD_TM, UPD_FUNC_CD, VERSION_NO
  *
  * [sequence]
  *     
@@ -184,6 +184,32 @@ public abstract class BsCmShainBhv extends AbstractBehaviorWritable<CmShain, CmS
     protected CmShainCB xprepareCBAsPK(Long cmShainId) {
         assertObjectNotNull("cmShainId", cmShainId);
         return newConditionBean().acceptPK(cmShainId);
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param cmKaishaId : UQ+, NotNull, BIGINT(19), FK to cm_kaisha. (NotNull)
+     * @param loginCd : +UQ, NotNull, VARCHAR(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<CmShain> selectByUniqueOf(Long cmKaishaId, String loginCd) {
+        return facadeSelectByUniqueOf(cmKaishaId, loginCd);
+    }
+
+    protected OptionalEntity<CmShain> facadeSelectByUniqueOf(Long cmKaishaId, String loginCd) {
+        return doSelectByUniqueOf(cmKaishaId, loginCd, typeOfSelectedEntity());
+    }
+
+    protected <ENTITY extends CmShain> OptionalEntity<ENTITY> doSelectByUniqueOf(Long cmKaishaId, String loginCd, Class<? extends ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(cmKaishaId, loginCd), tp), cmKaishaId, loginCd);
+    }
+
+    protected CmShainCB xprepareCBAsUniqueOf(Long cmKaishaId, String loginCd) {
+        assertObjectNotNull("cmKaishaId", cmKaishaId);assertObjectNotNull("loginCd", loginCd);
+        return newConditionBean().acceptUniqueOf(cmKaishaId, loginCd);
     }
 
     // ===================================================================================

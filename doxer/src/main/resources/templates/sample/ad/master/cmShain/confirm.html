@@ -29,6 +29,9 @@
 	社員名(英):<span th:text="${form.shainMeiEn}">Ichiro</span>
 			<span th:text="${form.shainSeiEn}">Tanaka</span><br />
 
+	ログインCD:<span th:text="${form.loginCd}">abc123</span><br />
+	パスワード:******<br />
+
 	<input type="submit" name="backToPrepare" value="戻る" />
 	<span th:switch="${form.mode.code()}">
 		<input type="submit" name="register" value="登録する" th:case="${application.Mode.Register}" />
