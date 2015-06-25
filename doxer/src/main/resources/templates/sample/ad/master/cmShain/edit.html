@@ -24,10 +24,13 @@
 	</span>
 
 	会社:
-		<select th:field="${form.cmKaishaId.val}" th:remove="all-but-first" sa:errclass="ErrorsProperty" >
+		<select th:field="${form.cmKaishaId.val}" sa:errclass="ErrorsProperty" >
+			<option value="">----</option>
 			<option value="1" th:each="k : ${#j.cmKaishaList()}" th:value="${k.cmKaishaId}" sa:i18n="${k.kaishaMei}">ここに会社名</option>
+			<!--/*/ <th:block th:remove="all"> /*/-->
 			<option value="2">bbb</option>
 			<option value="3">ccc</option>
+			<!--/*/ </th:block> /*/-->
 		</select>
 	<br />
 	<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
