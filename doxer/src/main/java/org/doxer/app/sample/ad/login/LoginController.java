@@ -36,7 +36,7 @@ public class LoginController extends BaseMasterController {
 		return view(BASE_URI, "login.html", form);
 	}
 
-	@DoValidation(v = { Validate.class }, to = BASE_URI + "index.html")
+	@DoValidation(v = { Validate.class }, to = BASE_URI + "login.html")
 	@RequestMapping("login")
 	public DoxModelAndView login(LoginForm form) {
 		this.loginService.login(form);

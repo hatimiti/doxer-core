@@ -13,7 +13,7 @@ public class TelNo extends MultiFormType {
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return 5;
 	}
 
@@ -23,8 +23,7 @@ public class TelNo extends MultiFormType {
 	}
 
 	@Override
-	protected void validateCustom(
-			AppMessagesContainer container, String propertyName) {
+	protected void validateCustom(AppMessagesContainer c) {
 	}
 
 }

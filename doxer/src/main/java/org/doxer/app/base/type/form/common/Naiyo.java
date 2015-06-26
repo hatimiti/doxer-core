@@ -6,7 +6,6 @@ import org.doxer.xbase.form.type.SingleFormType;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.MaxLengthFieldValidator;
 
 /**
@@ -21,16 +20,16 @@ public class Naiyo extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		new MaxLengthFieldValidator(container).max(getLength()).check(Vval.of(getVal()), property, getLabel(), getLength());
+	protected void validateCustom(AppMessagesContainer c) {
+		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner(), label(), length());
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return 1000;
 	}
 
-	public static Naiyo valueOf(String val) {
+	public static Naiyo of(String val) {
 		Naiyo obj = new Naiyo(ARBITRARY, "", "");
 		obj.setStrictVal(val);
 		return obj;

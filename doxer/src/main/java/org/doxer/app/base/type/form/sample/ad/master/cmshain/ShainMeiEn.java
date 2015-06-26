@@ -7,32 +7,27 @@ import org.doxer.app.db.dbflute.bsentity.dbmeta.CmShainDbm;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.HalfSizeFieldValidator;
 
 public class ShainMeiEn extends Mei {
 
-	public ShainMeiEn(
-			InputAttribute inputAttribute,
-			String propertyName,
-			String label) {
-		super(inputAttribute, propertyName, label);
+	public ShainMeiEn(InputAttribute inputAttribute) {
+		super(inputAttribute, "shainMeiEn", "shainMeiEn");
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmShainDbm.getInstance().columnShainMeiEn().getColumnSize();
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container,
-			String property) {
-		new HalfSizeFieldValidator(container).check(Vval.of(getVal()), property, getLabel());
-		super.validateCustom(container, property);
+	protected void validateCustom(AppMessagesContainer c) {
+		new HalfSizeFieldValidator(c).check(vval(), owner(), label());
+		super.validateCustom(c);
 	}
 
-	public static ShainMeiEn valueOf(String val) {
-		ShainMeiEn obj = new ShainMeiEn(ARBITRARY, "", "");
+	public static ShainMeiEn of(String val) {
+		ShainMeiEn obj = new ShainMeiEn(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

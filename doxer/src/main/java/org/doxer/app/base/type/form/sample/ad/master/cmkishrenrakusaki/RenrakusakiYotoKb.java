@@ -9,8 +9,8 @@ import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 
 public class RenrakusakiYotoKb extends Kb<org.doxer.app.db.dbflute.allcommon.CDef.RenrakusakiYotoKb> {
 
-	public RenrakusakiYotoKb(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public RenrakusakiYotoKb(InputAttribute inputAttribute) {
+		super(inputAttribute, "renrakusakiYotoKb", "renrakusakiYotoKb");
 	}
 
 	@Override
@@ -19,12 +19,12 @@ public class RenrakusakiYotoKb extends Kb<org.doxer.app.db.dbflute.allcommon.CDe
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmRenrakusakiYotoKbDbm.getInstance().columnKbVal().getColumnSize();
 	}
 
-	public static RenrakusakiYotoKb valueOf(String val) {
-		RenrakusakiYotoKb obj = new RenrakusakiYotoKb(ARBITRARY, "", "");
+	public static RenrakusakiYotoKb of(String val) {
+		RenrakusakiYotoKb obj = new RenrakusakiYotoKb(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

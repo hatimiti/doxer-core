@@ -30,9 +30,9 @@ import com.github.hatimiti.flutist.common.message.OwnedMessages;
 @Component
 public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 
-	@Condition CmKaishaId cmKaishaId = new CmKaishaId(CONDITION, "cmKaishaId", "cmKaishaId");
-	@Condition KaishaMei kaishaMei = new KaishaMei(REQUIRED, "kaishaMei", "kaishaMei");
-	@Condition KaishaMeiEn kaishaMeiEn = new KaishaMeiEn(ARBITRARY, "kaishaMeiEn", "kaishaMeiEn");
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(CONDITION);
+	@Condition KaishaMei kaishaMei = new KaishaMei(REQUIRED);
+	@Condition KaishaMeiEn kaishaMeiEn = new KaishaMeiEn(ARBITRARY);
 	@Condition CmKishTesuryoForm cmKishTesuryoForm;
 	@Condition(session = true) List<CmKishRenrakusakiForm> cmKishRenrakusakiForms;
 
@@ -71,7 +71,7 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 	class ValidId implements FormValidator {
 		@Override
 		public void validate(AppMessagesContainer container) {
-			cmKaishaId.inCompleteRequiredCondition().validate(container);
+			cmKaishaId.inCompleteRequired().validate(container);
 		}
 	}
 

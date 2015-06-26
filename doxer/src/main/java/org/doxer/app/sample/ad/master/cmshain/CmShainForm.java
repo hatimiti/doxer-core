@@ -27,15 +27,15 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class CmShainForm extends BaseEntityForm<CmShain> {
 
-	@Condition CmShainId cmShainId = new CmShainId(CONDITION, "cmShainId", "cmShainId");
-	@Condition CmKaishaId cmKaishaId = new CmKaishaId(REQUIRED, "cmKaishaId", "cmKaishaId");
-	@Condition Mei shainSei = new ShainSei(REQUIRED, "shainSei", "shainSei");
-	@Condition Mei shainMei = new ShainMei(REQUIRED, "shainMei", "shainMei");
-	@Condition Mei shainSeiEn = new ShainSeiEn(ARBITRARY, "shainSeiEn", "shainSeiEn");
-	@Condition Mei shainMeiEn = new ShainMeiEn(ARBITRARY, "shainMeiEn", "shainMeiEn");
+	@Condition CmShainId cmShainId = new CmShainId(CONDITION);
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(REQUIRED);
+	@Condition Mei shainSei = new ShainSei(REQUIRED);
+	@Condition Mei shainMei = new ShainMei(REQUIRED);
+	@Condition Mei shainSeiEn = new ShainSeiEn(ARBITRARY);
+	@Condition Mei shainMeiEn = new ShainMeiEn(ARBITRARY);
 
-	@Condition LoginCd loginCd = new LoginCd(REQUIRED, "loginCd", "loginCd");
-	@Condition Password password = new Password(REQUIRED, "password", "password");
+	@Condition LoginCd loginCd = new LoginCd(REQUIRED);
+	@Condition Password password = new Password(REQUIRED);
 
 //	@Session
 	Mode mode;
@@ -57,7 +57,7 @@ public class CmShainForm extends BaseEntityForm<CmShain> {
 	class ValidId implements FormValidator {
 		@Override
 		public void validate(AppMessagesContainer container) {
-			cmShainId.inCompleteRequiredCondition().validate(container);
+			cmShainId.inCompleteRequired().validate(container);
 		}
 	}
 

@@ -24,32 +24,32 @@ import com.github.hatimiti.flutist.common.util._Str;
 @Component
 public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 
-	@Condition CmKishRenrakusakiId cmKishRenrakusakiId = new CmKishRenrakusakiId(ARBITRARY, "cmKishRenrakusakiId", "cmKishRenrakusakiId");
-	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "cmKaishaId");
-	@Condition TelNo telNo = new TelNo(ARBITRARY, "telNo", "telNo");
-	@Condition MailAddress mailAddress = new MailAddress(ARBITRARY, "mailAddress", "mailAddress");
-	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED, "renrakusakiYotoKb", "renrakusakiYotoKb");
+	@Condition CmKishRenrakusakiId cmKishRenrakusakiId = new CmKishRenrakusakiId(ARBITRARY);
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY);
+	@Condition TelNo telNo = new TelNo(ARBITRARY);
+	@Condition MailAddress mailAddress = new MailAddress(ARBITRARY);
+	@Condition RenrakusakiYotoKb renrakusakiYotoKb = new RenrakusakiYotoKb(REQUIRED);
 
 	public CmKishRenrakusakiForm(CmKishRenrakusaki entity) {
 		this.copyFrom(entity);
 	}
 
-	public void validate(AppMessagesContainer container, String name, int index) {
-		this.cmKishRenrakusakiId.validate(container, name, index);
-		this.cmKaishaId.validate(container, name, index);
-		this.telNo.validate(container, name, index);
-		this.mailAddress.validate(container, name, index);
-		this.renrakusakiYotoKb.validate(container, name, index);
+	public void validate(AppMessagesContainer c, String name, int index) {
+		this.cmKishRenrakusakiId.validate(c, name, index);
+		this.cmKaishaId.validate(c, name, index);
+		this.telNo.validate(c, name, index);
+		this.mailAddress.validate(c, name, index);
+		this.renrakusakiYotoKb.validate(c, name, index);
 	}
 
 	@Override
 	public void copyFrom(CmKishRenrakusaki entity) {
 		this.cmKishRenrakusakiId.setStrictValL(entity.getCmKishRenrakusakiId());
 		this.cmKaishaId.setStrictValL(entity.getCmKaishaId());
-		this.telNo.setStrictVal(
+		this.telNo.setStrictVal(new String[] {
 				_Str.toEmpty(entity.getTelNo1()),
 				_Str.toEmpty(entity.getTelNo2()),
-				_Str.toEmpty(entity.getTelNo3()));
+				_Str.toEmpty(entity.getTelNo3())});
 		this.mailAddress.setStrictVal(entity.getMailAddress());
 		this.renrakusakiYotoKb.setStrictVal(entity.getRenrakusakiYotoKb());
 	}

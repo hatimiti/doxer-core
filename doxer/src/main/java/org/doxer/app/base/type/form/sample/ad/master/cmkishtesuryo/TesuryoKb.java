@@ -9,8 +9,8 @@ import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 
 public class TesuryoKb extends Kb<org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb> {
 
-	public TesuryoKb(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public TesuryoKb(InputAttribute inputAttribute) {
+		super(inputAttribute, "tesuryoKb", "tesuryoKb");
 	}
 
 	public org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb toKb() {
@@ -18,12 +18,12 @@ public class TesuryoKb extends Kb<org.doxer.app.db.dbflute.allcommon.CDef.Tesury
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmTesuryoKbDbm.getInstance().columnKbVal().getColumnSize();
 	}
 
-	public static TesuryoKb valueOf(String val) {
-		TesuryoKb obj = new TesuryoKb(ARBITRARY, "", "");
+	public static TesuryoKb of(String val) {
+		TesuryoKb obj = new TesuryoKb(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

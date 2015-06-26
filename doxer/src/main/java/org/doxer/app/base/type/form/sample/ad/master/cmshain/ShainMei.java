@@ -9,20 +9,21 @@ import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 
 public class ShainMei extends Mei {
 
-	public ShainMei(
-			InputAttribute inputAttribute,
-			String propertyName,
-			String label) {
-		super(inputAttribute, propertyName, label);
+	public ShainMei(InputAttribute inputAttribute, String property, String labelKey) {
+		super(inputAttribute, property, labelKey);
+	}
+
+	public ShainMei(InputAttribute inputAttribute) {
+		super(inputAttribute, "shainMei", "shainMei");
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmShainDbm.getInstance().columnShainMei().getColumnSize();
 	}
 
-	public static ShainMei valueOf(String val) {
-		ShainMei obj = new ShainMei(ARBITRARY, "", "");
+	public static ShainMei of(String val) {
+		ShainMei obj = new ShainMei(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

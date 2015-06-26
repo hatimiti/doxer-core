@@ -10,33 +10,32 @@ import org.doxer.xbase.validation.validator.ExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 
 
 public class CmKishTesuryoId extends Id {
 
-	public CmKishTesuryoId(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public CmKishTesuryoId(InputAttribute inputAttribute) {
+		super(inputAttribute, "cmKishTesuryoId", "cmKishTesuryoId");
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		super.validateCustom(container, property);
-		if (getValL() == null) {
-			return;
+	protected void validateCustom(AppMessagesContainer c) {
+		super.validateCustom(c);
+
+		if (getValL() != null) {
+			CmKishTesuryoCB cb = new CmKishTesuryoCB();
+			cb.query().setCmKishTesuryoId_Equal(getValL());
+			new ExistsFieldValidator(c, CmKishTesuryoBhv.class, cb).check(vval(), owner(), label());
 		}
-		CmKishTesuryoCB cb = new CmKishTesuryoCB();
-		cb.query().setCmKishTesuryoId_Equal(getValL());
-		new ExistsFieldValidator(container, CmKishTesuryoBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
 	}
 
 	@Override
-	public int getLength() {
-		return CmKishTesuryoDbm.getInstance().columnCmKaishaId().getColumnSize();
+	public int length() {
+		return CmKishTesuryoDbm.getInstance().columnCmKishTesuryoId().getColumnSize();
 	}
 
-	public static CmKishTesuryoId valueOf(String val) {
-		CmKishTesuryoId obj = new CmKishTesuryoId(ARBITRARY, "", "");
+	public static CmKishTesuryoId of(String val) {
+		CmKishTesuryoId obj = new CmKishTesuryoId(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

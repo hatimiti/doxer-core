@@ -17,7 +17,7 @@
 
 <form action="./search">
 	社員ID：<input type="text" sa:field="${form.cmShainId}" />(完全一致)<br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmShainId.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmShainId')}" th:text="${e}">xxx</div>
 	会社：
 			<select th:field="${form.cmKaishaId.val}" sa:errclass="ErrorsProperty" >
 				<option value="">----</option>
@@ -27,9 +27,9 @@
 				<option value="3">ccc</option>
 				<!--/*/ </th:block> /*/-->
 			</select><br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKaishaId')}" th:text="${e}">xxx</div>
 	社員名：<input type="text" sa:field="${form.shainMei}" />(前方一致)<br />
-			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei.val')}" th:text="${e}">xxx</div>
+			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei')}" th:text="${e}">xxx</div>
 	<input type="submit" name="search" value="検索" /><br />
 </form>
 <form action=".">

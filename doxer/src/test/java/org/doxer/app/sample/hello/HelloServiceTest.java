@@ -83,7 +83,7 @@ public class HelloServiceTest extends DoxDataSourceTestCase {
 
 	@SuppressWarnings("deprecation")
 	private Val getValOf(String name) {
-		Val v = new Val(REQUIRED, "fval", "値");
+		Val v = new Val(REQUIRED);
 		v.setVal(name);
 		return v;
 	}

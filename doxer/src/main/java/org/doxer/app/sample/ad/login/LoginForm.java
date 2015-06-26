@@ -18,13 +18,14 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class LoginForm extends DoxForm {
 
-	@Condition LoginCd loginCd = new LoginCd(REQUIRED, "loginCd", "loginCd");
-	@Condition Password password = new Password(REQUIRED, "password", "password");
+	@Condition LoginCd loginCd = new LoginCd(REQUIRED);
+	@Condition Password password = new Password(REQUIRED);
 
 	class Validate implements FormValidator {
 		@Override
 		public void validate(AppMessagesContainer c) {
-			// TODO 必須チェックなど
+			loginCd.validateOnlyRequired(c);
+			password.validateOnlyRequired(c);
 		}
 	}
 

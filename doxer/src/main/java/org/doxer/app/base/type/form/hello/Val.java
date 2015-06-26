@@ -7,18 +7,16 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
 public class Val extends SingleFormType {
 
-	public Val(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public Val(InputAttribute inputAttribute) {
+		super(inputAttribute, "val", "val");
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return 10;
 	}
 
 	@Override
-	protected void validateCustom(
-			AppMessagesContainer container,
-			String propertyName) {
+	protected void validateCustom(AppMessagesContainer container) {
 	}
 }

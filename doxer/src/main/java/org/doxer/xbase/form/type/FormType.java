@@ -20,25 +20,25 @@ public abstract class FormType<T> extends Type<T> {
 	@Condition
 	protected T val;
 
-	protected InputAttribute inputAttribute;
-	protected String propertyName;
-	protected String labelKey;
+	private InputAttribute inputAttribute;
+	private String property;
+	private String labelKey;
 
 	protected boolean isRequiredCheckTarget;
 
 	public FormType(
 			final InputAttribute inputAttribute,
-			final String propertyName,
-			final String label) {
+			final String property,
+			final String labelKey) {
 
-		if (_Obj.isEmpty(propertyName)
-				|| _Obj.isEmpty(label)) {
-			 throw new IllegalArgumentException("propertyName and label are required.");
+		if (_Obj.isEmpty(property)
+				|| _Obj.isEmpty(labelKey)) {
+			 throw new IllegalArgumentException("property and labelKey are required.");
 		}
 
 		this.inputAttribute = inputAttribute;
-		this.propertyName = propertyName;
-		this.labelKey = label;
+		this.property = property;
+		this.labelKey = labelKey;
 
 		if (eq(InputAttribute.REQUIRED, inputAttribute)) {
 			this.isRequiredCheckTarget = true;
@@ -62,7 +62,7 @@ public abstract class FormType<T> extends Type<T> {
 	}
 
 	public void validate(final AppMessagesContainer container) {
-		validate(container, (String) null, (Integer) null);
+		validate(container, (String) null);
 	}
 
 	public void validate(final AppMessagesContainer container, final String name) {
@@ -70,13 +70,57 @@ public abstract class FormType<T> extends Type<T> {
 	}
 
 	public void validate(final AppMessagesContainer container, final String name, final Integer idx) {
-		if (this.isRequiredCheckTarget) {
-			new RequiredFieldValidator(container).check(vval(), getProperty(name, idx), getLabel());
-		}
-		validateCustom(container, getProperty(name, idx));
+		validateRequired(container, name, idx);
+		validateCustom(container);
 	}
 
-	protected String getProperty(final String name, final Integer idx) {
+	public void validateOnlyRequired(final AppMessagesContainer c) {
+		validateOnlyRequired(c, (String) null);
+	}
+
+	public void validateOnlyRequired(final AppMessagesContainer container, final String name) {
+		validateOnlyRequired(container, name, (Integer) null);
+	}
+
+	public void validateOnlyRequired(final AppMessagesContainer container, final String name, final Integer idx) {
+		validateRequired(container, name, idx);
+	}
+
+	public FormType<T> inCompleteRequired() {
+
+		if (ne(InputAttribute.CONDITION, this.inputAttribute)) {
+			throw new IllegalStateException("InputAttribute.CONDITIONの場合のみ呼び出しが可能です。");
+		}
+
+		this.isRequiredCheckTarget = true;
+		return this;
+	}
+
+	public FormType<T> notInCompleteRequired() {
+
+		if (ne(InputAttribute.CONDITION, this.inputAttribute)) {
+			throw new IllegalStateException("InputAttribute.CONDITIONの場合のみ呼び出しが可能です。");
+		}
+
+		this.isRequiredCheckTarget = false;
+		return this;
+	}
+
+	private void validateRequired(final AppMessagesContainer container, final String name, final Integer idx) {
+		if (this.isRequiredCheckTarget) {
+			new RequiredFieldValidator(container).check(vval(), owner(name, idx), label());
+		}
+	}
+
+	protected String owner() {
+		return owner((String) null);
+	}
+
+	protected String owner(final String name) {
+		return owner(name, (Integer) null);
+	}
+
+	protected String owner(final String name, final Integer idx) {
 
 		StringBuilder pn = new StringBuilder();
 		if (isNotEmpty(name)) {
@@ -89,51 +133,23 @@ public abstract class FormType<T> extends Type<T> {
 			pn.append(".");
 		}
 
-		pn.append(this.propertyName + ".val");
+		pn.append(this.property);
 		return pn.toString();
 	}
 
-	protected void checkValidVal() {
-		if (!isValidVal()) {
-			throw new IllegalStateException(format("[%s]の値[%s]はドメイン型に適した値ではありません。",
-					this.getClass().getName(),
-					this.toString()));
-		}
-	}
-
-	protected boolean isValidVal() {
+	private boolean isValidVal() {
 		AppMessagesContainer container = new AppMessagesContainer();
-		validateCustom(container, "");
+		validateCustom(container);
 		return container.isEmpty();
 	}
 
-	public FormType<T> inCompleteRequiredCondition() {
-
-		if (ne(InputAttribute.CONDITION, this.inputAttribute)) {
-			throw new IllegalStateException("InputAttribute.CONDITIONの場合のみ呼び出しが可能です。");
-		}
-
-		this.isRequiredCheckTarget = true;
-		return this;
-	}
-
-	public FormType<T> notInCompleteRequiredCondition() {
-
-		if (ne(InputAttribute.CONDITION, this.inputAttribute)) {
-			throw new IllegalStateException("InputAttribute.CONDITIONの場合のみ呼び出しが可能です。");
-		}
-
-		this.isRequiredCheckTarget = false;
-		return this;
-	}
-
-	protected String getLabel() {
+	protected String label() {
 		return _Container.buildMessage(this.labelKey);
 	}
 
-	public abstract int getLength();
+	public abstract int length();
 	protected abstract Vval vval();
-	protected abstract void validateCustom(AppMessagesContainer container, String propertyName);
+	protected abstract void validateCustom(AppMessagesContainer c);
 
 	@Override
 	public String toString() {

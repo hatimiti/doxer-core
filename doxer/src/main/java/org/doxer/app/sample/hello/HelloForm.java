@@ -20,8 +20,8 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class HelloForm extends DoxForm {
 
-	private Val fval = new Val(REQUIRED, "fval", "dictionary.val");
-	private TelNo telNo = new TelNo(REQUIRED, "telNo", "dictionary.telNo");
+	private Val fval = new Val(REQUIRED);
+	private TelNo telNo = new TelNo(REQUIRED);
 
 	private String fileName;
 	private MultipartFile file;

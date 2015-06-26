@@ -9,22 +9,25 @@ import org.doxer.xbase.form.type.SingleFormType;
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Date;
-import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.DateFieldValidator;
 
 public class Dt extends SingleFormType {
 
-	public Dt(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public Dt(InputAttribute inputAttribute, String property, String labelKey) {
+		super(inputAttribute, property, labelKey);
+	}
+
+	public Dt(InputAttribute inputAttribute, String property) {
+		super(inputAttribute, property, property);
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		new DateFieldValidator(container).check(Vval.of(getVal()), property, getLabel(), "");
+	protected void validateCustom(AppMessagesContainer c) {
+		new DateFieldValidator(c).check(vval(), owner(), label(), "");
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return 8;
 	}
 
@@ -32,14 +35,14 @@ public class Dt extends SingleFormType {
 		return _Date.getDate(getVal());
 	}
 
-	public static Dt valueOf(String val) {
+	public static Dt of(String val) {
 		Dt obj = new Dt(ARBITRARY, "", "");
 		obj.setStrictVal(val);
 		return obj;
 	}
 
-	public static Dt valueOf(Date date) {
-		return valueOf(_Date.formatYyyyMmDd(date));
+	public static Dt of(Date date) {
+		return of(_Date.formatYyyyMmDd(date));
 	}
 
 }

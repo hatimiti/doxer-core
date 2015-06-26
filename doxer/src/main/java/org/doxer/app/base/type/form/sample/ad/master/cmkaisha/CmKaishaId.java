@@ -10,32 +10,31 @@ import org.doxer.xbase.validation.validator.ExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 
 
 public class CmKaishaId extends Id {
 
-	public CmKaishaId(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public CmKaishaId(InputAttribute inputAttribute) {
+		super(inputAttribute, "cmKaishaId", "cmKaishaId");
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		super.validateCustom(container, property);
+	protected void validateCustom(AppMessagesContainer c) {
+		super.validateCustom(c);
 		if (getValL() != null) {
 			CmKaishaCB cb = new CmKaishaCB();
 			cb.query().setCmKaishaId_Equal(getValL());
-			new ExistsFieldValidator(container, CmKaishaBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
+			new ExistsFieldValidator(c, CmKaishaBhv.class, cb).check(vval(), owner(), label());
 		}
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmKaishaDbm.getInstance().columnCmKaishaId().getColumnSize();
 	}
 
-	public static CmKaishaId valueOf(String val) {
-		CmKaishaId obj = new CmKaishaId(ARBITRARY, "", "");
+	public static CmKaishaId of(String val) {
+		CmKaishaId obj = new CmKaishaId(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

@@ -9,7 +9,6 @@ import org.doxer.xbase.form.type.SingleFormType;
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.util._Time;
-import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.RegexFieldValidator;
 
 /**
@@ -24,16 +23,16 @@ public class Hh extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		new RegexFieldValidator(container) {
+	protected void validateCustom(AppMessagesContainer c) {
+		new RegexFieldValidator(c) {
 			protected String getDefaultMessageKey() {
 				return "valid.time.hh";
 			};
-		}.regex("([0-1][0-9]|2[0-3])").check(Vval.of(getVal()), property, getLabel());
+		}.regex("([0-1][0-9]|2[0-3])").check(vval(), owner(), label());
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return 2;
 	}
 
@@ -41,14 +40,14 @@ public class Hh extends SingleFormType {
 		return _Time.getFromHh(getVal());
 	}
 
-	public static Hh valueOf(String val) {
+	public static Hh of(String val) {
 		Hh obj = new Hh(ARBITRARY, "", "");
 		obj.setStrictVal(val);
 		return obj;
 	}
 
-	public static Hh valueOf(Time val) {
-		return valueOf(_Time.formatHh(val));
+	public static Hh of(Time val) {
+		return of(_Time.formatHh(val));
 	}
 
 }

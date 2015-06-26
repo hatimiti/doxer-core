@@ -10,33 +10,31 @@ import org.doxer.xbase.validation.validator.ExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 
 
 public class CmShainId extends Id {
 
-	public CmShainId(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public CmShainId(InputAttribute inputAttribute) {
+		super(inputAttribute, "cmShainId", "cmShainId");
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		super.validateCustom(container, property);
-		if (getValL() == null) {
-			return;
+	protected void validateCustom(AppMessagesContainer c) {
+		super.validateCustom(c);
+		if (getValL() != null) {
+			CmShainCB cb = new CmShainCB();
+			cb.query().setCmShainId_Equal(getValL());
+			new ExistsFieldValidator(c, CmShainBhv.class, cb).check(vval(), owner(), label());
 		}
-		CmShainCB cb = new CmShainCB();
-		cb.query().setCmShainId_Equal(getValL());
-		new ExistsFieldValidator(container, CmShainBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmShainDbm.getInstance().columnCmShainId().getColumnSize();
 	}
 
-	public static CmShainId valueOf(String val) {
-		CmShainId obj = new CmShainId(ARBITRARY, "", "");
+	public static CmShainId of(String val) {
+		CmShainId obj = new CmShainId(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

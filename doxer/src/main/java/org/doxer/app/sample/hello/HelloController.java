@@ -51,7 +51,7 @@ public class HelloController extends DoxController {
 	public DoxModelAndView input(HelloForm form) {
 		this.helloService.search(form);
 		LOG.info("ログ出力テスト2, {}", form.getResults());
-		addMessage(new AppMessage(INFO, "hello2", buildMessage("dictionary.val"), buildMessage("samplemes")));
+		addMessage(new AppMessage(INFO, "hello2", buildMessage("val"), buildMessage("samplemes")));
 		return view("/hello/hello.html", form);
 	}
 

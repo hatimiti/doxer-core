@@ -11,33 +11,33 @@ import org.doxer.xbase.validation.validator.ExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 
 
 public class CmKishRenrakusakiId extends Id {
 
-	public CmKishRenrakusakiId(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public CmKishRenrakusakiId(InputAttribute inputAttribute) {
+		super(inputAttribute, "cmKishRenrakusakiId", "cmKishRenrakusakiId");
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		super.validateCustom(container, property);
+	protected void validateCustom(AppMessagesContainer c) {
+
+		super.validateCustom(c);
 
 		if (isNotEmpty(getValL())) {
 			CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB();
 			cb.query().setCmKishRenrakusakiId_Equal(getValL());
-			new ExistsFieldValidator(container, CmKishRenrakusakiBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
+			new ExistsFieldValidator(c, CmKishRenrakusakiBhv.class, cb).check(vval(), owner(), label());
 		}
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmKishRenrakusakiDbm.getInstance().columnCmKaishaId().getColumnSize();
 	}
 
-	public static CmKishRenrakusakiId valueOf(String val) {
-		CmKishRenrakusakiId obj = new CmKishRenrakusakiId(ARBITRARY, "", "");
+	public static CmKishRenrakusakiId of(String val) {
+		CmKishRenrakusakiId obj = new CmKishRenrakusakiId(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

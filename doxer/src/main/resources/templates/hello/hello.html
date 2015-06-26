@@ -20,12 +20,12 @@
 	<h3>Basic Input</h3>
 	<form action="/doxer/sample/hello/input" method="POST">
 		<input type="text" sa:field="${form.fval}" />
-		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('fval.val')}" th:text="${e}">xxx</div>
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('val')}" th:text="${e}">xxx</div>
 		<br />
 		<input type="text" sa:field="${form.telNo},val[0]" />
 		<input type="text" sa:field="${form.telNo},val[1]" />
 		<input type="text" sa:field="${form.telNo},val[2]" />
-		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo.val')}" th:text="${e}">xxx</div>
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('telNo')}" th:text="${e}">xxx</div>
 		<br />
 		<input type="submit" name="send" />
 		<input type="hidden" sa:token="true" />

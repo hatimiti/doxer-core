@@ -6,8 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.dbmeta.info.ColumnInfo;
-import org.doxer.app.base.type.form.base.Id;
-import org.doxer.app.base.type.form.base.Mei;
 import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.ShainMei;
@@ -25,9 +23,9 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class CmShainListForm extends BaseSortPageForm {
 
-	@Condition Id cmShainId = new CmShainId(ARBITRARY, "cmShainId", "cmShainId");
-	@Condition Id cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "cmKaishaId");
-	@Condition Mei shainMei = new ShainMei(ARBITRARY, "kaishaMei", "kaishaMei");
+	@Condition CmShainId cmShainId = new CmShainId(ARBITRARY);
+	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY);
+	@Condition ShainMei shainMei = new ShainMei(ARBITRARY);
 
 	PagingResultBean<CmShain> shainList;
 

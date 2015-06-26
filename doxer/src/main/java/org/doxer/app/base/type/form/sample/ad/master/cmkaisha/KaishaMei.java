@@ -11,45 +11,36 @@ import org.doxer.xbase.validation.validator.NotExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 
 public class KaishaMei extends Mei {
 
-	protected CmKaishaId pk;
+	public KaishaMei(InputAttribute inputAttribute) {
+		super(inputAttribute, "kaishaMei", "kaishaMei");
+	}
 
-	public KaishaMei(
-			InputAttribute inputAttribute,
-			String propertyName,
-			String label) {
-		super(inputAttribute, propertyName, label);
+	public KaishaMei(InputAttribute inputAttribute, String property, String labelKey) {
+		super(inputAttribute, property, labelKey);
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmKaishaDbm.getInstance().columnKaishaMei().getColumnSize();
 	}
 
-	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		super.validateCustom(container, property);
+	public void validWithUniqueCheck(AppMessagesContainer c, CmKaishaId pk) {
 
-		if (isNotEmpty(getVal()) && isNotEmpty(this.pk) && isNotEmpty(this.pk.getVal())) {
+		super.validate(c);
+
+		if (isNotEmpty(getVal())) {
 			CmKaishaCB cb = new CmKaishaCB();
 			cb.query().setKaishaMei_Equal(getVal());
-			cb.query().setCmKaishaId_NotEqual(this.pk.getValL());
-			new NotExistsFieldValidator(container, CmKaishaBhv.class, cb).check(Vval.of(getVal()), property, getLabel());
+			cb.query().setCmKaishaId_NotEqual(pk.getValL());
+			new NotExistsFieldValidator(c, CmKaishaBhv.class, cb).check(vval(), owner(), label());
 		}
 	}
 
-	public void validWithUniqueCheck(
-			AppMessagesContainer container,
-			CmKaishaId pk) {
-		this.pk = pk;
-		super.validate(container);
-	}
-
-	public static KaishaMei valueOf(String val) {
-		KaishaMei obj = new KaishaMei(ARBITRARY, "", "");
+	public static KaishaMei of(String val) {
+		KaishaMei obj = new KaishaMei(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

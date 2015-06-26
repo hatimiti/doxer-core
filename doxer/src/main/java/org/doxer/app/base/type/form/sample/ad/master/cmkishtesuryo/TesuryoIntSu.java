@@ -9,18 +9,18 @@ import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 
 public class TesuryoIntSu extends Su {
 
-	public TesuryoIntSu(InputAttribute inputAttribute, String propertyName, String label) {
-		super(inputAttribute, propertyName, label);
+	public TesuryoIntSu(InputAttribute inputAttribute) {
+		super(inputAttribute, "tesuryoIntSu", "tesuryoIntSu");
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmKishTesuryoDbm.getInstance().columnTesuryoSu().getColumnSize()
 				- CmKishTesuryoDbm.getInstance().columnTesuryoSu().getDecimalDigits();
 	}
 
-	public static TesuryoIntSu valueOf(String val) {
-		TesuryoIntSu obj = new TesuryoIntSu(ARBITRARY, "", "");
+	public static TesuryoIntSu of(String val) {
+		TesuryoIntSu obj = new TesuryoIntSu(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

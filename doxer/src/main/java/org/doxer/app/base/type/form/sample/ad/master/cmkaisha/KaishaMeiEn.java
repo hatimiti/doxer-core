@@ -7,26 +7,22 @@ import org.doxer.app.db.dbflute.cbean.CmKaishaCB;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.HalfSizeFieldValidator;
 
 public class KaishaMeiEn extends KaishaMei {
 
-	public KaishaMeiEn(
-			InputAttribute inputAttribute,
-			String propertyName,
-			String label) {
-		super(inputAttribute, propertyName, label);
+	public KaishaMeiEn(InputAttribute inputAttribute) {
+		super(inputAttribute, "kaishaMeiEn", "kaishaMeiEn");
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container, String property) {
-		new HalfSizeFieldValidator(container).check(Vval.of(getVal()), property, getLabel());
-		super.validateCustom(container, property);
+	protected void validateCustom(AppMessagesContainer c) {
+		new HalfSizeFieldValidator(c).check(vval(), owner(), label());
+		super.validateCustom(c);
 	}
 
 	@Override
-	public int getLength() {
+	public int length() {
 		return CmKaishaDbm.getInstance().columnKaishaMeiEn().getColumnSize();
 	}
 
@@ -34,8 +30,8 @@ public class KaishaMeiEn extends KaishaMei {
 		cb.query().setKaishaMeiEn_Equal(getVal());
 	}
 
-	public static KaishaMeiEn valueOf(String val) {
-		KaishaMeiEn obj = new KaishaMeiEn(ARBITRARY, "", "");
+	public static KaishaMeiEn of(String val) {
+		KaishaMeiEn obj = new KaishaMeiEn(ARBITRARY);
 		obj.setStrictVal(val);
 		return obj;
 	}

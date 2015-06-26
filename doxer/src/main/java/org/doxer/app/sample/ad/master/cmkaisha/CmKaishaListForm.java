@@ -23,8 +23,8 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 @Component
 public class CmKaishaListForm extends BaseSortPageForm {
 
-	@Condition(session = true) Id cmKaishaId = new CmKaishaId(ARBITRARY, "cmKaishaId", "cmKaishaId");
-	@Condition(session = true) Mei kaishaMei = new KaishaMei(ARBITRARY, "kaishaMei", "kaishaMei");
+	@Condition Id cmKaishaId = new CmKaishaId(ARBITRARY);
+	@Condition Mei kaishaMei = new KaishaMei(ARBITRARY);
 
 	CmKaishaList kaishaList;
 
