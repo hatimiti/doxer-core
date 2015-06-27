@@ -14,15 +14,15 @@
 </head>
 <body>
 <div layout:fragment="contents">
+	<span th:if="${session['scopedTarget.accessUser']?.isLogged()}">ログインしました．</span>
 
-	<span th:if="${session['scopedTarget.accessUser'].isLogged()}">ログインしました．</span>
-
-	<form action="./login">
+	<form action="." method="post">
 		ログイン：<input type="text" sa:field="${form.loginCd}" /><br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('loginCd')}" th:text="${e}">xxx</div>
 		パスワード：<input type="password" sa:field="${form.password}" /><br />
 			<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('password')}" th:text="${e}">xxx</div>
-		<input type="submit" name="login" value="ログイン" /><br />
+		<input type="submit" name="login" value="Login" /><br />
+		<input type="submit" name="dummyLogin" value="Dummy Login" /><br />
 	</form>
 </div>
 </body>

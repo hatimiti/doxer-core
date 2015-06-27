@@ -8,10 +8,18 @@
 </head>
 <body>
 <div layout:fragment="contents">
-システムエラーが発生しました。
+エラーが発生しました。<br />
+<a th:href='@{/sample/ad/login/}'>TOPへ</a>
 <div class="ErrorsProperty" th:each="e : ${#sa.allMessages()}" th:text="${e}">xxx</div>
-<pre th:text="${causeException}" th:if="${T(org.doxer.xbase.util._Env).isDev()}">
-例外オブジェクトの内容
+<pre  th:if="${T(org.doxer.xbase.util._Env).isDev()}">
+＜HTTPステータス＞
+<span th:switch="${T(org.doxer.xbase.util._Container).httpServletResponse.status}">
+<span th:case="404">404: ページが見つかりません。</span>
+</span>
+</pre>
+<pre th:if="${T(org.doxer.xbase.util._Env).isDev()}">
+＜例外内容＞
+<span th:text="${causeException}">stacktraceなど</span>
 </pre>
 </div>
 </body>

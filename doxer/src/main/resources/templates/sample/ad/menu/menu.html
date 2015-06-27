@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sa=""
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/common/layout.html">
+<head>
+	<!--/*/ <th:block th:remove="all"> /*/-->
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../../../../webcontents/share/css/init.css" />
+	<script src="/webcontents/share/js/jquery.js" ></script>
+	<!--/*/ </th:block> /*/-->
+	<title>メニュー画面</title>
+</head>
+<body>
+<div layout:fragment="contents">
+
+	<a th:href="@{'/sample/hello/index'}">Hello コントローラ</a><br />
+	<a th:href="@{'/sample/ad/master/cmKaisha/'}">会社マスタ</a><br />
+	<a th:href="@{'/sample/ad/master/cmShain/'}">社員マスタ</a><br />
+
+</div>
+</body>
+</html>

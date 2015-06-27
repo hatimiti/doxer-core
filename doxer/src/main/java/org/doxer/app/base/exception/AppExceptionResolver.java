@@ -31,6 +31,13 @@ public class AppExceptionResolver implements HandlerExceptionResolver {
 				ex.getMessage(), ex.getStackTrace());
 
 		ModelAndView mav = new ModelAndView();
+		addCauseException(ex, mav);
+		mav.setViewName("/error.html");
+
+		return mav;
+	}
+
+	public static void addCauseException(Exception ex, ModelAndView mav) {
 		mav.addObject("causeException", new StringBuilder()
 				.append(format("name = %s\r\n", ex.toString()))
 				.append(format("cause = %s\r\n", ex.getCause()))
@@ -40,9 +47,6 @@ public class AppExceptionResolver implements HandlerExceptionResolver {
 						.collect(Collectors.joining("\r\n"))
 				))
 		);
-		mav.setViewName("/error.html");
-
-		return mav;
 	}
 
 }
