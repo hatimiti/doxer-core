@@ -2,13 +2,21 @@ package org.doxer.app.sample.ad.master.cmshain;
 
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 
+import java.io.Writer;
+
 import javax.annotation.Resource;
+
+import lombok.val;
 
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
 import org.doxer.app.db.dbflute.exbhv.CmShainBhv;
 import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.xbase.service.DoxService;
 import org.springframework.stereotype.Service;
+
+import com.orangesignal.csv.CsvWriter;
+import com.orangesignal.csv.io.CsvEntityWriter;
+
 
 @Service
 public class CmShainService extends DoxService {
@@ -27,13 +35,38 @@ public class CmShainService extends DoxService {
 	}
 
 	/*
+	 * ダウンロード用CSV作成
+	 */
+
+	public void outputCsvBySearchCondition(
+			final CmShainListForm form,
+			final Writer out) throws Exception {
+
+		try (val writer = new CsvEntityWriter<>(new CsvWriter(out), CmShainCsv.class, true)) {
+
+			writer.write(CmShainCsv.createHader());
+
+			this.cmShainBhv.selectCursorForMaster(form, shain -> {
+				val csv = new CmShainCsv();
+				csv.cmShainId = shain.getCmShainId().toString();
+				csv.cmKaishaId = shain.getCmKaishaId().toString();
+				csv.shainSei = shain.getShainSei();
+				csv.shainMei = shain.getShainMei();
+				csv.shainSeiEn = shain.getShainSeiEn();
+				csv.shainMeiEn = shain.getShainMeiEn();
+				writer.write(csv);
+			});
+		}
+	}
+
+	/*
 	 * 登録
 	 */
 
 	public CmShain register(
 			final CmShainForm form) {
 
-		CmShain shain = new CmShain();
+		val shain = new CmShain();
 		shain.copyFrom(form);
 
 		this.cmShainBhv.insert(shain);
@@ -51,7 +84,7 @@ public class CmShainService extends DoxService {
 	public CmShain update(
 			final CmShainForm form) {
 
-		CmShain shain = this.cmShainBhv.selectByPk4Update(form.cmShainId.getValL());
+		val shain = this.cmShainBhv.selectByPk4Update(form.cmShainId.getValL());
 		shain.copyFrom(form);
 		this.cmShainBhv.update(shain);
 
@@ -71,7 +104,7 @@ public class CmShainService extends DoxService {
 		// 行ロック
 		this.cmShainBhv.selectByPk4Update(form.cmShainId.getValL());
 
-		CmShain shain = selectByPkWithRel(form.cmShainId);
+		val shain = selectByPkWithRel(form.cmShainId);
 
 		this.cmShainBhv.delete(shain);
 		return shain;
@@ -83,13 +116,13 @@ public class CmShainService extends DoxService {
 
 	protected void setCmShainWithRel(CmShainForm form) {
 
-		CmShain cmShain = selectByPkWithRel(form.cmShainId);
+		val cmShain = selectByPkWithRel(form.cmShainId);
 		form.copyFrom(cmShain);
 
 	}
 
 	protected CmShain selectByPkWithRel(CmShainId cmShainId) {
-		CmShain cmShain = this.cmShainBhv.selectByPkWithRel(cmShainId.getValL());
+		val cmShain = this.cmShainBhv.selectByPkWithRel(cmShainId.getValL());
 		if (isEmpty(cmShain)) {
 //			throw new XActionMessagesException("valid.exists", get("vers.kaisha"));
 		}

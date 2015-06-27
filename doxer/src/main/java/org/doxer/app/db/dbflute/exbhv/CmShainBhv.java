@@ -2,10 +2,12 @@ package org.doxer.app.db.dbflute.exbhv;
 
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.app.db.DBMetaManager.*;
+import static org.doxer.app.db.ExEntityRowHandler.*;
 import static org.doxer.xbase.support.SortOrder.*;
 
 import org.dbflute.cbean.ConditionQuery;
 import org.dbflute.cbean.result.PagingResultBean;
+import org.doxer.app.db.ExEntityRowHandler;
 import org.doxer.app.db.dbflute.bsbhv.BsCmShainBhv;
 import org.doxer.app.db.dbflute.cbean.CmShainCB;
 import org.doxer.app.db.dbflute.exentity.CmShain;
@@ -32,18 +34,21 @@ public class CmShainBhv extends BsCmShainBhv
 	}
 
 	public PagingResultBean<CmShain> selectPageForMaster(
-			final CmShainListForm form) {
+			CmShainListForm form) {
 
 		PagingResultBean<CmShain> userPage = selectPage(cb -> {
-			cb.ignoreNullOrEmptyQuery();
-			cb.query().setCmShainId_Equal(form.getCmShainId().getValL());
-			cb.query().setCmKaishaId_Equal(form.getCmKaishaId().getValL());
-			cb.query().setShainMei_LikeSearch(
-					form.getShainMei().getVal(), op -> op.likePrefix());
+			cb.setMasterSearchCondition(form);
 			cb.paging(form.getPageSize(), form.getPageNumber());
 			setOrder(cb, form.getSortColName(), form.getSortOrder());
 		});
 		return userPage;
+	}
+
+	public void selectCursorForMaster(
+			CmShainListForm form,
+			ExEntityRowHandler<CmShain> handler) {
+
+		selectCursor(cb -> cb.setMasterSearchCondition(form), uncheck(handler));
 	}
 
 	public CmShain selectByPkWithRel(Long cmShainId) {

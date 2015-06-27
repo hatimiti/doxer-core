@@ -1,11 +1,18 @@
 package org.doxer.app.sample.ad.master.cmshain;
 
+import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
+import static com.github.hatimiti.flutist.common.util.MIMEType.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.xbase.aop.interceptor.supports.DoValidation.TransitionMethod.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
 import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
+import static org.doxer.xbase.util._Container.*;
+
+import java.io.Writer;
 
 import javax.annotation.Resource;
+
+import lombok.val;
 
 import org.doxer.app.base.controller.BaseMasterController;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
@@ -21,6 +28,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.hatimiti.flutist.common.annotation.Function;
+import com.github.hatimiti.flutist.common.util._Http;
 
 /**
  * sample
@@ -49,6 +57,16 @@ public class CmShainController extends BaseMasterController {
 	public DoxModelAndView search(CmShainListForm form) {
 		this.cmShainService.search(form);
 		return view(BASE_URI, "index.html", form);
+	}
+
+	// CSVダウンロード
+
+	@RequestMapping(path = "search", params = "download")
+	public void download(CmShainListForm form) throws Exception {
+		try (Writer out = _Http.getWriterForDownload(
+				getHttpServletResponse(), UTF8, APPL_OCTET_STREAM, "shain.csv")) {
+			this.cmShainService.outputCsvBySearchCondition(form, out);
+		}
 	}
 
 	// 登録
@@ -83,7 +101,7 @@ public class CmShainController extends BaseMasterController {
 	@RequestMapping(params = "prepareUpdate")
 	public DoxModelAndView prepareUpdate(CmShainForm form) {
 
-		final CmShainId tmpId = form.cmShainId;
+		val tmpId = form.cmShainId;
 		copy(new CmShainForm(), form);
 		form.cmShainId = tmpId;
 
