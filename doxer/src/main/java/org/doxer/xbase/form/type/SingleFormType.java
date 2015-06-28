@@ -10,7 +10,7 @@ public abstract class SingleFormType extends FormType<String> {
 		super(inputAttribute, propertyName, labelKey);
 		this.val = "";
 	}
-	
+
 	/**
 	 * フレームワークが呼び出します。
 	 * アプリケーション側からの呼び出しは非推奨です。
@@ -20,10 +20,20 @@ public abstract class SingleFormType extends FormType<String> {
 	public final void setVal(String val) {
 		this.val = val;
 	}
-	
+
+	public final SingleFormType temporary(String val) {
+		setVal(val);
+		return this;
+	}
+
 	@Override
 	protected final Vval vval() {
 		return Vval.of(getVal());
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return val == null || val.isEmpty();
 	}
 
 }

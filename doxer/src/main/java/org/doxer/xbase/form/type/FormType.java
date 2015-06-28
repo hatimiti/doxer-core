@@ -61,29 +61,29 @@ public abstract class FormType<T> extends Type<T> {
 		}
 	}
 
-	public void validate(final AppMessagesContainer container) {
-		validate(container, (String) null);
+	public void validate(final AppMessagesContainer c) {
+		validate(c, (String) null);
 	}
 
-	public void validate(final AppMessagesContainer container, final String name) {
-		validate(container, name, (Integer) null);
+	public void validate(final AppMessagesContainer c, final String name) {
+		validate(c, name, (Integer) null);
 	}
 
-	public void validate(final AppMessagesContainer container, final String name, final Integer idx) {
-		validateRequired(container, name, idx);
-		validateCustom(container);
+	public void validate(final AppMessagesContainer c, final String name, final Integer idx) {
+		validateRequired(c, name, idx);
+		validateCustom(c, owner(name, idx));
 	}
 
 	public void validateOnlyRequired(final AppMessagesContainer c) {
 		validateOnlyRequired(c, (String) null);
 	}
 
-	public void validateOnlyRequired(final AppMessagesContainer container, final String name) {
-		validateOnlyRequired(container, name, (Integer) null);
+	public void validateOnlyRequired(final AppMessagesContainer c, final String name) {
+		validateOnlyRequired(c, name, (Integer) null);
 	}
 
-	public void validateOnlyRequired(final AppMessagesContainer container, final String name, final Integer idx) {
-		validateRequired(container, name, idx);
+	public void validateOnlyRequired(final AppMessagesContainer c, final String name, final Integer idx) {
+		validateRequired(c, name, idx);
 	}
 
 	public FormType<T> inCompleteRequired() {
@@ -106,9 +106,9 @@ public abstract class FormType<T> extends Type<T> {
 		return this;
 	}
 
-	private void validateRequired(final AppMessagesContainer container, final String name, final Integer idx) {
+	private void validateRequired(final AppMessagesContainer c, final String name, final Integer idx) {
 		if (this.isRequiredCheckTarget) {
-			new RequiredFieldValidator(container).check(vval(), owner(name, idx), label());
+			new RequiredFieldValidator(c).check(vval(), owner(name, idx), label());
 		}
 	}
 
@@ -139,7 +139,7 @@ public abstract class FormType<T> extends Type<T> {
 
 	private boolean isValidVal() {
 		AppMessagesContainer container = new AppMessagesContainer();
-		validateCustom(container);
+		validateCustom(container, "");
 		return container.isEmpty();
 	}
 
@@ -148,8 +148,9 @@ public abstract class FormType<T> extends Type<T> {
 	}
 
 	public abstract int length();
+	public abstract boolean isEmpty();
 	protected abstract Vval vval();
-	protected abstract void validateCustom(AppMessagesContainer c);
+	protected abstract void validateCustom(AppMessagesContainer c, String owner);
 
 	@Override
 	public String toString() {

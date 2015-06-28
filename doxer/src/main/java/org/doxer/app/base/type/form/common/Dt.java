@@ -22,8 +22,8 @@ public class Dt extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		new DateFieldValidator(c).check(vval(), owner(), label(), "");
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		new DateFieldValidator(c).check(vval(), owner, label(), "");
 	}
 
 	@Override

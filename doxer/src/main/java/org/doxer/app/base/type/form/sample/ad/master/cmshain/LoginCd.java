@@ -21,15 +21,25 @@ public class LoginCd extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner(), label());
-		new HalfSizeAlphanumericValidator(c).check(vval(), owner(), label());
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner, label());
+		new HalfSizeAlphanumericValidator(c).check(vval(), owner, label());
 	}
 
 	public void validWithUniqueCheck(
 			AppMessagesContainer c,
 			CmShainId pk,
 			CmKaishaId uniqueKey) {
+
+		validWithUniqueCheck(c, pk, uniqueKey, null, null);
+	}
+
+	public void validWithUniqueCheck(
+			AppMessagesContainer c,
+			CmShainId pk,
+			CmKaishaId uniqueKey,
+			String name,
+			Integer index) {
 
 		super.validate(c);
 
@@ -38,7 +48,7 @@ public class LoginCd extends SingleFormType {
 		cb.query().setLoginCd_Equal(getVal());
 		cb.query().setCmKaishaId_Equal(uniqueKey.getValL());
 		cb.query().setCmShainId_NotEqual(pk.getValL());
-		new NotExistsFieldValidator(c, CmShainBhv.class, cb).check(vval(), owner(), label());
+		new NotExistsFieldValidator(c, CmShainBhv.class, cb).check(vval(), owner(name, index), label());
 	}
 
 	@Override

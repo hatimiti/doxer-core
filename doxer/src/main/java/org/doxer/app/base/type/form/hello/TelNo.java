@@ -23,7 +23,7 @@ public class TelNo extends MultiFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
+	protected void validateCustom(AppMessagesContainer c, String owner) {
 	}
 
 }

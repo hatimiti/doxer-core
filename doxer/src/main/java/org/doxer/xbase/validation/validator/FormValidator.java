@@ -4,5 +4,5 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
 @FunctionalInterface
 public interface FormValidator {
-	void validate(AppMessagesContainer c);
+	void validate(AppMessagesContainer c) throws Exception;
 }

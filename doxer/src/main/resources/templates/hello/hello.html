@@ -14,7 +14,6 @@
 </head>
 <body>
 <div layout:fragment="contents">
-	<div class="ErrorsProperty" th:each="e : ${#sa.globalMessages()}" th:text="${e}">xxx</div>
 	<p th:text="'Hello, ' + ${form.fval} + '!'" />
 
 	<h3>Basic Input</h3>

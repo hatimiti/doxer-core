@@ -16,8 +16,8 @@ public class TelNo extends MultiFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		new TelFieldValidator(c).check(vval(), owner(), label());
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		new TelFieldValidator(c).check(vval(), owner, label());
 	}
 
 	@Override

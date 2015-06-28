@@ -19,12 +19,12 @@ public class CmShainId extends Id {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		super.validateCustom(c);
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		super.validateCustom(c, owner);
 		if (getValL() != null) {
 			CmShainCB cb = new CmShainCB();
 			cb.query().setCmShainId_Equal(getValL());
-			new ExistsFieldValidator(c, CmShainBhv.class, cb).check(vval(), owner(), label());
+			new ExistsFieldValidator(c, CmShainBhv.class, cb).check(vval(), owner, label());
 		}
 	}
 

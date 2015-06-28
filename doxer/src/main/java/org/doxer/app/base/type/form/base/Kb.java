@@ -16,8 +16,8 @@ public abstract class Kb<K extends CDef> extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner(), label(), length());
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner, label(), length());
 		if (toKb() == null) {
 			c.add(new OwnedMessages(owner(), AppMessageLevel.ERROR, "valid.exists", label()));
 		}

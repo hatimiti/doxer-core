@@ -63,7 +63,7 @@
 		</div><!--/.navbar-collapse -->
 		</div>
 	</nav>
-
+	<div class="ErrorsProperty" th:each="e : ${#sa.globalMessages()}" th:text="${e}">xxx</div>
 	<div class="container">
 		<div id="SAMPLE-ERRORS">
 <!-- 				<ul><html:messages id="adminErrors" message="false" property="${SystemConstants.GLOBAL_MESSAGE}"> -->

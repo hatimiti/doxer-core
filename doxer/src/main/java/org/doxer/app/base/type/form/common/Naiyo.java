@@ -20,8 +20,8 @@ public class Naiyo extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner(), label(), length());
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner, label(), length());
 	}
 
 	@Override

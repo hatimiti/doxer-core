@@ -20,14 +20,14 @@ public class CmKishRenrakusakiId extends Id {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
+	protected void validateCustom(AppMessagesContainer c, String owner) {
 
-		super.validateCustom(c);
+		super.validateCustom(c, owner);
 
 		if (isNotEmpty(getValL())) {
 			CmKishRenrakusakiCB cb = new CmKishRenrakusakiCB();
 			cb.query().setCmKishRenrakusakiId_Equal(getValL());
-			new ExistsFieldValidator(c, CmKishRenrakusakiBhv.class, cb).check(vval(), owner(), label());
+			new ExistsFieldValidator(c, CmKishRenrakusakiBhv.class, cb).check(vval(), owner, label());
 		}
 	}
 

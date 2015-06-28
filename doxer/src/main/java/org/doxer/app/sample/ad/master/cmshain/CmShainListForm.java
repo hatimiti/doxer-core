@@ -13,8 +13,10 @@ import org.doxer.app.db.dbflute.bsentity.dbmeta.CmShainDbm;
 import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.xbase.form.BaseSortPageForm;
 import org.doxer.xbase.support.Condition;
+import org.doxer.xbase.validation.validator.CsvFormValidator;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
@@ -27,7 +29,10 @@ public class CmShainListForm extends BaseSortPageForm {
 	@Condition CmKaishaId cmKaishaId = new CmKaishaId(ARBITRARY);
 	@Condition ShainMei shainMei = new ShainMei(ARBITRARY);
 
+	@Condition MultipartFile uploadedCsvFile;
+
 	PagingResultBean<CmShain> shainList;
+	int csvRowCount;
 
 	class Validate implements FormValidator {
 		@Override
@@ -35,6 +40,26 @@ public class CmShainListForm extends BaseSortPageForm {
 			cmShainId.validate(c);
 			cmKaishaId.validate(c);
 			shainMei.validate(c);
+		}
+	}
+
+	class ValidateCsv extends CsvFormValidator {
+		@Override
+		public void validate(AppMessagesContainer c) throws Exception {
+			csvRowCount = validateCsv(c, "uploadedCsvFile");
+		}
+		@Override
+		protected MultipartFile getCsvFile() {
+			return uploadedCsvFile;
+		}
+		@Override
+		@SuppressWarnings("unchecked")
+		protected Class<CmShainCsv> getCsvEntityClass() {
+			return CmShainCsv.class;
+		}
+		@Override
+		protected int getCsvColumnNum() {
+			return CmShainCsv.MAX_COL_NUM;
 		}
 	}
 

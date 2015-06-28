@@ -1,5 +1,6 @@
 package org.doxer.app.sample.ad.master.cmshain;
 
+import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
 import static com.github.hatimiti.flutist.common.util.MIMEType.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
@@ -7,6 +8,7 @@ import static org.doxer.xbase.aop.interceptor.supports.DoValidation.TransitionMe
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
 import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
 import static org.doxer.xbase.util._Container.*;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.io.Writer;
 
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.hatimiti.flutist.common.annotation.Function;
+import com.github.hatimiti.flutist.common.message.AppMessage;
 import com.github.hatimiti.flutist.common.util._Http;
 
 /**
@@ -67,6 +70,16 @@ public class CmShainController extends BaseMasterController {
 				getHttpServletResponse(), UTF8, APPL_OCTET_STREAM, "shain.csv")) {
 			this.cmShainService.outputCsvBySearchCondition(form, out);
 		}
+	}
+
+	// CSVアップロード
+
+	@DoValidation(v = { CmShainListForm.ValidateCsv.class }, to = BASE_URI + "index.html")
+	@RequestMapping(params = "upload", method = POST)
+	public DoxModelAndView upload(CmShainListForm form) throws Exception {
+		this.cmShainService.inputCsv(form);
+		addMessage(new AppMessage(INFO, "completes.upload"));
+		return view(BASE_URI, "index.html", form);
 	}
 
 	// 登録

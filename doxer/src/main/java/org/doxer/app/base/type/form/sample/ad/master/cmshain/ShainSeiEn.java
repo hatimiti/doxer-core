@@ -21,9 +21,9 @@ public class ShainSeiEn extends Mei {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		super.validateCustom(c);
-		new HalfSizeFieldValidator(c).check(vval(), owner(), label());
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		super.validateCustom(c, owner);
+		new HalfSizeFieldValidator(c).check(vval(), owner, label());
 	}
 
 	public static ShainSeiEn of(String val) {

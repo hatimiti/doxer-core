@@ -23,13 +23,13 @@ public class Mm extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
+	protected void validateCustom(AppMessagesContainer c, String owner) {
 		new RegexFieldValidator(c) {
 			@Override
 			protected String getDefaultMessageKey() {
 				return "valid.time.mm";
 			}
-		}.regex("[0-5][0-9]").check(vval(), owner(), label());
+		}.regex("[0-5][0-9]").check(vval(), owner, label());
 	}
 
 	@Override

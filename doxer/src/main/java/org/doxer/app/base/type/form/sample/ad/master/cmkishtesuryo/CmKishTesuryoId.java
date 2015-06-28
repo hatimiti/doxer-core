@@ -19,13 +19,13 @@ public class CmKishTesuryoId extends Id {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		super.validateCustom(c);
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		super.validateCustom(c, owner);
 
 		if (getValL() != null) {
 			CmKishTesuryoCB cb = new CmKishTesuryoCB();
 			cb.query().setCmKishTesuryoId_Equal(getValL());
-			new ExistsFieldValidator(c, CmKishTesuryoBhv.class, cb).check(vval(), owner(), label());
+			new ExistsFieldValidator(c, CmKishTesuryoBhv.class, cb).check(vval(), owner, label());
 		}
 	}
 

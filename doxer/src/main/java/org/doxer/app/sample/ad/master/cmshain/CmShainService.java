@@ -12,8 +12,10 @@ import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
 import org.doxer.app.db.dbflute.exbhv.CmShainBhv;
 import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.xbase.service.DoxService;
+import org.doxer.xbase.util.DoxCsvEntityReader;
 import org.springframework.stereotype.Service;
 
+import com.orangesignal.csv.CsvConfig;
 import com.orangesignal.csv.CsvWriter;
 import com.orangesignal.csv.io.CsvEntityWriter;
 
@@ -48,13 +50,32 @@ public class CmShainService extends DoxService {
 
 			this.cmShainBhv.selectCursorForMaster(form, shain -> {
 				val csv = new CmShainCsv();
-				csv.cmShainId = shain.getCmShainId().toString();
-				csv.cmKaishaId = shain.getCmKaishaId().toString();
-				csv.shainSei = shain.getShainSei();
-				csv.shainMei = shain.getShainMei();
-				csv.shainSeiEn = shain.getShainSeiEn();
-				csv.shainMeiEn = shain.getShainMeiEn();
+				csv.copyFrom(shain);
 				writer.write(csv);
+			});
+		}
+	}
+
+
+	/*
+	 * CSVアップロード処理
+	 */
+
+	public void inputCsv(
+			final CmShainListForm form) throws Exception {
+
+		val conf = new CsvConfig();
+		conf.setIgnoreEmptyLines(true);
+
+		try (val csv = new DoxCsvEntityReader<>(form.uploadedCsvFile, conf, CmShainCsv.class)) {
+			csv.stream().forEach(line -> {
+				val cmShainId = CmShainId.of(line.cmShainId);
+				if (cmShainId.isEmpty()) {
+					this.cmShainBhv.insert(line.copyTo(new CmShain()));
+				} else {
+					CmShain cmShain = this.cmShainBhv.selectByPK(cmShainId.getValL()).get();
+					this.cmShainBhv.update(line.copyTo(cmShain));
+				}
 			});
 		}
 	}

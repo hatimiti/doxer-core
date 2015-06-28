@@ -23,12 +23,12 @@ public class Hh extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
+	protected void validateCustom(AppMessagesContainer c, String owner) {
 		new RegexFieldValidator(c) {
 			protected String getDefaultMessageKey() {
 				return "valid.time.hh";
 			};
-		}.regex("([0-1][0-9]|2[0-3])").check(vval(), owner(), label());
+		}.regex("([0-1][0-9]|2[0-3])").check(vval(), owner, label());
 	}
 
 	@Override

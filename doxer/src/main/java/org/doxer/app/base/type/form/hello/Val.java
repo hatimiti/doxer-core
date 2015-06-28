@@ -17,6 +17,6 @@ public class Val extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer container) {
+	protected void validateCustom(AppMessagesContainer c, String ownerontainer) {
 	}
 }

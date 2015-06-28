@@ -30,7 +30,7 @@
 		社員名：<input type="text" sa:field="${form.shainMei}" />(前方一致)<br />
 				<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei')}" th:text="${e}">xxx</div>
 		<input type="submit" name="search" value="検索" />
-		<input type="submit" name="download" value="ダウンロード" />
+		<input type="submit" name="download" value="CSVダウンロード" />
 	</form>
 	<form action=".">
 		<input type="submit" name="prepareRegister" value="登録" />
@@ -79,6 +79,23 @@
 	</table>
 	<div th:include="/common/fragment/fragments.html :: pageLink(${form.page}, 'search', ${false})">ページング</div>
 	</div>
+	<hr />
+	<form action="." enctype="multipart/form-data" method="post">
+		<input type="file" name="uploadedCsvFile" /><br />
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile')}" th:text="${e}">xxx</div>
+		<div style="overflow: scroll; height: 100px;"><span th:each="i : ${#numbers.sequence(0, __${form.csvRowCount}__)}" th:value="${i}">
+			<span th:text="|${i + 1}行目|">1行目</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__]')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].cmShainId')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].cmKaishaId')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainSei')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainMei')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainSeiEn')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainMeiEn')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].loginCd')}" th:text="${e}">xxx</span><br />
+		</span></div>
+		<input type="submit" name="upload" value="CSVアップロード" />
+	</form>
 </div>
 </body>
 </html>

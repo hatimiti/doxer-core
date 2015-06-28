@@ -16,5 +16,10 @@ public abstract class MultiFormType extends FormType<String[]> {
 		return Vval.of(getVal());
 	}
 
+	@Override
+	public boolean isEmpty() {
+		return val == null || val.length == 0;
+	}
+
 	protected abstract int size();
 }

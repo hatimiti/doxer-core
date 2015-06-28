@@ -18,10 +18,10 @@ public class Password extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c) {
-		new RangeLengthFieldValidator(c).range(8, length()).check(vval(), owner(), label(), 8, length());
-		new HalfSizeFieldValidator(c).check(vval(), owner(), label());
-		new ContainsCharsFieldValidator(c).chars('@', '.', '$', '+').check(vval(), owner(), label(), "(@/./$/+)");
+	protected void validateCustom(AppMessagesContainer c, String owner) {
+		new RangeLengthFieldValidator(c).range(8, length()).check(vval(), owner, label(), 8, length());
+		new HalfSizeFieldValidator(c).check(vval(), owner, label());
+		new ContainsCharsFieldValidator(c).chars('@', '.', '$', '+').check(vval(), owner, label(), "(@/./$/+)");
 	}
 
 	@Override
