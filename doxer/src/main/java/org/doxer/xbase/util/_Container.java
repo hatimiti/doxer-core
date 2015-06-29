@@ -175,6 +175,10 @@ public final class _Container {
 		return buildMessages(getAppMessagesContainer().getOwnedMessages(owner));
 	}
 
+	public static List<String> getParsedOwnedMessagesByOwnerPrefix(String ownerPrefix) {
+		return buildMessages(getAppMessagesContainer().getOwnedMessagesByPrefix(ownerPrefix));
+	}
+
 	public static String buildMessage(String key, Object... params) {
 		Objects.requireNonNull(key);
 		MessageSource source = getComponent(MessageSource.class).get();

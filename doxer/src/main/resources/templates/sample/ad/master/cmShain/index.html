@@ -85,14 +85,7 @@
 		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile')}" th:text="${e}">xxx</div>
 		<div style="overflow: scroll; height: 100px;"><span th:each="i : ${#numbers.sequence(0, __${form.csvRowCount}__)}" th:value="${i}">
 			<span th:text="|${i + 1}行目|">1行目</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__]')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].cmShainId')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].cmKaishaId')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainSei')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainMei')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainSeiEn')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].shainMeiEn')}" th:text="${e}">xxx</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile[__${i}__].loginCd')}" th:text="${e}">xxx</span><br />
+			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOfPrefix('uploadedCsvFile[__${i}__]')}" th:text="${e}">xxx</span><br />
 		</span></div>
 		<input type="submit" name="upload" value="CSVアップロード" />
 	</form>

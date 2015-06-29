@@ -19,4 +19,8 @@ public class SAUtility {
 		return _Container.getParsedOwnedMessages(owner);
 	}
 
+	public List<String>  messagesOfPrefix(String ownerPrefix) {
+		return _Container.getParsedOwnedMessagesByOwnerPrefix(ownerPrefix);
+	}
+
 }
