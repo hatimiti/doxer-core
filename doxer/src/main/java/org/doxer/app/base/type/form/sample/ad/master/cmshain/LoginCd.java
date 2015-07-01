@@ -11,6 +11,7 @@ import org.doxer.xbase.validation.validator.NotExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.validation.validator.HalfSizeAlphanumericValidator;
 import com.github.hatimiti.flutist.common.validation.validator.MaxLengthFieldValidator;
 
@@ -21,7 +22,7 @@ public class LoginCd extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c, String owner) {
+	protected void validateCustom(AppMessagesContainer c, Owner owner) {
 		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner, label());
 		new HalfSizeAlphanumericValidator(c).check(vval(), owner, label());
 	}

@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -28,6 +30,7 @@ import com.github.hatimiti.flutist.common.message.AppMessage;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.GlobalMessages;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.util.CharacterEncoding;
 import com.github.hatimiti.flutist.common.util.MIMEType;
 import com.github.hatimiti.flutist.common.util._Date;
@@ -172,11 +175,11 @@ public final class _Container {
 	}
 
 	public static List<String> getParsedOwnedMessages(String owner) {
-		return buildMessages(getAppMessagesContainer().getOwnedMessages(owner));
+		return buildMessages(getAppMessagesContainer().getOwnedMessages(Owner.of(owner)));
 	}
 
 	public static List<String> getParsedOwnedMessagesByOwnerPrefix(String ownerPrefix) {
-		return buildMessages(getAppMessagesContainer().getOwnedMessagesByPrefix(ownerPrefix));
+		return buildIndexedMessages(getAppMessagesContainer().getOwnedMessagesByPrefix(ownerPrefix));
 	}
 
 	public static String buildMessage(String key, Object... params) {
@@ -190,19 +193,35 @@ public final class _Container {
 	}
 
 	public static void addMessage(String owner, AppMessage message) {
-		APPMESSAGES.get().add(new OwnedMessages(owner, message));
+		APPMESSAGES.get().add(new OwnedMessages(Owner.of(owner), message));
 	}
 
 	private static List<String> buildMessages(List<AppMessage> messages) {
-		List<String> r = new ArrayList<>();
 		MessageSource source = getComponent(MessageSource.class).get();
-		for (AppMessage m : messages) {
-			r.add(m.isResource()
-					? source.getMessage(m.getKeyOrMessage(), m.getParams(), getAccessUser().getLocale())
-					: m.getKeyOrMessage());
-		}
-		return r;
+		return messages.stream()
+				.map(m -> funcBuildMessage.apply(m, source))
+				.collect(Collectors.toList());
 	}
+
+	private static List<String> buildIndexedMessages(List<OwnedMessages> messagesList) {
+		MessageSource source = getComponent(MessageSource.class).get();
+		List<String> result = new ArrayList<>();
+		for (OwnedMessages o : messagesList) {
+			result.addAll(buildMessages(o).stream()
+				.map(m -> (String) Optional.ofNullable(o.getOwner().getIndex())
+						.map(i -> funcBuildIndexLabel.apply(i, source)).orElse("") + m)
+				.collect(Collectors.toList()));
+		}
+		return result;
+	}
+
+	private static final BiFunction<Integer, MessageSource, String> funcBuildIndexLabel
+		= (i, s) -> s.getMessage("valid.line.index.prefix", new Object[] { i + 1 }, getAccessUser().getLocale());
+
+	private static final BiFunction<AppMessage, MessageSource, String> funcBuildMessage
+		= (m, s) -> m.isResource()
+				? s.getMessage(m.getKeyOrMessage(), m.getParams(), getAccessUser().getLocale())
+				: m.getKeyOrMessage();
 
 	/* ****************************************
 	 * アプリケーションWeb設定

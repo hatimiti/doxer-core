@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;
+import com.github.hatimiti.flutist.common.message.Owner;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -50,7 +51,7 @@ public class CmKaishaForm extends BaseEntityForm<CmKaisha> {
 
 			// 手数料必須チェック
 			if (isEmpty(cmKishTesuryoForms)) {
-				c.add(new OwnedMessages("cmKishTesuryoForm", ERROR,
+				c.add(new OwnedMessages(Owner.of("cmKishTesuryoForm"), ERROR,
 						"valid.required", "vers.kaishaTesuryo"));
 			}
 

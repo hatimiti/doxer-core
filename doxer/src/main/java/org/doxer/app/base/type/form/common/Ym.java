@@ -6,6 +6,7 @@ import org.doxer.xbase.form.type.SingleFormType;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.validation.validator.MaxLengthFieldValidator;
 import com.github.hatimiti.flutist.common.validation.validator.YearMonthFieldValidator;
 
@@ -16,7 +17,7 @@ public class Ym extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c, String owner) {
+	protected void validateCustom(AppMessagesContainer c, Owner owner) {
 		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner, label(), length());
 		new YearMonthFieldValidator(c).check(vval(), owner, label());
 	}

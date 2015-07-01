@@ -11,6 +11,7 @@ import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.domain.type.Type;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.util._Obj;
 import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
@@ -70,7 +71,7 @@ public abstract class FormType<T> extends Type<T> {
 	}
 
 	public void validate(final AppMessagesContainer c, final String name, final Integer idx) {
-		validateRequired(c, name, idx);
+		validateRequired(c, owner(name, idx));
 		validateCustom(c, owner(name, idx));
 	}
 
@@ -83,7 +84,7 @@ public abstract class FormType<T> extends Type<T> {
 	}
 
 	public void validateOnlyRequired(final AppMessagesContainer c, final String name, final Integer idx) {
-		validateRequired(c, name, idx);
+		validateRequired(c, owner(name, idx));
 	}
 
 	public FormType<T> inCompleteRequired() {
@@ -106,40 +107,27 @@ public abstract class FormType<T> extends Type<T> {
 		return this;
 	}
 
-	private void validateRequired(final AppMessagesContainer c, final String name, final Integer idx) {
+	private void validateRequired(final AppMessagesContainer c, Owner owner) {
 		if (this.isRequiredCheckTarget) {
-			new RequiredFieldValidator(c).check(vval(), owner(name, idx), label());
+			new RequiredFieldValidator(c).check(vval(), owner, label());
 		}
 	}
 
-	protected String owner() {
+	protected Owner owner() {
 		return owner((String) null);
 	}
 
-	protected String owner(final String name) {
+	protected Owner owner(final String name) {
 		return owner(name, (Integer) null);
 	}
 
-	protected String owner(final String name, final Integer idx) {
-
-		StringBuilder pn = new StringBuilder();
-		if (isNotEmpty(name)) {
-			pn.append(name);
-		}
-		if (isNotEmpty(idx)) {
-			pn.append("[" + idx + "]");
-		}
-		if (isNotEmpty(name) || isNotEmpty(idx)) {
-			pn.append(".");
-		}
-
-		pn.append(this.property);
-		return pn.toString();
+	protected Owner owner(final String name, final Integer idx) {
+		return Owner.of(property, name, idx);
 	}
 
 	private boolean isValidVal() {
 		AppMessagesContainer container = new AppMessagesContainer();
-		validateCustom(container, "");
+		validateCustom(container, Owner.empty());
 		return container.isEmpty();
 	}
 
@@ -150,7 +138,7 @@ public abstract class FormType<T> extends Type<T> {
 	public abstract int length();
 	public abstract boolean isEmpty();
 	protected abstract Vval vval();
-	protected abstract void validateCustom(AppMessagesContainer c, String owner);
+	protected abstract void validateCustom(AppMessagesContainer c, Owner owner);
 
 	@Override
 	public String toString() {

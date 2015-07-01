@@ -7,6 +7,7 @@ import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessageLevel;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.validation.validator.MaxLengthFieldValidator;
 
 public abstract class Kb<K extends CDef> extends SingleFormType {
@@ -16,7 +17,7 @@ public abstract class Kb<K extends CDef> extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c, String owner) {
+	protected void validateCustom(AppMessagesContainer c, Owner owner) {
 		new MaxLengthFieldValidator(c).max(length()).check(vval(), owner, label(), length());
 		if (toKb() == null) {
 			c.add(new OwnedMessages(owner(), AppMessageLevel.ERROR, "valid.exists", label()));

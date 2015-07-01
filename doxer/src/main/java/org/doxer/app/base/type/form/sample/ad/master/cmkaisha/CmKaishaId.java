@@ -10,6 +10,7 @@ import org.doxer.xbase.validation.validator.ExistsFieldValidator;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
 
 
 public class CmKaishaId extends Id {
@@ -19,7 +20,7 @@ public class CmKaishaId extends Id {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c, String owner) {
+	protected void validateCustom(AppMessagesContainer c, Owner owner) {
 		super.validateCustom(c, owner);
 		if (getValL() != null) {
 			CmKaishaCB cb = new CmKaishaCB();

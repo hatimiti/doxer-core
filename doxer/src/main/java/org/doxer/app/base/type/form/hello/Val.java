@@ -4,6 +4,7 @@ import org.doxer.xbase.form.type.SingleFormType;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
 
 public class Val extends SingleFormType {
 
@@ -17,6 +18,6 @@ public class Val extends SingleFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c, String ownerontainer) {
+	protected void validateCustom(AppMessagesContainer c, Owner owner) {
 	}
 }

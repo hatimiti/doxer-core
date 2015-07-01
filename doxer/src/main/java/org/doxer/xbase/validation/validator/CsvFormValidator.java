@@ -1,7 +1,6 @@
 package org.doxer.xbase.validation.validator;
 
 import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
-import static java.lang.String.*;
 
 import java.io.UncheckedIOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -15,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.hatimiti.flutist.common.message.AppMessage;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.validation.Vval;
 import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
 import com.orangesignal.csv.CsvConfig;
@@ -75,8 +75,7 @@ public abstract class CsvFormValidator implements FormValidator {
 			if (!(e.getCause() instanceof CsvTokenException)) {
 				throw e;
 			}
-			c.add(new OwnedMessages(format(
-					"%s[%s]", name, csvRowCount),
+			c.add(new OwnedMessages(Owner.of("", name, csvRowCount.get()),
 					new AppMessage(ERROR, "valid.csv.col.invalid",
 							getCsvColumnNum(),
 							((CsvTokenException) e.getCause()).getTokens().size())));
@@ -88,7 +87,7 @@ public abstract class CsvFormValidator implements FormValidator {
 	private void validateRequired(AppMessagesContainer c, String name) {
 		new RequiredFieldValidator(c) {
 			protected String getDefaultMessageKey() { return "valid.csv.required"; };
-		}.check(Vval.of(getCsvFile().getOriginalFilename()), name);
+		}.check(Vval.of(getCsvFile().getOriginalFilename()), Owner.of(name));
 	}
 
 }

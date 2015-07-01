@@ -82,11 +82,9 @@
 	<hr />
 	<form action="." enctype="multipart/form-data" method="post">
 		<input type="file" name="uploadedCsvFile" /><br />
-		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('uploadedCsvFile')}" th:text="${e}">xxx</div>
-		<div style="overflow: scroll; height: 100px;"><span th:each="i : ${#numbers.sequence(0, __${form.csvRowCount}__)}" th:value="${i}">
-			<span th:text="|${i + 1}行目|">1行目</span><br />
-			<span class="ErrorsProperty" th:each="e : ${#sa.messagesOfPrefix('uploadedCsvFile[__${i}__]')}" th:text="${e}">xxx</span><br />
-		</span></div>
+		<div class="ErrorsProperty" >
+			<span th:each="e : ${#sa.messagesOfPrefix('uploadedCsvFile')}"><span  th:text="${e}">xxx</span><br /></span>
+		</div>
 		<input type="submit" name="upload" value="CSVアップロード" />
 	</form>
 </div>

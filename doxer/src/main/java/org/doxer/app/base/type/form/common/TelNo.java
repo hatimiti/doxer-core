@@ -7,6 +7,7 @@ import org.doxer.xbase.form.type.MultiFormType;
 
 import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
 import com.github.hatimiti.flutist.common.validation.validator.TelFieldValidator;
 
 public class TelNo extends MultiFormType {
@@ -16,7 +17,7 @@ public class TelNo extends MultiFormType {
 	}
 
 	@Override
-	protected void validateCustom(AppMessagesContainer c, String owner) {
+	protected void validateCustom(AppMessagesContainer c, Owner owner) {
 		new TelFieldValidator(c).check(vval(), owner, label());
 	}
 
