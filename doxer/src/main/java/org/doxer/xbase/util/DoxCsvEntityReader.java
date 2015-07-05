@@ -41,7 +41,7 @@ public class DoxCsvEntityReader<E> implements Iterable<E>, Closeable {
 				} else {
 					try {
 						nextLine = reader.read();
-						return (nextLine != null);
+						return nextLine != null;
 					} catch (IOException e) {
 						throw new UncheckedIOException(e);
 					}

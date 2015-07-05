@@ -1,5 +1,7 @@
 package org.doxer.xbase.aop.interceptor;
 
+import static java.lang.String.*;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.AppMessagesException;
 import com.github.hatimiti.flutist.common.util._Ref;
 
 @Component
@@ -27,7 +30,14 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 		DoValidation v = getValidationAnnotation(invocation.getMethod());
 		Optional<Form> opForm = getForm(invocation);
 		if (v == null || !opForm.isPresent()) {
-			return invocation.proceed();
+			try {
+				return invocation.proceed();
+			} catch (AppMessagesException e) {
+				throw new IllegalStateException(format(
+						"%s を throw する場合は Controller のエントリメソッドに %s アノテーションを付加してください．",
+						e.getClass().getName(),
+						DoValidation.class.getName()), e);
+			}
 		}
 
 		AppMessagesContainer container = validate(v, opForm.get());
@@ -36,7 +46,12 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 			return buildReturnValue(v, opForm.get(), getTarget(invocation));
 		}
 
-		return invocation.proceed();
+		try {
+			return invocation.proceed();
+		} catch (AppMessagesException e) {
+			_Container.getAppMessagesContainer().add(e.getAppMessages());
+			return buildReturnValue(v, opForm.get(), getTarget(invocation));
+		}
 	}
 
 	protected DoValidation getValidationAnnotation(Method method) {

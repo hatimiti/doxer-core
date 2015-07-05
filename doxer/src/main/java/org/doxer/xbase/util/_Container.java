@@ -1,5 +1,7 @@
 package org.doxer.xbase.util;
 
+import static javax.servlet.http.HttpServletResponse.*;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Path;
@@ -54,6 +56,8 @@ public final class _Container {
 	public static final String TRANSITION_REDIRECT_PREFIX = "redirect:";
 	public static final String TRANSITION_FORWARD_PREFIX = "forward:";
 
+	private static final String KEY_APPMESSAGES_IN_SESSION = "__KEY_APPMESSAGES_IN_SESSION__";
+
 	/** アクセス時間保持(Web側で使用される日時) */
 	private static final ThreadLocal<Date> ACCESS_DATE = new ThreadLocal<Date>() {
 		@Override
@@ -67,7 +71,10 @@ public final class _Container {
 			= new ThreadLocal<AppMessagesContainer>() {
 		@Override
 		protected AppMessagesContainer initialValue() {
-			return new AppMessagesContainer();
+			AppMessagesContainer flash
+				= (AppMessagesContainer) getHttpSession().getAttribute(KEY_APPMESSAGES_IN_SESSION);
+			getHttpSession().removeAttribute(KEY_APPMESSAGES_IN_SESSION);
+			return flash != null ? flash : new AppMessagesContainer();
 		};
 	};
 
@@ -162,7 +169,16 @@ public final class _Container {
 	 * アプリケーションメッセージコンテナをクリア<br>
 	 * filter が呼び出すため、実装者が呼び出す必要はない．
 	 */
-	public static void resetAppMessagesContainer() {
+	public static void resetAppMessagesContainer(HttpServletRequest req, HttpServletResponse res) {
+		switch (res.getStatus()) {
+		case SC_MOVED_PERMANENTLY:
+		case SC_MOVED_TEMPORARILY:
+			// リダイレクト時はFLASHメッセージとして時リクエストへ引き継ぐ
+			req.getSession().setAttribute(KEY_APPMESSAGES_IN_SESSION, APPMESSAGES.get());
+			break;
+		default:
+			break;
+		}
 		APPMESSAGES.remove();
 	}
 
@@ -257,8 +273,9 @@ public final class _Container {
 	}
 
 	public static HttpServletResponse getHttpServletResponse() {
-		return ((ServletRequestAttributes) RequestContextHolder
+		HttpServletResponse res = ((ServletRequestAttributes) RequestContextHolder
 				.getRequestAttributes()).getResponse();
+		return res != null ? res : null;
 	}
 
 	public static void addCookie(final Cookie cookie) {

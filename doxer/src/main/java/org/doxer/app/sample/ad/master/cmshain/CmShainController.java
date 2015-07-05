@@ -110,7 +110,7 @@ public class CmShainController extends BaseMasterController {
 	// 更新
 
 	@Token(SET)
-	@DoValidation(v = { ValidId.class }, to = "backToList")
+	@DoValidation(v = { ValidId.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "prepareUpdate")
 	public DoxModelAndView prepareUpdate(CmShainForm form) {
 

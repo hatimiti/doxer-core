@@ -1,6 +1,8 @@
 package org.doxer.app.sample.ad.master.cmshain;
 
+import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
+import static org.doxer.xbase.util._Container.*;
 
 import java.io.Writer;
 
@@ -15,6 +17,8 @@ import org.doxer.xbase.service.DoxService;
 import org.doxer.xbase.util.DoxCsvEntityReader;
 import org.springframework.stereotype.Service;
 
+import com.github.hatimiti.flutist.common.message.AppMessage;
+import com.github.hatimiti.flutist.common.message.AppMessagesException;
 import com.orangesignal.csv.CsvConfig;
 import com.orangesignal.csv.CsvWriter;
 import com.orangesignal.csv.io.CsvEntityWriter;
@@ -148,7 +152,8 @@ public class CmShainService extends DoxService {
 	protected CmShain selectByPkWithRel(CmShainId cmShainId) {
 		val cmShain = this.cmShainBhv.selectByPkWithRel(cmShainId.getValL());
 		if (isEmpty(cmShain)) {
-//			throw new XActionMessagesException("valid.exists", get("vers.kaisha"));
+			throw new AppMessagesException(
+					new AppMessage(ERROR, "valid.exists", buildMessage("shain")));
 		}
 		return cmShain;
 	}
