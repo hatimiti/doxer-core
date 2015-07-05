@@ -44,12 +44,13 @@ public class CmShainService extends DoxService {
 			final CmShainListForm form,
 			final Writer out) throws Exception {
 
-		try (val writer = new CsvEntityWriter<>(new CsvWriter(out), CmShainCsv.class, true)) {
+		try (CsvEntityWriter<CmShainCsv> writer
+				= new CsvEntityWriter<>(new CsvWriter(out), CmShainCsv.class, true)) {
 
 			writer.write(CmShainCsv.createHader());
 
 			this.cmShainBhv.selectCursorForMaster(form, shain -> {
-				val csv = new CmShainCsv();
+				CmShainCsv csv = new CmShainCsv();
 				csv.copyFrom(shain);
 				writer.write(csv);
 			});
@@ -64,12 +65,14 @@ public class CmShainService extends DoxService {
 	public void inputCsv(
 			final CmShainListForm form) throws Exception {
 
-		val conf = new CsvConfig();
+		CsvConfig conf = new CsvConfig();
 		conf.setIgnoreEmptyLines(true);
 
-		try (val csv = new DoxCsvEntityReader<>(form.uploadedCsvFile, conf, CmShainCsv.class)) {
+		try (DoxCsvEntityReader<CmShainCsv> csv
+				= new DoxCsvEntityReader<>(form.uploadedCsvFile, conf, CmShainCsv.class)) {
+
 			csv.stream().forEach(line -> {
-				val cmShainId = CmShainId.of(line.cmShainId);
+				CmShainId cmShainId = CmShainId.of(line.cmShainId);
 				if (cmShainId.isEmpty()) {
 					this.cmShainBhv.insert(line.copyTo(new CmShain()));
 				} else {

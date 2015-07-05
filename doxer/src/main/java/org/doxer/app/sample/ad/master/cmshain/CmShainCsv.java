@@ -53,11 +53,11 @@ public class CmShainCsv implements DoxInputCsv {
 	@Override
 	public void validate(AppMessagesContainer c, String name, int index) {
 
-		val cmShainId = (CmShainId) new CmShainId(CONDITION).temporary(cmShainId);
-		boolean isValidCmShainId = cmShainId.validate(c, name, index);
+		CmShainId sid = (CmShainId) new CmShainId(CONDITION).temporary(cmShainId);
+		boolean isValidCmShainId = sid.validate(c, name, index);
 
-		val cmKaishaId = (CmKaishaId) new CmKaishaId(REQUIRED).temporary(cmKaishaId);
-		boolean isValidCmKaishaId = cmKaishaId.validate(c, name, index);
+		CmKaishaId kid = (CmKaishaId) new CmKaishaId(REQUIRED).temporary(cmKaishaId);
+		boolean isValidCmKaishaId = kid.validate(c, name, index);
 
 		new ShainSei(REQUIRED).temporary(shainSei).validate(c, name, index);
 		new ShainMei(REQUIRED).temporary(shainMei).validate(c, name, index);
@@ -66,7 +66,7 @@ public class CmShainCsv implements DoxInputCsv {
 
 		if (isValidCmShainId && isValidCmKaishaId) {
 			((LoginCd) new LoginCd(REQUIRED).temporary(loginCd))
-				.validWithUniqueCheck(c, cmShainId, cmKaishaId, name, index);
+				.validWithUniqueCheck(c, sid, kid, name, index);
 		}
 	}
 
