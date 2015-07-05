@@ -62,29 +62,35 @@ public abstract class FormType<T> extends Type<T> {
 		}
 	}
 
-	public void validate(final AppMessagesContainer c) {
-		validate(c, (String) null);
+	public boolean validate(final AppMessagesContainer c) {
+		return validate(c, (String) null);
 	}
 
-	public void validate(final AppMessagesContainer c, final String name) {
-		validate(c, name, (Integer) null);
+	public boolean validate(final AppMessagesContainer c, final String name) {
+		return validate(c, name, (Integer) null);
 	}
 
-	public void validate(final AppMessagesContainer c, final String name, final Integer idx) {
+	public boolean validate(final AppMessagesContainer c, final String name, final Integer idx) {
+		int before = c.size();
 		validateRequired(c, owner(name, idx));
 		validateCustom(c, owner(name, idx));
+		int after = c.size();
+		return before < after;
 	}
 
-	public void validateOnlyRequired(final AppMessagesContainer c) {
-		validateOnlyRequired(c, (String) null);
+	public boolean validateOnlyRequired(final AppMessagesContainer c) {
+		return validateOnlyRequired(c, (String) null);
 	}
 
-	public void validateOnlyRequired(final AppMessagesContainer c, final String name) {
-		validateOnlyRequired(c, name, (Integer) null);
+	public boolean validateOnlyRequired(final AppMessagesContainer c, final String name) {
+		return validateOnlyRequired(c, name, (Integer) null);
 	}
 
-	public void validateOnlyRequired(final AppMessagesContainer c, final String name, final Integer idx) {
+	public boolean validateOnlyRequired(final AppMessagesContainer c, final String name, final Integer idx) {
+		int before = c.size();
 		validateRequired(c, owner(name, idx));
+		int after = c.size();
+		return before < after;
 	}
 
 	public FormType<T> inCompleteRequired() {

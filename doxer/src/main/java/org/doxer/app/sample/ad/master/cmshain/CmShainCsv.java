@@ -54,18 +54,20 @@ public class CmShainCsv implements DoxInputCsv {
 	public void validate(AppMessagesContainer c, String name, int index) {
 
 		val cmShainId = (CmShainId) new CmShainId(CONDITION).temporary(cmShainId);
-		cmShainId.validate(c, name, index);
+		boolean isValidCmShainId = cmShainId.validate(c, name, index);
 
 		val cmKaishaId = (CmKaishaId) new CmKaishaId(REQUIRED).temporary(cmKaishaId);
-		cmKaishaId.validate(c, name, index);
+		boolean isValidCmKaishaId = cmKaishaId.validate(c, name, index);
 
 		new ShainSei(REQUIRED).temporary(shainSei).validate(c, name, index);
 		new ShainMei(REQUIRED).temporary(shainMei).validate(c, name, index);
 		new ShainSeiEn(ARBITRARY).temporary(shainSeiEn).validate(c, name, index);
 		new ShainMeiEn(ARBITRARY).temporary(shainMeiEn).validate(c, name, index);
 
-		((LoginCd) new LoginCd(ARBITRARY).temporary(loginCd))
-			.validWithUniqueCheck(c, cmShainId, cmKaishaId, name, index);
+		if (isValidCmShainId && isValidCmKaishaId) {
+			((LoginCd) new LoginCd(REQUIRED).temporary(loginCd))
+				.validWithUniqueCheck(c, cmShainId, cmKaishaId, name, index);
+		}
 	}
 
 	public void copyFrom(CmShain shain) {

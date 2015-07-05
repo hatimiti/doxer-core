@@ -60,7 +60,7 @@ public abstract class CsvFormValidator implements FormValidator {
 			return -1;
 		}
 
-		AtomicInteger csvRowCount = new AtomicInteger(0);
+		AtomicInteger csvRowCount = new AtomicInteger(1);
 
 		val conf = new CsvConfig();
 		conf.setIgnoreEmptyLines(true);
