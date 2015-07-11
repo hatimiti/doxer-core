@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.doxer.xbase.support.SortOrder;
 import org.doxer.xbase.support.TableHeaderSortableForm;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
+
 /**
  * テーブルヘッダなどによるソーティングを行う ActionForm のための基底クラス．
  * @author hatimiti
@@ -21,14 +23,14 @@ public abstract class BaseSortPageForm extends BasePageForm
 	 */
 	@Setter
 	@Getter
-	private String sortColName;
+	@Condition String sortColName;
 
 	/**
 	 * 昇順(Asc) / 降順(Desc) を保持する．
 	 */
 	@Setter
 	@Getter
-	private String sortOrder = SortOrder.ASC.toString();
+	@Condition String sortOrder = SortOrder.ASC.toString();
 
 	/*
 	 * コンストラクタ

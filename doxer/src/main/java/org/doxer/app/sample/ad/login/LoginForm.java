@@ -7,10 +7,10 @@ import lombok.EqualsAndHashCode;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.LoginCd;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.Password;
 import org.doxer.xbase.form.DoxForm;
-import org.doxer.xbase.support.Condition;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
 @Data

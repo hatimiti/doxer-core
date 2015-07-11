@@ -12,10 +12,10 @@ import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.KaishaMei;
 import org.doxer.app.base.type.sample.ad.master.CmKaishaList;
 import org.doxer.app.db.dbflute.bsentity.dbmeta.CmKaishaDbm;
 import org.doxer.xbase.form.BaseSortPageForm;
-import org.doxer.xbase.support.Condition;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
 @Data
@@ -25,6 +25,8 @@ public class CmKaishaListForm extends BaseSortPageForm {
 
 	@Condition Id cmKaishaId = new CmKaishaId(ARBITRARY);
 	@Condition Mei kaishaMei = new KaishaMei(ARBITRARY);
+
+	String param;
 
 	CmKaishaList kaishaList;
 

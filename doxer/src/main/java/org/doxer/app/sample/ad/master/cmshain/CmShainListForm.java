@@ -12,12 +12,12 @@ import org.doxer.app.base.type.form.sample.ad.master.cmshain.ShainMei;
 import org.doxer.app.db.dbflute.bsentity.dbmeta.CmShainDbm;
 import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.xbase.form.BaseSortPageForm;
-import org.doxer.xbase.support.Condition;
 import org.doxer.xbase.validation.validator.CsvFormValidator;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 
 @Data
@@ -32,7 +32,6 @@ public class CmShainListForm extends BaseSortPageForm {
 	@Condition MultipartFile uploadedCsvFile;
 
 	PagingResultBean<CmShain> shainList;
-	int csvRowCount;
 
 	class Validate implements FormValidator {
 		@Override
@@ -46,7 +45,7 @@ public class CmShainListForm extends BaseSortPageForm {
 	class ValidateCsv extends CsvFormValidator {
 		@Override
 		public void validate(AppMessagesContainer c) throws Exception {
-			csvRowCount = validateCsv(c, "uploadedCsvFile");
+			validateCsv(c, "uploadedCsvFile");
 		}
 		@Override
 		protected MultipartFile getCsvFile() {

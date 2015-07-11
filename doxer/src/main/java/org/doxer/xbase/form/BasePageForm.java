@@ -1,10 +1,14 @@
 package org.doxer.xbase.form;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.dbflute.cbean.result.PagingResultBean;
 import org.doxer.xbase.form.type.PagingListType;
 import org.doxer.xbase.support.Page;
 import org.doxer.xbase.support.Pagenator;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.util._Num;
 
 /**
@@ -19,29 +23,20 @@ public abstract class BasePageForm extends DoxForm implements Pagenator {
 	/**
 	 * 現在のページ番号
 	 */
-	public String pageNumber = "1";
+	@Setter
+	@Condition String pageNumber = "1";
 
 	/**
 	 * ページリンク情報
 	 */
-	private Page page = new Page();
-
-	public Page getPage() {
-		return this.page;
-	}
-
-	public void setPage(Page page) {
-		this.page = page;
-	}
+	@Getter
+	protected Page page = new Page();
 
 	public void setupPage(final PagingListType<?> prb) {
 		setupPage(prb.getVal());
 	}
 
 	public void setupPage(final PagingResultBean<?> prb) {
-		if (this.page == null) {
-			this.page = new Page();
-		}
 		this.page.setup(prb, getPageRangeSize(), this);
 	}
 
@@ -58,10 +53,6 @@ public abstract class BasePageForm extends DoxForm implements Pagenator {
 	@Override
 	public int getPageRangeSize() {
 		return _Num.toI("10", 10);
-	}
-
-	public void setPageNumber(String pageNumber) {
-		this.pageNumber = pageNumber;
 	}
 
 }

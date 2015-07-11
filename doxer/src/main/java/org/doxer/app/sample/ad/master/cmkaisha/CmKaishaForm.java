@@ -18,10 +18,10 @@ import org.doxer.app.db.dbflute.allcommon.CDef.Mode;
 import org.doxer.app.db.dbflute.allcommon.CDef.TesuryoKb;
 import org.doxer.app.db.dbflute.exentity.CmKaisha;
 import org.doxer.xbase.form.BaseEntityForm;
-import org.doxer.xbase.support.Condition;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;
 import com.github.hatimiti.flutist.common.message.Owner;

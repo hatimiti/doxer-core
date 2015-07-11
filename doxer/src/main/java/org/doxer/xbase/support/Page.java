@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.catalina.util.URLEncoder;
 import org.dbflute.cbean.result.PagingResultBean;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.util._Ref;
 
 /**
