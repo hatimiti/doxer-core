@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.function.BiPredicate;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -54,6 +55,32 @@ public class RequestDumpUtil {
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             final String value = request.getHeader(name);
+            sb.append(indent);
+            sb.append("[header]").append(name);
+            sb.append("=").append(value);
+            sb.append(lf);
+        }
+    }
+
+    /**
+     * レスポンスヘッダの内容を文字列バッファに編集します。
+     *
+     * @param sb
+     *            文字列バッファ
+     * @param request
+     *            リクエスト
+     * @param lf
+     *            改行文字
+     * @param indent
+     *            インデント
+     */
+    public static void dumpResponseHeaders(final StringBuffer sb,
+            final HttpServletResponse response, final String lf,
+            final String indent) {
+        for (final Iterator<?> it = response.getHeaderNames()
+                .iterator(); it.hasNext();) {
+            final String name = (String) it.next();
+            final String value = response.getHeader(name);
             sb.append(indent);
             sb.append("[header]").append(name);
             sb.append("=").append(value);
@@ -129,11 +156,14 @@ public class RequestDumpUtil {
      */
     public static void dumpRequestAttributes(final StringBuffer sb,
             final HttpServletRequest request, final String lf,
-            final String indent) {
+            final String indent, final BiPredicate<String, Object> filter) {
         for (final Iterator<String> it = toSortedSet(request.getAttributeNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
             final Object attr = request.getAttribute(name);
+            if (!filter.test(name, attr)) {
+                continue;
+            }
             sb.append(indent);
             sb.append("[request]").append(name).append("=").append(attr);
             sb.append(lf);
@@ -189,13 +219,16 @@ public class RequestDumpUtil {
      */
     public static void dumpRequestParameters(final StringBuffer sb,
             final HttpServletRequest request, final String lf,
-            final String indent) {
+            final String indent, final BiPredicate<String, String[]> filter) {
         for (final Iterator<String> it = toSortedSet(request.getParameterNames())
                 .iterator(); it.hasNext();) {
             final String name = (String) it.next();
+            final String values[] = request.getParameterValues(name);
+            if (!filter.test(name, values)) {
+                continue;
+            }
             sb.append(indent);
             sb.append("[param]").append(name).append("=");
-            final String values[] = request.getParameterValues(name);
             for (int i = 0; i < values.length; i++) {
                 if (i > 0) {
                     sb.append(", ");

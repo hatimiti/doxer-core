@@ -34,7 +34,7 @@ import org.seasar.util.convert.BooleanConversionUtil;
 
 /**
  * {@link HttpServletRequest}の内容をサーブレットが処理する前後にダンプ出力するフィルタです。
- * 
+ *
  * @author manhole
  */
 public class RequestDumpFilter implements Filter {
@@ -86,7 +86,7 @@ public class RequestDumpFilter implements Filter {
         beforeRequestHeader = getBooleanParameter(filterConfig,
                 "beforeRequestHeader", true);
         afterRequestHeader = getBooleanParameter(filterConfig,
-                "afterRequestHeader", false);
+                "afterRequestHeader", true);
         beforeContextAttribute = getBooleanParameter(filterConfig,
                 "beforeContextAttribute", true);
         afterContextAttribute = getBooleanParameter(filterConfig,
@@ -141,10 +141,10 @@ public class RequestDumpFilter implements Filter {
         RequestDumpUtil.dumpRequestProperties(sb, request, LF, INDENT);
         RequestDumpUtil.dumpSessionProperties(sb, request, LF, INDENT);
         if (beforeRequestParameter) {
-            RequestDumpUtil.dumpRequestParameters(sb, request, LF, INDENT);
+            RequestDumpUtil.dumpRequestParameters(sb, request, LF, INDENT, (key, values) -> true);
         }
         if (beforeRequestAttribute) {
-            RequestDumpUtil.dumpRequestAttributes(sb, request, LF, INDENT);
+            RequestDumpUtil.dumpRequestAttributes(sb, request, LF, INDENT, (key, value) -> true);
         }
         if (beforeCookies) {
             RequestDumpUtil.dumpCookies(sb, request, LF, INDENT);
@@ -173,16 +173,23 @@ public class RequestDumpFilter implements Filter {
             RequestDumpUtil.dumpResponseProperties(sb, response, LF, INDENT);
         }
         if (afterRequestParameter) {
-            RequestDumpUtil.dumpRequestParameters(sb, request, LF, INDENT);
+            RequestDumpUtil.dumpRequestParameters(sb, request, LF, INDENT, (key, values) -> true);
         }
         if (afterRequestAttribute) {
-            RequestDumpUtil.dumpRequestAttributes(sb, request, LF, INDENT);
+            RequestDumpUtil.dumpRequestAttributes(sb, request, LF, INDENT, (key, value) -> {
+                return !(key.startsWith("org.springframework.core.convert.ConversionService")
+                        || key.startsWith("org.springframework.web.servlet.DispatcherServlet")
+                        || key.startsWith("org.springframework.web.context.request")
+                        || key.startsWith("org.springframework.web.servlet.resource.ResourceUrlProvider")
+                    );
+            });
         }
         if (afterCookies) {
             RequestDumpUtil.dumpCookies(sb, request, LF, INDENT);
         }
         if (afterRequestHeader) {
-            RequestDumpUtil.dumpRequestHeaders(sb, request, LF, INDENT);
+//          RequestDumpUtil.dumpRequestHeaders(sb, request, LF, INDENT);
+            RequestDumpUtil.dumpResponseHeaders(sb, response, LF, INDENT);
         }
         if (afterSessionAttribute) {
             RequestDumpUtil.dumpSessionAttributes(sb, request, LF, INDENT);
