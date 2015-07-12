@@ -33,6 +33,7 @@ public class KaishaMei extends Mei {
 
 		if (isNotEmpty(getVal())) {
 			CmKaishaCB cb = new CmKaishaCB();
+			cb.ignoreNullOrEmptyQuery();
 			cb.query().setKaishaMei_Equal(getVal());
 			cb.query().setCmKaishaId_NotEqual(pk.getValL());
 			new NotExistsFieldValidator(c, CmKaishaBhv.class, cb).check(vval(), owner(), label());

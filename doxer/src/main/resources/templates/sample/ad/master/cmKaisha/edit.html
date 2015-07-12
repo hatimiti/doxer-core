@@ -101,7 +101,7 @@
 				<label th:remove="all">
 					<input type="radio" value="02" /><span>通常</span>
 				</label>
-				<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[' + s.index + '].renrakusakiYotoKb')}" th:text="${e}">xxx</div>
+				<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('cmKishRenrakusakiForms[__${s.index}__].renrakusakiYotoKb')}" th:text="${e}">xxx</div>
 			</td>
 		</tr>
 		</tbody>
