@@ -16,15 +16,16 @@ import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.doxer.app.base.exception.AppExceptionResolver;
 import org.doxer.xbase.util._Env;
 import org.slf4j.Logger;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import com.github.hatimiti.flutist.common.util._Num;
 import com.github.hatimiti.flutist.common.util._Obj;
 
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
@@ -41,6 +42,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		try {
 			this.message = createMime(model);
 		} catch (Exception e) {
+			LOG.error(AppExceptionResolver.exceptionToString(e));
 			new RuntimeException(e);
 		}
 	}
@@ -49,7 +51,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		try {
 			this.send(message);
 		} catch (MailException e) {
-			LOG.error(e.getMessage());
+			LOG.error(AppExceptionResolver.exceptionToString(e));
 			throw new RuntimeException(e);
 		}
 	}
@@ -69,6 +71,8 @@ public class DoxMailSender extends JavaMailSenderImpl {
 
 	private MimeMessage createMime(MailSendDataModel model) throws Exception {
 
+		LOG.debug("org.doxer.xbase.mail.MailSendDataModel: " + model);
+
 		MailSendConfigurable config = model.getConfiguration();
 
 		MimeMessage mime = this.createMimeMessage();
@@ -79,8 +83,11 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		mime.setSubject(config.getSubject());
 
 		Configuration cfg = createFreemarkerConfiguration();
+		LOG.debug("freemarker.template.Configuration: " + toConfigurationString(cfg));
 
 		Template t = cfg.getTemplate(config.getTemplatePath());
+		LOG.debug("freemarker.template.Template: " + t);
+
 		Map<String, Object> rootMap = new HashMap<>();
 		rootMap.put("data", model);
 		try (Writer out = new StringWriter()) {
@@ -90,10 +97,19 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		return mime;
 	}
 
+	private String toConfigurationString(Configuration cfg) {
+		final String LF = System.lineSeparator();
+		return new StringBuilder()
+			.append("OutputEncoding: ").append(cfg.getOutputEncoding()).append(LF)
+			.append("TemplateLoader: ").append(cfg.getTemplateLoader()).append(LF)
+			.toString();
+	}
+
 	private Configuration createFreemarkerConfiguration() throws IOException {
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
-		cfg.setDirectoryForTemplateLoading(new ClassPathResource("/templates/mail").getFile());
+		cfg.setTemplateLoader(new ClassTemplateLoader(getClass(), "/templates/mail"));
 		cfg.setDefaultEncoding(UTF8.toString());
+		cfg.setOutputEncoding(UTF8.toString());
 		cfg.setTemplateExceptionHandler(_Env.isDev()
 				? TemplateExceptionHandler.HTML_DEBUG_HANDLER
 				: TemplateExceptionHandler.RETHROW_HANDLER);

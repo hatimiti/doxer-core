@@ -38,15 +38,18 @@ public class AppExceptionResolver implements HandlerExceptionResolver {
 	}
 
 	public static void addCauseException(Exception ex, ModelAndView mav) {
-		mav.addObject("causeException", new StringBuilder()
-				.append(format("name = %s\r\n", ex.toString()))
-				.append(format("cause = %s\r\n", ex.getCause()))
-				.append(format("stackTrace =\r\n%s", Stream
-						.of(ex.getStackTrace())
-						.map(s -> s.toString())
-						.collect(Collectors.joining("\r\n"))
-				))
-		);
+		mav.addObject("causeException", exceptionToString(ex));
+	}
+
+	public static String exceptionToString(Throwable ex) {
+		return new StringBuilder()
+			.append(format("name = %s\r\n", ex.toString()))
+			.append(format("cause = %s\r\n", ex.getCause()))
+			.append(format("stackTrace =\r\n%s", Stream
+					.of(ex.getStackTrace())
+					.map(s -> s.toString())
+					.collect(Collectors.joining("\r\n"))
+			)).toString();
 	}
 
 }

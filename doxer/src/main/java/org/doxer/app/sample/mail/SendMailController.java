@@ -8,20 +8,16 @@ import static org.doxer.xbase.util._Container.*;
 import org.doxer.app.sample.mail.SampleMailDataModel.NestedModel;
 import org.doxer.xbase.controller.BaseLangController;
 import org.doxer.xbase.mail.DoxMailSender;
-import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.hatimiti.flutist.common.message.AppMessage;
-import com.github.hatimiti.flutist.common.util._Obj;
 
 @Controller
 @RequestMapping(BASE_URI)
 public class SendMailController extends BaseLangController {
 
 	public static final String BASE_URI = "/sample/sendmail/";
-
-	private static final Logger LOG = _Obj.getLogger();
 
 	@RequestMapping
 	public DoxModelAndView index(SendMailForm form) {
