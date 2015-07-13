@@ -16,7 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 
 public class DoxBirt {
 
-	private static final String BASE_DIR = "/reports";
+	private static final String BASE_DIR = "/templates/report";
 
 	private String rptdesign;
 	private String destination;

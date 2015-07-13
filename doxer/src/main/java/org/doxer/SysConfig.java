@@ -26,7 +26,7 @@ public class SysConfig {
 	@Bean
 	public TemplateResolver templateResolver() {
 		TemplateResolver resolver = new SpringResourceTemplateResolver();
-		resolver.setPrefix("classpath:/templates");
+		resolver.setPrefix("classpath:/templates/view");
 		resolver.setSuffix("");
 		//NB, selecting HTML5 as the template mode.
 		resolver.setTemplateMode("HTML5");

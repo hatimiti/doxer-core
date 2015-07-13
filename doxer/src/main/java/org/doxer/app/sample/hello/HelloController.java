@@ -91,6 +91,9 @@ public class HelloController extends DoxController {
 	public void outputReport(HelloForm form) {
 		DoxBirt birt = new DoxBirt("/sample/hello/hello.rptdesign", "//LS-XHLE38/share/var/hello.pdf", PDF);
 		birt.output("hello", "Hello, BIRT");
+
+		form.setFileName("hello.pdf");
+		download(form);
 	}
 
 }

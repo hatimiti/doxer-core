@@ -92,7 +92,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 
 	private Configuration createFreemarkerConfiguration() throws IOException {
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
-		cfg.setDirectoryForTemplateLoading(new ClassPathResource("/mail").getFile());
+		cfg.setDirectoryForTemplateLoading(new ClassPathResource("/templates/mail").getFile());
 		cfg.setDefaultEncoding(UTF8.toString());
 		cfg.setTemplateExceptionHandler(_Env.isDev()
 				? TemplateExceptionHandler.HTML_DEBUG_HANDLER
