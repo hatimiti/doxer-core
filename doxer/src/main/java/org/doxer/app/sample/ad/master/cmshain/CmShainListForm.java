@@ -33,7 +33,7 @@ public class CmShainListForm extends BaseSortPageForm {
 
 	PagingResultBean<CmShain> shainList;
 
-	class Validate implements FormValidator {
+	class ValidateList implements FormValidator {
 		@Override
 		public void validate(AppMessagesContainer c) {
 			cmShainId.validate(c);
@@ -42,7 +42,7 @@ public class CmShainListForm extends BaseSortPageForm {
 		}
 	}
 
-	class ValidateCsv extends CsvFormValidator {
+	class ValidateCsvUpload extends CsvFormValidator {
 		@Override
 		public void validate(AppMessagesContainer c) throws Exception {
 			validateCsv(c, "uploadedCsvFile");

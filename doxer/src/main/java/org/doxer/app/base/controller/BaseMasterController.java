@@ -1,6 +1,11 @@
 package org.doxer.app.base.controller;
 
+import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
+
 import org.doxer.xbase.controller.DoxController;
+import org.doxer.xbase.util._Container;
+
+import com.github.hatimiti.flutist.common.message.AppMessage;
 
 public abstract class BaseMasterController extends DoxController {
 
@@ -21,12 +26,7 @@ public abstract class BaseMasterController extends DoxController {
 	}
 
 	protected void saveMessage(final Long id, final String key) {
-		//FIXME
-//		ActionMessages messages = new ActionMessages();
-//		messages.add(
-//				SystemConstants.GLOBAL_MESSAGE,
-//				new ActionMessage(key, id));
-//		_Container.saveMessageInSession(messages);
+		_Container.addMessage(new AppMessage(INFO, key, id));
 	}
 
 }

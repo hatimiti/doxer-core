@@ -14,14 +14,14 @@ import java.io.Writer;
 
 import javax.annotation.Resource;
 
-import lombok.val;
-
 import org.doxer.app.base.controller.BaseMasterController;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
 import org.doxer.app.db.dbflute.allcommon.CDef.Mode;
 import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.app.sample.ad.master.cmshain.CmShainForm.ValidId;
 import org.doxer.app.sample.ad.master.cmshain.CmShainForm.Validate;
+import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateCsvUpload;
+import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateList;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.springframework.stereotype.Controller;
@@ -55,7 +55,7 @@ public class CmShainController extends BaseMasterController {
 		return view(BASE_URI, "index.html", form);
 	}
 
-	@DoValidation(v = { CmShainListForm.Validate.class }, to = BASE_URI + "index.html")
+	@DoValidation(v = { ValidateList.class }, to = BASE_URI + "index.html")
 	@RequestMapping("search")
 	public DoxModelAndView search(CmShainListForm form) {
 		this.cmShainService.search(form);
@@ -74,7 +74,7 @@ public class CmShainController extends BaseMasterController {
 
 	// CSVアップロード
 
-	@DoValidation(v = { CmShainListForm.ValidateCsv.class }, to = BASE_URI + "index.html")
+	@DoValidation(v = { ValidateCsvUpload.class }, to = BASE_URI + "index.html")
 	@RequestMapping(params = "upload", method = POST)
 	public DoxModelAndView upload(CmShainListForm form) throws Exception {
 		this.cmShainService.inputCsv(form);
@@ -87,8 +87,7 @@ public class CmShainController extends BaseMasterController {
 	@Token(SET)
 	@RequestMapping(params = "prepareRegister")
 	public DoxModelAndView prepareRegister(CmShainForm form) {
-		copy(new CmShainForm(), form);
-		form.mode = Mode.Register;
+		init(form, Mode.Register);
 		return view(BASE_URI, "edit.html", form);
 	}
 
@@ -113,12 +112,7 @@ public class CmShainController extends BaseMasterController {
 	@DoValidation(v = { ValidId.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "prepareUpdate")
 	public DoxModelAndView prepareUpdate(CmShainForm form) {
-
-		val tmpId = form.cmShainId;
-		copy(new CmShainForm(), form);
-		form.cmShainId = tmpId;
-
-		form.mode = Mode.Update;
+		init(form, Mode.Update);
 		this.cmShainService.prepareUpdate(form);
 
 		return view(BASE_URI, "edit.html", form);
@@ -145,16 +139,10 @@ public class CmShainController extends BaseMasterController {
 	@DoValidation(v = { ValidId.class }, to = "backToList", transition = FORWORD)
 	@RequestMapping(params = "confirmDelete")
 	public DoxModelAndView confirmDelete(CmShainForm form) {
-
-		final CmShainId tmpId = form.cmShainId;
-		copy(new CmShainForm(), form);
-		form.cmShainId = tmpId;
-
-		form.mode = Mode.Delete;
+		init(form, Mode.Delete);
 		this.cmShainService.confirmDelete(form);
 		return view(BASE_URI, "confirm.html", form);
 	}
-
 
 	@Token(CHECK)
 	@DoValidation(v = { ValidId.class }, to = "backToList", transition = FORWORD)
@@ -183,6 +171,13 @@ public class CmShainController extends BaseMasterController {
 			return backToList(form, null);
 		}
 		return view(BASE_URI, "edit.html", form);
+	}
+
+	private void init(CmShainForm form, Mode mode) {
+		final CmShainId tmpId = form.cmShainId;
+		copy(new CmShainForm(), form);
+		form.cmShainId = tmpId;
+		form.mode = mode;
 	}
 
 }
