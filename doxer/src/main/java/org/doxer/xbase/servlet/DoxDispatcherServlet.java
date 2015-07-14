@@ -25,7 +25,15 @@ public class DoxDispatcherServlet extends DispatcherServlet {
 		// 当クラスでユニットテストに影響ある処理を実装するとテストがエラーとなるため注意
 		// 上記理由より下記処理は一旦削除
 //		mv.addObject("form", request.getAttribute(MODEL_AND_VIEW_FORM_KEY));
-		super.render(mv, request, response);
+		try {
+			super.render(mv, request, response);
+		} catch (Exception e) {
+			try {
+				render(processHandlerException(request, response, null, e), request, response);
+			} catch (Exception e1) {
+				throw e1;
+			}
+		}
 	}
 
 	@Override
