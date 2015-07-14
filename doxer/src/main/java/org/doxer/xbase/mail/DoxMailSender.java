@@ -80,7 +80,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		mime.setRecipients(RecipientType.CC, parse(String.join(",", config.getCc())));
 		mime.setRecipients(RecipientType.BCC, parse(String.join(",", config.getBcc())));
 		mime.setFrom(new InternetAddress("mail@localhost"));//TODO mail from
-		mime.setSubject(config.getSubject());
+		mime.setSubject(config.getSubject(), buildMessage("mail.encoding.ja"));
 
 		Configuration cfg = createFreemarkerConfiguration();
 		LOG.debug("freemarker.template.Configuration: " + toConfigurationString(cfg));
@@ -92,9 +92,18 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		rootMap.put("data", model);
 		try (Writer out = new StringWriter()) {
 			t.process(rootMap, out);
-			mime.setText(out.toString());
+			mime.setText(specifyCharUnicodeToJIS(out.toString()), buildMessage("mail.encoding.ja"));
 		}
 		return mime;
+	}
+
+	private String specifyCharUnicodeToJIS(String content) {
+		// ISO-2022-JPで送信する際に、freemarkerテンプレート内の一部文字の文字化け対策
+		return content
+				.replaceAll("\uFF5E", "\u301C") // 全角チルダ→波ダッシュ～
+				.replaceAll("\uFF0D", "\u2212") // 全角マイナス→ハイフン−
+				.replaceAll("\u2015", "\u2014") // ―
+		;
 	}
 
 	private String toConfigurationString(Configuration cfg) {
@@ -109,7 +118,6 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
 		cfg.setTemplateLoader(new ClassTemplateLoader(getClass(), "/templates/mail"));
 		cfg.setDefaultEncoding(UTF8.toString());
-		cfg.setOutputEncoding(UTF8.toString());
 		cfg.setTemplateExceptionHandler(_Env.isDev()
 				? TemplateExceptionHandler.HTML_DEBUG_HANDLER
 				: TemplateExceptionHandler.RETHROW_HANDLER);
