@@ -39,7 +39,7 @@ public class HelloController extends DoxController {
 	@Token(SET)
 	@RequestMapping("/index")
 	public DoxModelAndView index(HelloForm form) {
-		LOG.info("ログ出力テスト 時間={}", _Container.getAccessDate());
+		LOG.info("ログ出力テスト 時間={}", getAccessDate());
 		LOG.info("user = {}", accessUser);
 		accessUser.setNameMei("hatimiti");
 		return view("/hello/hello.html", form);
@@ -51,7 +51,7 @@ public class HelloController extends DoxController {
 	public DoxModelAndView input(HelloForm form) {
 		this.helloService.search(form);
 		LOG.info("ログ出力テスト2, {}", form.getResults());
-		addMessage(new AppMessage(INFO, "hello2", buildMessage("val"), buildMessage("samplemes")));
+		addMessage(new AppMessage(INFO, "hello2", prop("val"), prop("samplemes")));
 		return view("/hello/hello.html", form);
 	}
 
@@ -84,7 +84,7 @@ public class HelloController extends DoxController {
 
 	@RequestMapping(value = "/download")
 	public void download(HelloForm form) {
-		_Container.downloadFile(Paths.get("//LS-XHLE38/share/var/", form.getFileName()));
+		downloadFile(Paths.get("//LS-XHLE38/share/var/", form.getFileName()));
 	}
 
 	@RequestMapping(value = "/output-report")

@@ -138,7 +138,7 @@ public abstract class FormType<T> extends Type<T> {
 	}
 
 	protected String label() {
-		return _Container.buildMessage(this.labelKey);
+		return _Container.prop(this.labelKey);
 	}
 
 	public abstract int length();

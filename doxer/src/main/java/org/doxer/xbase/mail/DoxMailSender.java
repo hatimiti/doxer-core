@@ -57,15 +57,15 @@ public class DoxMailSender extends JavaMailSenderImpl {
 	}
 
 	private void init() {
-		setHost(buildMessage("mail.host"));
-		setPort(_Num.toI_Null(buildMessage("mail.port")));
-		setUsername(buildMessage("mail.username"));
-		setPassword(buildMessage("mail.password"));
+		setHost(prop("mail.host"));
+		setPort(propAsInt("mail.port"));
+		setUsername(prop("mail.username"));
+		setPassword(prop("mail.password"));
 
 		Properties prop = new Properties();
-		prop.setProperty("mail.transport.protocol", buildMessage("mail.transport.protocol"));
-		prop.setProperty("mail.smtp.auth", buildMessage("mail.smtp.auth"));
-		prop.setProperty("mail.smtp.starttls.enable", buildMessage("mail.smtp.starttls.enable"));
+		prop.setProperty("mail.transport.protocol", prop("mail.transport.protocol"));
+		prop.setProperty("mail.smtp.auth", prop("mail.smtp.auth"));
+		prop.setProperty("mail.smtp.starttls.enable", prop("mail.smtp.starttls.enable"));
 		setJavaMailProperties(prop);
 	}
 
@@ -80,7 +80,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		mime.setRecipients(RecipientType.CC, parse(String.join(",", config.getCc())));
 		mime.setRecipients(RecipientType.BCC, parse(String.join(",", config.getBcc())));
 		mime.setFrom(new InternetAddress("mail@localhost"));//TODO mail from
-		mime.setSubject(config.getSubject(), buildMessage("mail.encoding.ja"));
+		mime.setSubject(config.getSubject(), prop("mail.encoding.ja"));
 
 		Configuration cfg = createFreemarkerConfiguration();
 		LOG.debug("freemarker.template.Configuration: " + toConfigurationString(cfg));
@@ -92,7 +92,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		rootMap.put("data", model);
 		try (Writer out = new StringWriter()) {
 			t.process(rootMap, out);
-			mime.setText(specifyCharUnicodeToJIS(out.toString()), buildMessage("mail.encoding.ja"));
+			mime.setText(specifyCharUnicodeToJIS(out.toString()), prop("mail.encoding.ja"));
 		}
 		return mime;
 	}

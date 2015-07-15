@@ -153,7 +153,7 @@ public class CmShainService extends DoxService {
 		val cmShain = this.cmShainBhv.selectByPkWithRel(cmShainId.getValL());
 		if (isEmpty(cmShain)) {
 			throw new AppMessagesException(
-					new AppMessage(ERROR, "valid.exists", buildMessage("shain")));
+					new AppMessage(ERROR, "valid.exists", prop("shain")));
 		}
 		return cmShain;
 	}

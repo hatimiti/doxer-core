@@ -37,6 +37,7 @@ import com.github.hatimiti.flutist.common.util.CharacterEncoding;
 import com.github.hatimiti.flutist.common.util.MIMEType;
 import com.github.hatimiti.flutist.common.util._Date;
 import com.github.hatimiti.flutist.common.util._Http;
+import com.github.hatimiti.flutist.common.util._Num;
 import com.github.hatimiti.flutist.common.util._Obj;
 import com.github.hatimiti.flutist.common.util._Str;
 
@@ -174,7 +175,7 @@ public final class _Container {
 		case SC_MOVED_PERMANENTLY:
 		case SC_MOVED_TEMPORARILY:
 			// リダイレクト時はFLASHメッセージとして時リクエストへ引き継ぐ
-			req.getSession().setAttribute(KEY_APPMESSAGES_IN_SESSION, APPMESSAGES.get());
+			req.getSession().setAttribute(KEY_APPMESSAGES_IN_SESSION, getAppMessagesContainer());
 			break;
 		default:
 			break;
@@ -198,18 +199,12 @@ public final class _Container {
 		return buildIndexedMessages(getAppMessagesContainer().getOwnedMessagesByPrefix(ownerPrefix));
 	}
 
-	public static String buildMessage(String key, Object... params) {
-		Objects.requireNonNull(key);
-		MessageSource source = getComponent(MessageSource.class).get();
-		return source.getMessage(key, params, getAccessUser().getLocale());
-	}
-
 	public static void addMessage(AppMessage message) {
-		APPMESSAGES.get().add(new GlobalMessages(message));
+		getAppMessagesContainer().add(new GlobalMessages(message));
 	}
 
 	public static void addMessage(String owner, AppMessage message) {
-		APPMESSAGES.get().add(new OwnedMessages(Owner.of(owner), message));
+		getAppMessagesContainer().add(new OwnedMessages(Owner.of(owner), message));
 	}
 
 	private static List<String> buildMessages(List<AppMessage> messages) {
@@ -238,6 +233,28 @@ public final class _Container {
 		= (m, s) -> m.isResource()
 				? s.getMessage(m.getKeyOrMessage(), m.getParams(), getAccessUser().getLocale())
 				: m.getKeyOrMessage();
+
+	/* ****************************************
+	 * プロパティファイル
+	 * ****************************************/
+
+	public static String prop(String key, Object... params) {
+		Objects.requireNonNull(key);
+		return getComponent(MessageSource.class).get()
+				.getMessage(key, params, getAccessUser().getLocale());
+	}
+
+	public static int propAsInt(String key, Object... params) {
+		return _Num.toI_Null(prop(key, params));
+	}
+
+	public static long propAsLong(String key, Object... params) {
+		return _Num.toL_Null(prop(key, params));
+	}
+
+	public static boolean propAsBoolean(String key, Object... params) {
+		return Boolean.valueOf(prop(key, params));
+	}
 
 	/* ****************************************
 	 * アプリケーションWeb設定
