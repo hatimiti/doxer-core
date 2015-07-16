@@ -29,11 +29,18 @@ public class DoxDispatcherServlet extends DispatcherServlet {
 			super.render(mv, request, response);
 		} catch (Exception e) {
 			try {
-				render(processHandlerException(request, response, null, e), request, response);
+				renderError(request, response, e);
 			} catch (Exception e1) {
 				throw e1;
 			}
 		}
+	}
+
+	protected void renderError(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			Exception e) throws Exception {
+		super.render(processHandlerException(request, response, null, e), request, response);
 	}
 
 	@Override
