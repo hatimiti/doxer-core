@@ -41,7 +41,7 @@ apply plugin: 'pmd'
 apply plugin: 'jacoco'
 
 def SPRING_GROUPID = 'org.springframework'
-def SPRING_VERSION = '4.1.7.RELEASE'
+def SPRING_VERSION = '4.2.0.BUILD-SNAPSHOT'
 def SPRING_BOOT_GROUPID = 'org.springframework.boot'
 def SPRING_BOOT_VERSION = '1.3.0.BUILD-SNAPSHOT'
 def SPRING_SECURITY_VERSION = '4.0.1.RELEASE'
