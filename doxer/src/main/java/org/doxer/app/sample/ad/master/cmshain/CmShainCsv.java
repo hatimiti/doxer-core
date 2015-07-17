@@ -2,7 +2,6 @@ package org.doxer.app.sample.ad.master.cmshain;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
 import lombok.ToString;
-import lombok.val;
 
 import org.doxer.app.base.type.form.sample.ad.master.cmkaisha.CmKaishaId;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;

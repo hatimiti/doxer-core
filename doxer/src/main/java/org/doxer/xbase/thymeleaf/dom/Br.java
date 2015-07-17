@@ -5,7 +5,7 @@ import org.thymeleaf.dom.Text;
 public class Br extends JNode {
 
 	public Br() {
-		super(new Text("<br />", false));
+		super(new Text("<br />", null, null, false));
 	}
 
 }

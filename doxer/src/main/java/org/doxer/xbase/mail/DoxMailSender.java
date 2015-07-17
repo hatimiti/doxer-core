@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import com.github.hatimiti.flutist.common.util._Num;
 import com.github.hatimiti.flutist.common.util._Obj;
 
 import freemarker.cache.ClassTemplateLoader;
