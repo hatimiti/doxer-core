@@ -199,6 +199,14 @@ public final class _Container {
 		return buildIndexedMessages(getAppMessagesContainer().getOwnedMessagesByPrefix(ownerPrefix));
 	}
 
+	public static void addAllMessages(AppMessagesContainer container) {
+		getAppMessagesContainer().addAll(container);
+	}
+
+	public static void addAllMessages(AppMessages<?> messages) {
+		getAppMessagesContainer().add(messages);
+	}
+
 	public static void addMessage(AppMessage message) {
 		getAppMessagesContainer().add(new GlobalMessages(message));
 	}

@@ -1,6 +1,7 @@
 package org.doxer.xbase.aop.interceptor;
 
 import static java.lang.String.*;
+import static org.doxer.xbase.util._Container.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -11,7 +12,6 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.controller.DoxController.DoxModelAndView;
 import org.doxer.xbase.form.Form;
-import org.doxer.xbase.util._Container;
 import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -42,14 +42,14 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 
 		AppMessagesContainer container = validate(v, opForm.get());
 		if (!container.isEmpty()) {
-			_Container.getAppMessagesContainer().addAll(container);
+			addAllMessages(container);
 			return buildReturnValue(v, opForm.get(), getTarget(invocation));
 		}
 
 		try {
 			return invocation.proceed();
 		} catch (AppMessagesException e) {
-			_Container.getAppMessagesContainer().add(e.getAppMessages());
+			addAllMessages(e.getAppMessages());
 			return buildReturnValue(v, opForm.get(), getTarget(invocation));
 		}
 	}
