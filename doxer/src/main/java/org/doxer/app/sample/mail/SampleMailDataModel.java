@@ -2,6 +2,7 @@ package org.doxer.app.sample.mail;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,6 +45,21 @@ public class SampleMailDataModel implements MailSendDataModel {
 			@Override
 			public String[] getTo() {
 				return new String[] { "info@localhost" };
+			}
+
+			@Override
+			public boolean isHTML() {
+				return true;
+			}
+
+			@Override
+			public Locale getLocale() {
+				return Locale.JAPAN;
+			}
+
+			@Override
+			public String getFrom() {
+				return "sample@exsample.com";
 			}
 		};
 	}

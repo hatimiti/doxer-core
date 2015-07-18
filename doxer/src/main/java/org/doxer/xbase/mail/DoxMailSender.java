@@ -8,13 +8,17 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
 import javax.mail.Message.RecipientType;
+import javax.mail.Multipart;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.doxer.app.base.exception.AppExceptionResolver;
 import org.doxer.xbase.util._Env;
@@ -70,30 +74,59 @@ public class DoxMailSender extends JavaMailSenderImpl {
 
 	private MimeMessage createMime(MailSendDataModel model) throws Exception {
 
-		LOG.debug("org.doxer.xbase.mail.MailSendDataModel: " + model);
-
 		MailSendConfigurable config = model.getConfiguration();
-
 		MimeMessage mime = this.createMimeMessage();
 		mime.setRecipients(RecipientType.TO, parse(String.join(",", config.getTo())));
 		mime.setRecipients(RecipientType.CC, parse(String.join(",", config.getCc())));
 		mime.setRecipients(RecipientType.BCC, parse(String.join(",", config.getBcc())));
-		mime.setFrom(new InternetAddress("mail@localhost"));//TODO mail from
-		mime.setSubject(config.getSubject(), prop("mail.encoding.ja"));
+		mime.setFrom(new InternetAddress(config.getFrom()));
+		mime.setSubject(config.getSubject(), getEncodingInLocale(config.getLocale()));
+
+		if (config.isHTML()) {
+			mime.setContent(createMimeMultipart(model));
+		} else {
+			mime.setText(specifyCharUnicodeToJIS(getContent(model, false)),
+					getEncodingInLocale(config.getLocale()));
+		}
+
+		return mime;
+	}
+
+	private Multipart createMimeMultipart(MailSendDataModel model) throws Exception {
+		Multipart multipart = new MimeMultipart("alternative");
+
+		MimeBodyPart textPart = new MimeBodyPart();
+		textPart.setText(specifyCharUnicodeToJIS(getContent(model, false)),
+				getEncodingInLocale(model.getConfiguration().getLocale()));
+
+		MimeBodyPart htmlPart = new MimeBodyPart();
+		htmlPart.setText(specifyCharUnicodeToJIS(getContent(model, true)),
+				getEncodingInLocale(model.getConfiguration().getLocale()), "html");
+
+		multipart.addBodyPart(textPart);
+		multipart.addBodyPart(htmlPart);
+
+		return multipart;
+	}
+
+	private String getContent(
+			MailSendDataModel model,
+			boolean isHTML) throws Exception {
 
 		Configuration cfg = createFreemarkerConfiguration();
 		LOG.debug("freemarker.template.Configuration: " + toConfigurationString(cfg));
 
-		Template t = cfg.getTemplate(config.getTemplatePath());
+		Template t = cfg.getTemplate(isHTML ?
+				model.getConfiguration().getHtmlTemplatePath() :
+				model.getConfiguration().getTemplatePath());
 		LOG.debug("freemarker.template.Template: " + t);
 
 		Map<String, Object> rootMap = new HashMap<>();
 		rootMap.put("data", model);
 		try (Writer out = new StringWriter()) {
 			t.process(rootMap, out);
-			mime.setText(specifyCharUnicodeToJIS(out.toString()), prop("mail.encoding.ja"));
+			return out.toString();
 		}
-		return mime;
 	}
 
 	private String specifyCharUnicodeToJIS(String content) {
@@ -103,6 +136,11 @@ public class DoxMailSender extends JavaMailSenderImpl {
 				.replaceAll("\uFF0D", "\u2212") // 全角マイナス→ハイフン−
 				.replaceAll("\u2015", "\u2014") // ―
 		;
+	}
+
+	private String getEncodingInLocale(Locale locale) {
+		String lang = locale.getLanguage();
+		return prop("mail.encoding." + lang);
 	}
 
 	private String toConfigurationString(Configuration cfg) {
