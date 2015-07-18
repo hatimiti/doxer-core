@@ -32,8 +32,8 @@ public class RadioAttrProcessor extends JAbstractAttrProcessor {
 		String part2 = getAttributeValuePart(1);
 		part2 = "." + (_Obj.isEmpty(part2) ? "val" : part2);
 
-		final String nameResult = _Str.toEmpty(eval(format("|%s|", part1)));
-		final String valResult = _Str.toEmpty(eval(format("${%s%s}", nameResult, part2)));
+		final String nameResult = _Str.asStrOrEmpty(eval(format("|%s|", part1)));
+		final String valResult = _Str.asStrOrEmpty(eval(format("${%s%s}", nameResult, part2)));
 
 		final String value = element.getAttributeValue("value");
 		

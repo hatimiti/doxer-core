@@ -35,7 +35,7 @@ public class LinkSortByAttrProcessor extends JAbstractAttrProcessor {
 
 		TableHeaderSortableForm sortForm = (TableHeaderSortableForm) getForm(arguments);
 		String nowSortColName = sortForm.getSortColName();
-		String sortColName = _Str.toEmpty(eval(getAttributeValuePart(0)));
+		String sortColName = _Str.asStrOrEmpty(eval(getAttributeValuePart(0)));
 		String sortOrder = sortForm.getSortOrder();
 
 		StringBuilder query = new StringBuilder("?")

@@ -16,7 +16,7 @@ public abstract class Su extends SingleFormType {
 	}
 
 	public Long getValL() {
-		return _Num.toL_Null(this.val);
+		return _Num.asLongOrNull(this.val);
 	}
 
 	@Override

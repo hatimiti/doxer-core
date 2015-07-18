@@ -42,17 +42,17 @@ public abstract class BasePageForm extends DoxForm implements Pagenator {
 
 	@Override
 	public int getPageSize() {
-		return _Num.toI("20", 10);
+		return _Num.asIntOrDefault("20", 10);
 	}
 
 	@Override
 	public int getPageNumber() {
-		return _Num.toI(this.pageNumber, 1);
+		return _Num.asIntOrDefault(this.pageNumber, 1);
 	}
 
 	@Override
 	public int getPageRangeSize() {
-		return _Num.toI("10", 10);
+		return _Num.asIntOrDefault("10", 10);
 	}
 
 }

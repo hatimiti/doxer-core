@@ -80,8 +80,8 @@ public class CmShainCsv implements DoxInputCsv {
 	}
 
 	public CmShain copyTo(CmShain shain) {
-		shain.setCmShainId(_Num.toL_Null(cmShainId));
-		shain.setCmKaishaId(_Num.toL_Null(cmKaishaId));
+		shain.setCmShainId(_Num.asLongOrNull(cmShainId));
+		shain.setCmKaishaId(_Num.asLongOrNull(cmKaishaId));
 		shain.setShainSei(shainSei);
 		shain.setShainMei(shainMei);
 		shain.setShainSeiEn(shainSeiEn);

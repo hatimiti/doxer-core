@@ -31,7 +31,7 @@ public class JUtility {
 	public CmKaisha cmKaisha(Object cmKaishaId) {
 		CmKaishaBhv bhv = _Container.getComponent(CmKaishaBhv.class).get();
 		return bhv.selectEntity(cb -> {
-				cb.query().setCmKaishaId_Equal(_Num.toL_Null(cmKaishaId.toString()));
+				cb.query().setCmKaishaId_Equal(_Num.asLongOrNull(cmKaishaId.toString()));
 			}).get();
 	}
 

@@ -1,6 +1,7 @@
 package org.doxer.app.sample.ad.master.cmkaisha;
 
 import static com.github.hatimiti.flutist.common.domain.supports.InputAttribute.*;
+import static com.github.hatimiti.flutist.common.util._Str.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -42,7 +43,7 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 		String tesuryoSu = this.tesuryoIntSu.getVal();
 		if (CDef.TesuryoKb.Percent.toString()
 				.equals(this.tesuryoKb.getVal())) {
-			tesuryoSu += "." + _Str.toZeroIfEmpty(this.tesuryoDmSu.getVal());
+			tesuryoSu += "." + _Str.asStrOrZero(this.tesuryoDmSu.getVal());
 		}
 		return tesuryoSu;
 	}
@@ -64,8 +65,8 @@ public class CmKishTesuryoForm extends BaseEntityForm<CmKishTesuryo> {
 		this.getTekiyoKikanFromDt().setStrictVal(entity.getTekiyoKikanFromDt());
 		this.getTekiyoKikanToDt().setStrictVal(entity.getTekiyoKikanToDt());
 		this.getTesuryoKb().setStrictVal(entity.getTesuryoKb());
-		this.getTesuryoIntSu().setStrictVal(_Str.getIntegerOf(entity.getTesuryoSu()));
-		this.getTesuryoDmSu().setStrictVal(_Str.getDecimalOf(entity.getTesuryoSu()));
+		this.getTesuryoIntSu().setStrictVal(partOfInteger(entity.getTesuryoSu()));
+		this.getTesuryoDmSu().setStrictVal(partOfDecimal(entity.getTesuryoSu()));
 	}
 
 }

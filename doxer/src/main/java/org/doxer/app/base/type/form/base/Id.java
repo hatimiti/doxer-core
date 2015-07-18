@@ -17,11 +17,11 @@ public abstract class Id extends SingleFormType {
 	}
 
 	public Long getValL() {
-		return _Num.toL_Null(this.val);
+		return _Num.asLongOrNull(this.val);
 	}
 
 	public void setStrictValL(Long val) {
-		setStrictVal(_Str.toNullIfEmpty(val));
+		setStrictVal(_Str.asStrOrEmpty(val));
 	}
 
 	@Override

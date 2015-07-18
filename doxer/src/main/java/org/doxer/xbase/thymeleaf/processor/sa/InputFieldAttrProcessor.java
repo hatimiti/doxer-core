@@ -37,8 +37,8 @@ public class InputFieldAttrProcessor extends JAbstractAttrProcessor {
 
 		final String path = bindStatus.getPath();
 		final String name = bindStatus.getExpression() + part2;
-		final String value = _Str.toEmpty(eval(format("${%s%s}", path, part2)));
-		final String length = _Str.toEmpty(eval(format("${%s.length()}", path)));
+		final String value = _Str.asStrOrEmpty(eval(format("${%s%s}", path, part2)));
+		final String length = _Str.asStrOrEmpty(eval(format("${%s.length()}", path)));
 
 		element.setAttribute("name", name);
 		element.setAttribute("value", value);

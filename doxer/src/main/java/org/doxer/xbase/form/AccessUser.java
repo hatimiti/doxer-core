@@ -48,19 +48,19 @@ public class AccessUser implements Serializable {
 	public void invalidate() {
 		_Obj.copy(new AccessUser(), this);
 	}
-	
+
 	public String getId() {
-		return _Str.toEmptyIfEmpty(String.valueOf(this.id));
+		return _Str.asStrOrEmpty(String.valueOf(this.id));
 	}
 
 	public Long getIdL() {
-		return _Num.toL_Null(getId());
+		return _Num.asLongOrNull(getId());
 	}
 
 	public String getName() {
 		return getNameSei() + "　" + getNameMei();
 	}
-	
+
 	public Locale getLocale() {
 		return new Locale(this.langCd);
 	}

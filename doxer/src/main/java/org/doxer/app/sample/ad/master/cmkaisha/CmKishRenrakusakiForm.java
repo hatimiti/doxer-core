@@ -47,9 +47,9 @@ public class CmKishRenrakusakiForm extends BaseEntityForm<CmKishRenrakusaki> {
 		this.cmKishRenrakusakiId.setStrictValL(entity.getCmKishRenrakusakiId());
 		this.cmKaishaId.setStrictValL(entity.getCmKaishaId());
 		this.telNo.setStrictVal(new String[] {
-				_Str.toEmpty(entity.getTelNo1()),
-				_Str.toEmpty(entity.getTelNo2()),
-				_Str.toEmpty(entity.getTelNo3())});
+				_Str.asStrOrEmpty(entity.getTelNo1()),
+				_Str.asStrOrEmpty(entity.getTelNo2()),
+				_Str.asStrOrEmpty(entity.getTelNo3())});
 		this.mailAddress.setStrictVal(entity.getMailAddress());
 		this.renrakusakiYotoKb.setStrictVal(entity.getRenrakusakiYotoKb());
 	}

@@ -245,11 +245,11 @@ public final class _Container {
 	}
 
 	public static int propAsInt(String key, Object... params) {
-		return _Num.toI_Null(prop(key, params));
+		return _Num.asIntOrNull(prop(key, params));
 	}
 
 	public static long propAsLong(String key, Object... params) {
-		return _Num.toL_Null(prop(key, params));
+		return _Num.asLongOrNull(prop(key, params));
 	}
 
 	public static boolean propAsBoolean(String key, Object... params) {
