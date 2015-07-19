@@ -37,9 +37,9 @@ public class ConnpassAPIClient extends HttpClient {
 
 //	public static void main(String[] args) throws ClientProtocolException, IOException {
 //		ConnpassRequestQuery q = new ConnpassRequestQuery();
-//		q.setKeywordANDs(asList(new String[]{"java", "scala", "関西"}));
-//		q.setYmds(asList(new Integer[]{20141122, 20140920}));
-//		Response res = request(q).get();
+//		q.setKeywordANDs(asList("java", "scala", "関西"));
+//		q.setYmds(asList(20141122, 20140920));
+//		Response res = request(q).doGet();
 //
 //		ConnpassResponse cres = JSON.decode(res.returnContent().asString(), ConnpassResponse.class);
 //

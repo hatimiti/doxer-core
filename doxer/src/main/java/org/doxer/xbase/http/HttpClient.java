@@ -1,5 +1,7 @@
 package org.doxer.xbase.http;
 
+import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
+import static java.lang.String.*;
 import static java.net.URLEncoder.*;
 import static java.util.stream.Collectors.*;
 import static org.apache.http.client.fluent.Request.*;
@@ -11,7 +13,6 @@ import java.util.List;
 
 import javafx.util.Pair;
 
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.StringEntity;
@@ -22,8 +23,8 @@ import com.github.hatimiti.flutist.common.util._Obj;
 public abstract class HttpClient {
 
 	private static final String EQ = "=";
-	
-	private static Logger log = _Obj.getLogger();
+
+	private static Logger LOG = _Obj.getLogger();
 
 	private String url;
 	private List<Pair<String, String>> params;
@@ -32,34 +33,29 @@ public abstract class HttpClient {
 	protected HttpClient(String url) {
 		this.url = url;
 		this.params = new ArrayList<>();
-		this.requestCharset = Charset.forName("UTF-8");
+		this.requestCharset = Charset.forName(UTF8.toString());
 	}
 
-	public Response get() {
+	public Response doGet() {
+		final String reqUrl = this.url + buildQuery();
 		try {
-			final String reqUrl = this.url + buildQuery();
-			log.info("RequestURL : " + reqUrl);
+			LOG.info("RequestURL : " + reqUrl);
 			return Request.Get(reqUrl).execute();
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+			LOG.error(format("Get Request %s", reqUrl), e);
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
-	public Response post() {
+	public Response doPost() {
 		try {
 			return Post(this.url)
 				.body(new StringEntity(buildQuery(), requestCharset.name()))
 				.execute();
-		} catch (ClientProtocolException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+			LOG.error(format("Post Request %s", this.url), e);
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	protected String buildQuery() {
@@ -75,7 +71,8 @@ public abstract class HttpClient {
 					.append(encode(p.getValue(), requestCharset.name()))
 				;
 			} catch (Exception e) {
-				log.info(e.getStackTrace().toString()); // TODO
+				LOG.error(format("Query on error = %s", query), e);
+				throw new RuntimeException(e);
 			}
 		});
 		return "?" + query;
