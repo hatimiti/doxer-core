@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.core.framework.Platform;
+import org.eclipse.birt.report.engine.api.EXCELRenderOption;
 import org.eclipse.birt.report.engine.api.EngineConfig;
 import org.eclipse.birt.report.engine.api.IReportEngine;
 import org.eclipse.birt.report.engine.api.IReportEngineFactory;
@@ -66,10 +67,16 @@ public class DoxBirt {
 	private RenderOption getRenderOption() {
 		switch (this.format) {
 		case PDF:
-			RenderOption options = new PDFRenderOption();
-			options.setOutputFileName(this.destination);
-			options.setOutputFormat(RenderOption.OUTPUT_FORMAT_PDF);
-			return options;
+			RenderOption pdfOp = new PDFRenderOption();
+			pdfOp.setOutputFileName(this.destination);
+			pdfOp.setOutputFormat(RenderOption.OUTPUT_FORMAT_PDF);
+			return pdfOp;
+		case XLSX_OFFICE2010:
+			EXCELRenderOption xlsOp = new EXCELRenderOption();
+			xlsOp.setOutputFileName(this.destination);
+			xlsOp.setOfficeVersion("office2010");
+			xlsOp.setOutputFormat("xlsx");
+			return xlsOp;
 		default:
 			return null;
 		}
@@ -90,7 +97,9 @@ public class DoxBirt {
 
 
 	public static enum BIRT_OUTPUT_FORMAT {
-		PDF
+		PDF,
+		@Deprecated
+		XLSX_OFFICE2010,
 	}
 
 }

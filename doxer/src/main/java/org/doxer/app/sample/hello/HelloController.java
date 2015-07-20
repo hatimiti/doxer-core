@@ -87,11 +87,26 @@ public class HelloController extends DoxController {
 	}
 
 	@RequestMapping(value = "/output-report")
-	public void outputReport(HelloForm form) {
-		DoxBirt birt = new DoxBirt("/sample/hello/hello.rptdesign", "//LS-XHLE38/share/var/hello.pdf", PDF);
+	public void outputReportPdf(HelloForm form) {
+		DoxBirt birt = new DoxBirt(
+				"/sample/hello/hello.rptdesign",
+				"//LS-XHLE38/share/var/hello.pdf",
+				PDF);
 		birt.output("hello", "Hello, BIRT");
 
 		form.setFileName("hello.pdf");
+		download(form);
+	}
+
+	@RequestMapping(value = "/output-xls")
+	public void outputReportXls(HelloForm form) {
+		DoxBirt birt = new DoxBirt(
+				"/sample/hello/hello_xls.rptdesign",
+				"//LS-XHLE38/share/var/hello.xlsx",
+				XLSX_OFFICE2010);
+		birt.output("hello", "Hello, BIRT");
+
+		form.setFileName("hello.xlsx");
 		download(form);
 	}
 
