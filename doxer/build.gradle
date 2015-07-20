@@ -124,6 +124,14 @@ dependencies {
 		exclude module: 'org.eclipse.orbit.mongodb'
 	}
 
+	// Settings Excel
+	compile group: 'org.apache.poi', name: 'poi', version: POI_VERSION
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: POI_VERSION
+	compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: POI_VERSION
+	compile group: 'org.jxls', name: 'jxls', version: '2.1.0'
+	compile 'org.jxls:jxls-jexcel:1.0.0'
+	compile 'org.jxls:jxls-poi:1.0.1'
+
 	// Settings Mail
 	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
 	compile group: SPRING_GROUPID, name: 'spring-context-support', version: SPRING_VERSION
