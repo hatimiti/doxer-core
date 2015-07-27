@@ -40,6 +40,10 @@ public abstract class DoxController {
 		public static DoxModelAndView forward(String to) {
 			return new DoxModelAndView(getForwardPath(to));
 		}
+
+		public static DoxModelAndView download(Form form) {
+			return new DoxModelAndView(null, form);
+		}
 	}
 
 }

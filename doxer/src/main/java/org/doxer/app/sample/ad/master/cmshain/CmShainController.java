@@ -10,7 +10,12 @@ import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
 import static org.doxer.xbase.util._Container.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.Paths;
 
 import javax.annotation.Resource;
 
@@ -21,6 +26,7 @@ import org.doxer.app.db.dbflute.exentity.CmShain;
 import org.doxer.app.sample.ad.master.cmshain.CmShainForm.ValidId;
 import org.doxer.app.sample.ad.master.cmshain.CmShainForm.Validate;
 import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateCsvUpload;
+import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateDownload;
 import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateList;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
@@ -52,6 +58,7 @@ public class CmShainController extends BaseMasterController {
 	@RequestMapping
 	public DoxModelAndView index(CmShainListForm form) {
 		copy(new CmShainListForm(), form);
+		form.compresses.off();
 		return view(BASE_URI, "index.html", form);
 	}
 
@@ -64,11 +71,33 @@ public class CmShainController extends BaseMasterController {
 
 	// CSVダウンロード
 
+	@DoValidation(v = { ValidateDownload.class }, to = BASE_URI + "index.html")
 	@RequestMapping(path = "search", params = "download")
-	public void download(CmShainListForm form) throws Exception {
+	public DoxModelAndView downloadShainCsv(CmShainListForm form) throws Exception {
+		if (form.compresses.isOn()) {
+			downloadZipShainCsv(form);
+		} else {
+			downloadPlainShainCsv(form);
+		}
+		return download(form);
+	}
+
+	private void downloadPlainShainCsv(CmShainListForm form) throws Exception,
+			IOException {
 		try (Writer out = _Http.getWriterForDownload(
 				getHttpServletResponse(), UTF8, APPL_OCTET_STREAM, "shain.csv")) {
 			this.cmShainService.outputCsvBySearchCondition(form, out);
+		}
+	}
+
+	private void downloadZipShainCsv(CmShainListForm form) throws Exception {
+
+		File tmpZipFile = Paths.get("/Temp/shain.txt").toFile();
+		try (Writer out = new BufferedWriter(new FileWriter(tmpZipFile))) {
+			this.cmShainService.outputCsvBySearchCondition(form, out);
+			_Http.downloadZip(getHttpServletResponse(), UTF8, tmpZipFile, "shain.zip");
+		} finally {
+			tmpZipFile.delete();
 		}
 	}
 
