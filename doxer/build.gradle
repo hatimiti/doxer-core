@@ -49,6 +49,7 @@ def ASPECTJ_VERSION = '1.8.6'
 def LOGBACK_VERSION = '1.1.3'
 def JACKSON_GROUPID = 'com.fasterxml.jackson.core'
 def JACKSON_VERSION = '2.6.0-rc3'
+def POI_VERSION = '3.12'
 dependencies {
 
 	// Settings providedCompile
@@ -66,7 +67,7 @@ dependencies {
 //	compile group: 'org.springframework.security', name: 'spring-security-config', version: SPRING_SECURITY_VERSION
 	compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '2.1.4.RELEASE'
 	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '1.2.9'
-	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.4'
+	providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.16.4'
 	// Settings Database
 	compile group: SPRING_GROUPID, name: 'spring-jdbc', version: SPRING_VERSION
 	compile group: SPRING_GROUPID, name: 'spring-tx', version: SPRING_VERSION
