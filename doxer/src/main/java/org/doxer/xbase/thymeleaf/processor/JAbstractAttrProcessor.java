@@ -75,6 +75,10 @@ public abstract class JAbstractAttrProcessor extends AbstractAttrProcessor {
 		return (DoxForm) arguments.getContext().getVariables().get("form");
 	}
 
+	protected boolean isRadioElement(Element element) {
+		return "radio".equals(element.getAttributeValue("type"));
+	}
+
 	@Override
 	public int getPrecedence() {
 		return Integer.MAX_VALUE;

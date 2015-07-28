@@ -2,6 +2,8 @@ package org.doxer.xbase.thymeleaf.processor.sa;
 
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static java.lang.String.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import org.doxer.xbase.thymeleaf.processor.JAbstractAttrProcessor;
 import org.springframework.web.servlet.support.BindStatus;
@@ -36,22 +38,46 @@ public class InputFieldAttrProcessor extends JAbstractAttrProcessor {
 		BindStatus bindStatus = getBindStatus(part1);
 
 		final String path = bindStatus.getPath();
-		final String name = bindStatus.getExpression() + part2;
-		final String value = _Str.asStrOrEmpty(eval(format("${%s%s}", path, part2)));
-		final String length = _Str.asStrOrEmpty(eval(format("${%s.length()}", path)));
+		final EvaluatedInfo ev = new EvaluatedInfo(
+				bindStatus.getExpression() + part2,
+				_Str.asStrOrEmpty(eval(format("${%s%s}", path, part2))),
+				_Str.asStrOrEmpty(eval(format("${%s.length()}", path))));
 
-		element.setAttribute("name", name);
-		element.setAttribute("value", value);
-		element.setAttribute("maxlength", length);
-		element.setAttribute("size", length);
+		if (isRadioElement(element)) {
+			setAttribute4RadioElement(element, ev);
+		} else {
+			setAttribute(element, ev);
+		}
 
 		element.removeAttribute(attributeName);
 		return ProcessorResult.OK;
 	}
 
+	void setAttribute4RadioElement(Element element, EvaluatedInfo ev) {
+		element.setAttribute("name", ev.getName());
+		if (ev.getValue().equals(element.getAttributeValue("value"))) {
+			element.setAttribute("checked", "true");
+		}
+	}
+
+	void setAttribute(Element element, EvaluatedInfo ev) {
+		element.setAttribute("name", ev.getName());
+		element.setAttribute("value", ev.getValue());
+		element.setAttribute("maxlength", ev.getLength());
+		element.setAttribute("size", ev.getLength());
+	}
+
 	@Override
 	public int getPrecedence() {
 		return 100;
+	}
+
+	@Getter
+	@AllArgsConstructor
+	static class EvaluatedInfo {
+		private String name;
+		private String value;
+		private String length;
 	}
 
 }

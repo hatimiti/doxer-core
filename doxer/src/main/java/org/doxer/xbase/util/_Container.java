@@ -29,6 +29,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.github.hatimiti.flutist.common.message.AppMessage;
+import com.github.hatimiti.flutist.common.message.AppMessages;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.GlobalMessages;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;

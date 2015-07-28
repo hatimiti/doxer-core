@@ -31,8 +31,8 @@
 				<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('shainMei')}" th:text="${e}">xxx</div>
 		<input type="submit" name="search" value="検索" />
 		<input type="submit" name="download" value="CSVダウンロード" />
-		<label><input type="radio" sa:field="${form.compresses}" th:value="0" />text</label>
-		<label><input type="radio" sa:field="${form.compresses}" th:value="1" />zip</label>
+		<label><input type="radio" sa:field="${form.compresses}" value="0" />text</label>
+		<label><input type="radio" sa:field="${form.compresses}" value="1" />zip</label>
 				<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('compresses')}" th:text="${e}">xxx</div>
 	</form>
 	<form action=".">
