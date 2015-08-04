@@ -46,7 +46,7 @@ public class CmShainService extends DoxService {
 
 	public void outputCsvBySearchCondition(
 			final CmShainListForm form,
-			final Writer out) throws Exception {
+			final Writer out) {
 
 		try (CsvEntityWriter<CmShainCsv> writer
 				= new CsvEntityWriter<>(new CsvWriter(out), CmShainCsv.class, true)) {
@@ -58,6 +58,8 @@ public class CmShainService extends DoxService {
 				csv.copyFrom(shain);
 				writer.write(csv);
 			});
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

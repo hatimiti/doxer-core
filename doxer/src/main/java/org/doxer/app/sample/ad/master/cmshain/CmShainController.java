@@ -2,20 +2,12 @@ package org.doxer.app.sample.ad.master.cmshain;
 
 import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
-import static com.github.hatimiti.flutist.common.util.MIMEType.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.xbase.aop.interceptor.supports.DoValidation.TransitionMethod.*;
 import static org.doxer.xbase.aop.interceptor.supports.TokenType.*;
 import static org.doxer.xbase.controller.DoxController.DoxModelAndView.*;
 import static org.doxer.xbase.util._Container.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Paths;
 
 import javax.annotation.Resource;
 
@@ -30,6 +22,7 @@ import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateDownload;
 import org.doxer.app.sample.ad.master.cmshain.CmShainListForm.ValidateList;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
+import org.doxer.xbase.util.Downloads;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -37,7 +30,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.hatimiti.flutist.common.annotation.Function;
 import com.github.hatimiti.flutist.common.message.AppMessage;
-import com.github.hatimiti.flutist.common.util._Http;
 
 /**
  * sample
@@ -75,30 +67,13 @@ public class CmShainController extends BaseMasterController {
 	@RequestMapping(path = "search", params = "download")
 	public DoxModelAndView downloadShainCsv(CmShainListForm form) throws Exception {
 		if (form.compresses.isOn()) {
-			downloadZipShainCsv(form);
+			Downloads.downloadZipCsv(
+					"shain.zip", form, UTF8, cmShainService::outputCsvBySearchCondition);
 		} else {
-			downloadPlainShainCsv(form);
+			Downloads.downloadPlainCsv(
+					"shain.csv", form, UTF8, cmShainService::outputCsvBySearchCondition);
 		}
 		return download(form);
-	}
-
-	private void downloadPlainShainCsv(CmShainListForm form) throws Exception,
-			IOException {
-		try (Writer out = _Http.getWriterForDownload(
-				getHttpServletResponse(), UTF8, APPL_OCTET_STREAM, "shain.csv")) {
-			this.cmShainService.outputCsvBySearchCondition(form, out);
-		}
-	}
-
-	private void downloadZipShainCsv(CmShainListForm form) throws Exception {
-
-		File tmpZipFile = Paths.get("/Temp/shain.txt").toFile();
-		try (Writer out = new BufferedWriter(new FileWriter(tmpZipFile))) {
-			this.cmShainService.outputCsvBySearchCondition(form, out);
-			_Http.downloadZip(getHttpServletResponse(), UTF8, tmpZipFile, "shain.zip");
-		} finally {
-			tmpZipFile.delete();
-		}
 	}
 
 	// CSVアップロード
