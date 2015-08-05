@@ -80,7 +80,7 @@ public class CmShainController extends BaseMasterController {
 
 	@DoValidation(v = { ValidateCsvUpload.class }, to = BASE_URI + "index.html")
 	@RequestMapping(params = "upload", method = POST)
-	public DoxModelAndView upload(CmShainListForm form) throws Exception {
+	public DoxModelAndView upload(CmShainListForm form) {
 		this.cmShainService.inputCsv(form);
 		addMessage(new AppMessage(INFO, "completes.upload"));
 		return view(BASE_URI, "index.html", form);

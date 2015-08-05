@@ -7,6 +7,7 @@ import static org.doxer.xbase.util._Container.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Paths;
 import java.util.function.BiConsumer;
@@ -20,7 +21,7 @@ public class Downloads {
 
 	public static <T extends DoxForm> void downloadPlainCsv(
 			String fileName,
-			T form, CharacterEncoding enc, BiConsumer<T, Writer> csvWriter) throws Exception {
+			T form, CharacterEncoding enc, BiConsumer<T, Writer> csvWriter) throws IOException {
 		try (Writer out = _Http.getWriterForDownload(
 				getHttpServletResponse(), enc, APPL_OCTET_STREAM, fileName)) {
 			csvWriter.accept(form, out);
@@ -29,7 +30,7 @@ public class Downloads {
 
 	public static <T extends DoxForm> void downloadZipCsv(
 			String fileName,
-			T form, CharacterEncoding enc, BiConsumer<T, Writer> csvWriter) throws Exception {
+			T form, CharacterEncoding enc, BiConsumer<T, Writer> csvWriter) throws IOException {
 
 		long tmpSuffix = System.nanoTime();
 		File tmpZipFile = Paths.get(format("/Temp/%s_%s", fileName, tmpSuffix)).toFile();
