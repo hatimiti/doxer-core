@@ -46,6 +46,7 @@
 	<h3>File Download</h3>
 	<form method="POST" action="/doxer/sample/hello/download">
 		Name: <input type="text" th:field="${form.fileName}" /><br />
+		<div class="ErrorsProperty" th:each="e : ${#sa.messagesOf('fileName')}" th:text="${e}">xxx</div>
 		<input type="submit" value="Download" /> Press here to download the file!
 	</form>
 

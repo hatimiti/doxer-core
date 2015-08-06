@@ -13,18 +13,21 @@ import org.doxer.xbase.validation.validator.FormValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.hatimiti.flutist.common.domain.supports.Condition;
 import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.flutist.common.message.Owner;
+import com.github.hatimiti.flutist.common.validation.Vval;
+import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Component
 public class HelloForm extends DoxForm {
 
-	private Val fval = new Val(REQUIRED);
-	private TelNo telNo = new TelNo(REQUIRED);
-
-	private String fileName;
-	private MultipartFile file;
+	@Condition Val fval = new Val(REQUIRED);
+	@Condition TelNo telNo = new TelNo(REQUIRED);
+	@Condition String fileName;
+	@Condition MultipartFile file;
 
 	private ListResultBean<TcmSample> results;
 
@@ -33,6 +36,13 @@ public class HelloForm extends DoxForm {
 		public void validate(AppMessagesContainer c) {
 			fval.validate(c);
 			telNo.validate(c);
+		}
+	}
+
+	class ValidateDownload implements FormValidator {
+		@Override
+		public void validate(AppMessagesContainer c) {
+			new RequiredFieldValidator(c).check(Vval.of(fileName), Owner.of("fileName"), "fileName");
 		}
 	}
 
