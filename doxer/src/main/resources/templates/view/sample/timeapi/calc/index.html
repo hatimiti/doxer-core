@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sa=""
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/common/layout.html">
+<head>
+	<!--/*/ <th:block th:remove="all"> /*/-->
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../../../../webcontents/share/css/init.css" />
+	<script src="/webcontents/share/js/jquery.js" ></script>
+	<!--/*/ </th:block> /*/-->
+	<title>DateAndTime API</title>
+</head>
+<body>
+<div layout:fragment="contents"><br />
+	本日の日付は<span th:text="${form.nowDt}">2015/10/10</span>です。<br />
+	<br />
+
+	<form action=".">
+		今日から<input type="text" th:field="${form.val1}" />日後は？
+		<div th:each="e : ${#sa.messagesOf('val1')}" th:text="${e}">error</div>
+		<input type="submit" name="nowAfterN" value="計算" /><br />
+		<span th:text="${form.afterNDayFromNow?:'***'}">2015/10/10</span>です。
+	</form>
+
+	<form action=".">
+		次回の<input type="text" th:field="${form.val2}" />曜日は？(1:月, 2:火, 3:水, 4:木, 5:金, 6:土, 7:日)
+		<div th:each="e : ${#sa.messagesOf('val2')}" th:text="${e}">error</div>
+		<input type="submit" name="nextDayOfWeek" value="計算" /><br />
+		<span th:text="${form.nextDayOfWeek?:'***'}">2015/10/10</span>です。
+	</form>
+
+	<form action=".">
+		<input type="text" th:field="${form.val3}" />年
+		<input type="text" th:field="${form.val4}" />月の末日は？
+		<input type="submit" name="endOfMonth" value="計算" /><br />
+		<div th:each="e : ${#sa.messagesOf('val3')}" th:text="${e}">error</div>
+		<div th:each="e : ${#sa.messagesOf('val4')}" th:text="${e}">error</div>
+		<span th:text="${form.endOfMonth?:'***'}">2015/10/10</span>日です。
+	</form>
+
+</div>
+</body>
+</html>
