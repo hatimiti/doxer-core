@@ -2,9 +2,6 @@ package org.doxer.xbase.util;
 
 import static javax.servlet.http.HttpServletResponse.*;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,10 +31,7 @@ import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
 import com.github.hatimiti.flutist.common.message.GlobalMessages;
 import com.github.hatimiti.flutist.common.message.OwnedMessages;
 import com.github.hatimiti.flutist.common.message.Owner;
-import com.github.hatimiti.flutist.common.util.CharacterEncoding;
-import com.github.hatimiti.flutist.common.util.MIMEType;
 import com.github.hatimiti.flutist.common.util._Date;
-import com.github.hatimiti.flutist.common.util._Http;
 import com.github.hatimiti.flutist.common.util._Num;
 import com.github.hatimiti.flutist.common.util._Obj;
 import com.github.hatimiti.flutist.common.util._Str;
@@ -318,24 +312,6 @@ public final class _Container {
 //		return af != null;
 //		return af != null || vf != null;
 //	}
-
-	/* ****************************************
-	 * ダウンロード
-	 * ****************************************/
-
-	public static void downloadFile(Path filePath) {
-		try {
-			OutputStream writer = _Http.getOutputStreamForDownload(
-					getHttpServletResponse(), CharacterEncoding.UTF8,
-					MIMEType.APPL_OCTET_STREAM, filePath.getFileName().toString());
-
-			_Http.write(writer, filePath.toFile());
-
-		} catch (IOException e) {
-			LOG.warn("Download is missed!! message = {}, stacktrace = {}",
-					e.getMessage(), e.getStackTrace());
-		}
-	}
 
 	/* ****************************************
 	 * アクセスユーザー

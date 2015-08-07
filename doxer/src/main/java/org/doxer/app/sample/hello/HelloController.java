@@ -14,11 +14,13 @@ import java.nio.file.Paths;
 import javax.annotation.Resource;
 
 import org.doxer.app.sample.hello.HelloForm.Validate;
+import org.doxer.app.sample.hello.HelloForm.ValidateDownload;
 import org.doxer.xbase.aop.interceptor.supports.DoValidation;
 import org.doxer.xbase.aop.interceptor.supports.Token;
 import org.doxer.xbase.controller.DoxController;
 import org.doxer.xbase.form.AccessUser;
 import org.doxer.xbase.report.birt.DoxBirt;
+import org.doxer.xbase.util.Downloads;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,13 +83,21 @@ public class HelloController extends DoxController {
 		return view("/hello/hello.html", form);
 	}
 
+	@DoValidation(v = { ValidateDownload.class }, to = "/hello/hello.html")
 	@RequestMapping(value = "/download")
-	public void download(HelloForm form) {
-		downloadFile(Paths.get("//LS-XHLE38/share/var/", form.getFileName()));
+	public DoxModelAndView downloadFile(HelloForm form) throws Exception {
+		Downloads.downloadFile(Paths.get("//LS-XHLE38/share/var/", form.getFileName()));
+		return download(form);
+	}
+
+	@RequestMapping(value = "/output-doxls")
+	public void outputReportDoxls(HelloForm form) throws Exception {
+		Downloads.downloadXls("templates/report/xls/nested_command_template.xls",
+				helloService.createXlsValuesSetter(form));
 	}
 
 	@RequestMapping(value = "/output-report")
-	public void outputReportPdf(HelloForm form) {
+	public void outputReportPdf(HelloForm form) throws Exception {
 		DoxBirt birt = new DoxBirt(
 				"/sample/hello/hello.rptdesign",
 				"//LS-XHLE38/share/var/hello.pdf",
@@ -95,11 +105,11 @@ public class HelloController extends DoxController {
 		birt.output("hello", "Hello, BIRT");
 
 		form.setFileName("hello.pdf");
-		download(form);
+		downloadFile(form);
 	}
 
 	@RequestMapping(value = "/output-xls")
-	public void outputReportXls(HelloForm form) {
+	public void outputReportXls(HelloForm form) throws Exception {
 		DoxBirt birt = new DoxBirt(
 				"/sample/hello/hello_xls.rptdesign",
 				"//LS-XHLE38/share/var/hello.xlsx",
@@ -107,7 +117,7 @@ public class HelloController extends DoxController {
 		birt.output("hello", "Hello, BIRT");
 
 		form.setFileName("hello.xlsx");
-		download(form);
+		downloadFile(form);
 	}
 
 }

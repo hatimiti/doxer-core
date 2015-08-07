@@ -4,6 +4,7 @@ import static com.github.hatimiti.flutist.common.message.AppMessageLevel.*;
 import static com.github.hatimiti.flutist.common.util._Obj.*;
 import static org.doxer.xbase.util._Container.*;
 
+import java.io.IOException;
 import java.io.Writer;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import lombok.val;
 import org.doxer.app.base.type.form.sample.ad.master.cmshain.CmShainId;
 import org.doxer.app.db.dbflute.exbhv.CmShainBhv;
 import org.doxer.app.db.dbflute.exentity.CmShain;
+import org.doxer.xbase.exception.DoxBusinessRuntimeException;
 import org.doxer.xbase.service.DoxService;
 import org.doxer.xbase.util.DoxCsvEntityReader;
 import org.springframework.stereotype.Service;
@@ -46,7 +48,7 @@ public class CmShainService extends DoxService {
 
 	public void outputCsvBySearchCondition(
 			final CmShainListForm form,
-			final Writer out) throws Exception {
+			final Writer out) {
 
 		try (CsvEntityWriter<CmShainCsv> writer
 				= new CsvEntityWriter<>(new CsvWriter(out), CmShainCsv.class, true)) {
@@ -58,6 +60,9 @@ public class CmShainService extends DoxService {
 				csv.copyFrom(shain);
 				writer.write(csv);
 			});
+
+		} catch (IOException e) {
+			throw new DoxBusinessRuntimeException(e);
 		}
 	}
 
@@ -67,7 +72,7 @@ public class CmShainService extends DoxService {
 	 */
 
 	public void inputCsv(
-			final CmShainListForm form) throws Exception {
+			final CmShainListForm form) {
 
 		CsvConfig conf = new CsvConfig();
 		conf.setIgnoreEmptyLines(true);
@@ -84,6 +89,9 @@ public class CmShainService extends DoxService {
 					this.cmShainBhv.update(line.copyTo(cmShain));
 				}
 			});
+
+		} catch (IOException e) {
+			throw new DoxBusinessRuntimeException(e);
 		}
 	}
 
