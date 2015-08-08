@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>doxer-common</project>
+		<project>doxls</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

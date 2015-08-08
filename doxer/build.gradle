@@ -45,40 +45,6 @@ apply plugin: 'jacoco'
 configurations {
 	providedCompile
 	providedRuntime
-
-	compile.exclude module: 'org.eclipse.datatools.connectivity.apache.derby.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.apache.derby'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.console.profile'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.db.generic'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.dbdefinition.genericJDBC'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.oda.consumer'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.oda.design'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.oda.flatfile'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.oda.profile'
-	compile.exclude module: 'org.eclipse.datatools.connectivity.sqm.core'
-	compile.exclude module: 'org.eclipse.datatools.connectivity'
-	compile.exclude module: 'org.eclipse.datatools.modelbase.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.modelbase.derby'
-	compile.exclude module: 'org.eclipse.datatools.modelbase.sql.query'
-	compile.exclude module: 'org.eclipse.datatools.modelbase.sql'
-	compile.exclude module: 'org.eclipse.datatools.enablement.hsqldb.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.hsqldb'
-	compile.exclude module: 'org.eclipse.datatools.enablement.oracle.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.oracle'
-	compile.exclude module: 'org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.ibm.db2.luw'
-	compile.exclude module: 'org.eclipse.datatools.enablement.ibm.informix.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.ibm.informix'
-	compile.exclude module: 'org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.msft.sqlserver'
-	compile.exclude module: 'org.eclipse.datatools.enablement.mysql.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.mysql'
-	compile.exclude module: 'org.eclipse.datatools.enablement.oda.ws'
-	compile.exclude module: 'org.eclipse.datatools.enablement.oda.xml'
-	compile.exclude module: 'org.eclipse.datatools.enablement.postgresql.dbdefinition'
-	compile.exclude module: 'org.eclipse.datatools.enablement.postgresql'
-	compile.exclude module: 'org.eclipse.orbit.mongodb'
-
 }
 
 def SPRING_GROUPID = 'org.springframework'
@@ -133,10 +99,39 @@ dependencies {
 
 	compile group: 'com.orangesignal', name: 'orangesignal-csv', version: '2.2.1'
 	compile (group: 'org.eclipse.birt.runtime', name: 'org.eclipse.birt.runtime', version: '4.4.2') {
+		exclude module: 'org.eclipse.datatools.connectivity.apache.derby.dbdefinition'
+		exclude module: 'org.eclipse.datatools.connectivity.apache.derby'
+		exclude module: 'org.eclipse.datatools.connectivity.console.profile'
+		exclude module: 'org.eclipse.datatools.connectivity.db.generic'
+		exclude module: 'org.eclipse.datatools.connectivity.dbdefinition.genericJDBC'
+		exclude module: 'org.eclipse.datatools.connectivity.oda.consumer'
+		exclude module: 'org.eclipse.datatools.connectivity.oda.design'
+		exclude module: 'org.eclipse.datatools.connectivity.oda.flatfile'
+		exclude module: 'org.eclipse.datatools.connectivity.oda.profile'
+		exclude module: 'org.eclipse.datatools.connectivity.sqm.core'
+		exclude module: 'org.eclipse.datatools.connectivity'
+		exclude module: 'org.eclipse.datatools.modelbase.dbdefinition'
+		exclude module: 'org.eclipse.datatools.modelbase.derby'
+		exclude module: 'org.eclipse.datatools.modelbase.sql.query'
+		exclude module: 'org.eclipse.datatools.modelbase.sql'
+		exclude module: 'org.eclipse.datatools.enablement.hsqldb.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.hsqldb'
+		exclude module: 'org.eclipse.datatools.enablement.oracle.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.oracle'
+		exclude module: 'org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.ibm.db2.luw'
+		exclude module: 'org.eclipse.datatools.enablement.ibm.informix.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.ibm.informix'
+		exclude module: 'org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.msft.sqlserver'
+		exclude module: 'org.eclipse.datatools.enablement.mysql.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.mysql'
+		exclude module: 'org.eclipse.datatools.enablement.oda.ws'
+		exclude module: 'org.eclipse.datatools.enablement.oda.xml'
+		exclude module: 'org.eclipse.datatools.enablement.postgresql.dbdefinition'
+		exclude module: 'org.eclipse.datatools.enablement.postgresql'
+		exclude module: 'org.eclipse.orbit.mongodb'
 	}
-
-	// Settings Excel
-	compile group: 'com.github.hatimiti', name: 'doxls', version: '1.0'
 
 	// Settings Mail
 	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
@@ -144,6 +139,7 @@ dependencies {
 	compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
 
 	// Settings Local
+	compile group: 'com.github.hatimiti', name: 'doxls', version: '1.0'
 	compile group: 'com.github.hatimiti', name: 'doxer-common', version: '0.1.0'
 
 	// Settings Test

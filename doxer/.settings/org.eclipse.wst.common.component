@@ -8,6 +8,9 @@
         <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/doxer-common/doxer-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/doxls/doxls">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="doxer"/>
         <property name="java-output-path" value="/doxer/bin"/>
     </wb-module>
