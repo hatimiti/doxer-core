@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.doxer.app.base.thymeleaf.util.JUtility;
 import org.doxer.xbase.thymeleaf.utility.SAUtility;
 import org.thymeleaf.context.IProcessingContext;
 import org.thymeleaf.dialect.AbstractDialect;
@@ -20,7 +19,6 @@ public class JUtilityDialect extends AbstractDialect implements IExpressionEnhan
 	private static final Map<String, Object> EXPRESSION_OBJECTS;
 	static {
 		Map<String, Object> objects = new HashMap<>();
-		objects.put("j", new JUtility());
 		objects.put("sa", new SAUtility());
 		EXPRESSION_OBJECTS = Collections.unmodifiableMap(objects);
 	}

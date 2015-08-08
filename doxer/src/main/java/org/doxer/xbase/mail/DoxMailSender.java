@@ -20,7 +20,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.doxer.app.base.exception.AppExceptionResolver;
 import org.doxer.xbase.util._Env;
 import org.slf4j.Logger;
 import org.springframework.mail.MailException;
@@ -45,7 +44,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		try {
 			this.message = createMime(model);
 		} catch (Exception e) {
-			LOG.error(AppExceptionResolver.exceptionToString(e));
+//			LOG.error(AppExceptionResolver.exceptionToString(e));
 			new RuntimeException(e);
 		}
 	}
@@ -54,7 +53,7 @@ public class DoxMailSender extends JavaMailSenderImpl {
 		try {
 			this.send(message);
 		} catch (MailException e) {
-			LOG.error(AppExceptionResolver.exceptionToString(e));
+//			LOG.error(AppExceptionResolver.exceptionToString(e));
 			throw new RuntimeException(e);
 		}
 	}
