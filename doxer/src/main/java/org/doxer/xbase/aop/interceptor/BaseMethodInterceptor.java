@@ -11,7 +11,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.doxer.xbase.form.Form;
 import org.slf4j.Logger;
 
-import com.github.hatimiti.flutist.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Obj;
 
 public abstract class BaseMethodInterceptor implements MethodInterceptor {
 

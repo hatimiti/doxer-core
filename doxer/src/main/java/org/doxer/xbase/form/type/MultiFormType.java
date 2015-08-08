@@ -1,7 +1,7 @@
 package org.doxer.xbase.form.type;
 
-import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
-import com.github.hatimiti.flutist.common.validation.Vval;
+import com.github.hatimiti.doxer.common.domain.supports.InputAttribute;
+import com.github.hatimiti.doxer.common.validation.Vval;
 
 public abstract class MultiFormType extends FormType<String[]> {
 

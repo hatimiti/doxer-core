@@ -1,8 +1,8 @@
 package org.doxer.xbase.util;
 
-import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
-import static com.github.hatimiti.flutist.common.util.MIMEType.*;
-import static com.github.hatimiti.flutist.common.util._Http.*;
+import static com.github.hatimiti.doxer.common.util.CharacterEncoding.*;
+import static com.github.hatimiti.doxer.common.util.MIMEType.*;
+import static com.github.hatimiti.doxer.common.util._Http.*;
 import static java.lang.String.*;
 import static org.doxer.xbase.util._Container.*;
 
@@ -21,10 +21,10 @@ import org.doxer.xbase.form.DoxForm;
 import org.slf4j.Logger;
 
 import com.github.hatimiti.doxsl.core.Doxls;
-import com.github.hatimiti.flutist.common.util.CharacterEncoding;
-import com.github.hatimiti.flutist.common.util.MIMEType;
-import com.github.hatimiti.flutist.common.util._Http;
-import com.github.hatimiti.flutist.common.util._Obj;
+import com.github.hatimiti.doxer.common.util.CharacterEncoding;
+import com.github.hatimiti.doxer.common.util.MIMEType;
+import com.github.hatimiti.doxer.common.util._Http;
+import com.github.hatimiti.doxer.common.util._Obj;
 
 public class Downloads {
 

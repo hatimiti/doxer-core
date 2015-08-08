@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
-import com.github.hatimiti.flutist.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Obj;
 
 @Component
 public class StopWatchInterceptor implements MethodInterceptor {

@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.message.AppMessagesException;
-import com.github.hatimiti.flutist.common.util._Ref;
+import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
+import com.github.hatimiti.doxer.common.message.AppMessagesException;
+import com.github.hatimiti.doxer.common.util._Ref;
 
 @Component
 public class ValidationInterceptor extends BaseMethodInterceptor {

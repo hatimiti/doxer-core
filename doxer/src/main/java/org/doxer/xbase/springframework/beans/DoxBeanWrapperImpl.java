@@ -7,8 +7,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.NotWritablePropertyException;
 import org.springframework.beans.PropertyValue;
 
-import com.github.hatimiti.flutist.common.domain.supports.Condition;
-import com.github.hatimiti.flutist.common.util._Ref;
+import com.github.hatimiti.doxer.common.domain.supports.Condition;
+import com.github.hatimiti.doxer.common.util._Ref;
 
 public class DoxBeanWrapperImpl extends BeanWrapperImpl {
 

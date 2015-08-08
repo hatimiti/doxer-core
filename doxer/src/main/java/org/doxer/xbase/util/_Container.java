@@ -25,16 +25,16 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.github.hatimiti.flutist.common.message.AppMessage;
-import com.github.hatimiti.flutist.common.message.AppMessages;
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.message.GlobalMessages;
-import com.github.hatimiti.flutist.common.message.OwnedMessages;
-import com.github.hatimiti.flutist.common.message.Owner;
-import com.github.hatimiti.flutist.common.util._Date;
-import com.github.hatimiti.flutist.common.util._Num;
-import com.github.hatimiti.flutist.common.util._Obj;
-import com.github.hatimiti.flutist.common.util._Str;
+import com.github.hatimiti.doxer.common.message.AppMessage;
+import com.github.hatimiti.doxer.common.message.AppMessages;
+import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
+import com.github.hatimiti.doxer.common.message.GlobalMessages;
+import com.github.hatimiti.doxer.common.message.OwnedMessages;
+import com.github.hatimiti.doxer.common.message.Owner;
+import com.github.hatimiti.doxer.common.util._Date;
+import com.github.hatimiti.doxer.common.util._Num;
+import com.github.hatimiti.doxer.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Str;
 
 /**
  * jsp/servlet コンテナを起動している時に使用可能なユーティリティクラス．

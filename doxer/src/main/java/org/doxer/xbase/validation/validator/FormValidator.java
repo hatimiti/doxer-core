@@ -1,6 +1,6 @@
 package org.doxer.xbase.validation.validator;
 
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
 
 @FunctionalInterface
 public interface FormValidator {

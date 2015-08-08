@@ -1,16 +1,16 @@
 package org.doxer.xbase.validation.validator;
 
-import static com.github.hatimiti.flutist.common.util._Ref.*;
+import static com.github.hatimiti.doxer.common.util._Ref.*;
 import static org.doxer.xbase.util._Container.*;
 
 import org.dbflute.bhv.AbstractBehaviorWritable;
 import org.dbflute.cbean.AbstractConditionBean;
 import org.dbflute.cbean.ConditionBean;
 
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.util._Obj;
-import com.github.hatimiti.flutist.common.validation.Vval;
-import com.github.hatimiti.flutist.common.validation.validator.BaseFieldValidator;
+import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
+import com.github.hatimiti.doxer.common.util._Obj;
+import com.github.hatimiti.doxer.common.validation.Vval;
+import com.github.hatimiti.doxer.common.validation.validator.BaseFieldValidator;
 
 /**
  * 非存在チェック

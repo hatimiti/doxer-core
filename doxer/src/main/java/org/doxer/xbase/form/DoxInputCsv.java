@@ -1,6 +1,6 @@
 package org.doxer.xbase.form;
 
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
+import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
 
 public interface DoxInputCsv {
 

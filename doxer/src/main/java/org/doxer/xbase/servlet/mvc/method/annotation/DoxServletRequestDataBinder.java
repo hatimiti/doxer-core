@@ -7,7 +7,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.AbstractPropertyBindingResult;
 import org.springframework.web.servlet.mvc.method.annotation.ExtendedServletRequestDataBinder;
 
-import com.github.hatimiti.flutist.common.util._Ref;
+import com.github.hatimiti.doxer.common.util._Ref;
 
 public class DoxServletRequestDataBinder extends ExtendedServletRequestDataBinder {
 

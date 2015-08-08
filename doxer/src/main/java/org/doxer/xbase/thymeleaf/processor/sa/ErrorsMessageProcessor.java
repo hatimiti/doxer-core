@@ -9,7 +9,7 @@ import org.thymeleaf.dom.Element;
 import org.thymeleaf.dom.Node;
 import org.thymeleaf.processor.ProcessorResult;
 
-import com.github.hatimiti.flutist.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Obj;
 
 public class ErrorsMessageProcessor extends JAbstractAttrProcessor {
 

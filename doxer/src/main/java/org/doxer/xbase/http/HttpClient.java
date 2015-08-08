@@ -1,6 +1,6 @@
 package org.doxer.xbase.http;
 
-import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
+import static com.github.hatimiti.doxer.common.util.CharacterEncoding.*;
 import static java.lang.String.*;
 import static java.net.URLEncoder.*;
 import static java.util.stream.Collectors.*;
@@ -18,7 +18,7 @@ import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
 
-import com.github.hatimiti.flutist.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Obj;
 
 public abstract class HttpClient {
 

@@ -8,8 +8,8 @@ import org.doxer.xbase.form.type.PagingListType;
 import org.doxer.xbase.support.Page;
 import org.doxer.xbase.support.Pagenator;
 
-import com.github.hatimiti.flutist.common.domain.supports.Condition;
-import com.github.hatimiti.flutist.common.util._Num;
+import com.github.hatimiti.doxer.common.domain.supports.Condition;
+import com.github.hatimiti.doxer.common.util._Num;
 
 /**
  * ページング処理を行う ActionForm のための基底クラス．

@@ -1,20 +1,20 @@
 package org.doxer.xbase.form.type;
 
-import static com.github.hatimiti.flutist.common.util._Obj.*;
+import static com.github.hatimiti.doxer.common.util._Obj.*;
 import static java.lang.String.*;
 
 import java.util.Optional;
 
 import org.doxer.xbase.util._Container;
 
-import com.github.hatimiti.flutist.common.domain.supports.Condition;
-import com.github.hatimiti.flutist.common.domain.supports.InputAttribute;
-import com.github.hatimiti.flutist.common.domain.type.Type;
-import com.github.hatimiti.flutist.common.message.AppMessagesContainer;
-import com.github.hatimiti.flutist.common.message.Owner;
-import com.github.hatimiti.flutist.common.util._Obj;
-import com.github.hatimiti.flutist.common.validation.Vval;
-import com.github.hatimiti.flutist.common.validation.validator.RequiredFieldValidator;
+import com.github.hatimiti.doxer.common.domain.supports.Condition;
+import com.github.hatimiti.doxer.common.domain.supports.InputAttribute;
+import com.github.hatimiti.doxer.common.domain.type.Type;
+import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
+import com.github.hatimiti.doxer.common.message.Owner;
+import com.github.hatimiti.doxer.common.util._Obj;
+import com.github.hatimiti.doxer.common.validation.Vval;
+import com.github.hatimiti.doxer.common.validation.validator.RequiredFieldValidator;
 
 public abstract class FormType<T> extends Type<T> {
 

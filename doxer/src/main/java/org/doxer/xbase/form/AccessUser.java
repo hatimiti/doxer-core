@@ -11,9 +11,9 @@ import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.github.hatimiti.flutist.common.util._Num;
-import com.github.hatimiti.flutist.common.util._Obj;
-import com.github.hatimiti.flutist.common.util._Str;
+import com.github.hatimiti.doxer.common.util._Num;
+import com.github.hatimiti.doxer.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Str;
 
 /**
  * ログインユーザに関する情報を保持する。

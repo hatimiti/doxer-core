@@ -1,6 +1,6 @@
 package org.doxer.xbase.mail;
 
-import static com.github.hatimiti.flutist.common.util.CharacterEncoding.*;
+import static com.github.hatimiti.doxer.common.util.CharacterEncoding.*;
 import static javax.mail.internet.InternetAddress.*;
 import static org.doxer.xbase.util._Container.*;
 
@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import com.github.hatimiti.flutist.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Obj;
 
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;

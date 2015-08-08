@@ -12,7 +12,7 @@ import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.attr.AbstractTextChildModifierAttrProcessor;
 import org.thymeleaf.standard.expression.IStandardExpression;
 
-import com.github.hatimiti.flutist.common.util._Regex;
+import com.github.hatimiti.doxer.common.util._Regex;
 
 /**
  * @author hatimiti

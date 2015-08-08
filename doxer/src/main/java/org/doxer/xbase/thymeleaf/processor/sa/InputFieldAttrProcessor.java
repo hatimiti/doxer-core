@@ -1,6 +1,6 @@
 package org.doxer.xbase.thymeleaf.processor.sa;
 
-import static com.github.hatimiti.flutist.common.util._Obj.*;
+import static com.github.hatimiti.doxer.common.util._Obj.*;
 import static java.lang.String.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.ProcessorResult;
 
-import com.github.hatimiti.flutist.common.util._Str;
+import com.github.hatimiti.doxer.common.util._Str;
 
 /**
  * @author hatimiti

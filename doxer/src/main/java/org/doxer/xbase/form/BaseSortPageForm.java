@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.doxer.xbase.support.SortOrder;
 import org.doxer.xbase.support.TableHeaderSortableForm;
 
-import com.github.hatimiti.flutist.common.domain.supports.Condition;
+import com.github.hatimiti.doxer.common.domain.supports.Condition;
 
 /**
  * テーブルヘッダなどによるソーティングを行う ActionForm のための基底クラス．
