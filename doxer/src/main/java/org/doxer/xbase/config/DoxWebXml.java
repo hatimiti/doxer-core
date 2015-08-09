@@ -1,4 +1,4 @@
-package org.doxer;
+package org.doxer.xbase.config;
 
 import static java.util.Arrays.*;
 

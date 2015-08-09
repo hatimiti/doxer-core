@@ -1,4 +1,4 @@
-package org.doxer;
+package org.doxer.xbase.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
