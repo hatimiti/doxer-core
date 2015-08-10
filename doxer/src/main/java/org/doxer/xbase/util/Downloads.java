@@ -24,6 +24,7 @@ import com.github.hatimiti.doxer.common.util.CharacterEncoding;
 import com.github.hatimiti.doxer.common.util.MIMEType;
 import com.github.hatimiti.doxer.common.util._Http;
 import com.github.hatimiti.doxer.common.util._Obj;
+import com.github.hatimiti.doxer.common.util._Str;
 import com.github.hatimiti.doxsl.core.Doxls;
 
 public class Downloads {
@@ -53,18 +54,38 @@ public class Downloads {
 		}
 	}
 
+	/**
+	 *
+	 * @param fileName ZIP内に格納するファイル名を指定します．(例：sample.txt)<br />
+	 * ダウンロードされるZIPファイルの拡張子(.zip)は、{@code fileName}から既存の拡張子を除いて自動的に付加されます．
+	 * (例：sample.zip)
+	 * @param form
+	 * @param enc
+	 * @param csvWriter
+	 * @throws IOException
+	 */
 	public static <T extends DoxForm> void downloadZipCsv(
 			String fileName,
 			T form, CharacterEncoding enc, BiConsumer<T, Writer> csvWriter) throws IOException {
 
-		long tmpSuffix = System.nanoTime();
-		File tmpZipFile = Paths.get(format("/Temp/%s_%s", fileName, tmpSuffix)).toFile();
+		File tmpDir4Zip = Paths.get(format("/tmp/downloads/%s", _Str.createRandomHexString(12))).toFile();
+		tmpDir4Zip.mkdirs();
+		File tmpZipFile = new File(tmpDir4Zip, fileName);
 		try (Writer out = new BufferedWriter(new FileWriter(tmpZipFile))) {
 			csvWriter.accept(form, out);
-			_Http.downloadZip(getHttpServletResponse(), enc, tmpZipFile, fileName);
+			_Http.downloadZip(getHttpServletResponse(), enc, tmpZipFile, replaceExtension(fileName, ".zip"));
 		} finally {
 			tmpZipFile.delete();
+			tmpDir4Zip.delete();
 		}
+	}
+
+	private static String replaceExtension(String value, String extension) {
+		int s = value.lastIndexOf(".");
+		if (s < 0) {
+			return value + extension;
+		}
+		return value.substring(0, s) + extension;
 	}
 
 	public static void downloadXls(String templatePath, String downloadFileNmae, Consumer<Doxls> valuesSetter) throws Exception {
