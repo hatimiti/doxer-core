@@ -20,11 +20,11 @@ import java.util.function.Consumer;
 import org.doxer.xbase.form.DoxForm;
 import org.slf4j.Logger;
 
-import com.github.hatimiti.doxsl.core.Doxls;
 import com.github.hatimiti.doxer.common.util.CharacterEncoding;
 import com.github.hatimiti.doxer.common.util.MIMEType;
 import com.github.hatimiti.doxer.common.util._Http;
 import com.github.hatimiti.doxer.common.util._Obj;
+import com.github.hatimiti.doxsl.core.Doxls;
 
 public class Downloads {
 
@@ -67,10 +67,10 @@ public class Downloads {
 		}
 	}
 
-	public static void downloadXls(String templatePath, Consumer<Doxls> valuesSetter) throws Exception {
+	public static void downloadXls(String templatePath, String downloadFileNmae, Consumer<Doxls> valuesSetter) throws Exception {
 		try (Doxls xls = new Doxls(templatePath,
 				getOutputStreamForDownload(
-					getHttpServletResponse(), UTF8, APPL_OCTET_STREAM, "sample.xls"))) {
+					getHttpServletResponse(), UTF8, APPL_OCTET_STREAM, downloadFileNmae))) {
 
 			valuesSetter.accept(xls);
 			xls.output();
