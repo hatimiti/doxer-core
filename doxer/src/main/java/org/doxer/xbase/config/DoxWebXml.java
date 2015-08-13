@@ -1,5 +1,6 @@
 package org.doxer.xbase.config;
 
+import static com.github.hatimiti.doxer.common.util.CharacterEncoding.*;
 import static java.util.Arrays.*;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public abstract class DoxWebXml extends SpringBootServletInitializer {
 		registrationBean.setFilter(filter);
 		registrationBean.setOrder(1);
 		registrationBean.setInitParameters(new HashMap<String, String>() {{
-			put("encoding", "UTF-8");
+			put("encoding", UTF8.toString());
 			put("forceEncoding", "true");
 		}});
 		registrationBean.setUrlPatterns(asList(new String[] { "/*" }));
