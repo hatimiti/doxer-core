@@ -86,6 +86,7 @@ dependencies {
 //	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.11'
 	compile group: 'ch.qos.logback', name: 'logback-classic', version: LOGBACK_VERSION
 	compile group: 'ch.qos.logback', name: 'logback-core', version: LOGBACK_VERSION
+	compile group: 'org.codehaus.janino', name: 'janino', version: '2.7.8'
 	// Settings AOP
 	compile group: 'org.aspectj', name: 'aspectjrt', version: ASPECTJ_VERSION
 	compile group: 'org.aspectj', name: 'aspectjweaver', version: ASPECTJ_VERSION
