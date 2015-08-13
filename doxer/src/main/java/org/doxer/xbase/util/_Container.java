@@ -306,13 +306,6 @@ public final class _Container {
 		return getHttpServletRequest().getSession();
 	}
 
-//	public static boolean isViewComponent(final Field field) {
-//		ActionForm af = field.getAnnotation(ActionForm.class);
-//		ViewHelper vf = field.getAnnotation(ViewHelper.class);
-//		return af != null;
-//		return af != null || vf != null;
-//	}
-
 	/* ****************************************
 	 * アクセスユーザー
 	 * ****************************************/
