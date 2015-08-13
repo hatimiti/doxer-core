@@ -11,7 +11,6 @@ import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.github.hatimiti.doxer.common.util._Num;
 import com.github.hatimiti.doxer.common.util._Obj;
 import com.github.hatimiti.doxer.common.util._Str;
 
@@ -28,41 +27,47 @@ public class AccessUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** ユーザID */
-	protected String id = "NONE";
-
-	/** ユーザ名(姓) */
-	protected String nameSei;
+	private String id = "NONE";
 
 	/** ユーザ名(名) */
-	protected String nameMei;
+	private String firstName;
+
+	/** ユーザ名(姓) */
+	private String lastName;
+
+	/** IPアドレス */
+	private String ipAddress;
+
+	/** UserAgent */
+	private String userAgent;
 
 	/** ログイン済であれば true */
-	protected boolean isLogged;
+	private boolean isLogged;
 
 	/** 権限ロールID */
-	protected Integer authroleId;
+	private Integer authroleId;
 
-	/** 言語コード */
-	protected String langCd = "ja";
+	/** アクセス元ロケール */
+	private Locale locale;
+
+	/** 表示言語 */
+	private String langCd;
+
+	/** 初期化済 */
+	private boolean isInitialized;
 
 	public void invalidate() {
 		_Obj.copy(new AccessUser(), this);
 	}
 
 	public String getId() {
-		return _Str.asStrOrEmpty(String.valueOf(this.id));
-	}
-
-	public Long getIdL() {
-		return _Num.asLongOrNull(getId());
+		return _Str.asStrOrEmpty(this.id);
 	}
 
 	public String getName() {
-		return getNameSei() + "　" + getNameMei();
-	}
-
-	public Locale getLocale() {
-		return new Locale(this.langCd);
+		return Locale.JAPAN.equals(locale)
+				? String.format("%s %s", getLastName(), getFirstName())
+				: String.format("%s %s", getFirstName(), getLastName());
 	}
 
 }
