@@ -3,6 +3,7 @@ package org.doxer.xbase.form;
 import lombok.Getter;
 
 import org.dbflute.Entity;
+import org.doxer.xbase.aop.interceptor.supports.Session;
 
 /**
  * エンティティと対となる Form のための基底クラス．<br />
@@ -20,6 +21,6 @@ public abstract class BaseEntityForm<E extends Entity> extends DoxForm {
 	 * 楽観的排他用 更新番号
 	 */
 	@Getter
-	protected Integer versionNo;
+	@Session protected Integer versionNo;
 
 }
