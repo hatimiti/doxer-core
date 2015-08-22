@@ -1,13 +1,7 @@
 package org.doxer.xbase.servlet.mvc.method.annotation;
 
-import java.lang.reflect.Field;
-
 import org.doxer.xbase.springframework.validation.DoxBeanPropertyBindingResult;
-import org.springframework.util.Assert;
-import org.springframework.validation.AbstractPropertyBindingResult;
 import org.springframework.web.servlet.mvc.method.annotation.ExtendedServletRequestDataBinder;
-
-import com.github.hatimiti.doxer.common.util._Ref;
 
 public class DoxServletRequestDataBinder extends ExtendedServletRequestDataBinder {
 
@@ -22,24 +16,7 @@ public class DoxServletRequestDataBinder extends ExtendedServletRequestDataBinde
 		super(target, objectName);
 	}
 
-	@Override
-	public void initBeanPropertyAccess() {
-		Field bindingResult = _Ref.getFieldIncludedSuperByName(this.getClass(), "bindingResult").get();
-		try {
-			Assert.state(bindingResult.get(this) == null,
-					"DataBinder is already initialized - call initBeanPropertyAccess before other configuration methods");
-			bindingResult.set(this, createBeanPropertyBindingResult());
-
-			if (getConversionService() != null) {
-				((AbstractPropertyBindingResult) bindingResult.get(this)).initConversion(getConversionService());
-			}
-
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			throw new IllegalStateException(e);
-		}
-	}
-
-	private DoxBeanPropertyBindingResult createBeanPropertyBindingResult() {
+	protected DoxBeanPropertyBindingResult createBeanPropertyBindingResult() {
 		return new DoxBeanPropertyBindingResult(
 				getTarget(), getObjectName(), isAutoGrowNestedPaths(), getAutoGrowCollectionLimit());
 	}
