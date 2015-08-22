@@ -2,19 +2,20 @@ package org.doxer.xbase.validation.validator;
 
 import static com.github.hatimiti.doxer.common.message.AppMessageLevel.*;
 
-import java.io.UncheckedIOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.val;
 
 import org.doxer.xbase.form.DoxInputCsv;
 import org.doxer.xbase.util.DoxCsvEntityReader;
+import org.slf4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.hatimiti.doxer.common.message.AppMessage;
 import com.github.hatimiti.doxer.common.message.AppMessagesContainer;
 import com.github.hatimiti.doxer.common.message.OwnedMessages;
 import com.github.hatimiti.doxer.common.message.Owner;
+import com.github.hatimiti.doxer.common.util._Obj;
 import com.github.hatimiti.doxer.common.validation.Vval;
 import com.github.hatimiti.doxer.common.validation.validator.RequiredFieldValidator;
 import com.orangesignal.csv.CsvConfig;
@@ -26,6 +27,8 @@ import com.orangesignal.csv.CsvTokenException;
  *
  */
 public abstract class CsvFormValidator implements FormValidator {
+
+	protected static final Logger LOG = _Obj.getLogger();
 
 	/**
 	 * 対象CSVファイルを返します．
@@ -71,14 +74,17 @@ public abstract class CsvFormValidator implements FormValidator {
 				line.validate(c, name, csvRowCount.get());
 				csvRowCount.incrementAndGet();
 			});
-		} catch (UncheckedIOException e) {
-			if (!(e.getCause() instanceof CsvTokenException)) {
-				throw e;
+		} catch (Exception e) {
+			if (e.getCause() instanceof CsvTokenException) {
+				c.add(new OwnedMessages(Owner.of("row", name, csvRowCount.get()),
+						new AppMessage(ERROR, "valid.csv.col.invalid",
+								getCsvColumnNum(),
+								((CsvTokenException) e.getCause()).getTokens().size())));
+			} else {
+				c.add(new OwnedMessages(Owner.of("other", name),
+						new AppMessage(ERROR, "valid.csv.format.invalid")));
+				return csvRowCount.get();
 			}
-			c.add(new OwnedMessages(Owner.of("", name, csvRowCount.get()),
-					new AppMessage(ERROR, "valid.csv.col.invalid",
-							getCsvColumnNum(),
-							((CsvTokenException) e.getCause()).getTokens().size())));
 		}
 
 		return csvRowCount.get();

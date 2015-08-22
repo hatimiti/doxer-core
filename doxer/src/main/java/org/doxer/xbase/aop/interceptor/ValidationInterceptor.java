@@ -72,7 +72,7 @@ public class ValidationInterceptor extends BaseMethodInterceptor {
 					c.setAccessible(true);
 					c.newInstance(new Object[] { form }).validate(container);
 				} catch (Exception e) {
-					throw new RuntimeException(e);
+					throw new RuntimeException("validation class: " + v, e);
 				}
 			});
 
