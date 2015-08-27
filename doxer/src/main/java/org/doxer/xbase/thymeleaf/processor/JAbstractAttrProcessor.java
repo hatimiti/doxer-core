@@ -1,6 +1,9 @@
 package org.doxer.xbase.thymeleaf.processor;
 
+import java.util.Objects;
+
 import org.doxer.xbase.form.DoxForm;
+import org.slf4j.Logger;
 import org.springframework.web.servlet.support.BindStatus;
 import org.thymeleaf.Arguments;
 import org.thymeleaf.Configuration;
@@ -12,7 +15,11 @@ import org.thymeleaf.standard.expression.IStandardExpression;
 import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 
+import com.github.hatimiti.doxer.common.util._Obj;
+
 public abstract class JAbstractAttrProcessor extends AbstractAttrProcessor {
+
+	protected static final Logger LOG = _Obj.getLogger();
 
 	private Arguments arguments;
 	private Element element;
@@ -76,7 +83,17 @@ public abstract class JAbstractAttrProcessor extends AbstractAttrProcessor {
 	}
 
 	protected boolean isRadioElement(Element element) {
-		return "radio".equals(element.getAttributeValue("type"));
+		return isSpecifiedInputElement(element, "radio");
+	}
+
+	protected boolean isCheckboxElement(Element element) {
+		return isSpecifiedInputElement(element, "checkbox");
+	}
+
+	private boolean isSpecifiedInputElement(Element element, String type) {
+		Objects.requireNonNull(element);
+		Objects.requireNonNull(type);
+		return type.equals(element.getAttributeValue("type"));
 	}
 
 	@Override

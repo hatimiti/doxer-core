@@ -43,8 +43,8 @@ public class InputFieldAttrProcessor extends JAbstractAttrProcessor {
 				_Str.asStrOrEmpty(eval(format("${%s%s}", path, part2))),
 				_Str.asStrOrEmpty(eval(format("${%s.length()}", path))));
 
-		if (isRadioElement(element)) {
-			setAttribute4RadioElement(element, ev);
+		if (isRadioElement(element) || isCheckboxElement(element)) {
+			setAttribute4CheckedElement(element, ev);
 		} else {
 			setAttribute(element, ev);
 		}
@@ -53,10 +53,10 @@ public class InputFieldAttrProcessor extends JAbstractAttrProcessor {
 		return ProcessorResult.OK;
 	}
 
-	void setAttribute4RadioElement(Element element, EvaluatedInfo ev) {
+	void setAttribute4CheckedElement(Element element, EvaluatedInfo ev) {
 		element.setAttribute("name", ev.getName());
 		if (ev.getValue().equals(element.getAttributeValue("value"))) {
-			element.setAttribute("checked", "true");
+			element.setAttribute("checked", "checked");
 		}
 	}
 
@@ -69,7 +69,7 @@ public class InputFieldAttrProcessor extends JAbstractAttrProcessor {
 
 	@Override
 	public int getPrecedence() {
-		return 100;
+		return 10000;
 	}
 
 	@Getter
