@@ -67,9 +67,13 @@ public final class _Container {
 			= new ThreadLocal<AppMessagesContainer>() {
 		@Override
 		protected AppMessagesContainer initialValue() {
-			AppMessagesContainer flash
-				= (AppMessagesContainer) getHttpSession().getAttribute(KEY_APPMESSAGES_IN_SESSION);
-			getHttpSession().removeAttribute(KEY_APPMESSAGES_IN_SESSION);
+			AppMessagesContainer flash = null;
+			try {
+				flash = (AppMessagesContainer) getHttpSession().getAttribute(KEY_APPMESSAGES_IN_SESSION);
+				getHttpSession().removeAttribute(KEY_APPMESSAGES_IN_SESSION);
+			} catch (Exception e) {
+				LOG.debug("HttpSession may be null.", e);
+			}
 			return flash != null ? flash : new AppMessagesContainer();
 		};
 	};
