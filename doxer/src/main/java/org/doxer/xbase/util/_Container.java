@@ -280,7 +280,7 @@ public final class _Container {
 	}
 
 	public static WebApplicationContext getWebApplicationContext() {
-		return RequestContextUtils.getWebApplicationContext(getHttpServletRequest());
+		return RequestContextUtils.findWebApplicationContext(getHttpServletRequest());
 	}
 
 	public static String getContextPath() {

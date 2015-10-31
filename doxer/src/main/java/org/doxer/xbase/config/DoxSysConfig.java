@@ -4,9 +4,11 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 import org.doxer.xbase.controller.DoxErrorController;
 import org.doxer.xbase.thymeleaf.dialect.sa.SADialect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.BasicErrorController;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -17,6 +19,8 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 public abstract class DoxSysConfig {
+
+	@Autowired private ServerProperties properties;
 
 	/**
 	 * テンプレートリゾルバーの設定
@@ -69,7 +73,7 @@ public abstract class DoxSysConfig {
 	@Bean
 //	@ConditionalOnMissingBean(value = ErrorController.class, search = SearchStrategy.CURRENT)
 	public BasicErrorController basicErrorController(ErrorAttributes errorAttributes) {
-	    return new DoxErrorController(errorAttributes);
+	    return new DoxErrorController(errorAttributes, this.properties.getError());
 	}
 
 }

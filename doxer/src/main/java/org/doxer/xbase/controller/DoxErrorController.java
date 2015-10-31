@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.web.BasicErrorController;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,8 +19,8 @@ public class DoxErrorController extends BasicErrorController {
 
 	protected static Logger LOG = _Obj.getLogger();
 
-	public DoxErrorController(ErrorAttributes errorAttributes) {
-		super(errorAttributes);
+	public DoxErrorController(ErrorAttributes errorAttributes, ErrorProperties properties) {
+		super(errorAttributes, properties);
 	}
 
 	// TODO エラーページへの遷移
