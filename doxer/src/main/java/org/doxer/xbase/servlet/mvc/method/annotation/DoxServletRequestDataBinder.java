@@ -39,7 +39,8 @@ public class DoxServletRequestDataBinder extends ExtendedServletRequestDataBinde
 		}
 	}
 
-	private DoxBeanPropertyBindingResult createBeanPropertyBindingResult() {
+	@Override
+	protected DoxBeanPropertyBindingResult createBeanPropertyBindingResult() {
 		return new DoxBeanPropertyBindingResult(
 				getTarget(), getObjectName(), isAutoGrowNestedPaths(), getAutoGrowCollectionLimit());
 	}
